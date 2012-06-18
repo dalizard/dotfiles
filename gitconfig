@@ -60,7 +60,10 @@
   dh1 = diff HEAD~1
 
 [push]
-  default = current
+  default = tracking
+
+[branch]
+  autosetuprebase = always
 
 [apply]
   whitespace = fix
