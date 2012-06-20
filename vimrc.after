@@ -28,6 +28,7 @@ set gdefault
 set incsearch
 set showmatch
 set hlsearch
+set cursorline
 nnoremap <leader><space> :noh<cr>
 nnoremap <tab> %
 vnoremap <tab> %
