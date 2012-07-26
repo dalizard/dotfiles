@@ -68,8 +68,6 @@ map <C-h> :tabp<CR>
 map <C-n> :tabnew<CR>
 
 imap jj <ESC>
-nnoremap / /\v
-vnoremap / /\v
 noremap <leader><space> :noh<cr>
 nnoremap <tab> %
 vnoremap <tab> %
