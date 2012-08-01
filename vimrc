@@ -33,6 +33,7 @@ set wildmenu
 set wildmode=list:longest
 set cursorline                    " Highlights current line
 set shell=bash
+set synmaxcol=2048
 
 " Disable output and VCS files
 set wildignore+=*.o,*.out,*.obj,.git,*.rbc,*.rbo,*.class,.svn,*.gem
@@ -48,6 +49,8 @@ set wildignore+=*.swp,*~,._*
 
 set backupdir=~/.vim/_backup//    " where to put backup files
 set directory=~/.vim/_temp//      " where to put swap files
+
+set switchbuf=usetab,newtab
 
 let g:Powerline_symbols = 'fancy'
 let mapleader = ","
