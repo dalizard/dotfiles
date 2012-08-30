@@ -7,6 +7,8 @@ set encoding=utf-8                " Set default encoding to UTF-8
 set nocompatible                  " Use vim, no vi defaults
 set number                        " Show line numbers
 set hidden                        " Allow unsaved background buffers and remember marks/undo for them
+set showcmd                       " Display incomplete commands
+set nowrap
 set history=10000
 set ttyfast                       " Improve smoothness of redrawing
 set nocompatible                  " Use vim, no vi defaults
