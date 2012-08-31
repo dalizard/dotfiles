@@ -59,7 +59,7 @@ set switchbuf=usetab,newtab
 map Q gq
 
 " Clear the search buffer when hitting return
-:nnoremap <CR> :nohlsearch<cr>
+:nnoremap <cr> :nohlsearch<cr>
 
 " Paste lines from unnamed register and fix indentation
 nmap <leader>p pV`]=
@@ -68,7 +68,7 @@ nmap <leader>P PV`]=
 nnoremap <leader><leader> <c-^>
 
 " Find merge conflict markers
-nmap <silent> <leader>cf <ESC>/\v^[<=>]{7}( .*\|$)<CR>
+nmap <silent> <leader>cf <esc>/\v^[<=>]{7}( .*\|$)<cr>
 
 command! KillWhitespace :normal :%s/ *$//g<cr><c-o><cr>
 
@@ -81,19 +81,16 @@ nnoremap <c-j> <c-w>j
 nnoremap <c-k> <c-w>k
 nnoremap <c-l> <c-w>l
 
+" Tabs navigation
+map <C-l> :tabn<CR>
+map <C-h> :tabp<CR>
+map <C-n> :tabnew<CR>
+
 " Disable cursor keys in normal mode
 map <Left>  :echo "no!"<cr>
 map <Right> :echo "no!"<cr>
 map <Up>    :echo "no!"<cr>
 map <Down>  :echo "no!"<cr>
-
-" Clear whitespaces
-nnoremap <leader>W :%s/\s\+$//<cr>:let @/=''<CR>
-
-" Tabs shortcuts
-" nmap <C-]> gt
-" nmap <C-[> gT
-" nmap <C-n> :tabnew<CR>
 
 imap jj <ESC>
 noremap <leader><space> :noh<cr>
