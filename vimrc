@@ -9,7 +9,7 @@ set number                        " Show line numbers
 set hidden                        " Allow unsaved background buffers and remember marks/undo for them
 set showcmd                       " Display incomplete commands
 set nowrap
-set history=10000
+set history=200
 set ttyfast                       " Improve smoothness of redrawing
 set nocompatible                  " Use vim, no vi defaults
 set laststatus=2
@@ -36,6 +36,7 @@ set wildmode=list:longest
 set cursorline                    " Highlights current line
 set shell=bash
 set synmaxcol=2048
+set scrolloff=3                   " Have some context around the current line always on screen
 
 " Disable output and VCS files
 set wildignore+=*.o,*.out,*.obj,.git,*.rbc,*.rbo,*.class,.svn,*.gem
@@ -49,35 +50,56 @@ set wildignore+=*/vendor/gems/*,*/vendor/cache/*,*/.bundle/*,*/.sass-cache/*
 " Disable temp and backup files
 set wildignore+=*.swp,*~,._*
 
-set backupdir=~/.vim/_backup//    " where to put backup files
-set directory=~/.vim/_temp//      " where to put swap files
+set backupdir=~/.vim/_backup    " where to put backup files
+set directory=~/.vim/_temp      " where to put swap files
 
 set switchbuf=usetab,newtab
 
+" Don't use Ex mode, use Q for formatting
+map Q gq
+
+" Clear the search buffer when hitting return
+:nnoremap <CR> :nohlsearch<cr>
+
+" Paste lines from unnamed register and fix indentation
+nmap <leader>p pV`]=
+nmap <leader>P PV`]=
+
+nnoremap <leader><leader> <c-^>
+
+" Find merge conflict markers
+nmap <silent> <leader>cf <ESC>/\v^[<=>]{7}( .*\|$)<CR>
+
+command! KillWhitespace :normal :%s/ *$//g<cr><c-o><cr>
+
 let g:Powerline_symbols = 'fancy'
 let mapleader = ","
-let g:NERDTreeWinSize = 60
 
-" Move around split windows
-nnoremap <C-h> <C-w>h
-nnoremap <C-j> <C-w>j
-nnoremap <C-k> <C-w>k
-nnoremap <C-l> <C-w>l
+" Easier navigation between split windows
+nnoremap <c-h> <c-w>h
+nnoremap <c-j> <c-w>j
+nnoremap <c-k> <c-w>k
+nnoremap <c-l> <c-w>l
+
+" Disable cursor keys in normal mode
+map <Left>  :echo "no!"<cr>
+map <Right> :echo "no!"<cr>
+map <Up>    :echo "no!"<cr>
+map <Down>  :echo "no!"<cr>
 
 " Clear whitespaces
 nnoremap <leader>W :%s/\s\+$//<cr>:let @/=''<CR>
 
 " Tabs shortcuts
-map <C-l> :tabn<CR>
-map <C-h> :tabp<CR>
-map <C-n> :tabnew<CR>
+" nmap <C-]> gt
+" nmap <C-[> gT
+" nmap <C-n> :tabnew<CR>
 
 imap jj <ESC>
 noremap <leader><space> :noh<cr>
 nnoremap <tab> %
 vnoremap <tab> %
 autocmd BufWritePre * :%s/\s\+$//e
-map <leader>n :NERDTreeToggle<CR>
 
 " Remap W to w -- save a file
 cnoreabbrev <expr> W ((getcmdtype() is# ':' && getcmdline() is# 'w')?('W'):('w'))
