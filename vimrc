@@ -11,6 +11,10 @@ set showcmd                       " Display incomplete commands
 set nowrap
 set history=200
 set ttyfast                       " Improve smoothness of redrawing
+set noruler
+set ttyscroll=3
+set lazyredraw
+set synmaxcol=128
 set nocompatible                  " Use vim, no vi defaults
 set laststatus=2
 set novisualbell
@@ -37,6 +41,7 @@ set cursorline                    " Highlights current line
 set shell=bash
 set synmaxcol=2048
 set scrolloff=3                   " Have some context around the current line always on screen
+set autoread
 
 " Disable output and VCS files
 set wildignore+=*.o,*.out,*.obj,.git,*.rbc,*.rbo,*.class,.svn,*.gem
@@ -54,6 +59,8 @@ set backupdir=~/.vim/_backup    " where to put backup files
 set directory=~/.vim/_temp      " where to put swap files
 
 set switchbuf=usetab,newtab
+
+highlight NonText cterm=NONE ctermfg=NONE
 
 " Don't use Ex mode, use Q for formatting
 map Q gq
@@ -75,12 +82,6 @@ command! KillWhitespace :normal :%s/ *$//g<cr><c-o><cr>
 let g:Powerline_symbols = 'fancy'
 let mapleader = ","
 
-" Easier navigation between split windows
-nnoremap <c-h> <c-w>h
-nnoremap <c-j> <c-w>j
-nnoremap <c-k> <c-w>k
-nnoremap <c-l> <c-w>l
-
 " Tabs navigation
 map <C-l> :tabn<CR>
 map <C-h> :tabp<CR>
@@ -93,17 +94,17 @@ map <Up>    :echo "no!"<cr>
 map <Down>  :echo "no!"<cr>
 
 imap jj <ESC>
-noremap <leader><space> :noh<cr>
 nnoremap <tab> %
 vnoremap <tab> %
 autocmd BufWritePre * :%s/\s\+$//e
+" Automatically load .vimrc source when saved
+autocmd BufWritePost .vimrc source $MYVIMRC
 
-" Remap W to w -- save a file
-cnoreabbrev <expr> W ((getcmdtype() is# ':' && getcmdline() is# 'w')?('W'):('w'))
-
-cnoremap %% <C-R>=expand('%:h').'/'<cr>:w
+cnoremap %% <C-R>=expand('%:h').'/'<cr>
 map <leader>e :edit %%
 map <leader>v :view %%
+
+" Easy files switch
 nnoremap <leader><leader> <c-^>
 
 " Insert a hash rocket (=>) with <c-l>
@@ -120,10 +121,6 @@ function! RenameFile()
   endif
 endfunction
 map <leader>r :call RenameFile()<cr>
-
-" Prevent Vim from clobbering the scrollback buffer. See
-" http://www.shallowsky.com/linux/noaltscreen.html
-set t_ti= t_te=
 
 " Fugitive mappings
 map <leader>gb :Gblame<CR>
