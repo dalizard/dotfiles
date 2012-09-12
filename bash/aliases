@@ -1,5 +1,8 @@
 alias ls="ls -G"
 alias ll="ls -alG"
+alias be="bundle exec"
+alias copy=pbcopy
+alias paste=pbpaste
 alias r="bundle exec rake"
 alias rdm="r db:migrate"
 alias rdtp="r db:test:prepare"
@@ -18,4 +21,3 @@ alias gsc="git stash clear"
 alias gsp="git stash pop"
 alias grc="git rebase --continue"
 alias gca="git commit --amend"
-alias be="bundle exec"
