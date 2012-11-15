@@ -9,7 +9,7 @@ set number                        " Show line numbers
 set hidden                        " Allow unsaved background buffers and remember marks/undo for them
 set showcmd                       " Display incomplete commands
 set nowrap
-set history=200
+set history=10000
 set ttyfast                       " Improve smoothness of redrawing
 set noruler
 set ttyscroll=3
@@ -34,7 +34,6 @@ set hlsearch                      " Highlight matches
 set incsearch                     " Incremental searching
 set ignorecase                    " Searches are case insensitive...
 set smartcase                     " ... unless they contain at least one capital letter
-set gdefault
 set wildmenu
 set wildmode=list:longest
 set cursorline                    " Highlights current line
@@ -42,19 +41,9 @@ set shell=bash
 set synmaxcol=2048
 set scrolloff=3                   " Have some context around the current line always on screen
 set autoread
+set t_ti= t_te=
 
-" Disable output and VCS files
-set wildignore+=*.o,*.out,*.obj,.git,*.rbc,*.rbo,*.class,.svn,*.gem
-
-" Disable archive files
-set wildignore+=*.zip,*.tar.gz,*.tar.bz2,*.rar,*.tar.xz
-
-" Ignore bundler and sass cache
-set wildignore+=*/vendor/gems/*,*/vendor/cache/*,*/.bundle/*,*/.sass-cache/*
-
-" Disable temp and backup files
-set wildignore+=*.swp,*~,._*
-
+set backup
 set backupdir=~/.vim/_backup    " where to put backup files
 set directory=~/.vim/_temp      " where to put swap files
 
