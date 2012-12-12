@@ -1,2 +1,5 @@
 *.swp
 *.swo
+.netrwhist
+_backup
+_temp
