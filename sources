@@ -1,0 +1,5 @@
+source "`brew --prefix grc`/etc/grc.bashrc"
+source ~/.bash/aliases
+source ~/.bash/colors
+source ~/.bash/prompt
+source ~/.bin/git-completion.bash

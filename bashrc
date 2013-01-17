@@ -1,3 +1,5 @@
+source ~/.sources
+
 export TERM="xterm-256color"
 export LSCOLORS="ExGxBxDxCxEgEdxbxgxcxd"
 export GREP_OPTIONS="--color"
