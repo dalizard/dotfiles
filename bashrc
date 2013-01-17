@@ -7,4 +7,4 @@ export PATH="$HOME/.bin:/usr/local/bin:$PATH"
 
 eval "$(rbenv init -)"
 
-export JRUBY_OPTS="--1.9"
+export JRUBY_OPTS="--1.9 -J-Xmx2048m"
