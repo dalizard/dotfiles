@@ -2,6 +2,8 @@ source ~/.bash/aliases
 source ~/.bash/colors
 source ~/.bash/prompt
 
+source "`brew --prefix grc`/etc/grc.bashrc"
+
 source ~/.bin/git-completion.bash
 
 if [ -r ~/.profile ]; then . ~/.profile; fi
