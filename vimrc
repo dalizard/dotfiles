@@ -119,3 +119,4 @@ map <leader>gl :Glog<CR>
 map <leader>gc :Gcommit<CR>
 map <leader>gp :Git push<CR>
 
+nnoremap <Leader>yp :let @*=expand("%")<cr>:echo "Copied file path to clipboard"<cr>
