@@ -206,6 +206,6 @@ if &t_Co > 255
    hi Comment         ctermfg=59
    hi CursorLine                  ctermbg=235   cterm=none
    hi CursorColumn                ctermbg=234
-   hi LineNr          ctermfg=242
+   hi LineNr          ctermfg=236
    " hi NonText         ctermfg=250 ctermbg=234
 end
