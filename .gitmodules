@@ -28,3 +28,6 @@
 [submodule "vim/bundle/vim-haml"]
 	path = vim/bundle/vim-haml
 	url = https://github.com/tpope/vim-haml.git
+[submodule "vim/bundle/vim-scala"]
+	path = vim/bundle/vim-scala
+	url = git://github.com/derekwyatt/vim-scala.git
