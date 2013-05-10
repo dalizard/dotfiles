@@ -15,7 +15,6 @@ set noruler
 set ttyscroll=3
 set lazyredraw
 set synmaxcol=128
-set nocompatible                  " Use vim, no vi defaults
 set laststatus=2
 set novisualbell
 set previewheight=30
@@ -38,7 +37,7 @@ set wildmenu
 set wildmode=list:longest
 set cursorline                    " Highlights current line
 set shell=bash
-set synmaxcol=2048
+set synmaxcol=128
 set scrolloff=3                   " Have some context around the current line always on screen
 set autoread
 set t_ti= t_te=
