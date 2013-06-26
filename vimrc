@@ -1,3 +1,4 @@
+set rtp+=~/.vim/bundle/powerline/powerline/bindings/vim
 call pathogen#infect()
 
 filetype plugin indent on 	      " Enable file type detection.
