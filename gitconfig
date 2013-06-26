@@ -35,7 +35,6 @@
   lineNumber = true
 
 [alias]
-  st = status
   ci = commit
   co = checkout
   di = diff
@@ -86,3 +85,4 @@
 
 [merge]
   tool = vimdiff
+  defaultToUpstream = true

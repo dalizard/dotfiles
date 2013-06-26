@@ -14,7 +14,6 @@ set ttyfast                       " Improve smoothness of redrawing
 set noruler
 set ttyscroll=3
 set lazyredraw
-set synmaxcol=128
 set laststatus=2
 set novisualbell
 set previewheight=30
