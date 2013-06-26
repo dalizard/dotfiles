@@ -66,7 +66,7 @@ nmap <silent> <leader>cf <esc>/\v^[<=>]{7}( .*\|$)<cr>
 
 command! KillWhitespace :normal :%s/ *$//g<cr><c-o><cr>
 
-let g:Powerline_symbols = 'fancy'
+" let g:Powerline_symbols = 'fancy'
 let mapleader = ","
 
 " Tabs navigation
