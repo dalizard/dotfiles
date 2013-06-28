@@ -3,5 +3,3 @@ source ~/.bash/aliases
 source ~/.bash/colors
 source ~/.bash/prompt
 source ~/.bin/git-completion.bash
-source /usr/local/opt/chruby/share/chruby/chruby.sh
-source /usr/local/opt/chruby/share/chruby/auto.sh
