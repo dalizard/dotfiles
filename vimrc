@@ -1,4 +1,3 @@
-set rtp+=~/.vim/bundle/powerline/powerline/bindings/vim
 call pathogen#infect()
 
 filetype plugin indent on 	      " Enable file type detection.
@@ -48,6 +47,8 @@ set directory=~/.vim/_temp      " where to put swap files
 
 set switchbuf=usetab,newtab
 
+let g:airline_powerline_fonts=1
+
 highlight NonText cterm=NONE ctermfg=NONE
 
 " Don't use Ex mode, use Q for formatting
@@ -67,7 +68,6 @@ nmap <silent> <leader>cf <esc>/\v^[<=>]{7}( .*\|$)<cr>
 
 command! KillWhitespace :normal :%s/ *$//g<cr><c-o><cr>
 
-" let g:Powerline_symbols = 'fancy'
 let mapleader = ","
 
 " Tabs navigation
