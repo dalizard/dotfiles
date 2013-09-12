@@ -1,5 +1,4 @@
 call pathogen#infect()
-
 filetype plugin indent on 	      " Enable file type detection.
 colorscheme molokai               " Color theme
 syntax enable                     " Turn on syntax highlighting
@@ -10,13 +9,11 @@ set hidden                        " Allow unsaved background buffers and remembe
 set showcmd                       " Display incomplete commands
 set nowrap
 set history=10000
-set ttyfast                       " Improve smoothness of redrawing
 set noruler
 set ttyscroll=3
 set lazyredraw
 set laststatus=2
 set novisualbell
-set previewheight=30
 set modelines=0                   " No lines are checked for set commands
 set showmode                      " Show the mode you are in
 set tabstop=2                     " A tab is two spaces
@@ -33,70 +30,42 @@ set incsearch                     " Incremental searching
 set ignorecase                    " Searches are case insensitive...
 set smartcase                     " ... unless they contain at least one capital letter
 set wildmenu
-set wildmode=list:longest
+set wildmode=longest,list
 set cursorline                    " Highlights current line
-set shell=bash
 set synmaxcol=128
 set scrolloff=3                   " Have some context around the current line always on screen
 set autoread
 set t_ti= t_te=
+set timeout timeoutlen=1000 ttimeoutlen=100
 
 set backup
 set backupdir=~/.vim/_backup    " where to put backup files
 set directory=~/.vim/_temp      " where to put swap files
 
+set nofoldenable
 set switchbuf=usetab,newtab
 
+let mapleader = ","
 let g:airline_powerline_fonts=1
 
 highlight NonText cterm=NONE ctermfg=NONE
 
-" Don't use Ex mode, use Q for formatting
-map Q gq
-
-" Clear the search buffer when hitting return
 :nnoremap <cr> :nohlsearch<cr>
-
-" Paste lines from unnamed register and fix indentation
-nmap <leader>p pV`]=
-nmap <leader>P PV`]=
 
 nnoremap <leader><leader> <c-^>
 
-" Find merge conflict markers
-nmap <silent> <leader>cf <esc>/\v^[<=>]{7}( .*\|$)<cr>
-
-command! KillWhitespace :normal :%s/ *$//g<cr><c-o><cr>
-
-let mapleader = ","
-
-" Tabs navigation
 map <C-l> :tabn<CR>
 map <C-h> :tabp<CR>
 map <C-n> :tabnew<CR>
 
-" Disable cursor keys in normal mode
-map <Left>  :echo "no!"<cr>
-map <Right> :echo "no!"<cr>
-map <Up>    :echo "no!"<cr>
-map <Down>  :echo "no!"<cr>
+map <leader>y "*y
 
 imap jj <ESC>
-nnoremap <tab> %
-vnoremap <tab> %
-autocmd BufWritePre * :%s/\s\+$//e
-" Automatically load .vimrc source when saved
-autocmd BufWritePost .vimrc source $MYVIMRC
+imap <c-c> <esc>
 
 cnoremap %% <C-R>=expand('%:h').'/'<cr>
-map <leader>e :edit %%
-map <leader>v :view %%
 
-" Easy files switch
 nnoremap <leader><leader> <c-^>
-
-" Insert a hash rocket (=>) with <c-l>
-imap <c-l> <space>=><space>
 
 " Rename current file or even move it to another location
 function! RenameFile()
@@ -110,12 +79,5 @@ function! RenameFile()
 endfunction
 map <leader>r :call RenameFile()<cr>
 
-" Fugitive mappings
-map <leader>gb :Gblame<CR>
-map <leader>gs :Gstatus<CR>
-map <leader>gd :Gdiff<CR>
-map <leader>gl :Glog<CR>
-map <leader>gc :Gcommit<CR>
-map <leader>gp :Git push<CR>
-
+" Copy current file path to clipboard
 nnoremap <Leader>yp :let @*=expand("%")<cr>:echo "Copied file path to clipboard"<cr>
