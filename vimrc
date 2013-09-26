@@ -81,3 +81,6 @@ map <leader>r :call RenameFile()<cr>
 
 " Copy current file path to clipboard
 nnoremap <Leader>yp :let @*=expand("%")<cr>:echo "Copied file path to clipboard"<cr>
+
+" Remove trailing whitespace on save
+autocmd BufWritePre * :%s/\s\+$//e
