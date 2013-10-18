@@ -7,6 +7,4 @@ export JRUBY_OPTS="--1.9 -J-Xmx2048m -J-XX:+TieredCompilation -J-XX:TieredStopAt
 export EDITOR="vim"
 export PATH="$HOME/.bin:/usr/local/bin:$PATH"
 
-source /usr/local/opt/chruby/share/chruby/chruby.sh
-chruby 2.0.0-p247
-source /usr/local/opt/chruby/share/chruby/auto.sh
+if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
