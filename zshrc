@@ -35,9 +35,6 @@ export WORDCHARS='*?[]~&;!$%^<>'
 # JRuby Optimizations
 export JRUBY_OPTS="-J-Xmx2048m -J-XX:+TieredCompilation -J-XX:TieredStopAtLevel=1"
 
-# Prompt
-#PROMPT="%{$fg[yellow]%}%m%{$reset_color%}:%{$fg[red]%}%n %{$reset_color%}%1~ %# "
-
 # rbenv
 eval "$(rbenv init - zsh)"
 
@@ -57,7 +54,6 @@ parse_git_branch() {
 }
 
 parse_git_state() {
-
   local GIT_STATE=""
 
   local NUM_AHEAD="$(git log --oneline @{u}.. 2> /dev/null | wc -l | tr -d ' ')"
@@ -90,7 +86,6 @@ parse_git_state() {
   if [[ -n $GIT_STATE ]]; then
     echo "$GIT_STATE "
   fi
-
 }
 
 git_prompt_string() {
