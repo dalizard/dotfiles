@@ -47,6 +47,7 @@ set switchbuf=usetab,newtab
 
 let mapleader = ","
 let g:airline_powerline_fonts = 1
+let g:airline#extensions#tabline#enabled = 1
 let ruby_operators = 1
 let ruby_minlines = 1000
 
