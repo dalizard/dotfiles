@@ -1,5 +1,0 @@
-source ~/.bash/aliases
-source ~/.bash/colors
-source ~/.bash/prompt
-source ~/.bin/git-completion.bash
-source ~/.bin/git-prompt.sh

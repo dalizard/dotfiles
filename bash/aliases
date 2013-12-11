@@ -1,5 +1,0 @@
-alias ls='ls -G'
-alias ll='ls -alG'
-alias gg='git status'
-alias be='bundle exec'
-alias test_env='export CUCUMBER_SUFFIX=_cucumber && export RAILS_ENV=test && export RACK_ENV=test'
