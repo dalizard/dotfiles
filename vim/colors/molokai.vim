@@ -5,9 +5,9 @@
 " by Wimer Hazenberg and its darker variant
 " by Hamish Stuart Macpherson
 "
-let g:colors_name="molokai"
 
 hi clear
+let g:colors_name="molokai"
 
 hi Boolean         ctermfg=135
 hi Character       ctermfg=144
