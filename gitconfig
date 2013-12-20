@@ -35,8 +35,6 @@
   lineNumber = true
 
 [alias]
-  ci = commit
-  co = checkout
   di = diff
   dc = diff --cached
   amend = commit --amend
