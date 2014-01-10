@@ -50,11 +50,11 @@ let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
 let ruby_operators = 1
 let ruby_minlines = 1000
+let g:aghighlight=1
 
 highlight NonText cterm=NONE ctermfg=NONE
 
 nnoremap <cr> :nohlsearch<cr>
-
 nnoremap <leader><leader> <c-^>
 
 map <C-l> :tabn<CR>
@@ -84,6 +84,8 @@ map <leader>r :call RenameFile()<cr>
 
 " Copy current file path to clipboard
 nnoremap <Leader>yp :let @*=expand("%")<cr>:echo "Copied file path to clipboard"<cr>
+
+nnoremap K :Ag! "\b<C-R><C-W>\b"<CR>
 
 " Remove trailing whitespace on save
 autocmd BufWritePre * :%s/\s\+$//e
