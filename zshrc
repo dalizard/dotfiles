@@ -19,7 +19,6 @@ alias gg='git status'
 alias be='bundle exec'
 alias test_env='export CUCUMBER_SUFFIX=_cucumber && export RAILS_ENV=test && export RACK_ENV=test'
 
-
 # Nicer history
 HISTFILE=$HOME/.history
 HISTSIZE=100000
@@ -29,14 +28,15 @@ SAVEHIST=$HISTSIZE
 export EDITOR=vim
 
 # By default, zsh considers many characters part of a word (e.g., _ and -).
-# # Narrow that down to allow easier skipping through words via M-f and M-b.
+# Narrow that down to allow easier skipping through words via M-f and M-b.
 export WORDCHARS='*?[]~&;!$%^<>'
 
 # JRuby Optimizations
 export JRUBY_OPTS="-J-Xmx2048m -J-XX:+TieredCompilation -J-XX:TieredStopAtLevel=1"
 
-# rbenv
-eval "$(rbenv init - zsh)"
+# chruby
+source /usr/local/opt/chruby/share/chruby/chruby.sh
+source /usr/local/opt/chruby/share/chruby/auto.sh
 
 # Prompt
 setopt prompt_subst
