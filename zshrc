@@ -38,25 +38,8 @@ export JRUBY_OPTS="-J-Xmx2048m -J-XX:+TieredCompilation -J-XX:TieredStopAtLevel=
 source /usr/local/opt/chruby/share/chruby/chruby.sh
 source /usr/local/opt/chruby/share/chruby/auto.sh
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-export __GIT_PROMPT_DIR=~/.zsh/git-prompt
-
-# Allow for functions in the prompt.
+# Prompt
+export __GIT_PROMPT_DIR=~/.zsh/gitstatus.py
 setopt PROMPT_SUBST
 
 function update_current_git_vars() {
@@ -72,7 +55,6 @@ function update_current_git_vars() {
   GIT_UNTRACKED=$__CURRENT_GIT_STATUS[6]
   GIT_CLEAN=$__CURRENT_GIT_STATUS[7]
 }
-
 
 git_super_status() {
 	update_current_git_vars
