@@ -38,59 +38,79 @@ export JRUBY_OPTS="-J-Xmx2048m -J-XX:+TieredCompilation -J-XX:TieredStopAtLevel=
 source /usr/local/opt/chruby/share/chruby/chruby.sh
 source /usr/local/opt/chruby/share/chruby/auto.sh
 
-# Prompt
-setopt prompt_subst
-GIT_PROMPT_PREFIX="("
-GIT_PROMPT_SUFFIX="%{$reset_color%})"
-GIT_PROMPT_AHEAD="%{$fg[red]%}ANUM%{$reset_color%}"
-GIT_PROMPT_BEHIND="%{$fg[cyan]%}BNUM%{$reset_color%}"
-GIT_PROMPT_MERGING="%{$fg_bold[magenta]%}⚡︎%{$reset_color%}"
-GIT_PROMPT_UNTRACKED="%{$fg_bold[red]%}●%{$reset_color%}"
-GIT_PROMPT_MODIFIED="%{$fg_bold[yellow]%}●%{$reset_color%}"
-GIT_PROMPT_STAGED="%{$fg_bold[green]%}●%{$reset_color%}"
 
-parse_git_branch() {
-  (git symbolic-ref -q HEAD || git name-rev --name-only --no-undefined --always HEAD) 2> /dev/null
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+export __GIT_PROMPT_DIR=~/.zsh/git-prompt
+
+# Allow for functions in the prompt.
+setopt PROMPT_SUBST
+
+function update_current_git_vars() {
+  local gitstatus="$__GIT_PROMPT_DIR/gitstatus.py"
+  _GIT_STATUS=`python ${gitstatus}`
+  __CURRENT_GIT_STATUS=("${(@f)_GIT_STATUS}")
+
+  GIT_BRANCH=$__CURRENT_GIT_STATUS[1]
+  GIT_REMOTE=$__CURRENT_GIT_STATUS[2]
+  GIT_STAGED=$__CURRENT_GIT_STATUS[3]
+  GIT_CONFLICTS=$__CURRENT_GIT_STATUS[4]
+  GIT_CHANGED=$__CURRENT_GIT_STATUS[5]
+  GIT_UNTRACKED=$__CURRENT_GIT_STATUS[6]
+  GIT_CLEAN=$__CURRENT_GIT_STATUS[7]
 }
 
-parse_git_state() {
-  local GIT_STATE=""
 
-  local NUM_AHEAD="$(git log --oneline @{u}.. 2> /dev/null | wc -l | tr -d ' ')"
-  if [ "$NUM_AHEAD" -gt 0 ]; then
-    GIT_STATE=$GIT_STATE${GIT_PROMPT_AHEAD//NUM/$NUM_AHEAD}
-  fi
-
-  local NUM_BEHIND="$(git log --oneline ..@{u} 2> /dev/null | wc -l | tr -d ' ')"
-  if [ "$NUM_BEHIND" -gt 0 ]; then
-    GIT_STATE=$GIT_STATE${GIT_PROMPT_BEHIND//NUM/$NUM_BEHIND}
-  fi
-
-  local GIT_DIR="$(git rev-parse --git-dir 2> /dev/null)"
-  if [ -n $GIT_DIR ] && test -r $GIT_DIR/MERGE_HEAD; then
-    GIT_STATE=$GIT_STATE$GIT_PROMPT_MERGING
-  fi
-
-  if [[ -n $(git ls-files --other --exclude-standard 2> /dev/null) ]]; then
-    GIT_STATE=$GIT_STATE$GIT_PROMPT_UNTRACKED
-  fi
-
-  if ! git diff --quiet 2> /dev/null; then
-    GIT_STATE=$GIT_STATE$GIT_PROMPT_MODIFIED
-  fi
-
-  if ! git diff --cached --quiet 2> /dev/null; then
-    GIT_STATE=$GIT_STATE$GIT_PROMPT_STAGED
-  fi
-
-  if [[ -n $GIT_STATE ]]; then
-    echo "$GIT_STATE "
-  fi
+git_super_status() {
+	update_current_git_vars
+    if [ -n "$__CURRENT_GIT_STATUS" ]; then
+	  STATUS="$ZSH_THEME_GIT_PROMPT_PREFIX$ZSH_THEME_GIT_PROMPT_BRANCH$GIT_BRANCH%{${reset_color}%}"
+	  if [ -n "$GIT_REMOTE" ]; then
+		  STATUS="$STATUS$ZSH_THEME_GIT_PROMPT_REMOTE$GIT_REMOTE%{${reset_color}%}"
+	  fi
+	  STATUS="$STATUS$ZSH_THEME_GIT_PROMPT_SEPARATOR"
+	  if [ "$GIT_STAGED" -ne "0" ]; then
+		  STATUS="$STATUS$ZSH_THEME_GIT_PROMPT_STAGED$GIT_STAGED%{${reset_color}%}"
+	  fi
+	  if [ "$GIT_CONFLICTS" -ne "0" ]; then
+		  STATUS="$STATUS$ZSH_THEME_GIT_PROMPT_CONFLICTS$GIT_CONFLICTS%{${reset_color}%}"
+	  fi
+	  if [ "$GIT_CHANGED" -ne "0" ]; then
+		  STATUS="$STATUS$ZSH_THEME_GIT_PROMPT_CHANGED$GIT_CHANGED%{${reset_color}%}"
+	  fi
+	  if [ "$GIT_UNTRACKED" -ne "0" ]; then
+		  STATUS="$STATUS$ZSH_THEME_GIT_PROMPT_UNTRACKED%{${reset_color}%}"
+	  fi
+	  if [ "$GIT_CLEAN" -eq "1" ]; then
+		  STATUS="$STATUS$ZSH_THEME_GIT_PROMPT_CLEAN"
+	  fi
+	  STATUS="$STATUS%{${reset_color}%}$ZSH_THEME_GIT_PROMPT_SUFFIX"
+	  echo "$STATUS "
+	fi
 }
 
-git_prompt_string() {
-  local git_where="$(parse_git_branch)"
-  [ -n "$git_where" ] && echo " $(parse_git_state)$GIT_PROMPT_PREFIX%{$fg[green]%}${git_where#(refs/heads/|tags/)}$GIT_PROMPT_SUFFIX"
-}
+ZSH_THEME_GIT_PROMPT_PREFIX="("
+ZSH_THEME_GIT_PROMPT_SUFFIX=")"
+ZSH_THEME_GIT_PROMPT_SEPARATOR="|"
+ZSH_THEME_GIT_PROMPT_BRANCH="%{$fg_bold[magenta]%}"
+ZSH_THEME_GIT_PROMPT_STAGED="%{$fg[red]%}●"
+ZSH_THEME_GIT_PROMPT_CONFLICTS="%{$fg[red]%}✖"
+ZSH_THEME_GIT_PROMPT_CHANGED="%{$fg[blue]%}✚"
+ZSH_THEME_GIT_PROMPT_REMOTE=""
+ZSH_THEME_GIT_PROMPT_UNTRACKED="…"
+ZSH_THEME_GIT_PROMPT_CLEAN="%{$fg_bold[green]%}✔"
 
-PROMPT=$'%{$fg[yellow]%}%m%{$reset_color%}:%{$fg[red]%}%n%{$reset_color%} %1~$(git_prompt_string) \n%# '
+PROMPT=$'%{$fg[yellow]%}%m%{$reset_color%}:%{$fg[red]%}%n%{$reset_color%} %1~ $(git_super_status)\n%# '
