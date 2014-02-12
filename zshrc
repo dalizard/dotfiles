@@ -39,7 +39,7 @@ source /usr/local/opt/chruby/share/chruby/chruby.sh
 source /usr/local/opt/chruby/share/chruby/auto.sh
 
 # Prompt
-export __GIT_PROMPT_DIR=~/.zsh/gitstatus.py
+export __GIT_PROMPT_DIR=~/.zsh/git-prompt
 setopt PROMPT_SUBST
 
 function update_current_git_vars() {
