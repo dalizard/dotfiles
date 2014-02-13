@@ -1,9 +1,8 @@
 #!/usr/bin/env python
-# -*- coding: UTF-8 -*-
+# coding: utf-8
 
 from __future__ import print_function
 
-# change those symbols to whatever you prefer
 symbols = {'ahead of': '↑', 'behind': '↓', 'prehash':':'}
 
 from subprocess import Popen, PIPE
@@ -40,7 +39,7 @@ else:
 
 remote = ''
 
-if not branch: # not on any branch
+if not branch:
 	branch = symbols['prehash']+ Popen(['git','rev-parse','--short','HEAD'], stdout=PIPE).communicate()[0][:-1]
 else:
 	remote_name = Popen(['git','config','branch.%s.remote' % branch], stdout=PIPE).communicate()[0].strip()
@@ -52,7 +51,7 @@ else:
 			remote_ref = 'refs/remotes/%s/%s' % (remote_name, merge_name[11:])
 		revgit = Popen(['git', 'rev-list', '--left-right', '%s...HEAD' % remote_ref],stdout=PIPE, stderr=PIPE)
 		revlist = revgit.communicate()[0]
-		if revgit.poll(): # fallback to local
+		if revgit.poll():
 			revlist = Popen(['git', 'rev-list', '--left-right', '%s...HEAD' % merge_name],stdout=PIPE, stderr=PIPE).communicate()[0]
 		behead = revlist.splitlines()
 		ahead = len([x for x in behead if x[0]=='>'])
@@ -71,4 +70,3 @@ out = '\n'.join([
 	untracked,
 	clean])
 print(out)
-
