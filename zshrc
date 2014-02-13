@@ -38,12 +38,11 @@ export JRUBY_OPTS="-J-Xmx2048m -J-XX:+TieredCompilation -J-XX:TieredStopAtLevel=
 source /usr/local/opt/chruby/share/chruby/chruby.sh
 source /usr/local/opt/chruby/share/chruby/auto.sh
 
-# Prompt
-export __GIT_PROMPT_DIR=~/.zsh/git-prompt
+# Promt
 setopt PROMPT_SUBST
 
 function update_current_git_vars() {
-  local gitstatus="$__GIT_PROMPT_DIR/gitstatus.py"
+  local gitstatus=~/.zsh/git-prompt/gitstatus.py
   _GIT_STATUS=`python ${gitstatus}`
   __CURRENT_GIT_STATUS=("${(@f)_GIT_STATUS}")
 
@@ -56,9 +55,16 @@ function update_current_git_vars() {
   GIT_CLEAN=$__CURRENT_GIT_STATUS[7]
 }
 
-git_super_status() {
+function git_super_status() {
+  local gitdir="$(git rev-parse --git-dir 2>/dev/null)"
+
+  if [ $? -ne 0 ] || [ -z "$gitdir" ]; then
+    return
+  fi
+
 	update_current_git_vars
-    if [ -n "$__CURRENT_GIT_STATUS" ]; then
+
+  if [ -n "$__CURRENT_GIT_STATUS" ]; then
 	  STATUS="$ZSH_THEME_GIT_PROMPT_PREFIX$ZSH_THEME_GIT_PROMPT_BRANCH$GIT_BRANCH%{${reset_color}%}"
 	  if [ -n "$GIT_REMOTE" ]; then
 		  STATUS="$STATUS$ZSH_THEME_GIT_PROMPT_REMOTE$GIT_REMOTE%{${reset_color}%}"
