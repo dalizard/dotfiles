@@ -63,7 +63,6 @@ map <C-n> :tabnew<CR>
 
 map <leader>y "*y
 
-imap jj <ESC>
 imap <c-c> <esc>
 
 cnoremap %% <C-R>=expand('%:h').'/'<cr>
