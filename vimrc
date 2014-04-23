@@ -88,3 +88,6 @@ nnoremap K :Ag! "\b<C-R><C-W>\b"<CR>
 
 " Remove trailing whitespace on save
 autocmd BufWritePre * :%s/\s\+$//e
+
+" Add ? and ! to word selection in Ruby
+autocmd FileType ruby set iskeyword+=?,!
