@@ -2,7 +2,7 @@
 set -gx PATH /usr/local/bin $PATH
 
 # Do not show the greeting message
-set -x fish_greeting ''
+set fish_greeting
 
 # Add color support for terminals pretending to be xterm.
 test $TERM = xterm; and set -x TERM xterm-256color
