@@ -4,3 +4,5 @@
 _backup
 _temp
 _sessions
+fish_history
+fishd.*
