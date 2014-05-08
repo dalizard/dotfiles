@@ -38,6 +38,7 @@
   di = diff
   dc = diff --cached
   b = branch
+  co = checkout
 
   # Fancy logging.
   #   h = head
