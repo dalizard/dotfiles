@@ -6,3 +6,4 @@ _temp
 _sessions
 fish_history
 fishd.*
+generated_completions
