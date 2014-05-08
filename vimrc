@@ -44,6 +44,7 @@ set directory=~/.vim/_temp      " where to put swap files
 
 set nofoldenable
 set switchbuf=usetab,newtab
+set shell=/bin/bash
 
 let mapleader = ","
 let g:airline_powerline_fonts = 1
