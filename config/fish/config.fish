@@ -34,4 +34,4 @@ function fish_title; end
 
 # Ruby Manager
 source /usr/local/share/chruby/chruby.fish
-chruby 2.1.1
+chruby 2.1.2
