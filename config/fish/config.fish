@@ -16,6 +16,9 @@ set -x EDITOR vim
 set -x PAGER less
 set -x BROWSER open
 
+# JRuby Optimization
+set -x JRUBY_OPTS '-J-Xmx2048m -J-XX:+TieredCompilation -J-XX:TieredStopAtLevel=1'
+
 # Aliases
 alias g  'git';         complete_like g 'git'
 alias ll 'ls -laG';     complete_like ll 'ls -laG'
