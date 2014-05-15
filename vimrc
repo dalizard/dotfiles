@@ -37,6 +37,7 @@ set scrolloff=3                   " Have some context around the current line al
 set autoread
 set t_ti= t_te=
 set timeout timeoutlen=1000 ttimeoutlen=100
+set cryptmethod=blowfish
 
 set backup
 set backupdir=~/.vim/_backup    " where to put backup files
