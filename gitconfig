@@ -58,7 +58,7 @@
   lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
 
 [push]
-  default = tracking
+	default = upstream
 
 [branch]
   autosetuprebase = always
