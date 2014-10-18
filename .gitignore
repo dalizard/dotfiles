@@ -7,3 +7,4 @@ _sessions
 fish_history
 fishd.*
 generated_completions
+config/configstore
