@@ -18,8 +18,6 @@ set -x BROWSER open
 
 # JRuby Optimization
 set -x JRUBY_OPTS '--2.0 -J-Xmx2048m -Xcompile.invokedynamic=false -J-XX:+TieredCompilation -J-XX:TieredStopAtLevel=1'
-#set -x JRUBY_OPTS '--2.0 -J-Xmx2048m -J-XX:+TieredCompilation -J-XX:TieredStopAtLevel=1'
-#set -x JRUBY_OPTS '--2.0 -Xcompile.invokedynamic=false -J-XX:+TieredCompilation -J-XX:TieredStopAtLevel=1 -J-noverify -Xcompile.mode=OFF'
 
 # Aliases
 alias g   'git';                     complete_like g   'git'
@@ -40,4 +38,4 @@ function fish_title; end
 
 # Ruby Manager
 source /usr/local/share/chruby/chruby.fish
-chruby ruby-2.1.2
+chruby ruby-2.1.3
