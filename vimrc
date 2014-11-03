@@ -58,6 +58,7 @@ highlight NonText cterm=NONE ctermfg=NONE
 
 nnoremap <cr> :nohlsearch<cr>
 nnoremap <leader><leader> <c-^>
+nnoremap Q <nop>
 
 map <C-l> :tabn<CR>
 map <C-h> :tabp<CR>
