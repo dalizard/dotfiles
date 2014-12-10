@@ -17,7 +17,7 @@ set -x PAGER less
 set -x BROWSER open
 
 # JRuby Optimization
-set -x JRUBY_OPTS '--2.0 -J-Xmx2048m -Xcompile.invokedynamic=false -J-XX:+TieredCompilation -J-XX:TieredStopAtLevel=1'
+set -x JRUBY_OPTS '--dev --2.0 -J-Xmx2048m -Xcompile.invokedynamic=false -J-XX:+TieredCompilation -J-XX:TieredStopAtLevel=1'
 
 # Aliases
 alias g   'git';                     complete_like g   'git'
