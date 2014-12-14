@@ -25,3 +25,12 @@
 [submodule "vim/bundle/vim-bundler"]
 	path = vim/bundle/vim-bundler
 	url = git@github.com:tpope/vim-bundler.git
+[submodule "vim/bundle/tmuxline"]
+	path = vim/bundle/tmuxline
+	url = git@github.com:edkolev/tmuxline.vim.git
+[submodule "vim/bundle/vim-turbux"]
+	path = vim/bundle/vim-turbux
+	url = git@github.com:jgdavey/vim-turbux.git
+[submodule "vim/bundle/vimux"]
+	path = vim/bundle/vimux
+	url = git@github.com:benmills/vimux.git
