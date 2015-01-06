@@ -43,4 +43,3 @@ function fish_title; end
 # Ruby Manager
 source /usr/local/share/chruby/chruby.fish
 source /usr/local/share/chruby/auto.fish
-chruby 2.1.5
