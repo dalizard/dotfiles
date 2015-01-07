@@ -1,6 +1,3 @@
-# Set PATH
-set -gx PATH /usr/local/bin $PATH
-
 # Do not show the greeting message
 set fish_greeting
 
