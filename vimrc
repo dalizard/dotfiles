@@ -4,7 +4,7 @@ colorscheme molokai               " Color theme
 syntax enable                     " Turn on syntax highlighting
 set encoding=utf-8                " Set default encoding to UTF-8
 set nocompatible                  " Use vim, no vi defaults
-set number                        " Show line numbers
+set nonumber                      " Do not show line numbers
 set hidden                        " Allow unsaved background buffers and remember marks/undo for them
 set showcmd                       " Display incomplete commands
 set nowrap
@@ -88,6 +88,7 @@ map <leader>r :call RenameFile()<cr>
 " Copy current file path to clipboard
 nnoremap <Leader>yp :let @*=expand("%")<cr>:echo "Copied file path to clipboard"<cr>
 
+" bind K to grep word under cursor
 nnoremap K :Ag! "\b<C-R><C-W>\b"<CR>
 
 " Remove trailing whitespace on save
@@ -95,3 +96,30 @@ autocmd BufWritePre * :%s/\s\+$//e
 
 " Add ? and ! to word selection in Ruby
 autocmd FileType ruby set iskeyword+=?,!
+
+let g:ctrlp_map = '<c-p>'
+let g:ctrlp_cmd = 'CtrlP'
+let g:ctrlp_working_path_mode = 'ra'
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*/vendor/*,*/\.git/*
+
+" The Silver Searcher
+if executable('ag')
+  " Use ag over grep
+  set grepprg=ag\ --nogroup\ --nocolor
+
+  " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
+  let g:ctrlp_user_command = 'ag %s -i --nocolor --nogroup --hidden
+        \ --ignore .git
+        \ --ignore .svn
+        \ --ignore .hg
+        \ --ignore .DS_Store
+        \ --ignore "**/*.pyc"
+        \ -g ""'
+
+  " PyMatcher for CtrlP
+  if !has('python')
+      echo 'In order to use pymatcher plugin, you need +python compiled vim'
+  else
+      let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch' }
+  endif
+endif

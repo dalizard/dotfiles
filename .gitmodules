@@ -34,3 +34,9 @@
 [submodule "vim/bundle/vimux"]
 	path = vim/bundle/vimux
 	url = git@github.com:benmills/vimux.git
+[submodule "vim/bundle/ctrlp"]
+	path = vim/bundle/ctrlp
+	url = git@github.com:kien/ctrlp.vim.git
+[submodule "vim/bundle/ctrlp-py-matcher"]
+	path = vim/bundle/ctrlp-py-matcher
+	url = git@github.com:FelikZ/ctrlp-py-matcher.git
