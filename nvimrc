@@ -39,8 +39,8 @@ set t_ti= t_te=
 set timeout timeoutlen=1000 ttimeoutlen=100
 
 set backup
-set backupdir=~/.vim/_backup    " where to put backup files
-set directory=~/.vim/_temp      " where to put swap files
+set backupdir=~/.nvim/_backup    " where to put backup files
+set directory=~/.nvim/_temp      " where to put swap files
 
 set nofoldenable
 set switchbuf=usetab,newtab
