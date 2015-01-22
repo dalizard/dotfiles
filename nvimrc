@@ -6,13 +6,13 @@ set encoding=utf-8                " Set default encoding to UTF-8
 set nocompatible                  " Use vim, no vi defaults
 set nonumber                      " Do not show line numbers
 set hidden                        " Allow unsaved background buffers and remember marks/undo for them
-set showcmd                       " Display incomplete commands
-set nowrap
-set history=10000
-set noruler
+set noshowcmd                     " Do not display incomplete commands
+set history=10000                 " Lines to keep in history
+set noruler                       " Do not show the ruler
 set ttyscroll=3
+set ttyfast
 set lazyredraw
-set laststatus=2
+set laststatus=2                  " Always show a status line for the last window
 set novisualbell
 set modelines=0                   " No lines are checked for set commands
 set showmode                      " Show the mode you are in
@@ -34,15 +34,16 @@ set wildmode=longest,list
 set cursorline                    " Highlights current line
 set synmaxcol=128
 set scrolloff=3                   " Have some context around the current line always on screen
-set autoread
+set autoread                      " Watch out for file changes
 set t_ti= t_te=
-set timeout timeoutlen=1000 ttimeoutlen=100
+set timeout timeoutlen=200 ttimeoutlen=100
+set splitbelow                    " Put new window below the current one
 
 set backup
 set backupdir=~/.nvim/_backup    " where to put backup files
 set directory=~/.nvim/_temp      " where to put swap files
 
-set nofoldenable
+set nofoldenable                 " All folds are open
 set switchbuf=usetab,newtab
 set shell=/bin/bash
 
@@ -59,6 +60,22 @@ highlight NonText cterm=NONE ctermfg=NONE
 nnoremap <cr> :nohlsearch<cr>
 nnoremap <leader><leader> <c-^>
 nnoremap Q <nop>
+
+nnoremap <Up> <NOP>
+inoremap <Up> <NOP>
+vnoremap <Up> <NOP>
+
+nnoremap <Down> <NOP>
+inoremap <Down> <NOP>
+vnoremap <Down> <NOP>
+
+nnoremap <Left> <NOP>
+inoremap <Left> <NOP>
+vnoremap <Left> <NOP>
+
+nnoremap <Right> <NOP>
+inoremap <Right> <NOP>
+vnoremap <Right> <NOP>
 
 map <C-l> :tabn<CR>
 map <C-h> :tabp<CR>
@@ -93,13 +110,17 @@ nnoremap K :Ag! "\b<C-R><C-W>\b"<CR>
 " Remove trailing whitespace on save
 autocmd BufWritePre * :%s/\s\+$//e
 
-" Add ? and ! to word selection in Ruby
-autocmd FileType ruby set iskeyword+=?,!
+autocmd FileType ruby
+  \ set iskeyword+=?,! |
+  \ setlocal re=1
+
+" Use system Ruby
+let g:ruby_path="/usr/bin/ruby"
 
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
 let g:ctrlp_working_path_mode = 'ra'
-set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*/vendor/*,*/\.git/*
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*/vendor/*,*/\.git/*,node_modules
 
 " The Silver Searcher
 if executable('ag')
