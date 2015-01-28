@@ -27,6 +27,8 @@ alias tl  'tmux list-sessions';      complete_like tl  'tmux list-sessions'
 alias ta  'tmux -2 attach -t $1';    complete_like ta  'tmux -2 attach -t $1'
 alias tk  'tmux kill-session -t $1'; complete_like tk  'tmux kill-session -t $1'
 
+alias vim 'nvim';                    complete_like vim 'nvim'
+
 # Secret test helper
 function test_env
   set -gx CUCUMBER_SUFFIX _cucumber
