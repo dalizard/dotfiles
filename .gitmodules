@@ -7,9 +7,6 @@
 [submodule "nvim/bundle/ctrlp-py-matcher"]
 	path = nvim/bundle/ctrlp-py-matcher
 	url = git@github.com:FelikZ/ctrlp-py-matcher.git
-[submodule "nvim/bundle/tmuxline"]
-	path = nvim/bundle/tmuxline
-	url = git@github.com:edkolev/tmuxline.vim.git
 [submodule "nvim/bundle/vim-airline"]
 	path = nvim/bundle/vim-airline
 	url = git@github.com:bling/vim-airline.git

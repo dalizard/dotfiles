@@ -38,29 +38,35 @@ set autoread                      " Watch out for file changes
 set t_ti= t_te=
 set timeout timeoutlen=1000 ttimeoutlen=100
 set splitbelow                    " Put new window below the current one
-
 set backup
 set backupdir=~/.nvim/_backup    " where to put backup files
 set directory=~/.nvim/_temp      " where to put swap files
-
 set nofoldenable                 " All folds are open
 set switchbuf=usetab,newtab
 set shell=/bin/bash
 
 let mapleader = ","
-let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#show_buffers = 0
 let g:airline#extensions#tmuxline#enabled = 0
+let g:tmuxline_separators = {
+    \ 'left' : '',
+    \ 'left_alt': '',
+    \ 'right' : '',
+    \ 'right_alt' : '<',
+    \ 'space' : ' '}
+let g:airline_left_sep = ''
+let g:airline_left_alt_sep = ''
+let g:airline_right_sep = ''
+let g:airline_right_alt_sep = ''
 let ruby_operators = 1
 let ruby_minlines = 1000
-
-highlight NonText cterm=NONE ctermfg=NONE
 
 nnoremap <cr> :nohlsearch<cr>
 nnoremap <leader><leader> <c-^>
 nnoremap Q <nop>
 
+" Forget about the damn arrow keys!
 nnoremap <Up> <NOP>
 inoremap <Up> <NOP>
 vnoremap <Up> <NOP>
