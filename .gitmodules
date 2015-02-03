@@ -1,39 +1,39 @@
-[submodule "nvim/bundle/ag.vim"]
-	path = nvim/bundle/ag.vim
+[submodule "vim/bundle/ag.vim"]
+	path = vim/bundle/ag.vim
 	url = git@github.com:rking/ag.vim.git
-[submodule "nvim/bundle/ctrlp"]
-	path = nvim/bundle/ctrlp
+[submodule "vim/bundle/ctrlp"]
+	path = vim/bundle/ctrlp
 	url = git@github.com:kien/ctrlp.vim.git
-[submodule "nvim/bundle/ctrlp-py-matcher"]
-	path = nvim/bundle/ctrlp-py-matcher
+[submodule "vim/bundle/ctrlp-py-matcher"]
+	path = vim/bundle/ctrlp-py-matcher
 	url = git@github.com:FelikZ/ctrlp-py-matcher.git
-[submodule "nvim/bundle/vim-airline"]
-	path = nvim/bundle/vim-airline
+[submodule "vim/bundle/vim-airline"]
+	path = vim/bundle/vim-airline
 	url = git@github.com:bling/vim-airline.git
-[submodule "nvim/bundle/vim-bundler"]
-	path = nvim/bundle/vim-bundler
+[submodule "vim/bundle/vim-bundler"]
+	path = vim/bundle/vim-bundler
 	url = git@github.com:tpope/vim-bundler.git
-[submodule "nvim/bundle/vim-fish"]
-	path = nvim/bundle/vim-fish
+[submodule "vim/bundle/vim-fish"]
+	path = vim/bundle/vim-fish
 	url = git@github.com:dag/vim-fish.git
-[submodule "nvim/bundle/vim-fugitive"]
-	path = nvim/bundle/vim-fugitive
+[submodule "vim/bundle/vim-fugitive"]
+	path = vim/bundle/vim-fugitive
 	url = git@github.com:tpope/vim-fugitive.git
-[submodule "nvim/bundle/vim-javascript"]
-	path = nvim/bundle/vim-javascript
+[submodule "vim/bundle/vim-javascript"]
+	path = vim/bundle/vim-javascript
 	url = git@github.com:pangloss/vim-javascript.git
-[submodule "nvim/bundle/vim-rails"]
-	path = nvim/bundle/vim-rails
+[submodule "vim/bundle/vim-rails"]
+	path = vim/bundle/vim-rails
 	url = git@github.com:tpope/vim-rails.git
-[submodule "nvim/bundle/vim-ruby"]
-	path = nvim/bundle/vim-ruby
+[submodule "vim/bundle/vim-ruby"]
+	path = vim/bundle/vim-ruby
 	url = git@github.com:vim-ruby/vim-ruby.git
-[submodule "nvim/bundle/vim-slim"]
-	path = nvim/bundle/vim-slim
+[submodule "vim/bundle/vim-slim"]
+	path = vim/bundle/vim-slim
 	url = git@github.com:slim-template/vim-slim.git
-[submodule "nvim/bundle/vim-turbux"]
-	path = nvim/bundle/vim-turbux
+[submodule "vim/bundle/vim-turbux"]
+	path = vim/bundle/vim-turbux
 	url = git@github.com:jgdavey/vim-turbux.git
-[submodule "nvim/bundle/vimux"]
-	path = nvim/bundle/vimux
+[submodule "vim/bundle/vimux"]
+	path = vim/bundle/vimux
 	url = git@github.com:benmills/vimux.git
