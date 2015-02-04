@@ -107,6 +107,14 @@ function! RenameFile()
 endfunction
 map <leader>r :call RenameFile()<cr>
 
+" Use vimux for test runner
+function! UseVimuxTestRunner()
+  let g:turbux_runner = 'vimux'
+  call SendTestToTmux(expand('%'))
+  let g:turbux_runner = 'dispatch'
+endfunction
+map <silent> <leader>y :call UseVimuxTestRunner()<cr>
+
 " Copy current file path to clipboard
 nnoremap <Leader>yp :let @*=expand("%")<cr>:echo "Copied file path to clipboard"<cr>
 

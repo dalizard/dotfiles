@@ -1,0 +1,42 @@
+[submodule "vim/bundle/ag.vim"]
+	path = vim/bundle/ag.vim
+	url = git@github.com:rking/ag.vim.git
+[submodule "vim/bundle/ctrlp"]
+	path = vim/bundle/ctrlp
+	url = git@github.com:kien/ctrlp.vim.git
+[submodule "vim/bundle/ctrlp-py-matcher"]
+	path = vim/bundle/ctrlp-py-matcher
+	url = git@github.com:FelikZ/ctrlp-py-matcher.git
+[submodule "vim/bundle/vim-airline"]
+	path = vim/bundle/vim-airline
+	url = git@github.com:bling/vim-airline.git
+[submodule "vim/bundle/vim-bundler"]
+	path = vim/bundle/vim-bundler
+	url = git@github.com:tpope/vim-bundler.git
+[submodule "vim/bundle/vim-fish"]
+	path = vim/bundle/vim-fish
+	url = git@github.com:dag/vim-fish.git
+[submodule "vim/bundle/vim-fugitive"]
+	path = vim/bundle/vim-fugitive
+	url = git@github.com:tpope/vim-fugitive.git
+[submodule "vim/bundle/vim-javascript"]
+	path = vim/bundle/vim-javascript
+	url = git@github.com:pangloss/vim-javascript.git
+[submodule "vim/bundle/vim-rails"]
+	path = vim/bundle/vim-rails
+	url = git@github.com:tpope/vim-rails.git
+[submodule "vim/bundle/vim-ruby"]
+	path = vim/bundle/vim-ruby
+	url = git@github.com:vim-ruby/vim-ruby.git
+[submodule "vim/bundle/vim-slim"]
+	path = vim/bundle/vim-slim
+	url = git@github.com:slim-template/vim-slim.git
+[submodule "vim/bundle/vim-turbux"]
+	path = vim/bundle/vim-turbux
+	url = git@github.com:jgdavey/vim-turbux.git
+[submodule "vim/bundle/vimux"]
+	path = vim/bundle/vimux
+	url = git@github.com:benmills/vimux.git
+[submodule "vim/bundle/vim-dispatch"]
+	path = vim/bundle/vim-dispatch
+	url = git@github.com:tpope/vim-dispatch.git
