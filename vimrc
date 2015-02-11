@@ -144,6 +144,8 @@ if executable('ag')
         \ --ignore .svn
         \ --ignore .hg
         \ --ignore .DS_Store
+        \ --ignore .bundle
+        \ --ignore vendor
         \ --ignore "**/*.pyc"
         \ -g ""'
 
