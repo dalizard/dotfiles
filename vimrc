@@ -1,6 +1,6 @@
 call pathogen#infect()
-filetype plugin indent on 	      " Enable file type detection.
 colorscheme molokai               " Color theme
+filetype plugin indent on 	      " Enable file type detection.
 syntax enable                     " Turn on syntax highlighting
 set encoding=utf-8                " Set default encoding to UTF-8
 set nocompatible                  " Use vim, no vi defaults
@@ -39,9 +39,9 @@ set t_ti= t_te=
 set timeout timeoutlen=1000 ttimeoutlen=100
 set splitbelow                    " Put new window below the current one
 set backup
-set backupdir=~/.vim/_backup    " where to put backup files
-set directory=~/.vim/_temp      " where to put swap files
-set nofoldenable                 " All folds are open
+set backupdir=~/.vim/_backup      " where to put backup files
+set directory=~/.vim/_temp        " where to put swap files
+set nofoldenable                  " All folds are open
 set switchbuf=usetab,newtab
 set shell=/bin/bash
 
@@ -62,7 +62,15 @@ let g:airline_right_alt_sep = ''
 let ruby_operators = 1
 let ruby_minlines = 1000
 
-"nnoremap <cr> :nohlsearch<cr>
+" Shortcuts for ctrlsf.vim
+nmap     <C-F>f <Plug>CtrlSFPrompt
+vmap     <C-F>f <Plug>CtrlSFVwordPath
+vmap     <C-F>F <Plug>CtrlSFVwordExec
+nmap     <C-F>n <Plug>CtrlSFCwordPath
+nmap     <C-F>p <Plug>CtrlSFPwordPath
+nnoremap <C-F>o :CtrlSFOpen<CR>
+
+nnoremap <cr> :nohlsearch<cr>
 nnoremap <leader><leader> <c-^>
 nnoremap Q <nop>
 
@@ -83,17 +91,21 @@ nnoremap <Right> <NOP>
 inoremap <Right> <NOP>
 vnoremap <Right> <NOP>
 
+" Easy tab navigation
 map <C-l> :tabn<CR>
 map <C-h> :tabp<CR>
-map <C-n> :tabnew<CR>
 
+" Copy to clipboard
 map <leader>y "*y
 
-imap <c-c> <esc>
+" Esc is harder to reach
+imap <C-c> <esc>
 
+" Expand current path
 cnoremap %% <C-R>=expand('%:h').'/'<cr>
 
-nnoremap <leader><leader> <c-^>
+" Show previous file (vim-rails)
+nnoremap <leader><leader> <C-^>
 
 " Rename current file or even move it to another location
 function! RenameFile()
@@ -122,11 +134,11 @@ endfunction
 " Copy current file path to clipboard
 nnoremap <Leader>yp :let @*=expand("%")<cr>:echo "Copied file path to clipboard"<cr>
 
-" bind K to grep word under cursor
-nnoremap K :Ag! "\b<C-R><C-W>\b"<CR>
-
 " Remove trailing whitespace on save
 autocmd BufWritePre * :%s/\s\+$//e
+
+" .rb settings
+autocmd FileType ruby set iskeyword+=?,!
 
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
@@ -156,5 +168,3 @@ if executable('ag')
       let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch' }
   endif
 endif
-
-autocmd FileType ruby set iskeyword+=?,!
