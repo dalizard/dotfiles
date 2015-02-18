@@ -70,23 +70,25 @@ nmap     <C-F>n <Plug>CtrlSFCwordPath
 nmap     <C-F>p <Plug>CtrlSFPwordPath
 nnoremap <C-F>o :CtrlSFOpen<CR>
 
+" Enter to clear highlighting
 nnoremap <cr> :nohlsearch<cr>
+
+" Go to previous fiile
 nnoremap <leader><leader> <c-^>
+
+" Disable Q
 nnoremap Q <nop>
 
 " Forget about the damn arrow keys!
 nnoremap <Up> <NOP>
 inoremap <Up> <NOP>
 vnoremap <Up> <NOP>
-
 nnoremap <Down> <NOP>
 inoremap <Down> <NOP>
 vnoremap <Down> <NOP>
-
 nnoremap <Left> <NOP>
 inoremap <Left> <NOP>
 vnoremap <Left> <NOP>
-
 nnoremap <Right> <NOP>
 inoremap <Right> <NOP>
 vnoremap <Right> <NOP>
