@@ -61,6 +61,7 @@ let g:airline_right_sep = ''
 let g:airline_right_alt_sep = ''
 let ruby_operators = 1
 let ruby_minlines = 1000
+let ruby_space_errors = 1
 
 " Shortcuts for ctrlsf.vim
 nmap     <C-F>f <Plug>CtrlSFPrompt
