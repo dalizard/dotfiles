@@ -41,6 +41,11 @@ end
 # Disable tab titles
 function fish_title; end
 
+# Generate ctags
+function ct
+  ctags -R -f ./.git/tags .
+end
+
 # Ruby Manager
 source /usr/local/share/chruby/chruby.fish
 source /usr/local/share/chruby/auto.fish
