@@ -1,3 +1,9 @@
---recurse
+--recurse=yes
 --tag-relative=yes
 --exclude=.git
+--exclude=.sass-cache
+--exclude=log
+--format=2
+--excmd=pattern
+--fields=aiklmnsSt
+--languages=ruby
