@@ -146,7 +146,7 @@ autocmd FileType ruby set iskeyword+=?,!
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
 let g:ctrlp_working_path_mode = 'ra'
-set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*/vendor/*,*/\.git/*,node_modules
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*/vendor/*,node_modules
 
 " The Silver Searcher
 if executable('ag')
