@@ -42,6 +42,8 @@ set backup
 set backupdir=~/.vim/_backup      " where to put backup files
 set directory=~/.vim/_temp        " where to put swap files
 set nofoldenable                  " All folds are open
+set undofile                      " Maintain undo history between sessions
+set undodir=~/.vim/undo
 set switchbuf=usetab,newtab
 set shell=/bin/bash
 
