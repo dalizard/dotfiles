@@ -1,1 +1,0 @@
-(brew --prefix)/Library/Contributions/brew_fish_completion.fish
