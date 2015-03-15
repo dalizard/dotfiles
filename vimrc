@@ -46,6 +46,7 @@ set undofile                      " Maintain undo history between sessions
 set undodir=~/.vim/_undo
 set switchbuf=usetab,newtab
 set shell=/bin/bash
+set cryptmethod=blowfish2
 
 let mapleader = ","
 let g:airline#extensions#tabline#enabled = 1
