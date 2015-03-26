@@ -77,9 +77,6 @@ nmap     <C-F>n <Plug>CtrlSFCwordPath
 nmap     <C-F>p <Plug>CtrlSFPwordPath
 nnoremap <C-F>o :CtrlSFOpen<CR>
 
-" Enter to clear highlighting
-nnoremap <cr> :nohlsearch<cr>
-
 " Go to previous fiile
 nnoremap <leader><leader> <c-^>
 
