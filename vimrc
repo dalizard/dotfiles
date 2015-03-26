@@ -66,6 +66,9 @@ let ruby_operators = 1
 let ruby_minlines = 1000
 let ruby_space_errors = 1
 
+" Proper error handling when using zeus gem
+let g:dispatch_compilers = { 'zeus': '' }
+
 " Shortcuts for ctrlsf.vim
 nmap     <C-F>f <Plug>CtrlSFPrompt
 vmap     <C-F>f <Plug>CtrlSFVwordPath
