@@ -4,6 +4,9 @@ set fish_greeting
 # Add color support for terminals pretending to be xterm
 test $TERM = xterm; and set -x TERM xterm-256color
 
+# Set PATH
+set -x PATH /usr/local/sbin $PATH
+
 # Don't let fish masquerade itself as other shells
 set -x SHELL (which fish)
 
