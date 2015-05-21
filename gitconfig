@@ -59,7 +59,7 @@
   col = !git branch | cut -c 3- | pick | xargs git checkout
 
 [push]
-	default = upstream
+	default = simple
 
 [branch]
   autosetuprebase = always
