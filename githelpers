@@ -1,25 +1,15 @@
 #!/bin/bash
 
-# Log output:
-#
-# * 51c333e    (12 days)    <Gary Bernhardt>   add vim-eunuch
-#
-# The time massaging regexes start with ^[^<]* because that ensures that they
-# only operate before the first "<". That "<" will be the beginning of the
-# author name, ensuring that we don't destroy anything in the commit message
-# that looks like time.
-#
-# The log format uses } characters between each field, and `column` is later
-# used to split on them. A } in the commit subject or any other field will
-# break this.
-
-HASH="%C(yellow)%h%Creset"
-RELATIVE_TIME="%Cgreen(%ar)%Creset"
-AUTHOR="%C(bold blue)<%an>%Creset"
-REFS="%C(red)%d%Creset"
+HASH="%C(yellow)%h%C(reset)"
+RELATIVE_TIME="%C(green)(%ar)%C(reset)"
+AUTHOR="%C(bold blue)<%an>%C(reset)"
+REFS="%C(auto)%d%C(reset)"
 SUBJECT="%s"
 
-FORMAT="$HASH}$RELATIVE_TIME}$AUTHOR}$REFS $SUBJECT"
+ANSI_CYAN='\033[36m'
+ANSI_RESET='\033[0m'
+
+FORMAT="$HASH}$RELATIVE_TIME<time>}$AUTHOR<author>}$REFS $SUBJECT"
 
 show_git_head() {
     pretty_git_log -1
@@ -27,14 +17,36 @@ show_git_head() {
 }
 
 pretty_git_log() {
-    git log --graph --abbrev-commit --date=relative --pretty="tformat:${FORMAT}" $* |
-        # Repalce (2 years ago) with (2 years)
-        sed -Ee 's/(^[^<]*) ago)/\1)/' |
+    git log --color --graph --abbrev-commit --date=relative --pretty="tformat:${FORMAT}" $* |
         # Replace (2 years, 5 months) with (2 years)
-        sed -Ee 's/(^[^<]*), [[:digit:]]+ .*months?)/\1)/' |
-        # Line columns up based on } delimiter
+        sed -E -e 's/\(([[:digit:]]+) ([[:alpha:]]+).* ago\)/(\1 \2)/' |
+        # Color merge commits specially
+        sed -Ee "s/(Merge (branch|remote-tracking branch|pull request) .*$)/$(printf $ANSI_CYAN)\1$(printf $ANSI_RESET)/" |
+        awk '
+          BEGIN { FS = "}"; OFS = "}" }
+          function strip(str) {
+            gsub(/\x1B\[[0-9;]*[mK]/, "", str)
+            return str
+          }
+          { print $1, "<" strip($1) FS ">" $2, $3, $4 }
+        ' |
         column -s '}' -t |
-        # Page only if we need to
-        less -FXRS
-}
+        awk '{
+          match($0, /<[^>]*>/)
+          stripped = substr($0, RSTART + 1, RLENGTH - 2)
+          graph    = substr($0, 1, RSTART - 1)
+          line     = substr($0, RSTART + RLENGTH)
 
+          match(stripped, / *$/)
+          trailing_spaces = RLENGTH
+
+          match(graph, / *$/)
+          graph = substr(graph, 1, RSTART + trailing_spaces - 2)
+
+          sub(/<time> /, "", line)
+          sub(/<author>  /, "", line)
+
+          print graph line
+        }' |
+        less --quit-if-one-screen --no-init --RAW-CONTROL-CHARS --chop-long-lines
+}
