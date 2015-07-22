@@ -26,9 +26,6 @@ alias g   'git';                     complete_like g   'git'
 alias ll  'ls -laG';                 complete_like ll  'ls -laG'
 alias gg  'git status';              complete_like gg  'git status'
 alias be  'bundle exec';             complete_like be  'bundle exec'
-alias tl  'tmux list-sessions';      complete_like tl  'tmux list-sessions'
-alias ta  'tmux -2 attach -t $1';    complete_like ta  'tmux -2 attach -t $1'
-alias tk  'tmux kill-session -t $1'; complete_like tk  'tmux kill-session -t $1'
 
 # Disable tab titles
 function fish_title; end
