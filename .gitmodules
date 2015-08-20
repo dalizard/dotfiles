@@ -31,12 +31,6 @@
 [submodule "vim/bundle/vim-slim"]
 	path = vim/bundle/vim-slim
 	url = git@github.com:slim-template/vim-slim.git
-[submodule "vim/bundle/vim-turbux"]
-	path = vim/bundle/vim-turbux
-	url = git@github.com:jgdavey/vim-turbux.git
-[submodule "vim/bundle/vimux"]
-	path = vim/bundle/vimux
-	url = git@github.com:benmills/vimux.git
 [submodule "vim/bundle/vim-dispatch"]
 	path = vim/bundle/vim-dispatch
 	url = git@github.com:tpope/vim-dispatch.git
@@ -46,3 +40,6 @@
 [submodule "vim/bundle/vimerl"]
 	path = vim/bundle/vimerl
 	url = git@github.com:jimenezrick/vimerl.git
+[submodule "vim/bundle/vim-rspec"]
+	path = vim/bundle/vim-rspec
+	url = git@github.com:thoughtbot/vim-rspec.git

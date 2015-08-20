@@ -113,6 +113,12 @@ cnoremap %% <C-R>=expand('%:h').'/'<cr>
 " Show previous file (vim-rails)
 nnoremap <leader><leader> <C-^>
 
+" vim-rspec
+map <Leader>t :call RunCurrentSpecFile()<CR>
+map <Leader>s :call RunNearestSpec()<CR>
+map <Leader>l :call RunLastSpec()<CR>
+map <Leader>a :call RunAllSpecs()<CR>
+
 " Rename current file or even move it to another location
 function! RenameFile()
   let old_name = expand('%')
@@ -124,18 +130,6 @@ function! RenameFile()
   endif
 endfunction
 map <leader>r :call RenameFile()<cr>
-
-" Set test runner
-function! SetTestRunner()
-  let g:turbux_runner = input('Test runner: ')
-endfunction
-:command! SetTestRunner :call SetTestRunner()
-
-" Set RSpec command
-function! SetRSpecCommand()
-  let g:turbux_command_rspec = input('RSpec command: ')
-endfunction
-:command! SetRSpecCommand :call SetRSpecCommand()
 
 " Copy current file path to clipboard
 nnoremap <Leader>yp :let @*=expand("%")<cr>:echo "Copied file path to clipboard"<cr>
