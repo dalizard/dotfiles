@@ -66,7 +66,6 @@
   la = !git l --all
   lol = log --graph --decorate --pretty=oneline --abbrev-commit
   lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
-  col = !git branch | cut -c 3- | pick | xargs git checkout
 
 [merge]
   tool = vimdiff
