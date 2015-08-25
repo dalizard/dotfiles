@@ -22,10 +22,11 @@ set -x LANG en_US.UTF-8
 set -x LC_CTYPE en_US.UTF-8
 
 # Aliases
-alias g   'git';                     complete_like g   'git'
-alias ll  'ls -laG';                 complete_like ll  'ls -laG'
-alias gg  'git status';              complete_like gg  'git status'
-alias be  'bundle exec';             complete_like be  'bundle exec'
+alias g   'git';         complete_like g  'git'
+alias ll  'ls -laG';     complete_like ll 'ls -laG'
+alias gg  'git status';  complete_like gg 'git status'
+alias be  'bundle exec'; complete_like be 'bundle exec'
+alias vi  'vim';         complete_like vi 'vim'
 
 # Disable tab titles
 function fish_title; end
