@@ -10,3 +10,4 @@ Thumbs.db
 .ruby-version
 session.vim
 vim/undo
+tmux/resurrect
