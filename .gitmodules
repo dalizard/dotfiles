@@ -37,9 +37,6 @@
 [submodule "vim/bundle/ctrlsf.vim"]
 	path = vim/bundle/ctrlsf.vim
 	url = git@github.com:dyng/ctrlsf.vim.git
-[submodule "vim/bundle/vimerl"]
-	path = vim/bundle/vimerl
-	url = git@github.com:jimenezrick/vimerl.git
 [submodule "vim/bundle/vim-rspec"]
 	path = vim/bundle/vim-rspec
 	url = git@github.com:thoughtbot/vim-rspec.git
