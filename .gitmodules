@@ -46,3 +46,9 @@
 [submodule "tmux/plugins/tmux-resurrect"]
 	path = tmux/plugins/tmux-resurrect
 	url = git@github.com:tmux-plugins/tmux-resurrect.git
+[submodule "vim/bundle/vim-erlang-runtime"]
+	path = vim/bundle/vim-erlang-runtime
+	url = git@github.com:vim-erlang/vim-erlang-runtime.git
+[submodule "vim/bundle/vim-erlang-compiler"]
+	path = vim/bundle/vim-erlang-compiler
+	url = git@github.com:vim-erlang/vim-erlang-compiler.git
