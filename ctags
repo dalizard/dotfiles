@@ -3,7 +3,9 @@
 --exclude=.git
 --exclude=.sass-cache
 --exclude=log
+--exclude=tmp
 --format=2
 --excmd=pattern
 --fields=aiklmnsSt
+--append
 --languages=ruby
