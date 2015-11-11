@@ -75,14 +75,6 @@ let ruby_space_errors = 1
 " Proper error handling when using zeus gem
 let g:dispatch_compilers = { 'zeus': '' }
 
-" Shortcuts for ctrlsf.vim
-nmap     <C-F>f <Plug>CtrlSFPrompt
-vmap     <C-F>f <Plug>CtrlSFVwordPath
-vmap     <C-F>F <Plug>CtrlSFVwordExec
-nmap     <C-F>n <Plug>CtrlSFCwordPath
-nmap     <C-F>p <Plug>CtrlSFPwordPath
-nnoremap <C-F>o :CtrlSFOpen<CR>
-
 " Go to previous fiile
 nnoremap <leader><leader> <c-^>
 
