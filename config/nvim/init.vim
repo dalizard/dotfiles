@@ -55,7 +55,7 @@ set shell=/bin/bash
 set rtp+=/usr/local/opt/fzf
 
 let mapleader = ","
-let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#enabled = 0
 let g:airline#extensions#tabline#show_buffers = 0
 let g:airline#extensions#tmuxline#enabled = 0
 let g:tmuxline_separators = {
@@ -103,9 +103,11 @@ nnoremap <Right> <NOP>
 inoremap <Right> <NOP>
 vnoremap <Right> <NOP>
 
-" Easy tab navigation
-map <C-l> :tabnext<CR>
-map <C-h> :tabprevious<CR>
+"nnoremap <C-K> :Ag <C-r><C-w><CR>
+
+" Easy buffer navigation
+nnoremap <silent> <C-l> :bnext<CR>
+nnoremap <silent> <C-k> :bprevious<CR>
 
 " Copy to clipboard
 map <leader>y "*y
