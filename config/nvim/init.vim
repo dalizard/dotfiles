@@ -42,7 +42,7 @@ set synmaxcol=128
 set scrolloff=3                   " Have some context around the current line always on screen
 set autoread                      " Watch out for file changes
 set t_ti= t_te=
-set timeout timeoutlen=1000 ttimeoutlen=100
+"set timeout timeoutlen=1000 ttimeoutlen=100
 set splitbelow                    " Put new window below the current one
 set backup
 set undodir=~/.nvim/_undo
