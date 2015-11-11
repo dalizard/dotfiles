@@ -1,14 +1,11 @@
 call plug#begin('~/.nvim/plugins')
-
 Plug 'bling/vim-airline'
 Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-fugitive'
 Plug 'vim-erlang/vim-erlang-compiler'
 Plug 'vim-erlang/vim-erlang-runtime'
 Plug 'thoughtbot/vim-rspec'
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
-
 call plug#end()
 
 colorscheme molokai               " Color theme
@@ -48,13 +45,14 @@ set t_ti= t_te=
 set timeout timeoutlen=1000 ttimeoutlen=100
 set splitbelow                    " Put new window below the current one
 set backup
-set backupdir=~/.vim/_backup      " where to put backup files
-set directory=~/.vim/_temp        " where to put swap files
+set undodir=~/.nvim/_undo
+set backupdir=~/.nvim/_backup      " where to put backup files
+set directory=~/.nvim/_temp        " where to put swap files
 set nofoldenable                  " All folds are open
 set undofile                      " Maintain undo history between sessions
-set undodir=~/.vim/_undo
 set switchbuf=usetab,newtab
 set shell=/bin/bash
+set rtp+=/usr/local/opt/fzf
 
 let mapleader = ","
 let g:airline#extensions#tabline#enabled = 1
@@ -106,14 +104,17 @@ inoremap <Right> <NOP>
 vnoremap <Right> <NOP>
 
 " Easy tab navigation
-map <C-l> :tabn<CR>
-map <C-h> :tabp<CR>
+map <C-l> :tabnext<CR>
+map <C-h> :tabprevious<CR>
 
 " Copy to clipboard
 map <leader>y "*y
 
 " Esc is harder to reach
 imap <C-c> <esc>
+
+map <C-p> :Files<CR>
+map <C-i> :Buffers<CR>
 
 " Expand current path
 cnoremap %% <C-R>=expand('%:h').'/'<cr>
@@ -147,32 +148,3 @@ autocmd BufWritePre * :%s/\s\+$//e
 
 " .rb settings
 autocmd FileType ruby set iskeyword+=?,!
-
-let g:ctrlp_map = '<c-p>'
-let g:ctrlp_cmd = 'CtrlP'
-let g:ctrlp_working_path_mode = 'ra'
-set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*/vendor/*,node_modules
-
-" The Silver Searcher
-if executable('ag')
-  " Use ag over grep
-  set grepprg=ag\ --nogroup\ --nocolor
-
-  " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
-  let g:ctrlp_user_command = 'ag %s -i --nocolor --nogroup --hidden
-        \ --ignore .git
-        \ --ignore .svn
-        \ --ignore .hg
-        \ --ignore .DS_Store
-        \ --ignore .bundle
-        \ --ignore vendor
-        \ --ignore "**/*.pyc"
-        \ -g ""'
-
-  "" PyMatcher for CtrlP
-  "if !has('python')
-  "    echo 'In order to use pymatcher plugin, you need +python compiled vim'
-  "else
-  "    let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch' }
-  "endif
-endif
