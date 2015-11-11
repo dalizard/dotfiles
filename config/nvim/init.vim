@@ -107,8 +107,8 @@ map <leader>y "*y
 " Esc is harder to reach
 imap <C-c> <esc>
 
-map <C-p> :Files<CR>
-map <C-i> :Buffers<CR>
+map <C-j> :Files<CR>
+map <C-f> :Buffers<CR>
 
 " Expand current path
 cnoremap %% <C-R>=expand('%:h').'/'<cr>
