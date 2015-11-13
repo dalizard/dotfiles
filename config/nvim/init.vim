@@ -44,7 +44,8 @@ set autoread                      " Watch out for file changes
 set t_ti= t_te=
 "set timeout timeoutlen=1000 ttimeoutlen=100
 set splitbelow                    " Put new window below the current one
-set backup
+set nobackup
+set nowritebackup
 set undodir=~/.nvim/_undo
 set backupdir=~/.nvim/_backup      " where to put backup files
 set directory=~/.nvim/_temp        " where to put swap files
