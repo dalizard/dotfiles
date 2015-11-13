@@ -37,12 +37,9 @@ set ignorecase                    " Searches are case insensitive...
 set smartcase                     " ... unless they contain at least one capital letter
 set wildmenu
 set wildmode=longest,list
-set cursorline                    " Highlights current line
 set synmaxcol=128
 set scrolloff=3                   " Have some context around the current line always on screen
 set autoread                      " Watch out for file changes
-set t_ti= t_te=
-"set timeout timeoutlen=1000 ttimeoutlen=100
 set splitbelow                    " Put new window below the current one
 set nobackup
 set nowritebackup
@@ -56,6 +53,7 @@ set shell=/bin/bash
 set rtp+=/usr/local/opt/fzf
 
 let mapleader = ","
+
 let g:airline#extensions#tabline#enabled = 0
 let g:airline#extensions#tabline#show_buffers = 0
 let g:airline#extensions#tmuxline#enabled = 0
@@ -69,15 +67,9 @@ let g:airline_left_sep = ''
 let g:airline_left_alt_sep = ''
 let g:airline_right_sep = ''
 let g:airline_right_alt_sep = ''
-let ruby_operators = 1
-let ruby_minlines = 1000
-let ruby_space_errors = 1
 
 " Proper error handling when using zeus gem
 let g:dispatch_compilers = { 'zeus': '' }
-
-" Go to previous fiile
-nnoremap <leader><leader> <c-^>
 
 " Disable Q
 nnoremap Q <nop>
@@ -108,14 +100,12 @@ map <leader>y "*y
 " Esc is harder to reach
 imap <C-c> <esc>
 
+" Fzf shortcuts
 map <C-j> :Files<CR>
 map <C-f> :Buffers<CR>
 
 " Expand current path
 cnoremap %% <C-R>=expand('%:h').'/'<cr>
-
-" Show previous file (vim-rails)
-nnoremap <leader><leader> <C-^>
 
 " vim-rspec
 map <Leader>t :call RunCurrentSpecFile()<CR>
@@ -142,4 +132,4 @@ nnoremap <Leader>yp :let @*=expand("%")<cr>:echo "Copied file path to clipboard"
 autocmd BufWritePre * :%s/\s\+$//e
 
 " .rb settings
-autocmd FileType ruby set iskeyword+=?,!
+autocmd FileType ruby set iskeyword+="?,!"
