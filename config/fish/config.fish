@@ -21,13 +21,13 @@ set -x BROWSER open
 set -x LANG en_US.UTF-8
 set -x LC_CTYPE en_US.UTF-8
 
-# Aliases
-alias g   'git';         complete_like g   'git'
-alias ll  'ls -laG';     complete_like ll  'ls -laG'
-alias gg  'git status';  complete_like gg  'git status'
-alias be  'bundle exec'; complete_like be  'bundle exec'
-alias vi  'nvim';        complete_like vi  'nvim'
-alias vim 'nvim';        complete_like vim 'nvim'
+# Shortcuts
+abbr -a g='git'
+abbr -a ll='ls -alG'
+abbr -a gg='git status'
+abbr -a be='bundle exec'
+abbr -a vi='nvim'
+abbr -a vim='nvim'
 
 # Disable tab titles
 function fish_title; end
