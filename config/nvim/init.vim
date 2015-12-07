@@ -71,6 +71,9 @@ let g:airline_right_alt_sep = ''
 " Proper error handling when using zeus gem
 let g:dispatch_compilers = { 'zeus': '' }
 
+" Fzf
+let g:fzf_layout = { 'down': '~30%' }
+
 " Disable Q
 nnoremap Q <nop>
 
