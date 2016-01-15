@@ -6,6 +6,7 @@ Plug 'vim-erlang/vim-erlang-compiler'
 Plug 'vim-erlang/vim-erlang-runtime'
 Plug 'thoughtbot/vim-rspec'
 Plug 'junegunn/fzf.vim'
+Plug 'dkprice/vim-easygrep'
 call plug#end()
 
 colorscheme molokai               " Color theme
