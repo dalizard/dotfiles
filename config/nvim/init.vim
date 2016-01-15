@@ -105,8 +105,9 @@ map <leader>y "*y
 imap <C-c> <esc>
 
 " Fzf shortcuts
-map <C-j> :Files<CR>
-map <C-f> :Buffers<CR>
+nnoremap <silent> <C-j> :Files<CR>
+nnoremap <silent> <C-f> :Buffers<CR>
+nnoremap <silent> <Leader>q :Ag <C-R><C-W><CR>
 
 " Expand current path
 cnoremap %% <C-R>=expand('%:h').'/'<cr>
@@ -136,4 +137,4 @@ nnoremap <Leader>yp :let @*=expand("%")<cr>:echo "Copied file path to clipboard"
 autocmd BufWritePre * :%s/\s\+$//e
 
 " .rb settings
-autocmd FileType ruby set iskeyword+="?,!"
+autocmd FileType ruby set iskeyword+=?,!
