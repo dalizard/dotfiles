@@ -4,9 +4,9 @@ Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-fugitive'
 Plug 'vim-erlang/vim-erlang-compiler'
 Plug 'vim-erlang/vim-erlang-runtime'
-Plug 'thoughtbot/vim-rspec'
 Plug 'junegunn/fzf.vim'
 Plug 'dkprice/vim-easygrep'
+Plug 'kassio/neoterm'
 call plug#end()
 
 colorscheme molokai               " Color theme
@@ -75,6 +75,8 @@ let g:dispatch_compilers = { 'zeus': '' }
 " Fzf
 let g:fzf_layout = { 'down': '~30%' }
 
+tnoremap <Esc> <C-\><C-n>
+
 " Disable Q
 nnoremap Q <nop>
 
@@ -112,11 +114,23 @@ nnoremap <silent> <Leader>q :Ag <C-R><C-W><CR>
 " Expand current path
 cnoremap %% <C-R>=expand('%:h').'/'<cr>
 
-" vim-rspec
-map <Leader>t :call RunCurrentSpecFile()<CR>
-map <Leader>s :call RunNearestSpec()<CR>
-map <Leader>l :call RunLastSpec()<CR>
-map <Leader>a :call RunAllSpecs()<CR>
+" neoterm
+let g:neoterm_size = '15%'
+let g:neoterm_close_when_tests_succeed = 1
+nnoremap <silent> <Leader>a :call neoterm#test#run('all')<cr>
+nnoremap <silent> <Leader>f :call neoterm#test#run('file')<cr>
+nnoremap <silent> <Leader>s :call neoterm#test#run('current')<cr>
+nnoremap <silent> <Leader>l :call neoterm#test#rerun()<cr>
+
+nnoremap <silent> <Leader>t :call neoterm#toggle()<cr>
+nnoremap <silent> <Leader>k :call neoterm#kill()<cr>
+
+function! ChangeNeotermRspecCmd()
+  let command = input('Command: ')
+  exec ":let g:neoterm_rspec_lib_cmd='". command . "'"
+  redraw!
+endfunction
+nnoremap <silent> <leader>x :call ChangeNeotermRspecCmd()<cr>
 
 " Rename current file or even move it to another location
 function! RenameFile()
@@ -129,6 +143,29 @@ function! RenameFile()
   endif
 endfunction
 map <leader>r :call RenameFile()<cr>
+
+" Easy widows swap
+function! MarkWindowSwap()
+    let g:markedWinNum = winnr()
+endfunction
+
+function! DoWindowSwap()
+    "Mark destination
+    let curNum = winnr()
+    let curBuf = bufnr( "%" )
+    exe g:markedWinNum . "wincmd w"
+    "Switch to source and shuffle dest->source
+    let markedBuf = bufnr( "%" )
+    "Hide and open so that we aren't prompted and keep history
+    exe 'hide buf' curBuf
+    "Switch to dest and shuffle source->dest
+    exe curNum . "wincmd w"
+    "Hide and open so that we aren't prompted and keep history
+    exe 'hide buf' markedBuf
+endfunction
+
+nmap <silent> <leader>wc :call MarkWindowSwap()<CR>
+nmap <silent> <leader>wp :call DoWindowSwap()<CR>
 
 " Copy current file path to clipboard
 nnoremap <Leader>yp :let @*=expand("%")<cr>:echo "Copied file path to clipboard"<cr>
