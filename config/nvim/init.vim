@@ -127,6 +127,7 @@ endfunction
 cnoremap %% <C-R>=expand('%:h').'/'<CR>
 
 " neoterm
+let test#strategy = 'neoterm'
 let g:neoterm_size = '15%'
 nnoremap <silent> <Leader>t :call neoterm#toggle()<CR>
 nnoremap <silent> <Leader>k :call neoterm#kill()<CR>
