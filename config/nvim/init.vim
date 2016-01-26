@@ -94,7 +94,7 @@ nnoremap <silent> <C-l> :bnext<CR>
 nnoremap <silent> <C-k> :bprevious<CR>
 
 " Copy to clipboard
-nnoremap <leader>y "*y
+vnoremap <leader>y "*y
 
 " Esc is harder to reach
 inoremap <C-c> <ESC>
