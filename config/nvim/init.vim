@@ -1,5 +1,6 @@
 call plug#begin('~/.nvim/plugins')
-Plug 'bling/vim-airline'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-fugitive'
 Plug 'vim-erlang/vim-erlang-compiler'
