@@ -22,12 +22,12 @@ set -x LANG en_US.UTF-8
 set -x LC_CTYPE en_US.UTF-8
 
 # Shortcuts
-abbr -a g='git'
-abbr -a ll='ls -alG'
-abbr -a gg='git status'
-abbr -a be='bundle exec'
-abbr -a vi='nvim'
-abbr -a vim='nvim'
+alias g='git'
+alias ll='ls -alG'
+alias gg='git status'
+alias be='bundle exec'
+alias vi='nvim'
+alias vim='nvim'
 
 # Disable tab titles
 function fish_title; end
