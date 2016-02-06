@@ -47,9 +47,9 @@ set autoread                      " Watch out for file changes
 set splitbelow                    " Put new window below the current one
 set nobackup
 set nowritebackup
-set undodir=~/.nvim/_undo
-set backupdir=~/.nvim/_backup
-set directory=~/.nvim/_temp
+set undodir=~/.dotfiles/config/nvim/_undo
+set backupdir=~/.dotfiles/config/nvim/_backup
+set directory=~/.dotfiles/config/.nvim/_temp
 set nofoldenable                  " All folds are open
 set undofile                      " Maintain undo history between sessions
 set switchbuf=usetab,newtab
