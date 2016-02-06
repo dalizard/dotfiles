@@ -1,10 +1,6 @@
 *.swp
 *.swo
 .netrwhist
-_backup/*
-_temp/*
-_undo/*
-_sessions/*
 fish_history
 fishd.*
 generated_completions
