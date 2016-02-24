@@ -129,13 +129,13 @@ endfunction
 cnoremap %% <C-R>=expand('%:h').'/'<CR>
 
 " neoterm
-let test#strategy = 'neoterm'
 let g:neoterm_size = '15%'
 nnoremap <silent> <Leader>t :call neoterm#toggle()<CR>
 nnoremap <silent> <Leader>k :call neoterm#kill()<CR>
 nnoremap <silent> <Leader>c :call neoterm#clear()<CR>
 
 " vim-test
+let test#strategy = 'neovim'
 nnoremap <silent> <leader>s :TestNearest<CR>
 nnoremap <silent> <leader>f :TestFile<CR>
 nnoremap <silent> <leader>a :TestSuite<CR>
