@@ -1,14 +1,12 @@
 call plug#begin('~/.nvim/plugins')
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-obsession'
 Plug 'vim-erlang/vim-erlang-compiler'
 Plug 'vim-erlang/vim-erlang-runtime'
 Plug 'junegunn/fzf.vim'
 Plug 'dkprice/vim-easygrep'
-Plug 'kassio/neoterm'
 Plug 'janko-m/vim-test'
 call plug#end()
 
@@ -128,19 +126,13 @@ endfunction
 " Expand current path
 cnoremap %% <C-R>=expand('%:h').'/'<CR>
 
-" neoterm
-let g:neoterm_size = '15%'
-nnoremap <silent> <Leader>t :call neoterm#toggle()<CR>
-nnoremap <silent> <Leader>k :call neoterm#kill()<CR>
-nnoremap <silent> <Leader>c :call neoterm#clear()<CR>
-
 " vim-test
 let test#strategy = 'neovim'
 nnoremap <silent> <leader>s :TestNearest<CR>
 nnoremap <silent> <leader>f :TestFile<CR>
 nnoremap <silent> <leader>a :TestSuite<CR>
 nnoremap <silent> <leader>l :TestLast<CR>
-nnoremap <silent> <leader>g :TestVisit<CR>
+nnoremap <silent> <leader>v :TestVisit<CR>
 
 " Rename current file or even move it to another location
 function! RenameFile()
