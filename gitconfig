@@ -35,7 +35,6 @@
   lineNumber = true
 
 [alias]
-  st = status
   ci = commit --verbose
   amend = commit --amend
   di = diff
