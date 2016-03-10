@@ -43,6 +43,7 @@
   co = checkout
   aa = add --all
   ff = merge --ff-only
+  pf = push --force-with-lease
   pullff = pull --ff-only
   noff = merge --no-ff
   fa = fetch --all
