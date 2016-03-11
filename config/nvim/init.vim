@@ -69,7 +69,11 @@ let g:airline_left_alt_sep = ''
 let g:airline_right_sep = ''
 let g:airline_right_alt_sep = ''
 
+" Leave terminal mode
 tnoremap <Esc> <C-\><C-n>
+
+" Clear highlighted text
+nnoremap <silent> <CR> :nohl<CR>
 
 " Disable Q
 nnoremap Q <nop>
