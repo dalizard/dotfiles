@@ -29,8 +29,6 @@ alias g='git'
 alias ll='ls -alG'
 alias gg='git status'
 alias be='bundle exec'
-alias vi='nvim'
-alias vim='nvim'
 
 # Disable tab titles
 function fish_title; end
