@@ -7,8 +7,8 @@ test $TERM = xterm; and set -x TERM xterm-256color
 # Set PATH
 set -x PATH /usr/local/sbin $PATH
 
-# Don't let fish masquerade itself as other shells
-set -x SHELL (which fish)
+# Use bash here
+set -x SHELL /bin/bash
 
 # Help out programs spawning editors based on $EDITOR.
 # The same for pagers, just use less for them.
