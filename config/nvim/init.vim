@@ -51,7 +51,7 @@ set undodir=~/.nvim/_undo
 set directory=~/.nvim/_temp
 set nofoldenable                  " All folds are open
 set switchbuf=usetab,newtab
-set shell=/bin/bash
+set shell=/usr/local/bin/fish
 set rtp+=/usr/local/opt/fzf
 
 let mapleader = ","
