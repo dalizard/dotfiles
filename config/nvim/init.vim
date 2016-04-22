@@ -7,7 +7,6 @@ Plug 'tpope/vim-rails'
 Plug 'vim-erlang/vim-erlang-compiler'
 Plug 'vim-erlang/vim-erlang-runtime'
 Plug 'junegunn/fzf.vim'
-Plug 'dkprice/vim-easygrep'
 Plug 'janko-m/vim-test'
 call plug#end()
 
