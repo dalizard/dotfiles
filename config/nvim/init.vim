@@ -19,7 +19,6 @@ call plug#end()
 colorscheme molokai               " Color theme
 filetype plugin indent on 	      " Enable file type detection.
 syntax enable                     " Turn on syntax highlighting
-set encoding=utf-8                " Set default encoding to UTF-8
 set nonumber                      " Do not show line numbers
 set hidden                        " Allow unsaved background buffers and remember marks/undo for them
 set noshowcmd                     " Do not display incomplete commands
