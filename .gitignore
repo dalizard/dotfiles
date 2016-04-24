@@ -5,3 +5,4 @@ fishd.*
 generated_completions
 config/configstore
 config/htop
+config/nvim/autoload/plug.vim
