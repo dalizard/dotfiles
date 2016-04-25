@@ -89,3 +89,4 @@ hi Comment         ctermfg=59
 hi CursorLine                  ctermbg=235   cterm=none
 hi CursorColumn                ctermbg=234
 hi LineNr          ctermfg=208
+hi TermCursor      ctermfg=8
