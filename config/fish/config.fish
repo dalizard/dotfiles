@@ -26,7 +26,7 @@ set fish_color_search_match --background=2F4F4F
 
 # Shortcuts
 alias g='git'
-alias ll='ls -alG'
+alias ll='ls -alGF'
 alias gg='git status'
 alias be='bundle exec'
 
