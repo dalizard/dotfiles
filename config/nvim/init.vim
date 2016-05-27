@@ -15,6 +15,7 @@ Plug 'vim-erlang/vim-erlang-runtime'
 Plug 'junegunn/fzf.vim'
 Plug 'janko-m/vim-test'
 Plug 'slim-template/vim-slim'
+Plug 'kevinsjoberg/vim-test-neovim-error-only'
 call plug#end()
 
 colorscheme molokai               " Color theme
@@ -139,7 +140,7 @@ endfunction
 cnoremap %% <C-R>=expand('%:h').'/'<CR>
 
 " vim-test
-let test#strategy = 'neovim'
+let test#strategy = 'neovim_error_only'
 nnoremap <silent> <leader>s :TestNearest<CR>
 nnoremap <silent> <leader>f :TestFile<CR>
 nnoremap <silent> <leader>a :TestSuite<CR>
