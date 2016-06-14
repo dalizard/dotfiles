@@ -139,7 +139,30 @@ endfunction
 cnoremap %% <C-R>=expand('%:h').'/'<CR>
 
 " vim-test
-let test#strategy = 'neovim'
+function! TestRunner(cmd)
+  let opts = {'suffix': ' # vim-test'}
+  function! opts.on_exit(job_id, exit_code)
+    if a:exit_code == 0
+      call self.close_terminal()
+    endif
+  endfunction
+  function! opts.close_terminal()
+    if bufnr(self.suffix) != -1
+      execute 'bdelete!' bufnr(self.suffix)
+    end
+  endfunction
+
+  call opts.close_terminal()
+
+  botright new
+  call termopen(a:cmd . opts.suffix, opts)
+
+  wincmd p
+endfunction
+
+let g:test#custom_strategies = {'testrunner': function('TestRunner')}
+let g:test#strategy = 'testrunner'
+
 nnoremap <silent> <leader>s :TestNearest<CR>
 nnoremap <silent> <leader>f :TestFile<CR>
 nnoremap <silent> <leader>a :TestSuite<CR>
