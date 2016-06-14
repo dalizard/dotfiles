@@ -1,8 +1,9 @@
-nvim/plugins
 .netrwhist
-fish_history
-fishd.*
-generated_completions
+bundle/cache
 config/configstore
 config/htop
 config/nvim/autoload/plug.vim
+fish_history
+fishd.*
+generated_completions
+nvim/plugins
