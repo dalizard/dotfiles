@@ -11,6 +11,8 @@
   editor = vim
 
 [diff]
+  compactionHeuristic = true
+
 [color]
   ui = true
 
