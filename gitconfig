@@ -74,3 +74,6 @@
 
 [push]
   default = simple
+
+[status]
+  showUntrackedFiles = all
