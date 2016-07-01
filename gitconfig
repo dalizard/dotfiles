@@ -37,7 +37,6 @@
   lineNumber = true
 
 [alias]
-  ci = commit --verbose
   amend = commit --amend
   di = diff
   dc = diff --cached
@@ -77,3 +76,6 @@
 
 [status]
   showUntrackedFiles = all
+
+[commit]
+  verbose = true
