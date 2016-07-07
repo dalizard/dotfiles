@@ -41,6 +41,7 @@
   di = diff
   dc = diff --cached
   b = branch
+  c = commit
   co = checkout
   aa = add --all
   ff = merge --ff-only
