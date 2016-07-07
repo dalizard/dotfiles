@@ -30,6 +30,9 @@ alias ll='ls -alGF'
 alias gg='git status'
 alias be='bundle exec'
 
+# hub is aliased as git
+eval (hub alias -s)
+
 # Disable tab titles
 function fish_title; end
 

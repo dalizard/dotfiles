@@ -13,3 +13,4 @@ session.vim
 vim/undo
 tmux/resurrect
 tags
+config/hub
