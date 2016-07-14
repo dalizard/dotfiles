@@ -209,3 +209,6 @@ nnoremap <Leader>yp :let @*=expand("%")<cr>:echo "Copied file path to clipboard"
 
 " .rb keywords
 autocmd FileType ruby set iskeyword+=?,!
+
+" Because I constantly type :W istead of :w
+cnoreabbrev W w
