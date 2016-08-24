@@ -51,6 +51,7 @@
   fa = fetch --all
   ds = diff --stat=160,120
   dh1 = diff HEAD~1
+  fix = !vim +/'<<<<<<<' $(git ls-files --unmerged | cut -f2 | uniq)
 
   # Fancy logging.
   #   h = head
