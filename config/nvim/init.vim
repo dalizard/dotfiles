@@ -169,6 +169,9 @@ nnoremap <silent> <leader>a :TestSuite<CR>
 nnoremap <silent> <leader>l :TestLast<CR>
 nnoremap <silent> <leader>v :TestVisit<CR>
 
+" Run rubocop
+map <leader>c :execute '!bin/rubocop'<CR>
+
 " Rename current file or even move it to another location
 function! RenameFile()
   let old_name = expand('%')
