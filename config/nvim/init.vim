@@ -59,7 +59,7 @@ set foldnestmax=10
 set nofoldenable                  " All folds are open
 set foldlevel=1
 set switchbuf=usetab,newtab
-set shell=/usr/local/bin/fish
+set shell=/bin/bash
 set rtp+=/usr/local/opt/fzf
 
 let mapleader = ","
