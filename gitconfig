@@ -69,6 +69,7 @@
   la = !git l --all
   lol = log --graph --decorate --pretty=oneline --abbrev-commit
   lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
+  cc = !git branch | fzf-tmux -d 15 | xargs git co
 
 [merge]
   tool = vimdiff
