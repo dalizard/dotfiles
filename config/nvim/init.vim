@@ -15,6 +15,7 @@ Plug 'vim-erlang/vim-erlang-runtime'
 Plug 'junegunn/fzf.vim'
 Plug 'janko-m/vim-test'
 Plug 'slim-template/vim-slim'
+Plug 'elixir-lang/vim-elixir'
 call plug#end()
 
 colorscheme molokai               " Color theme
