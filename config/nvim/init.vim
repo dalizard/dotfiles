@@ -102,10 +102,6 @@ nnoremap <Right> <NOP>
 inoremap <Right> <NOP>
 vnoremap <Right> <NOP>
 
-" Easy buffer navigation
-nnoremap <silent> <C-l> :bnext<CR>
-nnoremap <silent> <C-k> :bprevious<CR>
-
 " Copy to clipboard
 vnoremap <leader>y "*y
 
