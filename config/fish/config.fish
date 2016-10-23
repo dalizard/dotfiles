@@ -36,11 +36,9 @@ eval (hub alias -s)
 # Disable tab titles
 function fish_title; end
 
-# Generate ctags
-function ct
-  ctags -R -f ./.git/tags .
-end
+# User defined functions
+source ~/.config/fish/functions/user_defined.fish
 
-# Ruby Manager
+# Ruby manager
 source /usr/local/share/chruby/chruby.fish
 source /usr/local/share/chruby/auto.fish
