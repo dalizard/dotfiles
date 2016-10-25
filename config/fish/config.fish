@@ -22,7 +22,7 @@ set -x LANG en_US.UTF-8
 set -x LC_CTYPE en_US.UTF-8
 
 # Search hightlight color
-set fish_color_search_match --background=75a3a3
+set fish_color_search_match --background=d98c8c
 
 # Shortcuts
 alias g='git'
