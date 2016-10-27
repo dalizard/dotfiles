@@ -108,6 +108,9 @@ vnoremap <leader>y "*y
 " Esc is harder to reach
 inoremap <C-c> <ESC>
 
+" Remove trailing whitespace on save
+autocmd BufWritePre * :%s/\s\+$//e
+
 " fzf
 let g:fzf_layout = { 'down': '~30%' }
 nnoremap <silent> <C-j> :Files<CR>
