@@ -16,6 +16,7 @@ Plug 'junegunn/fzf.vim'
 Plug 'janko-m/vim-test'
 Plug 'slim-template/vim-slim'
 Plug 'elixir-lang/vim-elixir'
+Plug 'kchmck/vim-coffee-script'
 call plug#end()
 
 colorscheme molokai               " Color theme
