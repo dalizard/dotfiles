@@ -155,7 +155,7 @@ function! TestRunner(cmd)
 
   call opts.close_terminal()
 
-  botright new
+  botright20 new
   call termopen(a:cmd . opts.suffix, opts)
 
   wincmd p
