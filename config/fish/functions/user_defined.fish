@@ -4,7 +4,7 @@ end
 
 function gl --description 'Git fuzzy find and checkout local branch'
 	if command git rev-parse --is-inside-work-tree >/dev/null 2>&1
-		git branch -vv | fzf | awk '{print $1}' | sed "s/.* //" | read -l branch;
+		git branch -vv | fzf -e | awk '{print $1}' | sed "s/.* //" | read -l branch;
     and git checkout $branch
 	else
 		echo Not a git repo.
@@ -13,7 +13,7 @@ end
 
 function gr --description 'Git fuzzy find and checkout remote branch'
 	if command git rev-parse --is-inside-work-tree >/dev/null 2>&1
-		git branch --all | grep -v HEAD | fzf | sed "s/.* //" | sed "s#remotes/[^/]*/##" | read -l branch;
+		git branch --all | grep -v HEAD | fzf -e | sed "s/.* //" | sed "s#remotes/[^/]*/##" | read -l branch;
     and git checkout $branch
 	else
 		echo Not a git repo.
