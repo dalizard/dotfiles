@@ -81,44 +81,45 @@ let g:airline_right_sep = ''
 let g:airline_right_alt_sep = ''
 
 " Leave terminal mode
-tnoremap <Esc> <C-\><C-n>
+tnoremap <esc> <C-\><C-n>
 
 " Clear highlighted text
-nnoremap <silent> <CR> :nohl<CR>
+nnoremap <silent> <cr> :nohl<cr>
 
 " Disable Q
 nnoremap Q <nop>
 
 " Forget about the damn arrow keys!
-nnoremap <Up> <NOP>
-inoremap <Up> <NOP>
-vnoremap <Up> <NOP>
-nnoremap <Down> <NOP>
-inoremap <Down> <NOP>
-vnoremap <Down> <NOP>
-nnoremap <Left> <NOP>
-inoremap <Left> <NOP>
-vnoremap <Left> <NOP>
-nnoremap <Right> <NOP>
-inoremap <Right> <NOP>
-vnoremap <Right> <NOP>
+nnoremap <Up> <nop>
+inoremap <Up> <nop>
+vnoremap <Up> <nop>
+nnoremap <Down> <nop>
+inoremap <Down> <nop>
+vnoremap <Down> <nop>
+nnoremap <Left> <nop>
+inoremap <Left> <nop>
+vnoremap <Left> <nop>
+nnoremap <Right> <nop>
+inoremap <Right> <nop>
+vnoremap <Right> <nop>
 
 " Copy to clipboard
 vnoremap <leader>y "*y
 
 " Esc is harder to reach
-inoremap <C-c> <ESC>
+inoremap <C-c> <esc>
+inoremap jk <esc>
 
 " Remove trailing whitespace on save
 autocmd BufWritePre * :%s/\s\+$//e
 
 " fzf
 let g:fzf_layout = { 'down': '~30%' }
-nnoremap <silent> <C-j> :Files<CR>
-nnoremap <silent> <C-f> :Buffers<CR>
+nnoremap <silent> <C-j> :Files<cr>
+nnoremap <silent> <C-f> :Buffers<cr>
 
-nnoremap <silent> K :call SearchWordWithAg()<CR>
-vnoremap <silent> K :call SearchVisualSelectionWithAg()<CR>
+nnoremap <silent> K :call SearchWordWithAg()<cr>
+vnoremap <silent> K :call SearchVisualSelectionWithAg()<cr>
 
 function! SearchWordWithAg()
   execute 'Ag' expand('<cword>')
@@ -137,16 +138,18 @@ function! SearchVisualSelectionWithAg() range
 endfunction
 
 " Expand current path
-cnoremap %% <C-R>=expand('%:h').'/'<CR>
+cnoremap %% <C-R>=expand('%:h').'/'<cr>
 
 " vim-test
 function! TestRunner(cmd)
   let opts = {'suffix': ' # vim-test'}
+
   function! opts.on_exit(job_id, exit_code)
     if a:exit_code == 0
       call self.close_terminal()
     endif
   endfunction
+
   function! opts.close_terminal()
     if bufnr(self.suffix) != -1
       execute 'bdelete!' bufnr(self.suffix)
@@ -155,23 +158,49 @@ function! TestRunner(cmd)
 
   call opts.close_terminal()
 
-  botright20 new
+  vertical botright new
+
   call termopen(a:cmd . opts.suffix, opts)
 
   wincmd p
 endfunction
 
+" Rubocop
+function! RunRubocop()
+  let opts = {'suffix': ' # rubocop'}
+
+  function! opts.on_exit(job_id, exit_code)
+    if a:exit_code == 0
+      call self.close_terminal()
+    endif
+  endfunction
+
+  function! opts.close_terminal()
+    if bufnr(self.suffix) != -1
+      execute 'bdelete!' bufnr(self.suffix)
+    end
+  endfunction
+
+  call opts.close_terminal()
+
+  vertical botright new
+
+  call termopen('bin/rubocop' . opts.suffix, opts)
+
+  wincmd p
+endfunction
+
+nnoremap <silent> <leader>c :call RunRubocop()<cr>
+
 let g:test#custom_strategies = {'testrunner': function('TestRunner')}
 let g:test#strategy = 'testrunner'
 
-nnoremap <silent> <leader>s :TestNearest<CR>
-nnoremap <silent> <leader>f :TestFile<CR>
-nnoremap <silent> <leader>a :TestSuite<CR>
-nnoremap <silent> <leader>l :TestLast<CR>
-nnoremap <silent> <leader>v :TestVisit<CR>
+nnoremap <silent> <leader>s :TestNearest<cr>
+nnoremap <silent> <leader>f :TestFile<cr>
+nnoremap <silent> <leader>a :TestSuite<cr>
+nnoremap <silent> <leader>l :TestLast<cr>
+nnoremap <silent> <leader>v :TestVisit<cr>
 
-" Run rubocop
-map <leader>c :execute '!bin/rubocop'<CR>
 
 " Rename current file or even move it to another location
 function! RenameFile()
@@ -183,7 +212,8 @@ function! RenameFile()
     redraw!
   endif
 endfunction
-map <leader>r :call RenameFile()<CR>
+
+nnoremap <leader>r :call RenameFile()<cr>
 
 " Easy widows swap
 function! MarkWindowSwap()
@@ -205,8 +235,8 @@ function! DoWindowSwap()
     exe 'hide buf' markedBuf
 endfunction
 
-nnoremap <silent> <leader>wc :call MarkWindowSwap()<CR>
-nnoremap <silent> <leader>wp :call DoWindowSwap()<CR>
+nnoremap <silent> <leader>wc :call MarkWindowSwap()<cr>
+nnoremap <silent> <leader>wp :call DoWindowSwap()<cr>
 
 " Copy current file path to clipboard
 nnoremap <Leader>yp :let @*=expand("%")<cr>:echo "Copied file path to clipboard"<cr>
@@ -216,3 +246,6 @@ autocmd FileType ruby set iskeyword+=?,!
 
 " Because I constantly type :W istead of :w
 cnoreabbrev W w
+
+nnoremap <leader>ve :vsplit $MYVIMRC<cr>
+nnoremap <leader>vs :source $MYVIMRC<cr>
