@@ -29,6 +29,7 @@ alias g='git'
 alias ll='ls -alGF'
 alias gg='git status'
 alias be='bundle exec'
+alias gh="git log --pretty=format:'%h' -n 1 | pbcopy"
 
 # hub is aliased as git
 eval (hub alias -s)
