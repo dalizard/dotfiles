@@ -147,6 +147,11 @@ endfunction
 cnoremap %% <C-R>=expand('%:h').'/'<cr>
 
 " vim-test
+let test#ruby#rspec#options = {'suite': '-f p -r ~/.rspec_support/quickfix_formatter.rb -f QuickfixFormatter -o spec/quickfix.out'}
+
+" Populate QuickFix with test suite run result
+nnoremap <leader>q :cg spec/quickfix.out<cr>:echo "QuickFix populated"<cr>
+
 function! TestRunner(cmd)
   let opts = {'suffix': ' # vim-test'}
 
