@@ -52,6 +52,7 @@
   ds = diff --stat=160,120
   dh1 = diff HEAD~1
   fix = !vim +/'<<<<<<<' $(git ls-files --unmerged | cut -f2 | uniq)
+  db = !git reset -- db/structure.sql | !git co -- db/structure.sql
 
   # Fancy logging.
   #   h = head
@@ -82,3 +83,9 @@
 
 [commit]
   verbose = true
+
+[branch]
+  autosetuprebase = always
+
+[rerere]
+  enabled = true
