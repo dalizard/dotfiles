@@ -5,23 +5,30 @@ if empty(glob('~/.config/nvim/autoload/plug.vim'))
 endif
 
 call plug#begin('~/.nvim/plugins')
+
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-obsession'
 Plug 'tpope/vim-rails'
+Plug 'tpope/vim-surround'
 Plug 'vim-erlang/vim-erlang-compiler'
 Plug 'vim-erlang/vim-erlang-runtime'
 Plug 'junegunn/fzf.vim'
 Plug 'janko-m/vim-test'
 Plug 'slim-template/vim-slim'
 Plug 'elixir-lang/vim-elixir'
+Plug 'pangloss/vim-javascript'
 Plug 'kchmck/vim-coffee-script'
+Plug 'mbbill/undotree'
+Plug 'python-mode/python-mode'
+Plug 'vim-ruby/vim-ruby'
+
 call plug#end()
 
 colorscheme molokai               " Color theme
-filetype plugin indent on 	      " Enable file type detection.
 syntax enable                     " Turn on syntax highlighting
+filetype plugin indent on 	      " Enable file type detection.
 set nonumber                      " Do not show line numbers
 set hidden                        " Allow unsaved background buffers and remember marks/undo for them
 set noshowcmd                     " Do not display incomplete commands
