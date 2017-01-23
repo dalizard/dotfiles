@@ -260,3 +260,18 @@ cnoreabbrev W w
 
 nnoremap <leader>ve :vsplit $MYVIMRC<cr>
 nnoremap <leader>vs :source $MYVIMRC<cr>
+
+" The Silver Searcher
+if executable('ag')
+  " Use ag over grep
+  set grepprg=ag\ --nogroup\ --nocolor
+endif
+
+" Undotree
+let g:undotree_WindowLayout = 2
+let g:undotree_DiffpanelHeight = 20
+let g:undotree_SplitWidth = 40
+
+" Python Mode
+let g:pymode_options_colorcolumn = 0
+let g:pymode_options = 0
