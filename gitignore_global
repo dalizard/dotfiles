@@ -14,3 +14,5 @@ vim/undo
 tmux/resurrect
 tags
 config/hub
+spec/quickfix.out
+.ropeproject
