@@ -67,6 +67,7 @@ set foldmethod=indent
 set foldnestmax=10
 set nofoldenable                  " All folds are open
 set foldlevel=1
+set previewheight=20              " Preview split height
 set shell=/usr/local/bin/fish
 set rtp+=/usr/local/opt/fzf
 
