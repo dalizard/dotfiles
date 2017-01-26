@@ -276,3 +276,6 @@ let g:undotree_SplitWidth = 40
 " Python Mode
 let g:pymode_options_colorcolumn = 0
 let g:pymode_options = 0
+
+" Do not keep vim-fugitive buffers around
+autocmd BufReadPost fugitive://* set bufhidden=delete
