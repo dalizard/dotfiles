@@ -6,8 +6,6 @@ endif
 
 call plug#begin('~/.nvim/plugins')
 
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-obsession'
 Plug 'tpope/vim-rails'
@@ -23,6 +21,7 @@ Plug 'kchmck/vim-coffee-script'
 Plug 'mbbill/undotree'
 Plug 'python-mode/python-mode'
 Plug 'vim-ruby/vim-ruby'
+Plug 'itchyny/lightline.vim'
 
 call plug#end()
 
@@ -72,20 +71,6 @@ set shell=/usr/local/bin/fish
 set rtp+=/usr/local/opt/fzf
 
 let mapleader = ","
-
-let g:airline#extensions#tabline#enabled = 0
-let g:airline#extensions#tabline#show_buffers = 0
-let g:airline#extensions#tmuxline#enabled = 0
-let g:tmuxline_separators = {
-    \ 'left' : '',
-    \ 'left_alt': '',
-    \ 'right' : '',
-    \ 'right_alt' : '<',
-    \ 'space' : ' '}
-let g:airline_left_sep = ''
-let g:airline_left_alt_sep = ''
-let g:airline_right_sep = ''
-let g:airline_right_alt_sep = ''
 
 " Leave terminal mode
 tnoremap <esc> <C-\><C-n>
@@ -279,3 +264,23 @@ let g:pymode_options = 0
 
 " Do not keep vim-fugitive buffers around
 autocmd BufReadPost fugitive://* set bufhidden=delete
+
+" lightline.vim
+let g:lightline = {
+      \ 'active': {
+      \   'left': [ [ 'mode', 'paste' ],
+      \             [ 'fugitive', 'readonly', 'filename', 'modified' ] ]
+      \ },
+      \ 'component': {
+      \   'readonly': '%{&filetype=="help"?"":&readonly?"⌀":""}',
+      \   'modified': '%{&filetype=="help"?"":&modified?"+":&modifiable?"":"-"}',
+      \   'fugitive': '%{exists("*fugitive#head")?fugitive#head():""}'
+      \ },
+      \ 'component_visible_condition': {
+      \   'readonly': '(&filetype!="help"&& &readonly)',
+      \   'modified': '(&filetype!="help"&&(&modified||!&modifiable))',
+      \   'fugitive': '(exists("*fugitive#head") && ""!=fugitive#head())'
+      \ },
+      \ 'separator': { 'left': '', 'right': '' },
+      \ 'subseparator': { 'left': '|', 'right': '|' }
+      \ }
