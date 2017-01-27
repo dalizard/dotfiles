@@ -1,6 +1,6 @@
 if empty(glob('~/.config/nvim/autoload/plug.vim'))
   silent !curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs
-    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+        \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
   autocmd VimEnter * PlugInstall | source $MYVIMRC
 endif
 
@@ -214,22 +214,22 @@ nnoremap <leader>r :call RenameFile()<cr>
 
 " Easy widows swap
 function! MarkWindowSwap()
-    let g:markedWinNum = winnr()
+  let g:markedWinNum = winnr()
 endfunction
 
 function! DoWindowSwap()
-    "Mark destination
-    let curNum = winnr()
-    let curBuf = bufnr( "%" )
-    exe g:markedWinNum . "wincmd w"
-    "Switch to source and shuffle dest->source
-    let markedBuf = bufnr( "%" )
-    "Hide and open so that we aren't prompted and keep history
-    exe 'hide buf' curBuf
-    "Switch to dest and shuffle source->dest
-    exe curNum . "wincmd w"
-    "Hide and open so that we aren't prompted and keep history
-    exe 'hide buf' markedBuf
+  "Mark destination
+  let curNum = winnr()
+  let curBuf = bufnr( "%" )
+  exe g:markedWinNum . "wincmd w"
+  "Switch to source and shuffle dest->source
+  let markedBuf = bufnr( "%" )
+  "Hide and open so that we aren't prompted and keep history
+  exe 'hide buf' curBuf
+  "Switch to dest and shuffle source->dest
+  exe curNum . "wincmd w"
+  "Hide and open so that we aren't prompted and keep history
+  exe 'hide buf' markedBuf
 endfunction
 
 nnoremap <silent> <leader>wc :call MarkWindowSwap()<cr>
@@ -266,21 +266,62 @@ let g:pymode_options = 0
 autocmd BufReadPost fugitive://* set bufhidden=delete
 
 " lightline.vim
+"let g:lightline = {
+"      \ 'active': {
+"      \   'left': [ [ 'mode', 'paste' ],
+"      \             [ 'fugitive', 'readonly', 'filename', 'modified' ] ]
+"      \ },
+"      \ 'component': {
+"      \   'readonly': '%{&filetype=="help"?"":&readonly?"⌀":""}',
+"      \   'modified': '%{&filetype=="help"?"":&modified?"+":&modifiable?"":"-"}',
+"      \   'fugitive': '%{exists("*fugitive#head")?fugitive#head():""}'
+"      \ },
+"      \ 'component_visible_condition': {
+"      \   'readonly': '(&filetype!="help"&& &readonly)',
+"      \   'modified': '(&filetype!="help"&&(&modified||!&modifiable))',
+"      \   'fugitive': '(exists("*fugitive#head") && ""!=fugitive#head())'
+"      \ },
+"      \ 'separator': { 'left': '', 'right': '' },
+"      \ 'subseparator': { 'left': '|', 'right': '|' }
+"      \ }
+
 let g:lightline = {
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
       \             [ 'fugitive', 'readonly', 'filename', 'modified' ] ]
       \ },
-      \ 'component': {
-      \   'readonly': '%{&filetype=="help"?"":&readonly?"⌀":""}',
-      \   'modified': '%{&filetype=="help"?"":&modified?"+":&modifiable?"":"-"}',
-      \   'fugitive': '%{exists("*fugitive#head")?fugitive#head():""}'
-      \ },
-      \ 'component_visible_condition': {
-      \   'readonly': '(&filetype!="help"&& &readonly)',
-      \   'modified': '(&filetype!="help"&&(&modified||!&modifiable))',
-      \   'fugitive': '(exists("*fugitive#head") && ""!=fugitive#head())'
+      \ 'component_function': {
+      \   'mode': 'LightlineMode',
+      \   'fugitive': 'LightlineFugitive',
+      \   'readonly': 'LightlineReadonly',
+      \   'modified': 'LightlineModified',
+      \   'fileformat': 'LightlineFileformat',
+      \   'filetype': 'LightlineFiletype',
+      \   'fileencoding': 'LightlineFileencoding',
       \ },
       \ 'separator': { 'left': '', 'right': '' },
       \ 'subseparator': { 'left': '|', 'right': '|' }
       \ }
+
+function! LightlineFugitive()
+  if exists("*fugitive#statusline()")
+    return winwidth(0) > 60 ? fugitive#statusline() : ''
+  endif
+  return ''
+endfunction
+
+function! LightlineFileformat()
+  return winwidth(0) > 70 ? &fileformat : ''
+endfunction
+
+function! LightlineFiletype()
+  return winwidth(0) > 70 ? (&filetype !=# '' ? &filetype : 'no ft') : ''
+endfunction
+
+function! LightlineFileencoding()
+  return winwidth(0) > 70 ? (&fenc !=# '' ? &fenc : &enc) : ''
+endfunction
+
+function! LightlineMode()
+  return winwidth(0) > 30 ? lightline#mode() : ''
+endfunction
