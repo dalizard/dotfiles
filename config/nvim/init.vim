@@ -304,8 +304,8 @@ let g:lightline = {
       \ }
 
 function! LightlineFugitive()
-  if exists("*fugitive#statusline()")
-    return winwidth(0) > 60 ? fugitive#statusline() : ''
+  if exists("*fugitive#head(7)")
+    return winwidth(0) > 60 ? fugitive#head(7) : ''
   endif
   return ''
 endfunction
