@@ -303,6 +303,10 @@ let g:lightline = {
       \ 'subseparator': { 'left': '|', 'right': '|' }
       \ }
 
+function! LightlineReadonly()
+  return &readonly ? '⌀' : ''
+endfunction
+
 function! LightlineFugitive()
   if exists("*fugitive#head(7)")
     return winwidth(0) > 60 ? fugitive#head(7) : ''
