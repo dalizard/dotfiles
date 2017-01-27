@@ -266,38 +266,19 @@ let g:pymode_options = 0
 autocmd BufReadPost fugitive://* set bufhidden=delete
 
 " lightline.vim
-"let g:lightline = {
-"      \ 'active': {
-"      \   'left': [ [ 'mode', 'paste' ],
-"      \             [ 'fugitive', 'readonly', 'filename', 'modified' ] ]
-"      \ },
-"      \ 'component': {
-"      \   'readonly': '%{&filetype=="help"?"":&readonly?"⌀":""}',
-"      \   'modified': '%{&filetype=="help"?"":&modified?"+":&modifiable?"":"-"}',
-"      \   'fugitive': '%{exists("*fugitive#head")?fugitive#head():""}'
-"      \ },
-"      \ 'component_visible_condition': {
-"      \   'readonly': '(&filetype!="help"&& &readonly)',
-"      \   'modified': '(&filetype!="help"&&(&modified||!&modifiable))',
-"      \   'fugitive': '(exists("*fugitive#head") && ""!=fugitive#head())'
-"      \ },
-"      \ 'separator': { 'left': '', 'right': '' },
-"      \ 'subseparator': { 'left': '|', 'right': '|' }
-"      \ }
-
 let g:lightline = {
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
-      \             [ 'fugitive', 'readonly', 'filename', 'modified' ] ]
+      \             [ 'fugitive', 'readonly', 'filename', 'gitmerge', 'modified' ] ]
       \ },
       \ 'component_function': {
       \   'mode': 'LightlineMode',
       \   'fugitive': 'LightlineFugitive',
       \   'readonly': 'LightlineReadonly',
-      \   'modified': 'LightlineModified',
       \   'fileformat': 'LightlineFileformat',
       \   'filetype': 'LightlineFiletype',
       \   'fileencoding': 'LightlineFileencoding',
+      \   'gitmerge': 'LightlineGitmerge',
       \ },
       \ 'separator': { 'left': '', 'right': '' },
       \ 'subseparator': { 'left': '|', 'right': '|' }
@@ -328,4 +309,19 @@ endfunction
 
 function! LightlineMode()
   return winwidth(0) > 30 ? lightline#mode() : ''
+endfunction
+
+function! LightlineGitmerge()
+  let fullname = expand('%')
+  let gitversion = ''
+  if fullname =~? 'fugitive://.*/\.git//0/.*'
+      let gitversion = 'git index'
+  elseif fullname =~? 'fugitive://.*/\.git//2/.*'
+      let gitversion = 'git target'
+  elseif fullname =~? 'fugitive://.*/\.git//3/.*'
+      let gitversion = 'git merge'
+  elseif &diff == 1
+      let gitversion = 'working copy'
+  endif
+  return gitversion
 endfunction
