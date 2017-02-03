@@ -78,6 +78,9 @@
 [push]
   default = simple
 
+[pull]
+  rebase = true
+
 [status]
   showUntrackedFiles = all
 
@@ -85,7 +88,7 @@
   verbose = true
 
 [branch]
-  autosetuprebase = always
+  autoSetupRebase = always
 
 [rerere]
   enabled = true
