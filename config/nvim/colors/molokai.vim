@@ -3,8 +3,8 @@
 "
 " Note: Based on the monokai theme for textmate
 " by Wimer Hazenberg and its darker variant
-" by Hamish Stuart Macpherson
-"
+" by Hamish Stuart Macpherson but heavily modified
+" by me (Dimitar Haralanov).
 
 hi clear
 let g:colors_name="molokai"
@@ -49,7 +49,7 @@ hi Operator        ctermfg=161
 
 " complete menu
 hi Pmenu           ctermfg=81  ctermbg=16
-hi PmenuSel                    ctermbg=244
+hi PmenuSel                    ctermbg=254
 hi PmenuSbar                   ctermbg=232
 hi PmenuThumb      ctermfg=81
 
