@@ -58,6 +58,7 @@ set synmaxcol=128
 set scrolloff=3                   " Have some context around the current line always on screen
 set autoread                      " Watch out for file changes
 set splitbelow                    " Put new window below the current one
+set complete+=kspell              " Autocomplete with dictionary words when spell check is on
 set nobackup
 set nowritebackup
 set undofile                      " Maintain undo history between sessions
@@ -266,10 +267,13 @@ let g:pymode_options = 0
 " Do not keep vim-fugitive buffers around
 autocmd BufReadPost fugitive://* set bufhidden=delete
 
+" Spell check on git commit messages
+autocmd FileType gitcommit setlocal spell
+
 " lightline.vim
 let g:lightline = {
       \ 'active': {
-      \   'left': [ [ 'mode', 'paste' ],
+      \   'left': [ [ 'mode', 'paste', 'spell' ],
       \             [ 'fugitive', 'readonly', 'filename', 'gitmerge', 'modified' ] ]
       \ },
       \ 'component_function': {
