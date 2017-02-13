@@ -6,12 +6,14 @@ endif
 
 call plug#begin('~/.nvim/plugins')
 
+Plug 'itchyny/lightline.vim'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-obsession'
 Plug 'tpope/vim-rails'
 Plug 'tpope/vim-surround'
 Plug 'vim-erlang/vim-erlang-compiler'
 Plug 'vim-erlang/vim-erlang-runtime'
+Plug 'vim-erlang/vim-erlang-omnicomplete'
 Plug 'junegunn/fzf.vim'
 Plug 'janko-m/vim-test'
 Plug 'slim-template/vim-slim'
@@ -21,7 +23,6 @@ Plug 'kchmck/vim-coffee-script'
 Plug 'mbbill/undotree'
 Plug 'python-mode/python-mode'
 Plug 'vim-ruby/vim-ruby'
-Plug 'itchyny/lightline.vim'
 
 call plug#end()
 
