@@ -41,6 +41,9 @@ function fish_title; end
 # User defined functions
 source ~/.config/fish/functions/user_defined.fish
 
+# Set ag as the default source for fzf
+set -x FZF_DEFAULT_COMMAND 'ag -g ""'
+
 # Ruby manager
 source /usr/local/share/chruby/chruby.fish
 source /usr/local/share/chruby/auto.fish
