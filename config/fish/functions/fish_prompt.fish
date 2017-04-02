@@ -35,6 +35,10 @@ function fish_prompt --description 'Write out the prompt'
   set_color $fish_color_error
   end
 
-  echo -n '$ '
+	test $SSH_TTY
+    and printf (set_color red)$USER(set_color brwhite)'@'(set_color yellow)(prompt_hostname)' '
+    test $USER = 'root'
+    and echo (set_color red)"#"
 
+    echo -n (set_color red)'❯'(set_color yellow)'❯'(set_color green)'❯ '
 end
