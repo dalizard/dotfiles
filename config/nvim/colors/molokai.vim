@@ -49,7 +49,7 @@ hi Operator        ctermfg=161
 
 " complete menu
 hi Pmenu           ctermfg=81  ctermbg=16
-hi PmenuSel        ctermfg=160 ctermbg=254
+hi PmenuSel        ctermfg=15  ctermbg=240
 hi PmenuSbar                   ctermbg=232
 hi PmenuThumb      ctermfg=81
 
@@ -88,5 +88,5 @@ hi WildMenu        ctermfg=81  ctermbg=16
 hi Comment         ctermfg=59
 hi CursorLine                  ctermbg=235   cterm=none
 hi CursorColumn                ctermbg=234
-hi LineNr          ctermfg=208
+hi LineNr          ctermfg=242
 hi TermCursor      ctermfg=8
