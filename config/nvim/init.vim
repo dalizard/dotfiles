@@ -97,15 +97,20 @@ nnoremap <Right> <nop>
 inoremap <Right> <nop>
 vnoremap <Right> <nop>
 
-" Copy to clipboard
-vnoremap <leader>y "*y
-
 " Esc is harder to reach
 inoremap <C-c> <esc>
 inoremap jk <esc>
 
 " Remove trailing whitespace on save
 autocmd BufWritePre * :%s/\s\+$//e
+
+" Copy to clipboard
+vnoremap <silent> <leader>y :call CopyToClipboard()<cr>
+
+function! CopyToClipboard()
+  silent exe "normal! `<" . visualmode() . "`>y"
+  silent call system('reattach-to-user-namespace pbcopy', getreg('@'))
+endfunction
 
 " fzf
 let g:fzf_layout = { 'down': '~30%' }
