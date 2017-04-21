@@ -279,7 +279,8 @@ autocmd FileType gitcommit setlocal spell
 let g:lightline = {
       \ 'active': {
       \   'left': [ [ 'mode', 'paste', 'spell' ],
-      \             [ 'fugitive', 'readonly', 'filename', 'gitmerge', 'modified' ] ]
+      \             [ 'fugitive', 'readonly', 'filename', 'gitmerge', 'modified' ] ],
+      \   'right': [ [ 'lineinfo' ], [ 'percent' ], [ 'fileformat', 'fileencoding', 'filetype' ], [ 'obsession' ] ]
       \ },
       \ 'component_function': {
       \   'mode': 'LightlineMode',
@@ -289,6 +290,9 @@ let g:lightline = {
       \   'filetype': 'LightlineFiletype',
       \   'fileencoding': 'LightlineFileencoding',
       \   'gitmerge': 'LightlineGitmerge',
+      \ },
+      \ 'component_expand': {
+      \   'obsession': 'LightlineObsession'
       \ },
       \ 'separator': { 'left': '', 'right': '' },
       \ 'subseparator': { 'left': '|', 'right': '|' }
@@ -334,4 +338,8 @@ function! LightlineGitmerge()
       let gitversion = 'working copy'
   endif
   return gitversion
+endfunction
+
+function! LightlineObsession()
+    return '%{ObsessionStatus("●", "○")}'
 endfunction
