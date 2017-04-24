@@ -243,7 +243,12 @@ nnoremap <silent> <leader>wc :call MarkWindowSwap()<cr>
 nnoremap <silent> <leader>wp :call DoWindowSwap()<cr>
 
 " Copy current file path to clipboard
-nnoremap <Leader>yp :let @*=expand("%")<cr>:echo "Copied file path to clipboard"<cr>
+nnoremap <silent> <leader>yp :call CopyFilePathToClipboard()<cr>
+
+function CopyFilePathToClipboard()
+  silent call system('reattach-to-user-namespace pbcopy', expand('%'))
+  echo "Copied file path to clipboard"
+endfunction
 
 " .rb keywords
 autocmd FileType ruby set iskeyword+=?,!
