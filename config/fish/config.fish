@@ -29,8 +29,8 @@ alias g='git'
 alias ll='ls -alGF'
 alias gg='git status'
 alias be='bundle exec'
-alias gh="git log --pretty=format:'%h' -n 1 | pbcopy"
-alias gb="git rev-parse --abbrev-ref HEAD | pbcopy"
+alias gh="git log --pretty=format:'%h' -n 1 | reattach-to-user-namespace pbcopy"
+alias gb="git rev-parse --abbrev-ref HEAD | reattach-to-user-namespace pbcopy"
 
 # hub is aliased as git
 eval (hub alias -s)
