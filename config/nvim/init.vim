@@ -73,6 +73,7 @@ set previewheight=20              " Preview split height
 set shell=/usr/local/bin/fish
 set rtp+=/usr/local/opt/fzf
 set guicursor=                    " Do not change the cursor
+set mouse=a                       " Enable mouse for all modes
 
 let mapleader = ","
 
