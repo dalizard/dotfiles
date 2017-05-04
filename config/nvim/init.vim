@@ -72,6 +72,7 @@ set foldlevel=1
 set previewheight=20              " Preview split height
 set shell=/usr/local/bin/fish
 set rtp+=/usr/local/opt/fzf
+set guicursor=                    " Do not change the cursor
 
 let mapleader = ","
 
