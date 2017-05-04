@@ -150,7 +150,7 @@ nnoremap <leader>q :cg spec/quickfix.out<cr>:echo "QuickFix populated"<cr>
 function! TestRunner(cmd)
   let opts = {'suffix': ' # vim-test'}
 
-  function! opts.on_exit(job_id, exit_code)
+  function! opts.on_exit(job_id, exit_code, event)
     if a:exit_code == 0
       call self.close_terminal()
     endif
