@@ -166,9 +166,9 @@ function! TestRunner(cmd)
   call opts.close_terminal()
 
   vertical botright new
-
   call termopen(a:cmd . opts.suffix, opts)
-
+  au BufDelete <buffer> wincmd p
+  normal G
   wincmd p
 endfunction
 
