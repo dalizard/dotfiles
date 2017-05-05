@@ -176,7 +176,7 @@ endfunction
 function! RunRubocop()
   let opts = {'suffix': ' # rubocop'}
 
-  function! opts.on_exit(job_id, exit_code)
+  function! opts.on_exit(job_id, exit_code, event)
     if a:exit_code == 0
       call self.close_terminal()
     endif
