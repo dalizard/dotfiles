@@ -24,6 +24,7 @@ Plug 'kchmck/vim-coffee-script'
 Plug 'mbbill/undotree'
 Plug 'python-mode/python-mode'
 Plug 'vim-ruby/vim-ruby'
+Plug 'mxw/vim-jsx'
 
 call plug#end()
 
@@ -351,3 +352,5 @@ endfunction
 function! LightlineObsession()
     return '%{ObsessionStatus("●", "○")}'
 endfunction
+
+let g:jsx_ext_required = 0
