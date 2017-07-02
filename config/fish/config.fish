@@ -21,6 +21,9 @@ set -x BROWSER open
 set -x LANG en_US.UTF-8
 set -x LC_CTYPE en_US.UTF-8
 
+# Enable Erlang shell history
+set -x ERL_AFLAGS '-kernel shell_history enabled'
+
 # Search hightlight color
 set fish_color_search_match --background=771503
 
