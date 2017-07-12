@@ -11,7 +11,7 @@ function gl --description 'Git fuzzy find and checkout local branch'
 	end
 end
 
-function gr --description 'Git fuzzy find and checkout remote branch'
+function gr --description 'Git fuzzy-find and checkout remote branch'
 	if command git rev-parse --is-inside-work-tree >/dev/null 2>&1
 		git branch -r | grep -v HEAD | fzf-tmux | sed "s/.* //" | sed "s#origin/##" | read -l branch;
     and git checkout $branch
