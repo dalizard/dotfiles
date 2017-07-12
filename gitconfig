@@ -53,6 +53,8 @@
   dh1 = diff HEAD~1
   fix = !vim +/'<<<<<<<' $(git ls-files --unmerged | cut -f2 | uniq)
   db = !git reset -- db/structure.sql && git co -- db/structure.sql
+  cc = !git branch | fzf-tmux -d 15 | xargs git co
+  ir = !fish -c gir
 
   # Fancy logging.
   #   h = head
@@ -70,7 +72,6 @@
   la = !git l --all
   lol = log --graph --decorate --pretty=oneline --abbrev-commit
   lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
-  cc = !git branch | fzf-tmux -d 15 | xargs git co
 
 [merge]
   tool = vimdiff
