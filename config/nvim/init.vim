@@ -25,6 +25,7 @@ Plug 'python-mode/python-mode'
 Plug 'vim-ruby/vim-ruby'
 Plug 'mxw/vim-jsx'
 Plug 'aliva/vim-fish'
+Plug 'idris-hackers/idris-vim'
 Plug 'itchyny/lightline.vim'
 
 call plug#end()
