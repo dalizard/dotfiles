@@ -58,7 +58,6 @@ set ignorecase                    " Searches are case insensitive...
 set smartcase                     " ... unless they contain at least one capital letter
 set wildmenu
 set wildmode=longest,list
-set synmaxcol=128
 set scrolloff=3                   " Have some context around the current line always on screen
 set autoread                      " Watch out for file changes
 set splitbelow                    " Put new window below the current one
