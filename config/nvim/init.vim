@@ -285,6 +285,9 @@ autocmd BufReadPost fugitive://* set bufhidden=delete
 " Spell check on git commit messages
 autocmd FileType gitcommit setlocal spell
 
+" Quick search shortcut
+nnoremap \ :Ag<space>
+
 " lightline.vim
 let g:lightline = {
       \ 'active': {
