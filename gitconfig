@@ -93,3 +93,6 @@
 
 [rerere]
   enabled = true
+
+[rebase]
+  autosquash = true
