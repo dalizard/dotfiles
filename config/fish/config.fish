@@ -47,6 +47,9 @@ source ~/.config/fish/functions/user_defined.fish
 # Set ag as the default source for fzf
 set -x FZF_DEFAULT_COMMAND 'ag -g ""'
 
+# Stick with PostgreSQL 9.6
+set -g fish_user_paths '/usr/local/opt/postgresql@9.6/bin' $fish_user_paths
+
 # Ruby manager
 source /usr/local/share/chruby/chruby.fish
 source /usr/local/share/chruby/auto.fish
