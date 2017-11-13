@@ -111,7 +111,10 @@ inoremap jk <esc>
 autocmd BufWritePre * :%s/\s\+$//e
 
 " Copy to clipboard
-vnoremap <silent> <leader>y :call CopyToClipboard()<cr>
+vnoremap  <leader>y  "+y
+nnoremap  <leader>y  "+y
+nnoremap  <leader>Y  "+yg_
+nnoremap  <leader>yy "+yy
 
 function! CopyToClipboard()
   silent exe "normal! `<" . visualmode() . "`>y"
