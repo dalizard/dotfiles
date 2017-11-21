@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+
+if test "$1" = "clean"; then
+  git for-each-ref refs/heads/pr/* --format='%(refname)' | while read ref; do
+    git branch -D ${ref#refs/heads/}
+  done
+  exit 0
+elif [[ $1 =~ ^(https?://[^/]+/(.+))/pull/([0-9]+).*$ ]]; then
+  remote=origin
+  id=${BASH_REMATCH[3]}
+  branch=pr/$id
+else
+  test -z $1 && echo "Pull request number required." 1>&2 && exit 1
+  remote=${2:-origin}
+  id=$1
+  branch=pr/$id
+fi
+
+git fetch -fu $remote refs/pull/$id/head:$branch && \
+git checkout $branch && \
+git config --local --replace branch.$branch.merge refs/pull/$id/head && \
+git config --local --replace branch.$branch.remote $remote;
