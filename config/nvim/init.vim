@@ -116,11 +116,6 @@ nnoremap  <leader>y  "+y
 nnoremap  <leader>Y  "+yg_
 nnoremap  <leader>yy "+yy
 
-function! CopyToClipboard()
-  silent exe "normal! `<" . visualmode() . "`>y"
-  silent call system('reattach-to-user-namespace pbcopy', getreg('@'))
-endfunction
-
 " fzf
 let g:fzf_layout = { 'down': '~30%' }
 nnoremap <silent> <C-j> :Files<cr>
