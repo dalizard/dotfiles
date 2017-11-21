@@ -250,7 +250,7 @@ nnoremap <silent> <leader>wp :call DoWindowSwap()<cr>
 nnoremap <silent> <leader>yp :call CopyFilePathToClipboard()<cr>
 
 function CopyFilePathToClipboard()
-  silent call system('reattach-to-user-namespace pbcopy', expand('%'))
+  silent call system('pbcopy', expand('%'))
   echo "Copied file path to clipboard"
 endfunction
 
