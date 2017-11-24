@@ -9,7 +9,7 @@ Thumbs.db
 .Trashes
 .ruby-version
 *.beam
-session.vim
+Session.vim
 vim/undo
 tmux/resurrect
 tags
