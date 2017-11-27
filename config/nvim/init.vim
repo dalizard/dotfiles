@@ -250,7 +250,7 @@ nnoremap <silent> <leader>wp :call DoWindowSwap()<cr>
 " Copy current file path to clipboard
 nnoremap <silent> <leader>yp :call CopyFilePathToClipboard()<cr>
 
-function CopyFilePathToClipboard()
+function! CopyFilePathToClipboard()
   silent call system('pbcopy', expand('%'))
   echo "Copied file path to clipboard"
 endfunction
