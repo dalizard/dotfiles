@@ -279,9 +279,6 @@ let g:undotree_SplitWidth = 40
 let g:pymode_options_colorcolumn = 0
 let g:pymode_options = 0
 
-" Do not keep vim-fugitive buffers around
-autocmd BufReadPost fugitive://* set bufhidden=delete
-
 " Spell check on git commit messages
 autocmd FileType gitcommit setlocal spell
 
