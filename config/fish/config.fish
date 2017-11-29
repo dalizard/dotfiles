@@ -45,7 +45,7 @@ function fish_title; end
 source ~/.config/fish/functions/user_defined.fish
 
 # Set ag as the default source for fzf
-set -x FZF_DEFAULT_COMMAND 'ag -g ""'
+set -x FZF_DEFAULT_COMMAND 'rg --files --no-ignore --hidden --follow --glob "!.git/*"'
 
 # Stick with PostgreSQL 9.6
 set -g fish_user_paths '/usr/local/opt/postgresql@9.6/bin' $fish_user_paths

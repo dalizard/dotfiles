@@ -79,6 +79,12 @@ set rtp+=/usr/local/opt/fzf
 set guicursor=                    " Do not change the cursor
 set mouse=a                       " Enable mouse for all modes
 
+" Use ripgrep for grepping
+if executable('rg')
+  set grepprg=rg\ --vimgrep\ --fixed-strings
+  set grepformat^=%f:%l:%c:%m
+endif
+
 let mapleader = ","
 
 " Leave terminal mode
@@ -120,16 +126,17 @@ nnoremap  <leader>yy "+yy
 " fzf
 let g:fzf_layout = { 'down': '~30%' }
 nnoremap <silent> <C-j> :Files<cr>
+nnoremap <silent> <C-k> :GFiles<cr>
 nnoremap <silent> <C-f> :Buffers<cr>
 
-nnoremap <silent> K :call SearchWordWithAg()<cr>
-vnoremap <silent> K :call SearchVisualSelectionWithAg()<cr>
+nnoremap <silent> K :call SearchWordWithRg()<cr>
+vnoremap <silent> K :call SearchVisualSelectionWithRg()<cr>
 
-function! SearchWordWithAg()
-  execute 'Ag' expand('<cword>')
+function! SearchWordWithRg()
+  execute 'Rg' expand('<cword>')
 endfunction
 
-function! SearchVisualSelectionWithAg() range
+function! SearchVisualSelectionWithRg() range
   let old_reg = getreg('"')
   let old_regtype = getregtype('"')
   let old_clipboard = &clipboard
@@ -138,7 +145,7 @@ function! SearchVisualSelectionWithAg() range
   let selection = getreg('"')
   call setreg('"', old_reg, old_regtype)
   let &clipboard = old_clipboard
-  execute 'Ag' selection
+  execute 'Rg' selection
 endfunction
 
 " Expand current path
@@ -261,14 +268,11 @@ autocmd FileType ruby set iskeyword+=?,!
 " Because I constantly type :W istead of :w
 cnoreabbrev W w
 
+" Because :rg is easier
+cnoreabbrev rg Rg
+
 nnoremap <leader>ve :vsplit $MYVIMRC<cr>
 nnoremap <leader>vs :source $MYVIMRC<cr>
-
-" The Silver Searcher
-if executable('ag')
-  " Use ag over grep
-  set grepprg=ag\ --nogroup\ --nocolor
-endif
 
 " Undotree
 let g:undotree_WindowLayout = 2
@@ -283,7 +287,7 @@ let g:pymode_options = 0
 autocmd FileType gitcommit setlocal spell
 
 " Quick search shortcut
-nnoremap \ :Ag<space>
+nnoremap \ :Rg<space>
 
 " lightline.vim
 let g:lightline = {
@@ -355,3 +359,10 @@ function! LightlineObsession()
 endfunction
 
 let g:jsx_ext_required = 0
+
+command! -bang -nargs=* Rg
+  \ call fzf#vim#grep(
+  \   'rg --column --line-number --no-heading --fixed-strings --smart-case --hidden --follow --glob "!.git/*" --color "always" '.shellescape(<q-args>), 1,
+  \   <bang>0 ? fzf#vim#with_preview('up:60%')
+  \           : fzf#vim#with_preview('right:50%:hidden', '?'),
+  \   <bang>0)
