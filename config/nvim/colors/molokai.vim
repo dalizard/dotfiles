@@ -86,7 +86,7 @@ hi WarningMsg      ctermfg=231 ctermbg=238   cterm=bold
 hi WildMenu        ctermfg=81  ctermbg=16
 
 hi Comment         ctermfg=59
-hi CursorLine                  ctermbg=235   cterm=none
+hi CursorLine                  ctermbg=234   cterm=none
 hi CursorColumn                ctermbg=234
 hi LineNr          ctermfg=242
 hi TermCursor      ctermfg=8
