@@ -40,5 +40,5 @@ function gir --description 'Git fuzzy-find commit SHA and interactively rebase'
 end
 
 function fssh --description "Fuzzy-find ssh host and ssh into it"
-  ag '^host [^*]' ~/.ssh/config | cut -d ' ' -f 2 | fzf-tmux | xargs -o ssh
+  rg '^Host [^*]' ~/.ssh/config | cut -d ' ' -f 2 | fzf-tmux | xargs -o ssh
 end
