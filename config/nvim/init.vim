@@ -125,8 +125,8 @@ nnoremap  <leader>yy "+yy
 
 " fzf
 let g:fzf_layout = { 'down': '~30%' }
-nnoremap <silent> <C-j> :Files<cr>
-nnoremap <silent> <C-k> :GFiles<cr>
+nnoremap <silent> <C-j> :GFiles<cr>
+nnoremap <silent> <C-k> :Files<cr>
 nnoremap <silent> <C-f> :Buffers<cr>
 
 nnoremap <silent> K :call SearchWordWithRg()<cr>
