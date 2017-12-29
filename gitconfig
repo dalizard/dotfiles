@@ -12,6 +12,7 @@
 
 [diff]
   compactionHeuristic = true
+  colorMoved = zebra
 
 [color]
   ui = true
