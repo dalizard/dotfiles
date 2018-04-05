@@ -264,6 +264,12 @@ function! CopyFilePathToClipboard()
   echo "Copied file path to clipboard"
 endfunction
 
+" Jump to last cursor position unless it's invalid or in an event handler
+autocmd BufReadPost *
+  \ if line("'\"") > 1 && line("'\"") <= line("$") && &ft !~# 'commit'
+  \ |   exe "normal! g`\""
+  \ | endif
+
 " .rb keywords
 autocmd FileType ruby set iskeyword+=?,!
 
