@@ -374,3 +374,15 @@ command! -bang -nargs=* Rg
   \   <bang>0 ? fzf#vim#with_preview('up:60%')
   \           : fzf#vim#with_preview('right:50%:hidden', '?'),
   \   <bang>0)
+
+" RSpec takes priority over Test::Unit
+let g:rails_projections = {
+  \  'app/*.rb': {
+  \     'alternate': 'spec/{}_spec.rb',
+  \     'type': 'source'
+  \   },
+  \  'spec/*_spec.rb': {
+  \     'alternate': 'app/{}.rb',
+  \     'type': 'test'
+  \   }
+  \}
