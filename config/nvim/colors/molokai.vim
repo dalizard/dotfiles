@@ -57,7 +57,7 @@ hi PreCondit       ctermfg=118               cterm=bold
 hi PreProc         ctermfg=118
 hi Question        ctermfg=81
 hi Repeat          ctermfg=161               cterm=bold
-hi Search          ctermfg=88 ctermbg=224
+hi Search          ctermfg=200 ctermbg=none  cterm=underline
 
 " marks column
 hi SignColumn      ctermfg=118 ctermbg=235
