@@ -35,7 +35,7 @@ hi Folded          ctermfg=67  ctermbg=16
 hi Function        ctermfg=118
 hi Identifier      ctermfg=208
 hi Ignore          ctermfg=244 ctermbg=232
-hi IncSearch       ctermfg=193 ctermbg=16
+hi IncSearch       ctermfg=208 ctermbg=none
 
 hi Keyword         ctermfg=161               cterm=bold
 hi Label           ctermfg=229               cterm=none
@@ -57,7 +57,7 @@ hi PreCondit       ctermfg=118               cterm=bold
 hi PreProc         ctermfg=118
 hi Question        ctermfg=81
 hi Repeat          ctermfg=161               cterm=bold
-hi Search          ctermfg=200 ctermbg=none  cterm=underline
+hi Search          ctermfg=196 ctermbg=none  cterm=underline
 
 " marks column
 hi SignColumn      ctermfg=118 ctermbg=235
@@ -86,7 +86,7 @@ hi WarningMsg      ctermfg=231 ctermbg=238   cterm=bold
 hi WildMenu        ctermfg=81  ctermbg=16
 
 hi Comment         ctermfg=59
-hi CursorLine                  ctermbg=234   cterm=none
+hi CursorLine                  ctermbg=235   cterm=none
 hi CursorColumn                ctermbg=234
 hi LineNr          ctermfg=242
 hi TermCursor      ctermfg=8
