@@ -386,3 +386,6 @@ let g:rails_projections = {
   \     'type': 'test'
   \   }
   \}
+
+" Disable preview for completion in Erlang
+let g:erlang_completion_preview_help = 0
