@@ -23,6 +23,7 @@ formulae = \
 					 sqlite \
 					 elixir \
 					 erlang \
+					 rebar3 \
 					 neovim \
 
 default: | update clean
