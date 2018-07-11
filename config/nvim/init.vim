@@ -28,6 +28,7 @@ Plug 'mtscout6/vim-cjsx'
 Plug 'aliva/vim-fish'
 Plug 'idris-hackers/idris-vim'
 Plug 'godlygeek/csapprox'
+Plug 'leafgarland/typescript-vim'
 Plug 'itchyny/lightline.vim'
 
 call plug#end()
