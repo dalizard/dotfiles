@@ -82,7 +82,7 @@ set mouse=a                       " Enable mouse for all modes
 
 " Use ripgrep for grepping
 if executable('rg')
-  set grepprg=rg\ --vimgrep\ --fixed-strings
+  set grepprg=rg\ --vimgrep
   set grepformat^=%f:%l:%c:%m
 endif
 
@@ -371,7 +371,7 @@ let g:jsx_ext_required = 0
 
 command! -bang -nargs=* Rg
   \ call fzf#vim#grep(
-  \   'rg --column --line-number --no-heading --fixed-strings --smart-case --hidden --follow --glob "!.git/*" --color "always" '.shellescape(<q-args>), 1,
+  \   'rg --column --line-number --no-heading --smart-case --hidden --follow --glob "!.git/*" --color "always" '.shellescape(<q-args>), 1,
   \   <bang>0 ? fzf#vim#with_preview('up:60%')
   \           : fzf#vim#with_preview('right:50%:hidden', '?'),
   \   <bang>0)
