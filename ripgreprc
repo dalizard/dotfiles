@@ -1,0 +1,2 @@
+# Do not print file path above clusters of matches
+--no-heading
