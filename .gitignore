@@ -1,6 +1,7 @@
 .netrwhist
 bundle/cache
 config/configstore
+config/exercism
 config/htop
 config/nvim/autoload/plug.vim
 fish_history
