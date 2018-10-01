@@ -212,6 +212,8 @@ endfunction
 
 nnoremap <silent> <leader>c :call RunRubocop()<cr>
 
+" test.vim
+let g:test#runners = {'Erlang': ['commontest', 'eunit']}
 let g:test#custom_strategies = {'testrunner': function('TestRunner')}
 let g:test#strategy = 'testrunner'
 
