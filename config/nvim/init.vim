@@ -30,6 +30,7 @@ Plug 'idris-hackers/idris-vim'
 Plug 'godlygeek/csapprox'
 Plug 'leafgarland/typescript-vim'
 Plug 'itchyny/lightline.vim'
+Plug 'zxqfl/tabnine-vim'
 
 call plug#end()
 
