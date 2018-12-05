@@ -36,12 +36,14 @@ call plug#end()
 
 colorscheme molokai               " Color theme
 syntax enable                     " Turn on syntax highlighting
+syntax sync minlines=256
 filetype plugin indent on 	      " Enable file type detection.
 set nonumber                      " Do not show line numbers
 set hidden                        " Allow unsaved background buffers and remember marks/undo for them
 set noshowcmd                     " Do not display incomplete commands
 set history=10000                 " Lines to keep in history
 set noruler                       " Do not show the ruler
+set synmaxcol=128
 set lazyredraw
 set laststatus=2                  " Always show a status line for the last window
 set novisualbell
