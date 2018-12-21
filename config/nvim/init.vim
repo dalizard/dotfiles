@@ -277,9 +277,6 @@ autocmd BufReadPost *
   \ |   exe "normal! g`\""
   \ | endif
 
-" .rb keywords
-autocmd FileType ruby set iskeyword+=?,!
-
 " Because I constantly type :W istead of :w
 cnoreabbrev W w
 
@@ -298,8 +295,6 @@ let g:undotree_SplitWidth = 40
 let g:pymode_options_colorcolumn = 0
 let g:pymode_options = 0
 
-" Spell check on git commit messages
-autocmd FileType gitcommit setlocal spell
 
 " Quick search shortcut
 nnoremap \ :Rg<space>
