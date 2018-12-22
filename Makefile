@@ -4,7 +4,7 @@ DOTFILES := $(filter-out $(EXCLUDED_DOTFILES), $(wildcard *))
 formulae = \
 					 fish \
 					 openssl \
-					 ctags \
+					 universal-ctags \
 					 git \
 					 fzf \
 					 htop \
