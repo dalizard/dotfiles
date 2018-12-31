@@ -1,5 +1,5 @@
 :verbose: true
 :update_sources: true
 :backtrace: false
-gem: --no-ri --no-rdoc --env-shebang
+gem: --no-ri --no-document --env-shebang
 
