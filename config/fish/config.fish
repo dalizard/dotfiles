@@ -5,7 +5,7 @@ set fish_greeting
 test $TERM = xterm; and set -x TERM xterm-256color
 
 # Add .bin to PATH
-set -x PATH ~/.bin /usr/local/sbin $PATH
+set -x PATH ~/.bin $PATH
 
 # Don't let fish masquerade itself as other shells
 set -x SHELL (which fish)
