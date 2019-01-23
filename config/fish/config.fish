@@ -48,7 +48,7 @@ function fish_title; end
 source ~/.config/fish/functions/user_defined.fish
 
 # Set ripgrep as the default source for fzf
-set -x FZF_DEFAULT_COMMAND 'rg --files --no-ignore --hidden --follow --glob "!.git/*"'
+set -x FZF_DEFAULT_COMMAND 'rg --files --no-ignore --hidden --follow --glob "!.git/*" --ignore-file ~/.rgignore'
 
 # Ruby manager
 source /usr/local/share/chruby/chruby.fish
