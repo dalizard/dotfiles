@@ -282,6 +282,7 @@ cnoreabbrev W w
 
 " Because :rg is easier
 cnoreabbrev rg Rg
+cnoreabbrev rg! Rg!
 
 nnoremap <leader>ve :vsplit $MYVIMRC<cr>
 nnoremap <leader>vs :source $MYVIMRC<cr>
@@ -298,6 +299,7 @@ let g:pymode_options = 0
 
 " Quick search shortcut
 nnoremap \ :Rg<space>
+nnoremap <C-\> :Rg!<space>
 
 " lightline.vim
 let g:lightline = {
