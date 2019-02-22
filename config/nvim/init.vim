@@ -295,7 +295,6 @@ let g:undotree_SplitWidth = 40
 let g:pymode_options_colorcolumn = 0
 let g:pymode_options = 0
 
-
 " Quick search shortcut
 nnoremap \ :Rg<space>
 nnoremap <C-\> :Rg!<space>
