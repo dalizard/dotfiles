@@ -37,7 +37,7 @@ call plug#end()
 colorscheme molokai               " Color theme
 syntax enable                     " Turn on syntax highlighting
 syntax sync minlines=256
-filetype plugin indent on 	      " Enable file type detection.
+filetype plugin indent on         " Enable file type detection.
 set nonumber                      " Do not show line numbers
 set hidden                        " Allow unsaved background buffers and remember marks/undo for them
 set noshowcmd                     " Do not display incomplete commands
