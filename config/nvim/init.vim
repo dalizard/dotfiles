@@ -90,9 +90,8 @@ if executable('rg')
   set grepformat^=%f:%l:%c:%m
 endif
 
+" Set the leader key
 let mapleader = ","
-
-autocmd FocusGained * :checktime
 
 " Leave terminal mode
 tnoremap <esc> <C-\><C-n>
