@@ -34,7 +34,7 @@ Plug 'zxqfl/tabnine-vim'
 
 call plug#end()
 
-colorscheme molokai               " Color theme
+colorscheme gruvbox               " Color theme
 syntax enable                     " Turn on syntax highlighting
 syntax sync minlines=256
 filetype plugin indent on         " Enable file type detection.
@@ -90,6 +90,10 @@ if executable('rg')
   set grepformat^=%f:%l:%c:%m
 endif
 
+if has('termguicolors')
+  set termguicolors
+end
+
 " Set the leader key
 let mapleader = ","
 
@@ -131,6 +135,20 @@ nnoremap  <leader>yy "+yy
 
 " fzf
 let g:fzf_layout = { 'down': '~30%' }
+let g:fzf_colors =
+\ { 'fg':      ['fg', 'Normal'],
+  \ 'bg':      ['bg', 'Normal'],
+  \ 'hl':      ['fg', 'Comment'],
+  \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
+  \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
+  \ 'hl+':     ['fg', 'Statement'],
+  \ 'info':    ['fg', 'PreProc'],
+  \ 'border':  ['fg', 'Ignore'],
+  \ 'prompt':  ['fg', 'Conditional'],
+  \ 'pointer': ['fg', 'Exception'],
+  \ 'marker':  ['fg', 'Keyword'],
+  \ 'spinner': ['fg', 'Label'],
+  \ 'header':  ['fg', 'Comment'] }
 nnoremap <silent> <C-j> :GFiles<cr>
 nnoremap <silent> <C-k> :Files<cr>
 nnoremap <silent> <C-f> :Buffers<cr>
@@ -301,6 +319,7 @@ nnoremap <C-\> :Rg!<space>
 
 " lightline.vim
 let g:lightline = {
+      \ 'colorscheme': 'gruvbox',
       \ 'active': {
       \   'left': [ [ 'mode', 'paste', 'spell' ],
       \             [ 'fugitive', 'readonly', 'filename', 'gitmerge', 'modified' ] ],
