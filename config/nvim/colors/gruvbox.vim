@@ -1,33 +1,23 @@
-" -----------------------------------------------------------------------------
+" ----------------------------------------------
 " File: gruvbox.vim
 " Description: Retro groove color scheme for Vim
 " Author: morhetz <morhetz@gmail.com>
 " Source: https://github.com/morhetz/gruvbox
 " Last Modified: 12 Aug 2017
-" -----------------------------------------------------------------------------
+" ----------------------------------------------
 
-" Supporting code -------------------------------------------------------------
 " Initialisation: {{{
-
-if version > 580
-  hi clear
-  if exists("syntax_on")
-    syntax reset
-  endif
+hi clear
+if exists("syntax_on")
+  syntax reset
 endif
-
-let g:colors_name='gruvbox'
-
-if !(has('termguicolors') && &termguicolors) && !has('gui_running') && &t_Co != 256
-  finish
-endif
-
 " }}}
-" Global Settings: {{{
 
+" Global Settings: {{{
 if !exists('g:gruvbox_bold')
   let g:gruvbox_bold=1
 endif
+
 if !exists('g:gruvbox_italic')
   if has('gui_running') || $TERM_ITALICS == 'true'
     let g:gruvbox_italic=1
@@ -35,12 +25,15 @@ if !exists('g:gruvbox_italic')
     let g:gruvbox_italic=0
   endif
 endif
+
 if !exists('g:gruvbox_undercurl')
   let g:gruvbox_undercurl=1
 endif
+
 if !exists('g:gruvbox_underline')
   let g:gruvbox_underline=1
 endif
+
 if !exists('g:gruvbox_inverse')
   let g:gruvbox_inverse=1
 endif
@@ -77,15 +70,14 @@ if !exists('g:gruvbox_contrast_light')
   let g:gruvbox_contrast_light='medium'
 endif
 
-let s:is_dark=(&background == 'dark')
-
+let s:is_dark=1
 " }}}
-" Palette: {{{
 
-" setup palette dictionary
+" Palette: {{{
+" Setup palette dictionary
 let s:gb = {}
 
-" fill it with absolute colors
+" Fill it with absolute colors
 let s:gb.dark0_hard  = ['#1d2021', 234]     " 29-32-33
 let s:gb.dark0       = ['#282828', 235]     " 40-40-40
 let s:gb.dark0_soft  = ['#32302f', 236]     " 50-48-47
@@ -130,10 +122,9 @@ let s:gb.faded_blue     = ['#076678', 24]      " 7-102-120
 let s:gb.faded_purple   = ['#8f3f71', 96]      " 143-63-113
 let s:gb.faded_aqua     = ['#427b58', 66]      " 66-123-88
 let s:gb.faded_orange   = ['#af3a03', 130]     " 175-58-3
-
 " }}}
-" Setup Emphasis: {{{
 
+" Setup Emphasis: {{{
 let s:bold = 'bold,'
 if g:gruvbox_bold == 0
   let s:bold = ''
@@ -158,92 +149,45 @@ let s:inverse = 'inverse,'
 if g:gruvbox_inverse == 0
   let s:inverse = ''
 endif
-
 " }}}
-" Setup Colors: {{{
 
+" Setup Colors: {{{
 let s:vim_bg = ['bg', 'bg']
 let s:vim_fg = ['fg', 'fg']
 let s:none = ['NONE', 'NONE']
 
-" determine relative colors
-if s:is_dark
-  let s:bg0  = s:gb.dark0
-  if g:gruvbox_contrast_dark == 'soft'
-    let s:bg0  = s:gb.dark0_soft
-  elseif g:gruvbox_contrast_dark == 'hard'
-    let s:bg0  = s:gb.dark0_hard
-  endif
-
-  let s:bg1  = s:gb.dark1
-  let s:bg2  = s:gb.dark2
-  let s:bg3  = s:gb.dark3
-  let s:bg4  = s:gb.dark4
-
-  let s:gray = s:gb.gray_245
-
-  let s:fg0 = s:gb.light0
-  let s:fg1 = s:gb.light1
-  let s:fg2 = s:gb.light2
-  let s:fg3 = s:gb.light3
-  let s:fg4 = s:gb.light4
-
-  let s:fg4_256 = s:gb.light4_256
-
-  let s:red    = s:gb.bright_red
-  let s:green  = s:gb.bright_green
-  let s:yellow = s:gb.bright_yellow
-  let s:blue   = s:gb.bright_blue
-  let s:purple = s:gb.bright_purple
-  let s:aqua   = s:gb.bright_aqua
-  let s:orange = s:gb.bright_orange
-else
-  let s:bg0  = s:gb.light0
-  if g:gruvbox_contrast_light == 'soft'
-    let s:bg0  = s:gb.light0_soft
-  elseif g:gruvbox_contrast_light == 'hard'
-    let s:bg0  = s:gb.light0_hard
-  endif
-
-  let s:bg1  = s:gb.light1
-  let s:bg2  = s:gb.light2
-  let s:bg3  = s:gb.light3
-  let s:bg4  = s:gb.light4
-
-  let s:gray = s:gb.gray_244
-
-  let s:fg0 = s:gb.dark0
-  let s:fg1 = s:gb.dark1
-  let s:fg2 = s:gb.dark2
-  let s:fg3 = s:gb.dark3
-  let s:fg4 = s:gb.dark4
-
-  let s:fg4_256 = s:gb.dark4_256
-
-  let s:red    = s:gb.faded_red
-  let s:green  = s:gb.faded_green
-  let s:yellow = s:gb.faded_yellow
-  let s:blue   = s:gb.faded_blue
-  let s:purple = s:gb.faded_purple
-  let s:aqua   = s:gb.faded_aqua
-  let s:orange = s:gb.faded_orange
+" Determine relative colors
+let s:bg0  = s:gb.dark0
+if g:gruvbox_contrast_dark == 'soft'
+  let s:bg0  = s:gb.dark0_soft
+elseif g:gruvbox_contrast_dark == 'hard'
+  let s:bg0  = s:gb.dark0_hard
 endif
 
-" reset to 16 colors fallback
-if g:gruvbox_termcolors == 16
-  let s:bg0[1]    = 0
-  let s:fg4[1]    = 7
-  let s:gray[1]   = 8
-  let s:red[1]    = 9
-  let s:green[1]  = 10
-  let s:yellow[1] = 11
-  let s:blue[1]   = 12
-  let s:purple[1] = 13
-  let s:aqua[1]   = 14
-  let s:fg1[1]    = 15
-endif
+let s:bg1  = s:gb.dark1
+let s:bg2  = s:gb.dark2
+let s:bg3  = s:gb.dark3
+let s:bg4  = s:gb.dark4
 
-" save current relative colors back to palette dictionary
+let s:gray = s:gb.gray_245
+
+let s:fg0 = s:gb.light0
+let s:fg1 = s:gb.light1
+let s:fg2 = s:gb.light2
+let s:fg3 = s:gb.light3
+let s:fg4 = s:gb.light4
+
+let s:fg4_256 = s:gb.light4_256
+
+let s:red    = s:gb.bright_red
+let s:green  = s:gb.bright_green
+let s:yellow = s:gb.bright_yellow
+let s:blue   = s:gb.bright_blue
+let s:purple = s:gb.bright_purple
+let s:aqua   = s:gb.bright_aqua
+let s:orange = s:gb.bright_orange
+
+" Save current relative colors back to palette dictionary
 let s:gb.bg0 = s:bg0
 let s:gb.bg1 = s:bg1
 let s:gb.bg2 = s:bg2
@@ -267,39 +211,35 @@ let s:gb.blue   = s:blue
 let s:gb.purple = s:purple
 let s:gb.aqua   = s:aqua
 let s:gb.orange = s:orange
-
 " }}}
+
 " Setup Terminal Colors For Neovim: {{{
+let g:terminal_color_0 = s:bg0[0]
+let g:terminal_color_8 = s:gray[0]
 
-if has('nvim')
-  let g:terminal_color_0 = s:bg0[0]
-  let g:terminal_color_8 = s:gray[0]
+let g:terminal_color_1 = s:gb.neutral_red[0]
+let g:terminal_color_9 = s:red[0]
 
-  let g:terminal_color_1 = s:gb.neutral_red[0]
-  let g:terminal_color_9 = s:red[0]
+let g:terminal_color_2 = s:gb.neutral_green[0]
+let g:terminal_color_10 = s:green[0]
 
-  let g:terminal_color_2 = s:gb.neutral_green[0]
-  let g:terminal_color_10 = s:green[0]
+let g:terminal_color_3 = s:gb.neutral_yellow[0]
+let g:terminal_color_11 = s:yellow[0]
 
-  let g:terminal_color_3 = s:gb.neutral_yellow[0]
-  let g:terminal_color_11 = s:yellow[0]
+let g:terminal_color_4 = s:gb.neutral_blue[0]
+let g:terminal_color_12 = s:blue[0]
 
-  let g:terminal_color_4 = s:gb.neutral_blue[0]
-  let g:terminal_color_12 = s:blue[0]
+let g:terminal_color_5 = s:gb.neutral_purple[0]
+let g:terminal_color_13 = s:purple[0]
 
-  let g:terminal_color_5 = s:gb.neutral_purple[0]
-  let g:terminal_color_13 = s:purple[0]
+let g:terminal_color_6 = s:gb.neutral_aqua[0]
+let g:terminal_color_14 = s:aqua[0]
 
-  let g:terminal_color_6 = s:gb.neutral_aqua[0]
-  let g:terminal_color_14 = s:aqua[0]
-
-  let g:terminal_color_7 = s:fg4[0]
-  let g:terminal_color_15 = s:fg1[0]
-endif
-
+let g:terminal_color_7 = s:fg4[0]
+let g:terminal_color_15 = s:fg1[0]
 " }}}
-" Overload Setting: {{{
 
+" Overload Setting: {{{
 let s:hls_cursor = s:orange
 if exists('g:gruvbox_hls_cursor')
   let s:hls_cursor = get(s:gb, g:gruvbox_hls_cursor)
@@ -367,31 +307,30 @@ if exists('g:gruvbox_italicize_strings')
     let s:italicize_strings = s:italic
   endif
 endif
-
 " }}}
-" Highlighting Function: {{{
 
+" Highlighting Function: {{{
 function! s:HL(group, fg, ...)
   " Arguments: group, guifg, guibg, gui, guisp
 
-  " foreground
+  " Foreground
   let fg = a:fg
 
-  " background
+  " Background
   if a:0 >= 1
     let bg = a:1
   else
     let bg = s:none
   endif
 
-  " emphasis
+  " Emphasis
   if a:0 >= 2 && strlen(a:2)
     let emstr = a:2
   else
     let emstr = 'NONE,'
   endif
 
-  " special fallback
+  " Special fallback
   if a:0 >= 3
     if g:gruvbox_guisp_fallback != 'NONE'
       let fg = a:3
@@ -409,18 +348,17 @@ function! s:HL(group, fg, ...)
         \ 'gui=' . emstr[:-2], 'cterm=' . emstr[:-2]
         \ ]
 
-  " special
+  " Special
   if a:0 >= 3
     call add(histring, 'guisp=' . a:3[0])
   endif
 
   execute join(histring, ' ')
 endfunction
-
 " }}}
-" Gruvbox Hi Groups: {{{
 
-" memoize common hi groups
+" Gruvbox Hi Groups: {{{
+" Memoize common hi groups
 call s:HL('GruvboxFg0', s:fg0)
 call s:HL('GruvboxFg1', s:fg1)
 call s:HL('GruvboxFg2', s:fg2)
@@ -454,51 +392,43 @@ call s:HL('GruvboxYellowSign', s:yellow, s:sign_column, s:invert_signs)
 call s:HL('GruvboxBlueSign', s:blue, s:sign_column, s:invert_signs)
 call s:HL('GruvboxPurpleSign', s:purple, s:sign_column, s:invert_signs)
 call s:HL('GruvboxAquaSign', s:aqua, s:sign_column, s:invert_signs)
-
 " }}}
 
-" Vanilla colorscheme ---------------------------------------------------------
+" Vanilla colorscheme
+" -------------------
 " General UI: {{{
 
 " Normal text
 call s:HL('Normal', s:fg1, s:bg0)
+call s:HL('Normal1', s:fg1)
 
-" Correct background (see issue #7):
-" --- Problem with changing between dark and light on 256 color terminal
-" --- https://github.com/morhetz/gruvbox/issues/7
-if s:is_dark
-  set background=dark
-else
-  set background=light
-endif
+set background=dark
 
-if version >= 700
-  " Screen line that the cursor is
-  call s:HL('CursorLine',   s:none, s:bg1)
-  " Screen column that the cursor is
-  hi! link CursorColumn CursorLine
+" Screen line that the cursor is
+call s:HL('CursorLine', s:none, s:bg1)
 
-  " Tab pages line filler
-  call s:HL('TabLineFill', s:bg4, s:bg1, s:invert_tabline)
-  " Active tab page label
-  call s:HL('TabLineSel', s:green, s:bg1, s:invert_tabline)
-  " Not active tab page label
-  hi! link TabLine TabLineFill
+" Screen column that the cursor is
+hi! link CursorColumn CursorLine
 
-  " Match paired bracket under the cursor
-  call s:HL('MatchParen', s:none, s:bg3, s:bold)
-endif
+" Tab pages line filler
+call s:HL('TabLineFill', s:bg4, s:bg1, s:invert_tabline)
 
-if version >= 703
-  " Highlighted screen columns
-  call s:HL('ColorColumn',  s:none, s:color_column)
+" Active tab page label
+call s:HL('TabLineSel', s:green, s:bg1, s:invert_tabline)
+" Not active tab page label
+hi! link TabLine TabLineFill
 
-  " Concealed element: \lambda → λ
-  call s:HL('Conceal', s:blue, s:none)
+" Match paired bracket under the cursor
+call s:HL('MatchParen', s:none, s:bg3, s:bold)
 
-  " Line number of CursorLine
-  call s:HL('CursorLineNr', s:yellow, s:bg1)
-endif
+" Highlighted screen columns
+call s:HL('ColorColumn',  s:none, s:color_column)
+
+" Concealed element: \lambda → λ
+call s:HL('Conceal', s:blue, s:none)
+
+" Line number of CursorLine
+call s:HL('CursorLineNr', s:yellow, s:bg1)
 
 hi! link NonText GruvboxBg2
 hi! link SpecialKey GruvboxBg2
@@ -528,16 +458,20 @@ hi! link Title GruvboxGreenBold
 
 " Error messages on the command line
 call s:HL('ErrorMsg',   s:bg0, s:red, s:bold)
+
 " More prompt: -- More --
 hi! link MoreMsg GruvboxYellowBold
+
 " Current mode message: -- INSERT --
 hi! link ModeMsg GruvboxYellowBold
+
 " 'Press enter' prompt and yes/no questions
 hi! link Question GruvboxOrangeBold
+
 " Warning messages
 hi! link WarningMsg GruvboxRedBold
-
 " }}}
+
 " Gutter: {{{
 
 " Line number for :number and :# commands
@@ -548,22 +482,26 @@ call s:HL('SignColumn', s:none, s:sign_column)
 
 " Line used for closed folds
 call s:HL('Folded', s:gray, s:bg1, s:italic)
+
 " Column where folds are displayed
 call s:HL('FoldColumn', s:gray, s:bg1)
-
 " }}}
+
 " Cursor: {{{
 
 " Character under cursor
 call s:HL('Cursor', s:none, s:none, s:inverse)
+
 " Visual mode cursor, selection
 hi! link vCursor Cursor
+
 " Input moder cursor
 hi! link iCursor Cursor
+
 " Language mapping cursor
 hi! link lCursor Cursor
-
 " }}}
+
 " Syntax Highlighting: {{{
 
 if g:gruvbox_improved_strings == 0
@@ -587,7 +525,7 @@ hi! link Label GruvboxRed
 " try, catch, throw
 hi! link Exception GruvboxRed
 " sizeof, "+", "*", etc.
-hi! link Operator Normal
+hi! link Operator Normal1
 " Any other keyword
 hi! link Keyword GruvboxRed
 
@@ -632,24 +570,20 @@ hi! link StorageClass GruvboxOrange
 hi! link Structure GruvboxAqua
 " typedef
 hi! link Typedef GruvboxYellow
-
 " }}}
+
 " Completion Menu: {{{
-
-if version >= 700
-  " Popup menu: normal item
-  call s:HL('Pmenu', s:fg1, s:bg2)
-  " Popup menu: selected item
-  call s:HL('PmenuSel', s:bg2, s:blue, s:bold)
-  " Popup menu: scrollbar
-  call s:HL('PmenuSbar', s:none, s:bg2)
-  " Popup menu: scrollbar thumb
-  call s:HL('PmenuThumb', s:none, s:bg4)
-endif
-
+" Popup menu: normal item
+call s:HL('Pmenu', s:fg1, s:bg2)
+" Popup menu: selected item
+call s:HL('PmenuSel', s:bg2, s:blue, s:bold)
+" Popup menu: scrollbar
+call s:HL('PmenuSbar', s:none, s:bg2)
+" Popup menu: scrollbar thumb
+call s:HL('PmenuThumb', s:none, s:bg4)
 " }}}
-" Diffs: {{{
 
+" Diffs: {{{
 call s:HL('DiffDelete', s:red, s:bg0, s:inverse)
 call s:HL('DiffAdd',    s:green, s:bg0, s:inverse)
 "call s:HL('DiffChange', s:bg0, s:blue)
@@ -658,10 +592,9 @@ call s:HL('DiffAdd',    s:green, s:bg0, s:inverse)
 " Alternative setting
 call s:HL('DiffChange', s:aqua, s:bg0, s:inverse)
 call s:HL('DiffText',   s:yellow, s:bg0, s:inverse)
-
 " }}}
-" Spelling: {{{
 
+" Spelling: {{{
 if has("spell")
   " Not capitalised word, or compile warnings
   if g:gruvbox_improved_warnings == 0
@@ -676,223 +609,20 @@ if has("spell")
   " Rare word
   call s:HL('SpellRare',  s:none, s:none, s:undercurl, s:purple)
 endif
-
 " }}}
 
-" Plugin specific -------------------------------------------------------------
-" EasyMotion: {{{
+" Plugin specific
+" ---------------
 
-hi! link EasyMotionTarget Search
-hi! link EasyMotionShade Comment
-
-" }}}
-" Sneak: {{{
-
-hi! link Sneak Search
-hi! link SneakLabel Search
-
-" }}}
-" Indent Guides: {{{
-
-if !exists('g:indent_guides_auto_colors')
-  let g:indent_guides_auto_colors = 0
-endif
-
-if g:indent_guides_auto_colors == 0
-  if g:gruvbox_invert_indent_guides == 0
-    call s:HL('IndentGuidesOdd', s:vim_bg, s:bg2)
-    call s:HL('IndentGuidesEven', s:vim_bg, s:bg1)
-  else
-    call s:HL('IndentGuidesOdd', s:vim_bg, s:bg2, s:inverse)
-    call s:HL('IndentGuidesEven', s:vim_bg, s:bg3, s:inverse)
-  endif
-endif
-
-" }}}
-" IndentLine: {{{
-
-if !exists('g:indentLine_color_term')
-  let g:indentLine_color_term = s:bg2[1]
-endif
-if !exists('g:indentLine_color_gui')
-  let g:indentLine_color_gui = s:bg2[0]
-endif
-
-" }}}
-" Rainbow Parentheses: {{{
-
-if !exists('g:rbpt_colorpairs')
-  let g:rbpt_colorpairs =
-    \ [
-      \ ['blue', '#458588'], ['magenta', '#b16286'],
-      \ ['red',  '#cc241d'], ['166',     '#d65d0e']
-    \ ]
-endif
-
-let g:rainbow_guifgs = [ '#d65d0e', '#cc241d', '#b16286', '#458588' ]
-let g:rainbow_ctermfgs = [ '166', 'red', 'magenta', 'blue' ]
-
-if !exists('g:rainbow_conf')
-   let g:rainbow_conf = {}
-endif
-if !has_key(g:rainbow_conf, 'guifgs')
-   let g:rainbow_conf['guifgs'] = g:rainbow_guifgs
-endif
-if !has_key(g:rainbow_conf, 'ctermfgs')
-   let g:rainbow_conf['ctermfgs'] = g:rainbow_ctermfgs
-endif
-
-let g:niji_dark_colours = g:rbpt_colorpairs
-let g:niji_light_colours = g:rbpt_colorpairs
-
-"}}}
-" GitGutter: {{{
-
-hi! link GitGutterAdd GruvboxGreenSign
-hi! link GitGutterChange GruvboxAquaSign
-hi! link GitGutterDelete GruvboxRedSign
-hi! link GitGutterChangeDelete GruvboxAquaSign
-
-" }}}
 " GitCommit: "{{{
-
 hi! link gitcommitSelectedFile GruvboxGreen
 hi! link gitcommitDiscardedFile GruvboxRed
-
-" }}}
-" Signify: {{{
-
-hi! link SignifySignAdd GruvboxGreenSign
-hi! link SignifySignChange GruvboxAquaSign
-hi! link SignifySignDelete GruvboxRedSign
-
-" }}}
-" Syntastic: {{{
-
-call s:HL('SyntasticError', s:none, s:none, s:undercurl, s:red)
-call s:HL('SyntasticWarning', s:none, s:none, s:undercurl, s:yellow)
-
-hi! link SyntasticErrorSign GruvboxRedSign
-hi! link SyntasticWarningSign GruvboxYellowSign
-
-" }}}
-" Signature: {{{
-hi! link SignatureMarkText   GruvboxBlueSign
-hi! link SignatureMarkerText GruvboxPurpleSign
-
-" }}}
-" ShowMarks: {{{
-
-hi! link ShowMarksHLl GruvboxBlueSign
-hi! link ShowMarksHLu GruvboxBlueSign
-hi! link ShowMarksHLo GruvboxBlueSign
-hi! link ShowMarksHLm GruvboxBlueSign
-
-" }}}
-" CtrlP: {{{
-
-hi! link CtrlPMatch GruvboxYellow
-hi! link CtrlPNoEntries GruvboxRed
-hi! link CtrlPPrtBase GruvboxBg2
-hi! link CtrlPPrtCursor GruvboxBlue
-hi! link CtrlPLinePre GruvboxBg2
-
-call s:HL('CtrlPMode1', s:blue, s:bg2, s:bold)
-call s:HL('CtrlPMode2', s:bg0, s:blue, s:bold)
-call s:HL('CtrlPStats', s:fg4, s:bg2, s:bold)
-
-" }}}
-" Startify: {{{
-
-hi! link StartifyBracket GruvboxFg3
-hi! link StartifyFile GruvboxFg1
-hi! link StartifyNumber GruvboxBlue
-hi! link StartifyPath GruvboxGray
-hi! link StartifySlash GruvboxGray
-hi! link StartifySection GruvboxYellow
-hi! link StartifySpecial GruvboxBg2
-hi! link StartifyHeader GruvboxOrange
-hi! link StartifyFooter GruvboxBg2
-
-" }}}
-" Vimshell: {{{
-
-let g:vimshell_escape_colors = [
-  \ s:bg4[0], s:red[0], s:green[0], s:yellow[0],
-  \ s:blue[0], s:purple[0], s:aqua[0], s:fg4[0],
-  \ s:bg0[0], s:red[0], s:green[0], s:orange[0],
-  \ s:blue[0], s:purple[0], s:aqua[0], s:fg0[0]
-  \ ]
-
-" }}}
-" BufTabLine: {{{
-
-call s:HL('BufTabLineCurrent', s:bg0, s:fg4)
-call s:HL('BufTabLineActive', s:fg4, s:bg2)
-call s:HL('BufTabLineHidden', s:bg4, s:bg1)
-call s:HL('BufTabLineFill', s:bg0, s:bg0)
-
-" }}}
-" Asynchronous Lint Engine: {{{
-
-call s:HL('ALEError', s:none, s:none, s:undercurl, s:red)
-call s:HL('ALEWarning', s:none, s:none, s:undercurl, s:yellow)
-call s:HL('ALEInfo', s:none, s:none, s:undercurl, s:blue)
-
-hi! link ALEErrorSign GruvboxRedSign
-hi! link ALEWarningSign GruvboxYellowSign
-hi! link ALEInfoSign GruvboxBlueSign
-
-" }}}
-" Dirvish: {{{
-
-hi! link DirvishPathTail GruvboxAqua
-hi! link DirvishArg GruvboxYellow
-
-" }}}
-" Netrw: {{{
-
-hi! link netrwDir GruvboxAqua
-hi! link netrwClassify GruvboxAqua
-hi! link netrwLink GruvboxGray
-hi! link netrwSymLink GruvboxFg1
-hi! link netrwExe GruvboxYellow
-hi! link netrwComment GruvboxGray
-hi! link netrwList GruvboxBlue
-hi! link netrwHelpCmd GruvboxAqua
-hi! link netrwCmdSep GruvboxFg3
-hi! link netrwVersion GruvboxGreen
-
-" }}}
-" NERDTree: {{{
-
-hi! link NERDTreeDir GruvboxAqua
-hi! link NERDTreeDirSlash GruvboxAqua
-
-hi! link NERDTreeOpenable GruvboxOrange
-hi! link NERDTreeClosable GruvboxOrange
-
-hi! link NERDTreeFile GruvboxFg1
-hi! link NERDTreeExecFile GruvboxYellow
-
-hi! link NERDTreeUp GruvboxGray
-hi! link NERDTreeCWD GruvboxGreen
-hi! link NERDTreeHelp GruvboxFg1
-
-hi! link NERDTreeToggleOn GruvboxGreen
-hi! link NERDTreeToggleOff GruvboxRed
-
-" }}}
-" Vim Multiple Cursors: {{{
-
-call s:HL('multiple_cursors_cursor', s:none, s:none, s:inverse)
-call s:HL('multiple_cursors_visual', s:none, s:bg2)
-
 " }}}
 
-" Filetype specific -----------------------------------------------------------
-" Diff: {{{
+" Filetype specific
+" -----------------
 
+" Diff {{{
 hi! link diffAdded GruvboxGreen
 hi! link diffRemoved GruvboxRed
 hi! link diffChanged GruvboxAqua
@@ -901,10 +631,9 @@ hi! link diffFile GruvboxOrange
 hi! link diffNewFile GruvboxYellow
 
 hi! link diffLine GruvboxBlue
-
 " }}}
-" Html: {{{
 
+" Html {{{
 hi! link htmlTag GruvboxBlue
 hi! link htmlEndTag GruvboxBlue
 
@@ -927,10 +656,9 @@ call s:HL('htmlBoldUnderlineItalic', s:vim_fg, s:vim_bg, s:bold . s:underline . 
 call s:HL('htmlUnderline', s:vim_fg, s:vim_bg, s:underline)
 call s:HL('htmlUnderlineItalic', s:vim_fg, s:vim_bg, s:underline . s:italic)
 call s:HL('htmlItalic', s:vim_fg, s:vim_bg, s:italic)
-
 " }}}
-" Xml: {{{
 
+" Xml {{{
 hi! link xmlTag GruvboxBlue
 hi! link xmlEndTag GruvboxBlue
 hi! link xmlTagName GruvboxBlue
@@ -953,21 +681,21 @@ hi! link xmlAttribPunct GruvboxGray
 hi! link xmlEntity GruvboxOrange
 hi! link xmlEntityPunct GruvboxOrange
 " }}}
-" Vim: {{{
 
+" Vim {{{
 call s:HL('vimCommentTitle', s:fg4_256, s:none, s:bold . s:italicize_comments)
 
 hi! link vimNotation GruvboxOrange
 hi! link vimBracket GruvboxOrange
 hi! link vimMapModKey GruvboxOrange
 hi! link vimFuncSID GruvboxFg3
+hi! link vimUserFunc Normal1
 hi! link vimSetSep GruvboxFg3
 hi! link vimSep GruvboxFg3
 hi! link vimContinue GruvboxFg3
-
 " }}}
-" Clojure: {{{
 
+" Clojure {{{
 hi! link clojureKeyword GruvboxBlue
 hi! link clojureCond GruvboxOrange
 hi! link clojureSpecial GruvboxOrange
@@ -994,16 +722,14 @@ hi! link clojureMeta GruvboxYellow
 hi! link clojureDeref GruvboxYellow
 hi! link clojureQuote GruvboxYellow
 hi! link clojureUnquote GruvboxYellow
-
 " }}}
-" C: {{{
 
+" C {{{
 hi! link cOperator GruvboxPurple
 hi! link cStructure GruvboxOrange
-
 " }}}
-" Python: {{{
 
+" Python {{{
 hi! link pythonBuiltin GruvboxOrange
 hi! link pythonBuiltinObj GruvboxOrange
 hi! link pythonBuiltinFunc GruvboxOrange
@@ -1021,10 +747,9 @@ hi! link pythonDot GruvboxFg3
 hi! link pythonConditional GruvboxRed
 hi! link pythonRepeat GruvboxRed
 hi! link pythonDottedName GruvboxGreenBold
-
 " }}}
-" CSS: {{{
 
+" CSS {{{
 hi! link cssBraces GruvboxBlue
 hi! link cssFunctionName GruvboxYellow
 hi! link cssIdentifier GruvboxOrange
@@ -1056,10 +781,9 @@ hi! link cssDimensionProp GruvboxAqua
 hi! link cssRenderProp GruvboxAqua
 hi! link cssColorProp GruvboxAqua
 hi! link cssGeneratedContentProp GruvboxAqua
-
 " }}}
-" JavaScript: {{{
 
+" JavaScript {{{
 hi! link javaScriptBraces GruvboxFg1
 hi! link javaScriptFunction GruvboxAqua
 hi! link javaScriptIdentifier GruvboxRed
@@ -1067,10 +791,9 @@ hi! link javaScriptMember GruvboxBlue
 hi! link javaScriptNumber GruvboxPurple
 hi! link javaScriptNull GruvboxPurple
 hi! link javaScriptParens GruvboxFg3
-
 " }}}
-" YAJS: {{{
 
+" YAJS {{{
 hi! link javascriptImport GruvboxAqua
 hi! link javascriptExport GruvboxAqua
 hi! link javascriptClassKeyword GruvboxAqua
@@ -1148,10 +871,9 @@ hi! link javascriptHeadersMethod GruvboxFg1
 
 hi! link javascriptAsyncFuncKeyword GruvboxRed
 hi! link javascriptAwaitFuncKeyword GruvboxRed
-
 " }}}
-" PanglossJS: {{{
 
+" PanglossJS {{{
 hi! link jsClassKeyword GruvboxAqua
 hi! link jsExtendsKeyword GruvboxAqua
 hi! link jsExportDefault GruvboxAqua
@@ -1164,10 +886,9 @@ hi! link jsParens GruvboxFg3
 hi! link jsNull GruvboxPurple
 hi! link jsUndefined GruvboxPurple
 hi! link jsClassDefinition GruvboxYellow
-
 " }}}
-" TypeScript: {{{
 
+" TypeScript {{{
 hi! link typeScriptReserved GruvboxAqua
 hi! link typeScriptLabel GruvboxAqua
 hi! link typeScriptFuncKeyword GruvboxAqua
@@ -1186,10 +907,9 @@ hi! link typeScriptOpSymbols GruvboxFg3
 hi! link typeScriptHtmlElemProperties GruvboxFg1
 hi! link typeScriptNull GruvboxPurple
 hi! link typeScriptInterpolationDelimiter GruvboxAqua
-
 " }}}
-" PureScript: {{{
 
+" PureScript {{{
 hi! link purescriptModuleKeyword GruvboxAqua
 hi! link purescriptModuleName GruvboxFg1
 hi! link purescriptWhere GruvboxAqua
@@ -1206,55 +926,48 @@ hi! link purescriptConstructor GruvboxFg1
 hi! link purescriptFunction GruvboxFg1
 hi! link purescriptConditional GruvboxOrange
 hi! link purescriptBacktick GruvboxOrange
-
 " }}}
-" CoffeeScript: {{{
 
+" CoffeeScript {{{
 hi! link coffeeExtendedOp GruvboxFg3
 hi! link coffeeSpecialOp GruvboxFg3
 hi! link coffeeCurly GruvboxOrange
 hi! link coffeeParen GruvboxFg3
 hi! link coffeeBracket GruvboxOrange
-
 " }}}
-" Ruby: {{{
 
+" Ruby {{{
 hi! link rubyStringDelimiter GruvboxGreen
 hi! link rubyInterpolationDelimiter GruvboxAqua
-
 " }}}
-" ObjectiveC: {{{
 
+" Objective-C {{{
 hi! link objcTypeModifier GruvboxRed
 hi! link objcDirective GruvboxBlue
-
 " }}}
-" Go: {{{
 
+" Go {{{
 hi! link goDirective GruvboxAqua
 hi! link goConstants GruvboxPurple
 hi! link goDeclaration GruvboxRed
 hi! link goDeclType GruvboxBlue
 hi! link goBuiltins GruvboxOrange
-
 " }}}
-" Lua: {{{
 
+" Lua {{{
 hi! link luaIn GruvboxRed
 hi! link luaFunction GruvboxAqua
 hi! link luaTable GruvboxOrange
-
 " }}}
-" MoonScript: {{{
 
+" MoonScript {{{
 hi! link moonSpecialOp GruvboxFg3
 hi! link moonExtendedOp GruvboxFg3
 hi! link moonFunction GruvboxFg3
 hi! link moonObject GruvboxYellow
-
 " }}}
-" Java: {{{
 
+" Java {{{
 hi! link javaAnnotation GruvboxBlue
 hi! link javaDocTags GruvboxAqua
 hi! link javaCommentTitle vimCommentTitle
@@ -1267,20 +980,16 @@ hi! link javaParen5 GruvboxFg3
 hi! link javaOperator GruvboxOrange
 
 hi! link javaVarArg GruvboxGreen
-
 " }}}
-" Elixir: {{{
 
+" Elixir {{{
 hi! link elixirDocString Comment
-
 hi! link elixirStringDelimiter GruvboxGreen
 hi! link elixirInterpolationDelimiter GruvboxAqua
-
 hi! link elixirModuleDeclaration GruvboxYellow
-
 " }}}
-" Scala: {{{
 
+" Scala {{{
 " NB: scala vim syntax file is kinda horrible
 hi! link scalaNameDefinition GruvboxFg1
 hi! link scalaCaseFollowing GruvboxFg1
@@ -1298,10 +1007,9 @@ hi! link scalaTypeTypePostDeclaration GruvboxYellow
 
 hi! link scalaInstanceDeclaration GruvboxFg1
 hi! link scalaInterpolation GruvboxAqua
-
 " }}}
-" Markdown: {{{
 
+" Markdown {{{
 call s:HL('markdownItalic', s:fg3, s:none, s:italic)
 
 hi! link markdownH1 GruvboxGreenBold
@@ -1331,10 +1039,9 @@ hi! link markdownUrlTitleDelimiter GruvboxGreen
 
 call s:HL('markdownLinkText', s:gray, s:none, s:underline)
 hi! link markdownIdDeclaration markdownLinkText
-
 " }}}
-" Haskell: {{{
 
+" Haskell {{{
 " hi! link haskellType GruvboxYellow
 " hi! link haskellOperators GruvboxOrange
 " hi! link haskellConditional GruvboxAqua
@@ -1365,21 +1072,24 @@ hi! link haskellPragma GruvboxPurple
 
 hi! link haskellString GruvboxGreen
 hi! link haskellChar GruvboxGreen
-
 " }}}
-" Json: {{{
 
+" JSON {{{
 hi! link jsonKeyword GruvboxGreen
 hi! link jsonQuote GruvboxGreen
 hi! link jsonBraces GruvboxFg1
 hi! link jsonString GruvboxFg1
-
 " }}}
 
+" Erlang {{{
+hi! link erlangGlobalFuncCall Normal1
+hi! link erlangLocalFuncRef Normal1
+hi! link erlangLocalFuncCall GruvboxYellow
+" }}}
 
-" Functions -------------------------------------------------------------------
+" Functions
+" ---------
 " Search Highlighting Cursor {{{
-
 function! GruvboxHlsShowCursor()
   call s:HL('Cursor', s:bg0, s:hls_cursor)
 endfunction
@@ -1387,7 +1097,6 @@ endfunction
 function! GruvboxHlsHideCursor()
   call s:HL('Cursor', s:none, s:none, s:inverse)
 endfunction
-
 " }}}
 
 " vim: set sw=2 ts=2 sts=2 et tw=80 ft=vim fdm=marker:
