@@ -1,3 +1,4 @@
+" vim-plug initialization and plugins ------------------------------------------------ {{{
 if empty(glob('~/.config/nvim/autoload/plug.vim'))
   silent !curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs
         \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
@@ -11,6 +12,7 @@ Plug 'tpope/vim-obsession'
 Plug 'tpope/vim-rails'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-rhubarb'
+Plug 'tpope/vim-scriptease'
 Plug 'vim-erlang/vim-erlang-compiler'
 Plug 'vim-erlang/vim-erlang-runtime'
 Plug 'vim-erlang/vim-erlang-omnicomplete'
@@ -33,11 +35,14 @@ Plug 'itchyny/lightline.vim'
 Plug 'zxqfl/tabnine-vim'
 
 call plug#end()
+" }}}
 
-colorscheme gruvbox               " Color theme
-syntax enable                     " Turn on syntax highlighting
+" Basic options ---------------------------------------------------------------------- {{{
+colorscheme gruvbox
+syntax enable
 syntax sync minlines=256
 filetype plugin indent on         " Enable file type detection.
+set termguicolors
 set nonumber                      " Do not show line numbers
 set hidden                        " Allow unsaved background buffers and remember marks/undo for them
 set noshowcmd                     " Do not display incomplete commands
@@ -69,6 +74,7 @@ set autoread                      " Watch out for file changes
 set splitbelow                    " Put new window below the current one
 set complete+=kspell              " Autocomplete with dictionary words when spell check is on
 set nobackup
+set noswapfile                    " It's 2019 (at least)
 set nowritebackup
 set undofile                      " Maintain undo history between sessions
 set undodir=~/.nvim/_undo
@@ -83,6 +89,32 @@ set rtp+=/usr/local/opt/fzf
 set guicursor=                    " Do not change the cursor
 set mouse=a                       " Enable mouse for all modes
 set cursorline
+" }}}
+
+" Only show cursorline in the current window and in normal mode.
+augroup cursorline
+	au!
+	au WinLeave,InsertEnter * set nocursorline
+	au WinEnter,InsertLeave * set cursorline
+augroup END
+
+" Reload the colorscheme whenever we write the file
+augroup color_gruvbox
+    autocmd!
+    autocmd BufWritePost gruvbox.vim color gruvbox
+augroup END
+
+" Remove trailing whitespace on save
+autocmd BufWritePre * :%s/\s\+$//e
+
+" Jump to last cursor position unless it's invalid or in an event handler
+augroup line_return
+  autocmd!
+  autocmd BufReadPost *
+        \ if line("'\"") > 1 && line("'\"") <= line("$") && &ft !~# 'commit'
+        \ |   execute "normal! g`\""
+        \ | endif
+augroup END
 
 " Use ripgrep for grepping
 if executable('rg')
@@ -90,12 +122,14 @@ if executable('rg')
   set grepformat^=%f:%l:%c:%m
 endif
 
-if has('termguicolors')
-  set termguicolors
-end
-
+" Key mappings ----------------------------------------------------------------------- {{{
 " Set the leader key
 let mapleader = ","
+
+" Use Alt and Ctrl keys in command mode
+cnoremap <M-b> <S-Left>
+cnoremap <M-f> <S-Right>
+cnoremap <C-a> <C-b>
 
 " Leave terminal mode
 tnoremap <esc> <C-\><C-n>
@@ -122,10 +156,6 @@ vnoremap <Right> <nop>
 
 " Esc is harder to reach
 inoremap <C-c> <esc>
-inoremap jk <esc>
-
-" Remove trailing whitespace on save
-autocmd BufWritePre * :%s/\s\+$//e
 
 " Copy to clipboard
 vnoremap  <leader>y  "+y
@@ -133,6 +163,59 @@ nnoremap  <leader>y  "+y
 nnoremap  <leader>Y  "+yg_
 nnoremap  <leader>yy "+yy
 
+" fzf.vim shortcuts
+nnoremap <silent> <C-j> :GFiles<cr>
+nnoremap <silent> <C-k> :Files<cr>
+nnoremap <silent> <C-f> :Buffers<cr>
+
+" Quick search
+nnoremap <silent> K :call SearchWordWithRg()<cr>
+vnoremap <silent> K :call SearchVisualSelectionWithRg()<cr>
+
+" Expand current path
+cnoremap %% <C-R>=expand('%:h').'/'<cr>
+
+" Populate QuickFix with test suite run result
+nnoremap <leader>q :cg spec/quickfix.out<cr>:echo "QuickFix populated"<cr>
+
+" Rubocop
+nnoremap <silent> <leader>c :call RunRubocop()<cr>
+
+" test.vim
+nnoremap <silent> <leader>s :TestNearest<cr>
+nnoremap <silent> <leader>f :TestFile<cr>
+nnoremap <silent> <leader>a :TestSuite<cr>
+nnoremap <silent> <leader>l :TestLast<cr>
+nnoremap <silent> <leader>v :TestVisit<cr>
+
+" Rename a file
+nnoremap <leader>r :call RenameFile()<cr>
+
+" Swap windows
+nnoremap <silent> <leader>wc :call MarkWindowSwap()<cr>
+nnoremap <silent> <leader>wp :call DoWindowSwap()<cr>
+
+" Copy current file path to clipboard
+nnoremap <silent> <leader>yp :call CopyFilePathToClipboard()<cr>
+
+" Because I constantly type :W istead of :w
+cnoreabbrev W w
+
+" Because :rg is easier
+cnoreabbrev rg Rg
+cnoreabbrev rg! Rg!
+
+" Edit/load vim config
+nnoremap <leader>ev :vsplit $MYVIMRC<cr>
+nnoremap <leader>sv :source $MYVIMRC<cr>
+
+" Quick search shortcut
+nnoremap \ :Rg<space>
+nnoremap <C-\> :Rg!<space>
+" }}}
+
+
+" Plugin/core config ----------------------------------------------------------------- {{{
 " fzf
 let g:fzf_layout = { 'down': '~30%' }
 let g:fzf_colors =
@@ -149,38 +232,8 @@ let g:fzf_colors =
   \ 'marker':  ['fg', 'Keyword'],
   \ 'spinner': ['fg', 'Label'],
   \ 'header':  ['fg', 'Comment'] }
-nnoremap <silent> <C-j> :GFiles<cr>
-nnoremap <silent> <C-k> :Files<cr>
-nnoremap <silent> <C-f> :Buffers<cr>
-
-nnoremap <silent> K :call SearchWordWithRg()<cr>
-vnoremap <silent> K :call SearchVisualSelectionWithRg()<cr>
-
-function! SearchWordWithRg()
-  execute 'Rg' expand('<cword>')
-endfunction
-
-function! SearchVisualSelectionWithRg() range
-  let old_reg = getreg('"')
-  let old_regtype = getregtype('"')
-  let old_clipboard = &clipboard
-  set clipboard&
-  normal! ""gvy
-  let selection = getreg('"')
-  call setreg('"', old_reg, old_regtype)
-  let &clipboard = old_clipboard
-  execute 'Rg' selection
-endfunction
-
-" Expand current path
-cnoremap %% <C-R>=expand('%:h').'/'<cr>
 
 " vim-test
-let test#ruby#rspec#options = {'suite': '-f p -r ~/.rspec-support/quickfix_formatter.rb -f QuickfixFormatter -o spec/quickfix.out'}
-
-" Populate QuickFix with test suite run result
-nnoremap <leader>q :cg spec/quickfix.out<cr>:echo "QuickFix populated"<cr>
-
 function! TestRunner(cmd)
   let opts = {'suffix': ' # vim-test'}
 
@@ -201,121 +254,21 @@ function! TestRunner(cmd)
   vertical botright new
   call termopen(a:cmd . opts.suffix, opts)
   au BufDelete <buffer> wincmd p
-  normal G
+  normal! G
   wincmd p
 endfunction
 
-" Rubocop
-function! RunRubocop()
-  let opts = {'suffix': ' # rubocop'}
-
-  function! opts.on_exit(job_id, exit_code, event)
-    if a:exit_code == 0
-      call self.close_terminal()
-    endif
-  endfunction
-
-  function! opts.close_terminal()
-    if bufnr(self.suffix) != -1
-      execute 'bdelete!' bufnr(self.suffix)
-    end
-  endfunction
-
-  call opts.close_terminal()
-
-  vertical botright new
-
-  call termopen('bin/rubocop' . opts.suffix, opts)
-
-  wincmd p
-endfunction
-
-nnoremap <silent> <leader>c :call RunRubocop()<cr>
-
-" test.vim
+" vim-test: Strategies
 let g:test#runners = {'Erlang': ['commontest', 'eunit']}
 let g:test#custom_strategies = {'testrunner': function('TestRunner')}
 let g:test#strategy = 'testrunner'
 
-nnoremap <silent> <leader>s :TestNearest<cr>
-nnoremap <silent> <leader>f :TestFile<cr>
-nnoremap <silent> <leader>a :TestSuite<cr>
-nnoremap <silent> <leader>l :TestLast<cr>
-nnoremap <silent> <leader>v :TestVisit<cr>
-
-
-" Rename current file or even move it to another location
-function! RenameFile()
-  let old_name = expand('%')
-  let new_name = input('New file name: ', expand('%'), 'file')
-  if new_name != '' && new_name != old_name
-    exec ':saveas ' . new_name
-    exec ':silent !rm ' . old_name
-    redraw!
-  endif
-endfunction
-
-nnoremap <leader>r :call RenameFile()<cr>
-
-" Easy widows swap
-function! MarkWindowSwap()
-  let g:markedWinNum = winnr()
-endfunction
-
-function! DoWindowSwap()
-  "Mark destination
-  let curNum = winnr()
-  let curBuf = bufnr( "%" )
-  exe g:markedWinNum . "wincmd w"
-  "Switch to source and shuffle dest->source
-  let markedBuf = bufnr( "%" )
-  "Hide and open so that we aren't prompted and keep history
-  exe 'hide buf' curBuf
-  "Switch to dest and shuffle source->dest
-  exe curNum . "wincmd w"
-  "Hide and open so that we aren't prompted and keep history
-  exe 'hide buf' markedBuf
-endfunction
-
-nnoremap <silent> <leader>wc :call MarkWindowSwap()<cr>
-nnoremap <silent> <leader>wp :call DoWindowSwap()<cr>
-
-" Copy current file path to clipboard
-nnoremap <silent> <leader>yp :call CopyFilePathToClipboard()<cr>
-
-function! CopyFilePathToClipboard()
-  silent call system('pbcopy', expand('%'))
-  echo "Copied file path to clipboard"
-endfunction
-
-" Jump to last cursor position unless it's invalid or in an event handler
-autocmd BufReadPost *
-  \ if line("'\"") > 1 && line("'\"") <= line("$") && &ft !~# 'commit'
-  \ |   exe "normal! g`\""
-  \ | endif
-
-" Because I constantly type :W istead of :w
-cnoreabbrev W w
-
-" Because :rg is easier
-cnoreabbrev rg Rg
-cnoreabbrev rg! Rg!
-
-nnoremap <leader>ve :vsplit $MYVIMRC<cr>
-nnoremap <leader>vs :source $MYVIMRC<cr>
-
-" Undotree
-let g:undotree_WindowLayout = 2
-let g:undotree_DiffpanelHeight = 20
-let g:undotree_SplitWidth = 40
+" vim-test: Ruby suite run
+let test#ruby#rspec#options = {'suite': '-f p -r ~/.rspec-support/quickfix_formatter.rb -f QuickfixFormatter -o spec/quickfix.out'}
 
 " Python Mode
 let g:pymode_options_colorcolumn = 0
 let g:pymode_options = 0
-
-" Quick search shortcut
-nnoremap \ :Rg<space>
-nnoremap <C-\> :Rg!<space>
 
 " lightline.vim
 let g:lightline = {
@@ -387,16 +340,10 @@ function! LightlineObsession()
     return '%{ObsessionStatus("●", "○")}'
 endfunction
 
+" Enable JSX syntax highlighting and indenting in .js files
 let g:jsx_ext_required = 0
 
-command! -bang -nargs=* Rg
-  \ call fzf#vim#grep(
-  \   'rg --column --line-number --no-heading --smart-case --hidden --follow --glob "!.git/*" --color "always" '.shellescape(<q-args>), 1,
-  \   <bang>0 ? fzf#vim#with_preview('up:60%')
-  \           : fzf#vim#with_preview('right:50%:hidden', '?'),
-  \   <bang>0)
-
-" RSpec takes priority over Test::Unit
+" Let RSpec takes priority over Test::Unit
 let g:rails_projections = {
   \  'app/*.rb': {
   \     'alternate': 'spec/{}_spec.rb',
@@ -410,3 +357,81 @@ let g:rails_projections = {
 
 " Disable preview for completion in Erlang
 let g:erlang_completion_preview_help = 0
+" }}}
+
+function! SearchWordWithRg()
+  execute 'Rg' expand('<cword>')
+endfunction
+
+function! SearchVisualSelectionWithRg() range
+  let old_reg = getreg('"')
+  let old_regtype = getregtype('"')
+  let old_clipboard = &clipboard
+  set clipboard&
+  normal! ""gvy
+  let selection = getreg('"')
+  call setreg('"', old_reg, old_regtype)
+  let &clipboard = old_clipboard
+  execute 'Rg' selection
+endfunction
+
+function! RunRubocop()
+  let opts = {'suffix': ' # rubocop'}
+
+  function! opts.on_exit(job_id, exit_code, event)
+    if a:exit_code == 0
+      call self.close_terminal()
+    endif
+  endfunction
+
+  function! opts.close_terminal()
+    if bufnr(self.suffix) != -1
+      execute 'bdelete!' bufnr(self.suffix)
+    end
+  endfunction
+
+  call opts.close_terminal()
+
+  vertical botright new
+
+  call termopen('bin/rubocop' . opts.suffix, opts)
+
+  wincmd p
+endfunction
+
+function! RenameFile()
+  let old_name = expand('%')
+  let new_name = input('New file name: ', expand('%'), 'file')
+  if new_name != '' && new_name != old_name
+    exec ':saveas ' . new_name
+    exec ':silent !rm ' . old_name
+    redraw!
+  endif
+endfunction
+
+function! MarkWindowSwap()
+  let g:markedWinNum = winnr()
+endfunction
+
+function! DoWindowSwap()
+  let curNum = winnr()
+  let curBuf = bufnr( "%" )
+  exe g:markedWinNum . "wincmd w"
+  let markedBuf = bufnr( "%" )
+  exe 'hide buf' curBuf
+  exe curNum . "wincmd w"
+  exe 'hide buf' markedBuf
+endfunction
+
+function! CopyFilePathToClipboard()
+  silent call system('pbcopy', expand('%'))
+  echo "Copied file path to clipboard"
+endfunction
+
+" Set the ripgrep command
+command! -bang -nargs=* Rg
+  \ call fzf#vim#grep(
+  \   'rg --column --line-number --no-heading --smart-case --hidden --follow --glob "!.git/*" --color "always" '.shellescape(<q-args>), 1,
+  \   <bang>0 ? fzf#vim#with_preview('up:60%')
+  \           : fzf#vim#with_preview('right:50%:hidden', '?'),
+  \   <bang>0)
