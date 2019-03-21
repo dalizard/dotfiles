@@ -14,6 +14,8 @@ endif
 " }}}
 
 " Global Settings: {{{
+ let g:colors_name = 'gruvbox'
+
 if !exists('g:gruvbox_bold')
   let g:gruvbox_bold=1
 endif
