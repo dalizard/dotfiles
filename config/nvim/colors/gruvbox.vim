@@ -20,14 +20,6 @@ if !exists('g:gruvbox_bold')
   let g:gruvbox_bold=1
 endif
 
-if !exists('g:gruvbox_italic')
-  if has('gui_running') || $TERM_ITALICS == 'true'
-    let g:gruvbox_italic=1
-  else
-    let g:gruvbox_italic=0
-  endif
-endif
-
 if !exists('g:gruvbox_undercurl')
   let g:gruvbox_undercurl=1
 endif
@@ -130,11 +122,6 @@ let s:gb.faded_orange   = ['#af3a03', 130]     " 175-58-3
 let s:bold = 'bold,'
 if g:gruvbox_bold == 0
   let s:bold = ''
-endif
-
-let s:italic = 'italic,'
-if g:gruvbox_italic == 0
-  let s:italic = ''
 endif
 
 let s:underline = 'underline,'
@@ -293,20 +280,6 @@ let s:invert_tabline = ''
 if exists('g:gruvbox_invert_tabline')
   if g:gruvbox_invert_tabline == 1
     let s:invert_tabline = s:inverse
-  endif
-endif
-
-let s:italicize_comments = s:italic
-if exists('g:gruvbox_italicize_comments')
-  if g:gruvbox_italicize_comments == 0
-    let s:italicize_comments = ''
-  endif
-endif
-
-let s:italicize_strings = ''
-if exists('g:gruvbox_italicize_strings')
-  if g:gruvbox_italicize_strings == 1
-    let s:italicize_strings = s:italic
   endif
 endif
 " }}}
@@ -483,7 +456,7 @@ call s:HL('LineNr', s:bg4, s:number_column)
 call s:HL('SignColumn', s:none, s:sign_column)
 
 " Line used for closed folds
-call s:HL('Folded', s:gray, s:bg1, s:italic)
+call s:HL('Folded', s:gray, s:bg1)
 
 " Column where folds are displayed
 call s:HL('FoldColumn', s:gray, s:bg1)
@@ -509,11 +482,11 @@ hi! link lCursor Cursor
 if g:gruvbox_improved_strings == 0
   hi! link Special GruvboxOrange
 else
-  call s:HL('Special', s:orange, s:bg1, s:italicize_strings)
+  call s:HL('Special', s:orange, s:bg1)
 endif
 
-call s:HL('Comment', s:gray, s:none, s:italicize_comments)
-call s:HL('Todo', s:vim_fg, s:vim_bg, s:bold . s:italic)
+call s:HL('Comment', s:gray, s:none)
+call s:HL('Todo', s:vim_fg, s:vim_bg, s:bold)
 call s:HL('Error', s:red, s:vim_bg, s:bold . s:inverse)
 
 " Generic statement
@@ -553,9 +526,9 @@ hi! link Constant GruvboxPurple
 hi! link Character GruvboxPurple
 " String constant: "this is a string"
 if g:gruvbox_improved_strings == 0
-  call s:HL('String',  s:green, s:none, s:italicize_strings)
+  call s:HL('String',  s:green, s:none)
 else
-  call s:HL('String',  s:fg1, s:bg1, s:italicize_strings)
+  call s:HL('String',  s:fg1, s:bg1)
 endif
 " Boolean constant: TRUE, false
 hi! link Boolean GruvboxPurple
@@ -602,7 +575,7 @@ if has("spell")
   if g:gruvbox_improved_warnings == 0
     call s:HL('SpellCap',   s:none, s:none, s:undercurl, s:red)
   else
-    call s:HL('SpellCap',   s:green, s:none, s:bold . s:italic)
+    call s:HL('SpellCap',   s:green, s:none, s:bold)
   endif
   " Not recognized word
   call s:HL('SpellBad',   s:none, s:none, s:undercurl, s:blue)
@@ -652,12 +625,12 @@ hi! link htmlSpecialChar GruvboxOrange
 
 call s:HL('htmlBold', s:vim_fg, s:vim_bg, s:bold)
 call s:HL('htmlBoldUnderline', s:vim_fg, s:vim_bg, s:bold . s:underline)
-call s:HL('htmlBoldItalic', s:vim_fg, s:vim_bg, s:bold . s:italic)
-call s:HL('htmlBoldUnderlineItalic', s:vim_fg, s:vim_bg, s:bold . s:underline . s:italic)
+call s:HL('htmlBoldItalic', s:vim_fg, s:vim_bg, s:bold)
+call s:HL('htmlBoldUnderlineItalic', s:vim_fg, s:vim_bg, s:bold . s:underline)
 
 call s:HL('htmlUnderline', s:vim_fg, s:vim_bg, s:underline)
-call s:HL('htmlUnderlineItalic', s:vim_fg, s:vim_bg, s:underline . s:italic)
-call s:HL('htmlItalic', s:vim_fg, s:vim_bg, s:italic)
+call s:HL('htmlUnderlineItalic', s:vim_fg, s:vim_bg, s:underline)
+call s:HL('htmlItalic', s:vim_fg, s:vim_bg)
 " }}}
 
 " Xml {{{
@@ -685,7 +658,7 @@ hi! link xmlEntityPunct GruvboxOrange
 " }}}
 
 " Vim {{{
-call s:HL('vimCommentTitle', s:fg4_256, s:none, s:bold . s:italicize_comments)
+call s:HL('vimCommentTitle', s:fg4_256, s:none, s:bold)
 
 hi! link vimNotation GruvboxOrange
 hi! link vimBracket GruvboxOrange
@@ -1012,7 +985,7 @@ hi! link scalaInterpolation GruvboxAqua
 " }}}
 
 " Markdown {{{
-call s:HL('markdownItalic', s:fg3, s:none, s:italic)
+call s:HL('markdownItalic', s:fg3, s:none)
 
 hi! link markdownH1 GruvboxGreenBold
 hi! link markdownH2 GruvboxGreenBold
