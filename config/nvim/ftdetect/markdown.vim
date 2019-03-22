@@ -1,1 +1,1 @@
-autocmd BufRead,BufNewFile *.md set filetype=markdown
+autocmd BufRead,BufNewFile *.m*down setlocal filetype=markdown
