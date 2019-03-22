@@ -914,6 +914,7 @@ hi! link coffeeBracket GruvboxOrange
 " Ruby {{{
 hi! link rubyStringDelimiter GruvboxGreen
 hi! link rubyInterpolationDelimiter GruvboxAqua
+hi! link rubyTodo Normal1
 " }}}
 
 " Objective-C {{{
