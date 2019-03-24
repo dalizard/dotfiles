@@ -205,10 +205,6 @@ cnoreabbrev W w
 cnoreabbrev rg Rg
 cnoreabbrev rg! Rg!
 
-" Edit/load vim config
-nnoremap <leader>ev :vsplit $MYVIMRC<cr>
-nnoremap <leader>sv :source $MYVIMRC<cr>
-
 " Quick search shortcut
 nnoremap \ :Rg<space>
 nnoremap <C-\> :Rg!<space>
