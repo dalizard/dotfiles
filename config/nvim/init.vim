@@ -32,6 +32,7 @@ Plug 'idris-hackers/idris-vim'
 Plug 'godlygeek/csapprox'
 Plug 'leafgarland/typescript-vim'
 Plug 'itchyny/lightline.vim'
+Plug 'lmeijvogel/vim-yaml-helper'
 Plug 'zxqfl/tabnine-vim'
 
 call plug#end()
