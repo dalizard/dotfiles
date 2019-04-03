@@ -53,6 +53,9 @@ set -x FZF_DEFAULT_COMMAND 'rg --files --no-ignore --hidden --follow --glob "!.g
 # Erlang libraries
 set -x ERL_LIBS /usr/local/opt/proper
 
+# Docker/Kubernetes
+set -x SSH_PRIVATE_KEY /tmp/kube-sshkey
+
 # Ruby manager
 source /usr/local/share/chruby/chruby.fish
 source /usr/local/share/chruby/auto.fish
