@@ -1,0 +1,2 @@
+#!/usr/bin/env bash
+rsync -Phca --delete --stats --include="/Photos Library.photoslibrary/" --include="/Photos Library.photoslibrary/***" --exclude="*" -e "ssh" "/Users/dimitar/Pictures/" frodo:/storage/Backup
