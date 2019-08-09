@@ -1,4 +1,4 @@
-" vim-plug initialization and plugins ------------------------------------------------ {{{
+" Plugins {{{
 if empty(glob('~/.config/nvim/autoload/plug.vim'))
   silent !curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs
         \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
@@ -17,15 +17,16 @@ Plug 'vim-erlang/vim-erlang-compiler'
 Plug 'junegunn/fzf.vim'
 Plug 'janko-m/vim-test'
 Plug 'mbbill/undotree'
-Plug 'itchyny/lightline.vim'
 Plug 'lmeijvogel/vim-yaml-helper'
 Plug 'sheerun/vim-polyglot'
+Plug 'dense-analysis/ale'
 Plug 'zxqfl/tabnine-vim'
+Plug 'itchyny/lightline.vim'
 
 call plug#end()
 " }}}
 
-" Basic options ---------------------------------------------------------------------- {{{
+" Core settings {{{
 colorscheme gruvbox
 syntax enable
 syntax sync minlines=256
@@ -40,7 +41,7 @@ set synmaxcol=128
 set lazyredraw
 set laststatus=2                  " Always show a status line for the last window
 set novisualbell
-set modelines=0                   " No lines are checked for set commands
+set modelines=1                   " No lines are checked for set commands
 set showmode                      " Show the mode you are in
 set tabstop=2                     " A tab is two spaces
 set shiftwidth=2                  " An autoindent (with <<) is two spaces
@@ -67,10 +68,8 @@ set nowritebackup
 set undofile                      " Maintain undo history between sessions
 set undodir=~/.nvim/_undo
 set directory=~/.nvim/_temp
-set foldmethod=indent
-set foldnestmax=10
-set nofoldenable                  " All folds are open
-set foldlevel=1
+set foldmethod=marker
+set foldlevel=0
 set previewheight=20              " Preview split height
 set shell=/usr/local/bin/dash
 set rtp+=/usr/local/opt/fzf
@@ -79,38 +78,29 @@ set mouse=a                       " Enable mouse for all modes
 set cursorline
 " }}}
 
-" Only show cursorline in the current window and in normal mode.
-augroup cursorline
-	au!
-	au WinLeave,InsertEnter * set nocursorline
-	au WinEnter,InsertLeave * set cursorline
-augroup END
-
-" Reload the colorscheme whenever we write the file
-augroup color_gruvbox
-    autocmd!
-    autocmd BufWritePost gruvbox.vim color gruvbox
-augroup END
-
-" Remove trailing whitespace on save
-autocmd BufWritePre * :%s/\s\+$//e
-
-" Jump to last cursor position unless it's invalid or in an event handler
-augroup line_return
+" Auto Groups {{{
+augroup configgroup
   autocmd!
+
+  " Only show cursorline in the current window and in normal mode.
+	autocmd WinLeave,InsertEnter * set nocursorline
+	autocmd WinEnter,InsertLeave * set cursorline
+
+  " Reload the colorscheme whenever we write the file
+  autocmd BufWritePost gruvbox.vim color gruvbox
+
+  " Remove trailing whitespace on save
+  autocmd BufWritePre * :%s/\s\+$//e
+
+  " Jump to last cursor position unless it's invalid or in an event handler
   autocmd BufReadPost *
         \ if line("'\"") > 1 && line("'\"") <= line("$") && &ft !~# 'commit'
         \ |   execute "normal! g`\""
         \ | endif
 augroup END
+" }}}
 
-" Use ripgrep for grepping
-if executable('rg')
-  set grepprg=rg\ --vimgrep
-  set grepformat^=%f:%l:%c:%m
-endif
-
-" Key mappings ----------------------------------------------------------------------- {{{
+" Key Mappings {{{
 " Set the leader key
 let mapleader = ","
 
@@ -198,9 +188,22 @@ nnoremap \ :Rg<space>
 nnoremap <C-\> :Rg!<space>
 " }}}
 
+" RipGrep {{{
+if executable('rg')
+  set grepprg=rg\ --vimgrep
+  set grepformat^=%f:%l:%c:%m
+endif
 
-" Plugin/core config ----------------------------------------------------------------- {{{
-" fzf
+command! -bang -nargs=* Rg
+  \ call fzf#vim#grep(
+  \   'rg --column --line-number --no-heading --smart-case --hidden --follow --glob "!.git/*" --color "always" '.shellescape(<q-args>), 1,
+  \   <bang>0 ? fzf#vim#with_preview('up:60%')
+  \           : fzf#vim#with_preview('right:50%:hidden', '?'),
+  \   <bang>0)
+
+" }}}
+
+" fzf {{{
 let g:fzf_layout = { 'down': '~30%' }
 let g:fzf_colors =
 \ { 'fg':      ['fg', 'Normal'],
@@ -216,8 +219,9 @@ let g:fzf_colors =
   \ 'marker':  ['fg', 'Keyword'],
   \ 'spinner': ['fg', 'Label'],
   \ 'header':  ['fg', 'Comment'] }
+" }}}
 
-" vim-test
+" vim-test {{{
 function! TestRunner(cmd)
   let opts = {'suffix': ' # vim-test'}
 
@@ -242,19 +246,14 @@ function! TestRunner(cmd)
   wincmd p
 endfunction
 
-" vim-test: Strategies
 let g:test#runners = {'Erlang': ['commontest', 'eunit']}
 let g:test#custom_strategies = {'testrunner': function('TestRunner')}
 let g:test#strategy = 'testrunner'
 
-" vim-test: Ruby suite run
 let test#ruby#rspec#options = {'suite': '-f p -r ~/.rspec-support/quickfix_formatter.rb -f QuickfixFormatter -o spec/quickfix.out'}
+" }}}
 
-" Python Mode
-let g:pymode_options_colorcolumn = 0
-let g:pymode_options = 0
-
-" lightline.vim
+" lightline.vim {{{
 let g:lightline = {
       \ 'colorscheme': 'gruvbox',
       \ 'active': {
@@ -323,11 +322,23 @@ endfunction
 function! LightlineObsession()
     return '%{ObsessionStatus("●", "○")}'
 endfunction
+" }}}
 
-" Enable JSX syntax highlighting and indenting in .js files
-let g:jsx_ext_required = 0
+" {{{ ALE
+let g:ale_fixers = {
+  \   'javascript': ['prettier', 'eslint'],
+  \   'typescript': ['prettier', 'eslint'],
+  \   'ruby': ['rubocop'],
+  \}
 
-" Let RSpec takes priority over Test::Unit
+let g:ale_lint_on_text_changed = 'never'
+let g:ale_lint_on_insert_leave = 0
+let g:ale_lint_on_enter = 0
+
+let g:ale_fix_on_save = 0
+" }}}
+
+" Ruby {{{
 let g:rails_projections = {
   \  'app/*.rb': {
   \     'alternate': 'spec/{}_spec.rb',
@@ -338,11 +349,13 @@ let g:rails_projections = {
   \     'type': 'test'
   \   }
   \}
+"}}}
 
-" Disable preview for completion in Erlang
+" Erlang {{{
 let g:erlang_completion_preview_help = 0
 " }}}
 
+" Custom Functions {{{
 function! SearchWordWithRg()
   execute 'Rg' expand('<cword>')
 endfunction
@@ -411,11 +424,6 @@ function! CopyFilePathToClipboard()
   silent call system('pbcopy', expand('%'))
   echo "Copied file path to clipboard"
 endfunction
+" }}}
 
-" Set the ripgrep command
-command! -bang -nargs=* Rg
-  \ call fzf#vim#grep(
-  \   'rg --column --line-number --no-heading --smart-case --hidden --follow --glob "!.git/*" --color "always" '.shellescape(<q-args>), 1,
-  \   <bang>0 ? fzf#vim#with_preview('up:60%')
-  \           : fzf#vim#with_preview('right:50%:hidden', '?'),
-  \   <bang>0)
+" vim:foldmethod=marker:foldlevel=0
