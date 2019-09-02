@@ -3,6 +3,7 @@ bundle/cache
 config/configstore
 config/exercism
 config/htop
+config/nvm
 config/nvim/autoload/plug.vim
 fish_history
 fish_variables
