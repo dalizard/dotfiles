@@ -38,6 +38,7 @@
   lineNumber = true
 
 [alias]
+  s = status --short --branch --ignore-submodules=untracked
   amend = commit --amend
   di = diff
   dc = diff --cached
@@ -53,7 +54,7 @@
   ds = diff --stat=160,120
   dh1 = diff HEAD~1
   fix = !vim +/'<<<<<<<' $(git ls-files --unmerged | cut -f2 | uniq)
-  db = !git reset -- db/structure.sql && git co -- db/structure.sql
+  db = !find db -name schema.rb -o -name structure.sql | xargs git checkout HEAD --
   cc = !git branch | fzf-tmux -d 15 | xargs git co
   ir = !fish -c gir
 
