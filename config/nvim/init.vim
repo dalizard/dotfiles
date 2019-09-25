@@ -19,8 +19,6 @@ Plug 'janko-m/vim-test'
 Plug 'mbbill/undotree'
 Plug 'lmeijvogel/vim-yaml-helper'
 Plug 'sheerun/vim-polyglot'
-Plug 'dense-analysis/ale'
-Plug 'zxqfl/tabnine-vim'
 Plug 'fatih/vim-go'
 Plug 'itchyny/lightline.vim'
 
