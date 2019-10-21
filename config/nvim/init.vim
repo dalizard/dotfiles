@@ -20,6 +20,11 @@ Plug 'mbbill/undotree'
 Plug 'lmeijvogel/vim-yaml-helper'
 Plug 'sheerun/vim-polyglot'
 Plug 'fatih/vim-go'
+Plug 'autozimu/LanguageClient-neovim', {
+    \ 'branch': 'next',
+    \ 'do': 'bash install.sh',
+    \ }
+Plug 'lifepillar/vim-mucomplete'
 Plug 'itchyny/lightline.vim'
 
 call plug#end()
@@ -61,6 +66,8 @@ set scrolloff=3                   " Have some context around the current line al
 set autoread                      " Watch out for file changes
 set splitbelow                    " Put new window below the current one
 set complete+=kspell              " Autocomplete with dictionary words when spell check is on
+set completeopt+=menuone
+set completeopt+=noinsert
 set nobackup
 set noswapfile                    " It's 2019 (at least)
 set nowritebackup
@@ -322,18 +329,15 @@ function! LightlineObsession()
 endfunction
 " }}}
 
-" {{{ ALE
-let g:ale_fixers = {
-  \   'javascript': ['prettier', 'eslint'],
-  \   'typescript': ['prettier', 'eslint'],
-  \   'ruby': ['rubocop'],
-  \}
+" {{{ Language Client
+let g:LanguageClient_serverCommands = {
+  \ 'ruby': ['solargraph', 'stdio'],
+  \ }
+" }}}
 
-let g:ale_lint_on_text_changed = 'never'
-let g:ale_lint_on_insert_leave = 0
-let g:ale_lint_on_enter = 0
-
-let g:ale_fix_on_save = 0
+" {{{ MUcomplete
+let g:mucomplete#completion_delay = 50
+let g:mucomplete#reopen_immediately = 0
 " }}}
 
 " Ruby {{{
