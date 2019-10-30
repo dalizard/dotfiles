@@ -27,6 +27,7 @@ Plug 'autozimu/LanguageClient-neovim', {
 Plug 'lifepillar/vim-mucomplete'
 Plug 'mattn/emmet-vim'
 Plug 'lifepillar/vim-colortemplate'
+Plug 'lifepillar/vim-cheat40'
 Plug 'itchyny/lightline.vim'
 
 call plug#end()
