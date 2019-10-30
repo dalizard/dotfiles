@@ -43,7 +43,7 @@ TabLineFill                      bg4    bg1
 TabLineSel                       green  bg1
 ToolbarButton                    fg0    bg3     bold
 ToolbarLine                      none   bg3
-Visual                           none   bg3
+Visual                           none   bg2
 WildMenu                         blue   bg2     bold
 # }}}
 # 16-color specific {{{

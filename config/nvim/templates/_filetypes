@@ -233,17 +233,17 @@ javascriptAsyncFuncKeyword       red    none
 javascriptAwaitFuncKeyword       red    none
 # }}}
 #PanglossJS {{{
-jsImport                         red    none
+jsImport                         purple none
 jsExport                         red    none
-jsFrom                           red    none
+jsFrom                           purple none
 jsThis                           purple none
 jsParen                          blue   none
 jsOperator                       aqua   none
 jsSpreadOperator                 green  none
 jsSpreadExpression               blue   none
-jsClassKeyword                   red    none
+jsClassKeyword                   blue   none
 jsClassProperty                  green  none
-jsExtendsKeyword                 red    none
+jsExtendsKeyword                 blue   none
 jsExportDefault                  orange none bold
 jsTemplateBraces                 aqua   none
 jsGlobalNodeObjects              fg1    none
