@@ -333,12 +333,26 @@ endfunction
 " {{{ Language Client
 let g:LanguageClient_serverCommands = {
   \ 'ruby': ['solargraph', 'stdio'],
+  \ 'javascript': ['/usr/local/bin/javascript-typescript-stdio'],
   \ }
+
+function LC_maps()
+  if has_key(g:LanguageClient_serverCommands, &filetype)
+    nnoremap <buffer> <silent> L :call LanguageClient#textDocument_hover()<cr>
+    nnoremap <buffer> <silent> gd :call LanguageClient#textDocument_definition()<CR>
+  endif
+endfunction
+
+autocmd FileType * call LC_maps()
 " }}}
 
 " {{{ MUcomplete
 let g:mucomplete#completion_delay = 50
 let g:mucomplete#reopen_immediately = 0
+" }}}
+
+" {{{ vim-jsx-pretty
+let g:vim_jsx_pretty_colorful_config = 1
 " }}}
 
 " Ruby {{{
