@@ -25,6 +25,7 @@ Plug 'autozimu/LanguageClient-neovim', {
     \ 'do': 'bash install.sh',
     \ }
 Plug 'lifepillar/vim-mucomplete'
+Plug 'mattn/emmet-vim'
 Plug 'itchyny/lightline.vim'
 
 call plug#end()
