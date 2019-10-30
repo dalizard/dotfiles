@@ -1,0 +1,26 @@
+# vim: ft=colortemplate
+
+Full name:  Gruvbox 8
+Short name: gruvbox8
+Author: Dimitar Haralanov <dharalanov@me.com>
+Neovim: yes
+
+Include: _help
+Include: _neutral_colors
+
+Include: _global
+
+Variant: gui 256 16 8
+
+Background: dark
+Color: bg0 rgb(29, 32, 33) 235 Black
+Include: _dark
+
+Background: light
+Color: bg0 rgb(251, 241, 199) 230 White
+Color: bg1 rgb(235, 219, 178) 187 Grey
+Color: bg2 rgb(213, 196, 161) 187
+Include: _light
+
+Background: any
+Include: _bw

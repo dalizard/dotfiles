@@ -26,13 +26,13 @@ Plug 'autozimu/LanguageClient-neovim', {
     \ }
 Plug 'lifepillar/vim-mucomplete'
 Plug 'mattn/emmet-vim'
+Plug 'lifepillar/vim-colortemplate'
 Plug 'itchyny/lightline.vim'
 
 call plug#end()
 " }}}
 
 " Core settings {{{
-colorscheme gruvbox
 syntax enable
 syntax sync minlines=256
 filetype plugin indent on         " Enable file type detection.
@@ -85,6 +85,12 @@ set mouse=a                       " Enable mouse for all modes
 set cursorline
 " }}}
 
+" {{{ Color Scheme
+let g:gruvbox8_filetype_hi_groups = 1
+let g:gruvbox8_plugin_hi_grous = 1
+colorscheme gruvbox8
+" }}}
+
 " Auto Groups {{{
 augroup configgroup
   autocmd!
@@ -110,6 +116,8 @@ augroup END
 " Key Mappings {{{
 " Set the leader key
 let mapleader = ","
+
+
 
 " Use Alt and Ctrl keys in command mode
 cnoremap <M-b> <S-Left>
@@ -261,7 +269,7 @@ let test#ruby#rspec#options = {'suite': '-f p -r ~/.rspec-support/quickfix_forma
 
 " lightline.vim {{{
 let g:lightline = {
-      \ 'colorscheme': 'gruvbox',
+      \ 'colorscheme': 'gruvbox8',
       \ 'active': {
       \   'left': [ [ 'mode', 'paste', 'spell' ],
       \             [ 'fugitive', 'readonly', 'filename', 'gitmerge', 'modified' ] ],
