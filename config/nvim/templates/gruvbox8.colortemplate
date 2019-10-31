@@ -1,32 +1,51 @@
 # vim: ft=colortemplate
 
+# Metadata
 Full name:  Gruvbox 8
 Short name: gruvbox8
 Author: Dimitar Haralanov <dharalanov@me.com>
 Neovim: yes
 
-# Neutral colors
-Color: neutralred        rgb(204,  36,  29)    160 DarkRed
-Color: neutralgreen      rgb(152, 151,  26)    100 DarkGreen
-Color: neutralyellow     rgb(215, 153,  33)    172 DarkYellow
-Color: neutralblue       rgb( 69, 133, 136)    66  DarkBlue
-Color: neutralpurple     rgb(177,  98, 134)    132 DarkMagenta
-Color: neutralaqua       rgb(104, 157, 106)    71  DarkCyan
-Color: neutralorange     rgb(214,  93,  14)    166
-
 # Linked groups
-CursorColumn     -> CursorLine
-QuickFixLine     -> Search
-StatusLineTerm   -> StatusLine
-StatusLineTermNC -> StatusLineNC
-VisualNOS        -> Visual
-Tag              -> Special
-lCursor          -> Cursor
-iCursor          -> Cursor
-vCursor          -> Cursor
+CursorColumn           -> CursorLine
+QuickFixLine           -> Search
+StatusLineTerm         -> StatusLine
+StatusLineTermNC       -> StatusLineNC
+VisualNOS              -> Visual
+Tag                    -> Special
+lCursor                -> Cursor
+iCursor                -> Cursor
+vCursor                -> Cursor
 
-Variant: gui 256 16 8
+# Colors
+Color: bg0             rgb( 29,  32,  33) ~
+Color: bg1             rgb( 60,  56,  54) ~
+Color: bg2             rgb( 80,  73,  69) ~
+Color: bg3             rgb(102,  92,  84) ~
+Color: bg4             rgb(124, 111, 100) ~
+Color: bg5             rgb( 36,  38,  39) ~
+Color: fg0             rgb(251, 241, 199) ~
+Color: fg1             rgb(235, 219, 178) ~
+Color: fg2             rgb(213, 196, 161) ~
+Color: fg3             rgb(189, 174, 147) ~
+Color: fg4             rgb(168, 153, 132) ~
+Color: fg5             rgb(173,  59,  20) ~
+Color: grey            rgb(146, 131, 116) ~
+Color: red             rgb(251,  73,  52) ~
+Color: green           rgb(184, 187,  38) ~
+Color: yellow          rgb(250, 189,  47) ~
+Color: blue            rgb(131, 165, 152) ~
+Color: purple          rgb(211, 134, 155) ~
+Color: aqua            rgb(142, 192, 124) ~
+Color: orange          rgb(254, 128,  25) ~
+Color: neutralred      rgb(204,  36,  29) ~
+Color: neutralgreen    rgb(152, 151,  26) ~
+Color: neutralyellow   rgb(215, 153,  33) ~
+Color: neutralblue     rgb( 69, 133, 136) ~
+Color: neutralpurple   rgb(177,  98, 134) ~
+Color: neutralaqua     rgb(104, 157, 106) ~
+Color: neutralorange   rgb(214,  93,  14) ~
 
-Background: dark
-Color: bg0 rgb(29, 32, 33) 235 Black
-Include: _dark
+Variant: gui
+
+Include: _common
