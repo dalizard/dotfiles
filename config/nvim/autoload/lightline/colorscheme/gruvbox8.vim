@@ -1,42 +1,58 @@
 if exists('g:lightline')
-  let s:bg0  = ['#282828', 235]
-  let s:bg1  = [ '#3c3836', 237 ]
-  let s:bg2  = [ '#504945', 239 ]
-  let s:bg4  = [ '#7c6f64', 243 ]
-  let s:fg1  = [ '#ebdbb2', 223 ]
-  let s:fg4  = [ '#a89984', 246 ]
+  let s:inactive_fg = '#646464'
+  let s:inactive_bg = '#282828'
+  let s:dark_bg  = '#3c3836'
+  let s:light_bg = '#504945'
+  let s:light_fg = '#a89985'
+  let s:bright_fg = '#f0e0b9'
+  let s:dark_fg = '#282828'
 
-  let s:yellow = [ '#d79921', 172 ]
-  let s:blue   = [ '#458588', 66 ]
-  let s:aqua   = [ '#689d6a', 72 ]
-  let s:orange = [ '#d65d0e', 166 ]
-  let s:green  = [ '#98971a', 106 ]
+  let s:normal_bg = '#a89985'
+  let s:visual_bg = '#fc802d'
+  let s:insert_bg = '#84a598'
+  let s:replace_bg = '#8fbf7f'
 
-  let s:p = {'normal':{}, 'inactive':{}, 'insert':{}, 'replace':{}, 'visual':{}, 'tabline':{}, 'terminal':{}}
-  let s:p.normal.left = [ [ s:bg0, s:fg4, 'bold' ], [ s:fg4, s:bg2 ] ]
-  let s:p.normal.right = [ [ s:bg0, s:fg4 ], [ s:fg4, s:bg2 ] ]
-  let s:p.normal.middle = [ [ s:fg4, s:bg1 ] ]
-  let s:p.inactive.right = [ [ s:bg4, s:bg1 ], [ s:bg4, s:bg1 ] ]
-  let s:p.inactive.left =  [ [ s:bg4, s:bg1 ], [ s:bg4, s:bg1 ] ]
-  let s:p.inactive.middle = [ [ s:bg4, s:bg1 ] ]
-  let s:p.insert.left = [ [ s:bg0, s:blue, 'bold' ], [ s:fg1, s:bg2 ] ]
-  let s:p.insert.right = [ [ s:bg0, s:blue ], [ s:fg1, s:bg2 ] ]
-  let s:p.insert.middle = [ [ s:fg4, s:bg2 ] ]
-  let s:p.terminal.left = [ [ s:bg0, s:green, 'bold' ], [ s:fg1, s:bg2 ] ]
-  let s:p.terminal.right = [ [ s:bg0, s:green ], [ s:fg1, s:bg2 ] ]
-  let s:p.terminal.middle = [ [ s:fg4, s:bg2 ] ]
-  let s:p.replace.left = [ [ s:bg0, s:aqua, 'bold' ], [ s:fg1, s:bg2 ] ]
-  let s:p.replace.right = [ [ s:bg0, s:aqua ], [ s:fg1, s:bg2 ] ]
-  let s:p.replace.middle = [ [ s:fg4, s:bg2 ] ]
-  let s:p.visual.left = [ [ s:bg0, s:orange, 'bold' ], [ s:bg0, s:bg4 ] ]
-  let s:p.visual.right = [ [ s:bg0, s:orange ], [ s:bg0, s:bg4 ] ]
-  let s:p.visual.middle = [ [ s:fg4, s:bg1 ] ]
-  let s:p.tabline.left = [ [ s:fg4, s:bg2 ] ]
-  let s:p.tabline.tabsel = [ [ s:bg0, s:fg4 ] ]
-  let s:p.tabline.middle = [ [ s:bg0, s:bg0 ] ]
-  let s:p.tabline.right = [ [ s:bg0, s:orange ] ]
-  let s:p.normal.error = [ [ s:bg0, s:orange ] ]
-  let s:p.normal.warning = [ [ s:bg2, s:yellow ] ]
+  let s:base4   = '#a89985'
+  let s:base3   = '#c5c8c6'
+  let s:base2   = '#bababa'
+  let s:base1   = '#a0a0a0'
+  let s:base0   = '#909090'
+  let s:base00  = '#666666'
+  let s:base01  = '#504945'
+  let s:base02  = '#282828'
+  let s:base023 = '#303030'
+  let s:base03  = '#1d1f21'
+  let s:red     = '#cc6666'
+  let s:orange  = '#ed8642'
+  let s:yellow  = '#f0c674'
+  let s:green   = '#b5bd68'
+  let s:cyan    = '#8abeb7'
+  let s:blue    = '#81a2be'
+  let s:magenta = '#b294bb'
 
-  let g:lightline#colorscheme#gruvbox8#palette = lightline#colorscheme#flatten(s:p)
+  let s:p = {'normal': {}, 'inactive': {}, 'insert': {}, 'replace': {}, 'visual': {}, 'tabline': {}}
+  let s:p.normal.left     = [[s:dark_fg, s:normal_bg]]
+  let s:p.normal.middle   = [[s:light_fg, s:dark_bg]]
+  let s:p.normal.right    = [[s:dark_fg, s:normal_bg], [s:dark_fg, s:normal_bg]]
+  let s:p.normal.error    = [[s:red, s:base023]]
+  let s:p.normal.warning  = [[s:yellow, s:base02]]
+
+  let s:p.insert.left     = [[s:dark_fg, s:insert_bg]]
+  let s:p.insert.right    = [[s:dark_fg, s:insert_bg], [s:dark_fg, s:insert_bg]]
+
+  let s:p.visual.left     = [[s:dark_fg, s:visual_bg]]
+  let s:p.visual.right    = [[s:dark_fg, s:visual_bg], [s:dark_fg, s:visual_bg]]
+
+  let s:p.replace.left    = [[s:dark_fg, s:replace_bg]]
+  let s:p.replace.right   = [[s:dark_fg, s:replace_bg], [s:dark_fg, s:replace_bg]]
+
+  let s:p.inactive.right  = [[s:inactive_fg, s:inactive_bg]]
+  let s:p.inactive.left   = [[s:inactive_fg, s:inactive_bg]]
+  let s:p.inactive.middle = [[s:inactive_fg, s:inactive_bg]]
+
+  let s:p.tabline.left    = [[s:light_fg, s:dark_bg]]
+  let s:p.tabline.tabsel  = [[s:dark_fg, s:normal_bg]]
+  let s:p.tabline.right   = copy(s:p.normal.right)
+
+  let g:lightline#colorscheme#gruvbox8#palette = lightline#colorscheme#fill(s:p)
 endif

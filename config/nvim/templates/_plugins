@@ -3,7 +3,7 @@
 # Plugin specific groups
 #if get(g:, "@optionprefix_plugin_hi_groups", 0)
 # Asynchronous Lint Engine {{{
-ALEError                         none   none    t=underline g=undercurl s=red
+ALEError                         red    none    t=underline g=undercurl s=red
 ALEWarning                       none   none    t=underline g=undercurl s=red
 ALEInfo                          none   none    t=underline g=undercurl s=blue
 ALEErrorSign                     red    bg1

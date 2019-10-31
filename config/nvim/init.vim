@@ -28,6 +28,7 @@ Plug 'lifepillar/vim-mucomplete'
 Plug 'mattn/emmet-vim'
 Plug 'lifepillar/vim-colortemplate'
 Plug 'lifepillar/vim-cheat40'
+Plug 'norcalli/nvim-colorizer.lua'
 Plug 'itchyny/lightline.vim'
 
 call plug#end()
@@ -68,8 +69,7 @@ set scrolloff=3                   " Have some context around the current line al
 set autoread                      " Watch out for file changes
 set splitbelow                    " Put new window below the current one
 set complete+=kspell              " Autocomplete with dictionary words when spell check is on
-set completeopt+=menuone
-set completeopt+=noinsert
+set completeopt=noinsert,menuone,noselect
 set nobackup
 set noswapfile                    " It's 2019 (at least)
 set nowritebackup
@@ -88,7 +88,7 @@ set cursorline
 
 " {{{ Color Scheme
 let g:gruvbox8_filetype_hi_groups = 1
-let g:gruvbox8_plugin_hi_grous = 1
+let g:gruvbox8_plugin_hi_groups = 1
 colorscheme gruvbox8
 " }}}
 
@@ -108,17 +108,18 @@ augroup configgroup
 
   " Jump to last cursor position unless it's invalid or in an event handler
   autocmd BufReadPost *
-        \ if line("'\"") > 1 && line("'\"") <= line("$") && &ft !~# 'commit'
-        \ |   execute "normal! g`\""
-        \ | endif
+        \| if line("'\"") > 1 && line("'\"") <= line("$") && &ft !~# 'commit'
+        \|   execute "normal! g`\""
+        \| endif
+
+  autocmd  FileType fzf set laststatus=0 noshowmode noruler
+        \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
 augroup END
 " }}}
 
 " Key Mappings {{{
 " Set the leader key
 let mapleader = ","
-
-
 
 " Use Alt and Ctrl keys in command mode
 cnoremap <M-b> <S-Left>
@@ -273,10 +274,11 @@ let g:lightline = {
       \ 'colorscheme': 'gruvbox8',
       \ 'active': {
       \   'left': [ [ 'mode', 'paste', 'spell' ],
-      \             [ 'fugitive', 'readonly', 'filename', 'gitmerge', 'modified' ] ],
-      \   'right': [ [ 'lineinfo' ], [ 'percent' ], [ 'fileformat', 'fileencoding', 'filetype' ], [ 'obsession' ] ]
+      \             [ 'fugitive', 'readonly', 'filename', 'gitmerge' ] ],
+      \   'right': [ [ 'lineinfo' ], [ 'percent' ], [ 'fileencoding' ], [ 'filetype' ], [ 'obsession' ] ]
       \ },
       \ 'component_function': {
+      \   'filename': 'LightlineFilename',
       \   'mode': 'LightlineMode',
       \   'fugitive': 'LightlineFugitive',
       \   'readonly': 'LightlineReadonly',
@@ -289,8 +291,14 @@ let g:lightline = {
       \   'obsession': 'LightlineObsession'
       \ },
       \ 'separator': { 'left': '', 'right': '' },
-      \ 'subseparator': { 'left': '|', 'right': '|' }
+      \ 'subseparator': { 'left': '・', 'right': '・' }
       \ }
+
+function! LightlineFilename()
+  let filename = expand('%:t') !=# '' ? expand('%:t') : '⌈no name⌉'
+  let modified = &modified ? ' ⌙' : ''
+  return filename . modified
+endfunction
 
 function! LightlineReadonly()
   return &readonly ? '⌀' : ''
@@ -335,14 +343,16 @@ function! LightlineGitmerge()
 endfunction
 
 function! LightlineObsession()
-    return '%{ObsessionStatus("●", "○")}'
+    return '%{ObsessionStatus("▾", "▿")}'
 endfunction
 " }}}
 
 " {{{ Language Client
+let g:LanguageClient_loadSettings = 0
 let g:LanguageClient_serverCommands = {
   \ 'ruby': ['solargraph', 'stdio'],
-  \ 'javascript': ['/usr/local/bin/javascript-typescript-stdio'],
+  \ 'javascript': ['javascript-typescript-stdio'],
+  \ 'typescript': ['javascript-typescript-stdio'],
   \ }
 
 function LC_maps()
