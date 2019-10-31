@@ -27,7 +27,7 @@ Comment                          grey   none    italic
 CursorLine                       none   bg1
 Error                            red    bg0     bold,reverse
 ErrorMsg                         bg0    red     bold
-Folded                           grey   bg1     italic
+Folded                           grey   none    italic
 LineNr                           bg4    none
 MatchParen                       none   bg3     bold
 NonText                          bg2    none
