@@ -11,7 +11,7 @@ SignColumn                       fg1    bg0
 VertSplit                        bg3    bg0
 ColorColumn                      none   bg1
 Comment                          grey   none    italic
-CursorLine                       none   bg1
+CursorLine                       none   bg5
 Error                            red    bg0     bold,reverse
 ErrorMsg                         bg0    red     bold
 Folded                           grey   none    italic
@@ -30,7 +30,7 @@ TabLineFill                      bg4    bg1
 TabLineSel                       green  bg1
 ToolbarButton                    fg0    bg3     bold
 ToolbarLine                      none   bg3
-Visual                           none   bg2
+Visual                           none   bg1
 WildMenu                         blue   bg2     bold
 # Common {{{
 # Group                          Fg     Bg      Attributes
