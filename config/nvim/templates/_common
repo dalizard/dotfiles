@@ -19,7 +19,7 @@ Variant: gui 256
     Normal       fg1    bg0
     CursorLineNr yellow bg1
     FoldColumn   grey   bg1   # FIXME
-    SignColumn   fg1    bg1
+    SignColumn   fg1    bg0
     VertSplit    bg3    bg0
 #endif
 ColorColumn                      none   bg1
@@ -142,7 +142,7 @@ Constant                         purple none
 Define                           aqua   none
 Debug                            red    none
 Delimiter                        orange none
-Error                            red    bg0     bold,reverse
+Error                            fg5    bg5
 Exception                        red    none
 Float                            purple none
 Function                         green  none    bold

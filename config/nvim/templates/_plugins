@@ -3,12 +3,12 @@
 # Plugin specific groups
 #if get(g:, "@optionprefix_plugin_hi_groups", 0)
 # Asynchronous Lint Engine {{{
-ALEError                         red    none    t=underline g=undercurl s=red
-ALEWarning                       none   none    t=underline g=undercurl s=red
+ALEError                         none   none    t=underline g=undercurl s=red
+ALEWarning                       none   none    t=underline g=undercurl s=yellow
 ALEInfo                          none   none    t=underline g=undercurl s=blue
-ALEErrorSign                     red    bg1
-ALEWarningSign                   yellow bg1
-ALEInfoSign                      blue   bg1
+ALEErrorSign                     red    none
+ALEWarningSign                   yellow none
+ALEInfoSign                      blue   none
 # }}}
 # BufTabLine {{{
 BufTabLineCurrent                bg0    fg4

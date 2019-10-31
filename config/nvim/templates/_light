@@ -3,11 +3,13 @@
 # Color palette for light background
 Color: bg3               rgb(189, 174, 147)    144
 Color: bg4               rgb(168, 153, 132)    137
+Color: bg5               rgb(36,  38,  39)     235 DarkGray
 Color: fg0               rgb( 40,  40,  40)    235 DarkGray
 Color: fg1               rgb( 60,  56,  54)    237 Black
 Color: fg2               rgb( 80,  56,  54)    237
 Color: fg3               rgb(102,  92,  84)     59
 Color: fg4               rgb(124, 111, 100)    243 Black
+Color: fg5               rgb(173, 59, 20)      124 Red
 Color: grey              rgb(146, 131, 116)    102 DarkGray
 Color: red               rgb(157,   0,   6)    124 Red
 Color: green             rgb(121, 116,  14)    100 Green

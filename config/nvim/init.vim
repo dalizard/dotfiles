@@ -355,6 +355,37 @@ let g:LanguageClient_serverCommands = {
   \ 'typescript': ['javascript-typescript-stdio'],
   \ }
 
+let g:LanguageClient_diagnosticsDisplay = {
+  \ 1: {
+  \   "name": "Error",
+  \   "texthl": "ALEError",
+  \   "signText": "•",
+  \   "signTexthl": "ALEErrorSign",
+  \   "virtualTexthl": "Error",
+  \ },
+  \ 2: {
+  \   "name": "Warning",
+  \   "texthl": "ALEWarning",
+  \   "signText": "•",
+  \   "signTexthl": "ALEWarningSign",
+  \   "virtualTexthl": "Todo",
+  \ },
+  \ 3: {
+  \   "name": "Information",
+  \   "texthl": "ALEInfo",
+  \   "signText": "•",
+  \   "signTexthl": "ALEInfoSign",
+  \   "virtualTexthl": "Todo",
+  \ },
+  \ 4: {
+  \   "name": "Hint",
+  \   "texthl": "ALEInfo",
+  \   "signText": "➤",
+  \   "signTexthl": "ALEInfoSign",
+  \   "virtualTexthl": "Todo",
+  \ },
+  \ }
+
 function LC_maps()
   if has_key(g:LanguageClient_serverCommands, &filetype)
     nnoremap <buffer> <silent> L :call LanguageClient#textDocument_hover()<cr>

@@ -5,11 +5,13 @@ Color: bg1             rgb(60,  56,  54)     237 DarkGray
 Color: bg2             rgb(80,  73,  69)     239
 Color: bg3             rgb(102, 92,  84)      59
 Color: bg4             rgb(124, 111, 100)    243
+Color: bg5             rgb(36,  38,  39)     235 DarkGray
 Color: fg0             rgb(251, 241, 199)    230
 Color: fg1             rgb(235, 219, 178)    187 White
 Color: fg2             rgb(213, 196, 161)    187
 Color: fg3             rgb(189, 174, 147)    144
 Color: fg4             rgb(168, 153, 132)    137 Gray
+Color: fg5             rgb(173, 59, 20)      124 Red
 Color: grey            rgb(146, 131, 116)    102 DarkGray
 Color: red             rgb(251, 73,  52)     203 Red
 Color: green           rgb(184, 187, 38)     142 Green
@@ -20,4 +22,3 @@ Color: aqua            rgb(142, 192, 124)    107 Cyan
 Color: orange          rgb(254, 128, 25)     208 Magenta
 
 Include: _common
-
