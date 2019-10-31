@@ -84,6 +84,9 @@ set rtp+=/usr/local/opt/fzf
 set guicursor=                    " Do not change the cursor
 set mouse=a                       " Enable mouse for all modes
 set cursorline
+
+" Do not use the deafault cheat sheet
+let g:cheat40_use_default = 0
 " }}}
 
 " {{{ Color Scheme
