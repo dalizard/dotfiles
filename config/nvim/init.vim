@@ -103,9 +103,6 @@ augroup configgroup
   " Reload the colorscheme whenever we write the file
   autocmd BufWritePost gruvbox.vim color gruvbox
 
-  " Remove trailing whitespace on save
-  " autocmd BufWritePre * :%s/\s\+$//e
-
   " Jump to last cursor position unless it's invalid or in an event handler
   autocmd BufReadPost *
         \| if line("'\"") > 1 && line("'\"") <= line("$") && &ft !~# 'commit'
