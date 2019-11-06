@@ -163,5 +163,18 @@ let g:vimshell_escape_colors = [
   \ ]
 endverbatim
 # }}}
+# {{{ fzf
+fzfNormal                        fg1    bg0
+fzfComment                       grey   bg1
+fzfCursorLine                    none   bg1
+fzfStatement                     red    none
+fzfPreProc                       aqua   none
+fzfIgnore                        fg     none
+fzfConditional                   red    none
+fzfException                     red    none
+fzfKeyword                       red    none
+fzfLabel                         red    none
+fzfComment                       grey   none    italic
+# }}}
 #endif
 

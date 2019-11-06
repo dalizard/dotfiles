@@ -223,19 +223,19 @@ command! -bang -nargs=* Rg
 " fzf {{{
 let g:fzf_layout = { 'down': '~30%' }
 let g:fzf_colors =
-\ { 'fg':      ['fg', 'Normal'],
-  \ 'bg':      ['bg', 'Normal'],
-  \ 'hl':      ['fg', 'Comment'],
-  \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
-  \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
-  \ 'hl+':     ['fg', 'Statement'],
-  \ 'info':    ['fg', 'PreProc'],
-  \ 'border':  ['fg', 'Ignore'],
-  \ 'prompt':  ['fg', 'Conditional'],
-  \ 'pointer': ['fg', 'Exception'],
-  \ 'marker':  ['fg', 'Keyword'],
-  \ 'spinner': ['fg', 'Label'],
-  \ 'header':  ['fg', 'Comment'] }
+\ { 'fg':      ['fg', 'fzfNormal'],
+  \ 'bg':      ['bg', 'fzfNormal'],
+  \ 'hl':      ['fg', 'fzfComment'],
+  \ 'fg+':     ['fg', 'fzfCursorLine'],
+  \ 'bg+':     ['bg', 'fzfCursorLine'],
+  \ 'hl+':     ['fg', 'fzfStatement'],
+  \ 'info':    ['fg', 'fzfPreProc'],
+  \ 'border':  ['fg', 'fzfIgnore'],
+  \ 'prompt':  ['fg', 'fzfConditional'],
+  \ 'pointer': ['fg', 'fzfException'],
+  \ 'marker':  ['fg', 'fzfKeyword'],
+  \ 'spinner': ['fg', 'fzfLabel'],
+  \ 'header':  ['fg', 'fzfComment'] }
 " }}}
 
 " vim-test {{{
