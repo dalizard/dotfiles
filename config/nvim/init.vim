@@ -14,6 +14,7 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-rhubarb'
 Plug 'tpope/vim-scriptease'
 Plug 'vim-erlang/vim-erlang-compiler'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
 Plug 'junegunn/fzf.vim'
 Plug 'janko-m/vim-test'
 Plug 'mbbill/undotree'
@@ -80,7 +81,6 @@ set foldmethod=marker
 set foldlevel=0
 set previewheight=20              " Preview split height
 set shell=/usr/local/bin/dash
-set rtp+=/usr/local/opt/fzf
 set guicursor=                    " Do not change the cursor
 set mouse=a                       " Enable mouse for all modes
 set cursorline
