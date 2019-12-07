@@ -2,7 +2,7 @@
 set fish_greeting
 
 # Add .bin to PATH
-set -x PATH ~/.bin /usr/local/sbin $PATH
+set -x PATH ~/.bin $PATH
 
 # Don't let fish masquerade itself as other shells
 set -x SHELL (which fish)
