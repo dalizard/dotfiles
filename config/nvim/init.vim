@@ -225,7 +225,7 @@ let g:fzf_preview_window = ''
 let g:fzf_layout = { 'down': '~30%' }
 let g:fzf_colors =
 \ { 'fg':      ['fg', 'fzfNormal'],
-  \ 'bg':      ['bg', 'fzfNormal'],
+  \ 'bg':      ['bg', 'none'],
   \ 'hl':      ['fg', 'fzfComment'],
   \ 'fg+':     ['fg', 'fzfCursorLine'],
   \ 'bg+':     ['bg', 'fzfCursorLine'],
