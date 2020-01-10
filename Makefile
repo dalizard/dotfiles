@@ -41,7 +41,7 @@ update: | install
 
 clean: | install
 	@echo '==> Cleaning world...'
-	brew cleanup
+	brew cleanup -s
 	$(gem) clean
 	vim +PlugClean +qall
 
