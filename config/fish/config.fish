@@ -58,6 +58,15 @@ set -x SSH_PRIVATE_KEY /tmp/kube-sshkey
 set -x GOPATH ~/.go
 set -x PATH $GOPATH/bin $PATH
 
+# Start SSH agent
+if test -z "$SSH_ENV"
+  set -xg SSH_ENV $HOME/.ssh/environment
+end
+
+if not __ssh_agent_is_started
+  __ssh_agent_start
+end
+
 # Ruby manager
 source /usr/local/share/chruby/chruby.fish
 source /usr/local/share/chruby/auto.fish
