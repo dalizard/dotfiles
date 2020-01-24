@@ -7,9 +7,8 @@ set -x PATH ~/.bin $PATH
 # Don't let fish masquerade itself as other shells
 set -x SHELL (which fish)
 
-# Help out programs spawning editors based on $EDITOR.
-# The same for pagers, just use less for them.
 set -x EDITOR vim
+set -x VISUAL vim
 set -x PAGER less
 set -x BROWSER open
 
@@ -51,9 +50,6 @@ set -x FZF_DEFAULT_COMMAND 'rg --files --no-ignore --hidden --follow --glob "!.g
 # Erlang libraries
 set -x ERL_LIBS /usr/local/opt/proper
 
-# Docker/Kubernetes
-set -x SSH_PRIVATE_KEY /tmp/kube-sshkey
-
 # Set GOPATH and add ~/.go/bin to PATH
 set -x GOPATH ~/.go
 set -x PATH $GOPATH/bin $PATH
@@ -63,6 +59,7 @@ if test -z "$SSH_ENV"
   set -xg SSH_ENV $HOME/.ssh/environment
 end
 
+# Start ssh-agent
 if not __ssh_agent_is_started
   __ssh_agent_start
 end
