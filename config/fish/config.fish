@@ -1,9 +1,6 @@
 # Do not show the greeting message
 set fish_greeting
 
-# Add color support for terminals pretending to be xterm
-test $TERM = xterm; and set -x TERM xterm-256color
-
 # Add .bin to PATH
 set -x PATH ~/.bin /usr/local/sbin $PATH
 
