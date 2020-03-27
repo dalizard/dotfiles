@@ -1,4 +1,4 @@
-EXCLUDED_DOTFILES := Makefile Brewfile
+EXCLUDED_DOTFILES := Makefile
 DOTFILES := $(filter-out $(EXCLUDED_DOTFILES), $(wildcard *))
 
 formulae = \
@@ -29,7 +29,7 @@ formulae = \
 
 default: | update clean
 
-install: | brew link ruby vim_plug neovim
+install: | brew link ruby vim_plug neovim term_db
 
 update: | install
 	@echo '==> Updating world...'
@@ -111,3 +111,15 @@ $(vim):
 	ln -sfnv /usr/local/bin/nvim /usr/local/bin/vim
 $(vi):
 	ln -sfnv /usr/local/bin/nvim /usr/local/bin/vi
+
+### Terminal database
+term_db = $(HOME)/.terminfo
+
+term_db: $(term_db)
+
+$(term_db):
+	@echo '==> Installing latest terminal database...'
+	curl -LO http://invisible-island.net/datafiles/current/terminfo.src.gz
+	gunzip terminfo.src.gz
+	tic -x terminfo.src
+	rm terminfo.src
