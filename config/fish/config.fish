@@ -54,14 +54,9 @@ set -x ERL_LIBS /usr/local/opt/proper
 set -x GOPATH ~/.go
 set -x PATH $GOPATH/bin $PATH
 
-# Start SSH agent
-if test -z "$SSH_ENV"
-  set -xg SSH_ENV $HOME/.ssh/environment
-end
-
-# Start ssh-agent
-if not __ssh_agent_is_started
-  __ssh_agent_start
+# Start keychain
+if status --is-interactive
+  keychain --eval --quiet -Q github_ed25519 frodo_ed25519 | source
 end
 
 # Ruby manager
