@@ -2,7 +2,7 @@
 set fish_greeting
 
 # Add .bin to PATH
-set -x PATH ~/.bin $PATH
+set -U fish_user_paths ~/.bin $fish_user_paths
 
 # Don't let fish masquerade itself as other shells
 set -x SHELL (which fish)
@@ -31,9 +31,10 @@ alias g='git'
 alias ll='ls -alGF'
 alias gg='git status'
 alias be='bundle exec'
-alias gh="git log --pretty=format:'%h' -n 1 | pbcopy"
-alias gb="git rev-parse --abbrev-ref HEAD | tr -d '\n' | pbcopy"
-alias vim='nvim'
+alias gh="git log --pretty=format:'%h' -n 1 | xclip -se c -i"
+alias gb="git rev-parse --abbrev-ref HEAD | tr -d '\n' | xclip -se c -i"
+alias yaegi="rlwrap yaegi"
+alias n="nnn"
 
 # hub is aliased as git
 eval (hub alias -s)
