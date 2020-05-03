@@ -32,8 +32,9 @@ function fish_prompt --description 'Write out the prompt'
   printf '%s ' (__fish_git_prompt)
 
   if not test $last_status -eq 0
-  set_color $fish_color_error
+    set_color $fish_color_error
   end
 
-  echo -n (set_color red)'❯'(set_color yellow)'❯'(set_color green)'❯ '
+  echo -n '$ '
+
 end
