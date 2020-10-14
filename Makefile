@@ -25,6 +25,7 @@ formulae = \
 					 erlang \
 					 rebar3 \
 					 neovim \
+					 tldr \
 					 dash \
 
 default: | update clean
