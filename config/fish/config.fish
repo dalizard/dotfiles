@@ -2,7 +2,9 @@
 set fish_greeting
 
 # Add .bin to PATH
-set -U fish_user_paths ~/.bin $fish_user_paths
+test -d ~/.bin
+and not contains ~/.bin $PATH
+and set PATH ~/.bin $PATH
 
 # Don't let fish masquerade itself as other shells
 set -x SHELL (which fish)
@@ -52,8 +54,10 @@ set -x FZF_DEFAULT_COMMAND 'rg --files --no-ignore --hidden --follow --glob "!.g
 set -x ERL_LIBS /usr/local/opt/proper
 
 # Set GOPATH and add ~/.go/bin to PATH
-set -x GOPATH ~/.go
-set -x PATH $GOPATH/bin $PATH
+test -d ~/.go
+and set -x GOPATH ~/.go
+and not contains ~/.go $PATH
+and set PATH $GOPATH $PATH
 
 # Start keychain
 if status --is-interactive
