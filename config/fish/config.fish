@@ -35,7 +35,6 @@ alias gg='git status'
 alias be='bundle exec'
 alias gh="git log --pretty=format:'%h' -n 1 | xclip -se c -i"
 alias gb="git rev-parse --abbrev-ref HEAD | tr -d '\n' | xclip -se c -i"
-alias yaegi="rlwrap yaegi"
 alias n="nnn"
 
 # hub is aliased as git
