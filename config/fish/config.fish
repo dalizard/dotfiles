@@ -56,7 +56,7 @@ set -x SSH_PRIVATE_KEY /tmp/kube-sshkey
 
 # Set GOPATH and add ~/.go/bin to PATH
 set -x GOPATH ~/.go
-set PATH $GOPATH/bin $PATH
+set -x PATH $GOPATH/bin $PATH
 
 # Ruby manager
 source /usr/local/share/chruby/chruby.fish
