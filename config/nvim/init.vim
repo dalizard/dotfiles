@@ -25,7 +25,7 @@ Plug 'autozimu/LanguageClient-neovim', {
     \ 'do': 'bash install.sh',
     \ }
 Plug 'lifepillar/vim-mucomplete'
-Plug 'mattn/emmet-vim'
+"Plug 'mattn/emmet-vim'
 Plug 'lifepillar/vim-colortemplate'
 Plug 'lifepillar/vim-cheat40'
 Plug 'norcalli/nvim-colorizer.lua'
