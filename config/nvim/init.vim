@@ -203,6 +203,8 @@ cnoreabbrev rg! Rg!
 " Quick search shortcut
 nnoremap \ :Rg<space>
 nnoremap <C-\> :Rg!<space>
+
+au FileType go nmap <leader>t <Plug>(go-run-split)
 " }}}
 
 " RipGrep {{{
