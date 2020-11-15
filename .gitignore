@@ -8,6 +8,10 @@ config/htop
 config/nvim/autoload/plug.vim
 config/nvm
 config/yarn
+config/QtProject.conf
+config/bpytop/error.log
+config/nnn/.history
+config/slack-term/config
 fish_history
 fish_variables
 fishd.*
