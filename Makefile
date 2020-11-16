@@ -3,19 +3,14 @@ DOTFILES := $(filter-out $(EXCLUDED_DOTFILES), $(wildcard *))
 
 formulae = \
 					 fish \
+					 fnm \
 					 openssl@1.1 \
 					 universal-ctags \
 					 git \
 					 fzf \
-					 htop \
 					 hub \
-					 make \
-					 pstree \
 					 ripgrep \
 					 tmux \
-					 ngrep \
-					 nmap \
-					 readline \
 					 ruby-install \
 					 chruby \
 					 chruby-fish \
