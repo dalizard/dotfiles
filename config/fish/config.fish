@@ -34,6 +34,7 @@ alias gg='git status'
 alias be='bundle exec'
 alias gh="git log --pretty=format:'%h' -n 1 | pbcopy"
 alias gb="git rev-parse --abbrev-ref HEAD | tr -d '\n' | pbcopy"
+alias vim='nvim'
 
 # hub is aliased as git
 eval (hub alias -s)
