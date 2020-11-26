@@ -99,3 +99,6 @@
 
 [rebase]
   autosquash = true
+
+[includeIf "gitdir:~/Code/Shogun"]
+	path = .gitconfig-work
