@@ -5,6 +5,7 @@ config/exercism
 config/htop
 config/nvm
 config/nvim/autoload/plug.vim
+config/yarn
 fish_history
 fish_variables
 fishd.*
