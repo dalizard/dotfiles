@@ -352,8 +352,8 @@ endfunction
 let g:LanguageClient_loadSettings = 0
 let g:LanguageClient_serverCommands = {
   \ 'ruby': ['solargraph', 'stdio'],
-  \ 'javascript': ['javascript-typescript-stdio'],
-  \ 'typescript': ['javascript-typescript-stdio'],
+  \ 'javascript': ['typescript-language-server', '--stdio'],
+  \ 'typescript': ['typescript-language-server', '--stdio'],
   \ }
 
 let g:LanguageClient_diagnosticsDisplay = {
