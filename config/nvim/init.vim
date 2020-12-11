@@ -19,7 +19,7 @@ Plug 'janko-m/vim-test'
 Plug 'mbbill/undotree'
 Plug 'lmeijvogel/vim-yaml-helper'
 Plug 'sheerun/vim-polyglot'
-Plug 'fatih/vim-go'
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'autozimu/LanguageClient-neovim', {
     \ 'branch': 'next',
     \ 'do': 'bash install.sh',
