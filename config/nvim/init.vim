@@ -423,6 +423,10 @@ let g:rails_projections = {
 let g:erlang_completion_preview_help = 0
 " }}}
 
+" Go {{{
+let g:go_doc_keywordprg_enabled = 0
+" }}}
+
 " Custom Functions {{{
 function! SearchWordWithRg()
   execute 'Rg' expand('<cword>')
