@@ -2,7 +2,7 @@
 window-position=(0, 0)
 window-size=(1366, 768)
 date-format='regular'
-location-mode='filename-entry'
+location-mode='path-bar'
 show-hidden=false
 show-size-column=true
 show-type-column=true
