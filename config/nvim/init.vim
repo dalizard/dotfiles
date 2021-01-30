@@ -424,7 +424,10 @@ let g:erlang_completion_preview_help = 0
 " }}}
 
 " Go {{{
+au FileType go nmap <leader>t <Plug>(go-run-vertical)
 let g:go_doc_keywordprg_enabled = 0
+let g:go_term_enabled = 1
+let g:go_term_reuse = 1
 " }}}
 
 " Custom Functions {{{
