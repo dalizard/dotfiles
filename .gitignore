@@ -1,14 +1,15 @@
+*/heroku/config.json
 .netrwhist
 bundle/cache
 config/configstore
 config/exercism
+config/gatsby
 config/htop
-config/nvm
 config/nvim/autoload/plug.vim
+config/nvm
 config/yarn
 fish_history
 fish_variables
 fishd.*
 generated_completions
 nvim/plugins
-*/heroku/config.json
