@@ -431,6 +431,7 @@ let g:go_doc_popup_window = 1
 let g:go_doc_keywordprg_enabled = 0
 let g:go_term_enabled = 1
 let g:go_term_reuse = 1
+let g:go_doc_popup_window = 1
 " }}}
 
 " Custom Functions {{{
