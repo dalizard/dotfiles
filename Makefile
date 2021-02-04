@@ -3,7 +3,6 @@ DOTFILES := $(filter-out $(EXCLUDED_DOTFILES), $(wildcard *))
 
 formulae = \
 					 fish \
-					 fnm \
 					 openssl@1.1 \
 					 universal-ctags \
 					 git \
