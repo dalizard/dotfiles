@@ -2,26 +2,26 @@ EXCLUDED_DOTFILES := Makefile
 DOTFILES := $(filter-out $(EXCLUDED_DOTFILES), $(wildcard *))
 
 formulae = \
-					 fish \
-					 openssl@1.1 \
-					 universal-ctags \
-					 git \
-					 fzf \
-					 hub \
-					 ripgrep \
-					 tmux \
-					 ruby-install \
+					 bat \
 					 chruby \
 					 chruby-fish \
-					 postgresql \
-					 sqlite \
+					 dash \
 					 elixir \
 					 erlang \
-					 rebar3 \
+					 fish \
+					 fzf \
+					 git \
+					 hub \
 					 neovim \
+					 openssl@1.1 \
+					 postgresql \
+					 rebar3 \
+					 ripgrep \
+					 ruby-install \
+					 sqlite \
 					 tldr \
-					 dash \
-
+					 tmux \
+					 universal-ctags \
 default: | update clean
 
 install: | brew link ruby vim_plug neovim term_db
