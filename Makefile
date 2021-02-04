@@ -8,6 +8,7 @@ formulae = \
 					 dash \
 					 elixir \
 					 erlang \
+					 fd \
 					 fish \
 					 fzf \
 					 git \
