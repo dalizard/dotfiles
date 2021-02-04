@@ -32,6 +32,7 @@ update: | install
 	brew upgrade
 	$(gem) update
 	$(gem) update --system
+	fisher update
 	vim +PlugUpgrade +PlugInstall +PlugUpdate +qall
 
 clean: | install
