@@ -1,7 +1,9 @@
-EXCLUDED_DOTFILES := Makefile
-DOTFILES := $(filter-out $(EXCLUDED_DOTFILES), $(wildcard *))
+SHELL := /usr/local/bin/fish
 
-formulae = \
+excluded_dotfiles := Makefile
+dotfiles := $(filter-out $(excluded_dotfiles), $(wildcard *))
+
+formulae := \
 					 bat \
 					 chruby \
 					 chruby-fish \
@@ -22,28 +24,29 @@ formulae = \
 					 sqlite \
 					 tldr \
 					 tmux \
-					 universal-ctags \
+					 universal-ctags
+
 default: | update clean
 
 install: | brew link ruby vim_plug neovim term_db
 
 update: | install
 	@echo '==> Updating world...'
-	brew update
-	brew upgrade
-	$(gem) update
-	$(gem) update --system
-	fisher update
-	vim +PlugUpgrade +PlugInstall +PlugUpdate +qall
+	@brew update
+	@brew upgrade
+	@$(gem) update
+	@$(gem) update --system
+	@fisher update
+	@vim +PlugUpgrade +PlugInstall +PlugUpdate +qall
 
 clean: | install
 	@echo '==> Cleaning world...'
-	brew cleanup -s
-	$(gem) clean
-	vim +PlugClean +qall
+	@brew cleanup -s
+	@$(gem) clean
+	@vim +PlugClean +qall
 
 ### Homebrew
-homebrew_root = /usr/local
+homebrew_root := /usr/local
 cellar := $(homebrew_root)/Cellar
 prefixed_formulae := $(addprefix $(cellar)/,$(notdir $(formulae)))
 homebrew := $(homebrew_root)/bin/brew
@@ -58,18 +61,18 @@ $(prefixed_formulae): | $(homebrew)
 	brew install $(notdir $@)
 
 ### Linking
-prefixed_symlinks = $(addprefix $(HOME)/.,$(DOTFILES))
+prefixed_symlinks = $(addprefix $(HOME)/.,$(dotfiles))
 
 link: | $(prefixed_symlinks)
 
 $(prefixed_symlinks):
 	@echo '==> Link dotfiles to home directory...'
-	@$(foreach val, $(DOTFILES), ln -sfnv $(abspath $(val)) $(HOME)/.$(val);)
+	@$(foreach val, $(dotfiles), ln -sfnv $(abspath $(val)) $(HOME)/.$(val);)
 
 ### Unlinking
 unlink:
 	@echo '==> Remove linked dotfiles in home directory...'
-	@-$(foreach val, $(DOTFILES), rm -vrf $(HOME)/.$(val);)
+	@-$(foreach val, $(dotfiles), rm -vrf $(HOME)/.$(val);)
 
 ### Ruby
 ruby_version := $(shell cat $(PWD)/ruby-version)
