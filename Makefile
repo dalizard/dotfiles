@@ -16,11 +16,13 @@ formulae := \
 					 git \
 					 hub \
 					 neovim \
+					 nnn \
 					 openssl@1.1 \
 					 postgresql \
 					 rebar3 \
 					 ripgrep \
 					 ruby-install \
+					 rust \
 					 sqlite \
 					 tldr \
 					 tmux \
