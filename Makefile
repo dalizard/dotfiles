@@ -1,66 +1,20 @@
 SHELL := /usr/local/bin/fish
 
-excluded_dotfiles := Makefile
-dotfiles := $(filter-out $(excluded_dotfiles), $(wildcard *))
-
-formulae := \
-					 bat \
-					 chruby \
-					 chruby-fish \
-					 dash \
-					 elixir \
-					 erlang \
-					 fd \
-					 fish \
-					 fzf \
-					 git \
-					 hub \
-					 neovim \
-					 nnn \
-					 openssl@1.1 \
-					 postgresql \
-					 rebar3 \
-					 ripgrep \
-					 ruby-install \
-					 rust \
-					 sqlite \
-					 tldr \
-					 tmux \
-					 universal-ctags
-
 default: | update clean
 
-install: | brew link ruby vim_plug neovim term_db
+install: | link ruby vim_plug term_db
 
 update: | install
 	@echo '==> Updating world...'
-	@brew update
-	@brew upgrade
-	@$(gem) update
-	@$(gem) update --system
-	@fisher update
-	@vim +PlugUpgrade +PlugInstall +PlugUpdate +qall
+	$(gem) update
+	$(gem) update --system
+	fisher update
+	vim +PlugUpgrade +PlugInstall +PlugUpdate +qall
 
 clean: | install
 	@echo '==> Cleaning world...'
-	@brew cleanup -s
-	@$(gem) clean
-	@vim +PlugClean +qall
-
-### Homebrew
-homebrew_root := /usr/local
-cellar := $(homebrew_root)/Cellar
-prefixed_formulae := $(addprefix $(cellar)/,$(notdir $(formulae)))
-homebrew := $(homebrew_root)/bin/brew
-
-brew: | $(homebrew) $(prefixed_formulae)
-
-$(homebrew):
-	ruby -e "$$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-	brew analytics off
-
-$(prefixed_formulae): | $(homebrew)
-	brew install $(notdir $@)
+	$(gem) clean
+	vim +PlugClean +qall
 
 ### Linking
 prefixed_symlinks = $(addprefix $(HOME)/.,$(dotfiles))

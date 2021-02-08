@@ -4,7 +4,7 @@ Term colors: bg0 neutralred neutralgreen neutralyellow
 Term colors: neutralblue neutralpurple neutralaqua fg4
 Term colors: grey red green yellow blue purple aqua fg1
 
-Normal                           fg1    bg0
+Normal                           fg1    none
 CursorLineNr                     yellow bg1
 FoldColumn                       grey   bg1
 SignColumn                       fg1    bg0

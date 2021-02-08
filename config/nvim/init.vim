@@ -14,6 +14,7 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-rhubarb'
 Plug 'tpope/vim-scriptease'
 Plug 'vim-erlang/vim-erlang-compiler'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
 Plug 'junegunn/fzf.vim'
 Plug 'janko-m/vim-test'
 Plug 'mbbill/undotree'
@@ -80,7 +81,6 @@ set foldmethod=marker
 set foldlevel=0
 set previewheight=20              " Preview split height
 set shell=/usr/local/bin/dash
-set rtp+=/usr/local/opt/fzf
 set guicursor=                    " Do not change the cursor
 set mouse=a                       " Enable mouse for all modes
 set cursorline
@@ -203,6 +203,8 @@ cnoreabbrev rg! Rg!
 " Quick search shortcut
 nnoremap \ :Rg<space>
 nnoremap <C-\> :Rg!<space>
+
+au FileType go nmap <leader>t <Plug>(go-run-split)
 " }}}
 
 " RipGrep {{{
@@ -225,7 +227,7 @@ let g:fzf_preview_window = ''
 let g:fzf_layout = { 'down': '~30%' }
 let g:fzf_colors =
 \ { 'fg':      ['fg', 'fzfNormal'],
-  \ 'bg':      ['bg', 'fzfNormal'],
+  \ 'bg':      ['bg', 'none'],
   \ 'hl':      ['fg', 'fzfComment'],
   \ 'fg+':     ['fg', 'fzfCursorLine'],
   \ 'bg+':     ['bg', 'fzfCursorLine'],
@@ -429,6 +431,7 @@ let g:go_doc_popup_window = 1
 let g:go_doc_keywordprg_enabled = 0
 let g:go_term_enabled = 1
 let g:go_term_reuse = 1
+let g:go_doc_popup_window = 1
 " }}}
 
 " Custom Functions {{{

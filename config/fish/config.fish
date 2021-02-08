@@ -2,14 +2,15 @@
 set fish_greeting
 
 # Add .bin to PATH
-set -x PATH ~/.bin /usr/local/sbin $PATH
+test -d ~/.bin
+and not contains ~/.bin $PATH
+and set PATH ~/.bin $PATH
 
 # Don't let fish masquerade itself as other shells
 set -x SHELL (which fish)
 
-# Help out programs spawning editors based on $EDITOR.
-# The same for pagers, just use less for them.
 set -x EDITOR vim
+set -x VISUAL vim
 set -x PAGER less
 set -x BROWSER open
 
@@ -32,9 +33,9 @@ alias g='git'
 alias ll='ls -alGF'
 alias gg='git status'
 alias be='bundle exec'
-alias gh="git log --pretty=format:'%h' -n 1 | pbcopy"
-alias gb="git rev-parse --abbrev-ref HEAD | tr -d '\n' | pbcopy"
-alias vim='nvim'
+alias gh="git log --pretty=format:'%h' -n 1 | xclip -se c -i"
+alias gb="git rev-parse --abbrev-ref HEAD | tr -d '\n' | xclip -se c -i"
+alias n="nnn"
 
 # hub is aliased as git
 eval (hub alias -s)
@@ -51,12 +52,16 @@ set -x FZF_DEFAULT_COMMAND 'rg --files --no-ignore --hidden --follow --glob "!.g
 # Erlang libraries
 set -x ERL_LIBS /usr/local/opt/proper
 
-# Docker/Kubernetes
-set -x SSH_PRIVATE_KEY /tmp/kube-sshkey
-
 # Set GOPATH and add ~/.go/bin to PATH
-set -x GOPATH ~/.go
-set -x PATH $GOPATH/bin $PATH
+test -d ~/.go
+and set -x GOPATH ~/.go
+and not contains ~/.go $PATH
+and set PATH $GOPATH $PATH
+
+# Start keychain
+if status --is-interactive
+  keychain --eval --quiet -Q github_ed25519 frodo_ed25519 | source
+end
 
 # Ruby manager
 source /usr/local/share/chruby/chruby.fish

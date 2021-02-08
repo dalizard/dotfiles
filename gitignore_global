@@ -18,5 +18,6 @@ Session.vim
 vim/undo
 tags
 config/hub
+config/yarn
 spec/quickfix.out
 NOTES
