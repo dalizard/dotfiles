@@ -9,6 +9,8 @@ and set PATH ~/.bin $PATH
 # Don't let fish masquerade itself as other shells
 set -x SHELL (which fish)
 
+set -U OS_NAME (uname -s)
+
 set -x EDITOR vim
 set -x VISUAL vim
 set -x PAGER less
@@ -58,8 +60,8 @@ and set -x GOPATH ~/.go
 and not contains ~/.go $PATH
 and set PATH $GOPATH $PATH
 
-# Start keychain
-if status --is-interactive
+# Start keychain under FreeBSD
+if test $OS_NAME = 'FreeBSD'; and status --is-interactive
   keychain --eval --quiet -Q github_ed25519 frodo_ed25519 | source
 end
 
