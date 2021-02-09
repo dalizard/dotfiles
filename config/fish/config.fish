@@ -27,9 +27,6 @@ set -x ERL_AFLAGS '-kernel shell_history enabled'
 # Set ripgrep config file
 set -x RIPGREP_CONFIG_PATH ~/.ripgreprc
 
-# Search hightlight color
-set fish_color_search_match --background=771503
-
 # Shortcuts
 alias g='git'
 alias ll='ls -alGF'
