@@ -30,7 +30,6 @@ formulae := \
 	ripgrep \
 	ruby-install \
 	rust \
-	rust \
 	sqlite \
 	tldr \
 	tmux \
