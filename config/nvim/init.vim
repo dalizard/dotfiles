@@ -447,6 +447,15 @@ let g:go_term_reuse = 1
 let g:go_doc_popup_window = 1
 " }}}
 
+" Colorizer.lua {{{
+lua << EOF
+require 'colorizer'.setup({}, {
+  rgb_fn = true,
+  hsl_fn = true
+})
+EOF
+" }}}
+
 " Custom Functions {{{
 function! SearchWordWithRg()
   execute 'Rg' expand('<cword>')
