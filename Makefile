@@ -20,6 +20,7 @@ formulae := \
 	fish \
 	fzf \
 	git \
+	go \
 	hub \
 	neovim \
 	nnn \
@@ -28,6 +29,7 @@ formulae := \
 	rebar3 \
 	ripgrep \
 	ruby-install \
+	rust \
 	rust \
 	sqlite \
 	tldr \
