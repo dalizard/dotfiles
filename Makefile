@@ -2,6 +2,11 @@ SHELL := /usr/local/bin/fish
 OS_NAME := $(shell uname -s | tr A-Z a-z)
 
 excluded_dotfiles := Makefile
+
+ifeq ($(OS_NAME), darwin)
+	excluded_dotfiles += fvwm
+endif
+
 dotfiles := $(filter-out $(excluded_dotfiles), $(wildcard *))
 
 formulae := \
