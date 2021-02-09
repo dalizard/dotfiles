@@ -72,7 +72,7 @@ set splitbelow                    " Put new window below the current one
 set complete+=kspell              " Autocomplete with dictionary words when spell check is on
 set completeopt=noinsert,menuone,noselect
 set nobackup
-set noswapfile                    " It's 2019 (at least)
+set noswapfile                    " It's 2021 (at least)
 set nowritebackup
 set undofile                      " Maintain undo history between sessions
 set undodir=~/.nvim/_undo
