@@ -22,6 +22,7 @@ formulae := \
 	git \
 	go \
 	hub \
+	luajit \
 	neovim \
 	nnn \
 	openssl@1.1 \
