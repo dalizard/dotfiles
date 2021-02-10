@@ -7,30 +7,29 @@ endif
 
 call plug#begin('~/.nvim/plugins')
 
-Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-obsession'
-Plug 'tpope/vim-rails'
-Plug 'tpope/vim-surround'
-Plug 'tpope/vim-rhubarb'
-Plug 'tpope/vim-scriptease'
-Plug 'vim-erlang/vim-erlang-compiler'
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
-Plug 'junegunn/fzf.vim'
-Plug 'janko-m/vim-test'
-Plug 'mbbill/undotree'
-Plug 'lmeijvogel/vim-yaml-helper'
-Plug 'sheerun/vim-polyglot'
-Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'autozimu/LanguageClient-neovim', {
     \ 'branch': 'next',
     \ 'do': 'bash install.sh',
     \ }
-Plug 'lifepillar/vim-mucomplete'
-"Plug 'mattn/emmet-vim'
-Plug 'lifepillar/vim-colortemplate'
-Plug 'lifepillar/vim-cheat40'
-Plug 'norcalli/nvim-colorizer.lua'
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'itchyny/lightline.vim'
+Plug 'janko-m/vim-test'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
+Plug 'junegunn/fzf.vim'
+Plug 'lifepillar/vim-cheat40'
+Plug 'lifepillar/vim-colortemplate'
+Plug 'lifepillar/vim-mucomplete'
+Plug 'lmeijvogel/vim-yaml-helper'
+Plug 'mbbill/undotree'
+Plug 'norcalli/nvim-colorizer.lua'
+Plug 'sheerun/vim-polyglot'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-obsession'
+Plug 'tpope/vim-rails'
+Plug 'tpope/vim-rhubarb'
+Plug 'tpope/vim-scriptease'
+Plug 'tpope/vim-surround'
+Plug 'vim-erlang/vim-erlang-compiler'
 
 call plug#end()
 " }}}
