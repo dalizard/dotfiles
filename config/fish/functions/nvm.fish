@@ -11,7 +11,7 @@ function nvm --argument-names cmd v --description "Node version manager"
 
     switch "$cmd"
         case -v --version
-            echo "nvm, version 2.0.1"
+            echo "nvm, version 2.2.0"
         case "" -h --help
             echo "Usage: nvm install <version>    Download and activate the specified Node version"
             echo "       nvm install              Install version from nearest .nvmrc file"
@@ -29,7 +29,7 @@ function nvm --argument-names cmd v --description "Node version manager"
             echo "       nvm_mirror               Set mirror for Node binaries"
             echo "       nvm_default_version      Set the default version for new shells"
         case install
-            _nvm_index_update $nvm_mirror/index.tab $nvm_data/.index || return
+            _nvm_index_update $nvm_mirror $nvm_data/.index || return
 
             string match --entire --regex -- (_nvm_version_match $v) <$nvm_data/.index | read v alias
 
@@ -141,7 +141,7 @@ function nvm --argument-names cmd v --description "Node version manager"
         case ls list
             _nvm_list | _nvm_list_format (_nvm_current) $argv[2]
         case lsr {ls,list}-remote
-            _nvm_index_update $nvm_mirror/index.tab $nvm_data/.index || return
+            _nvm_index_update $nvm_mirror $nvm_data/.index || return
             _nvm_list | command awk '
                 FILENAME == "-" && (is_local[$1] = FNR == NR) { next } {
                     print $0 (is_local[$1] ? " ✓" : "")
