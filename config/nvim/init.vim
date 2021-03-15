@@ -420,6 +420,14 @@ let g:mucomplete#reopen_immediately = 0
 let g:vim_jsx_pretty_colorful_config = 1
 " }}}
 
+" vim-fugitive {{{
+augroup fugitive_ext
+  autocmd!
+  " Browse to the commit under my cursor
+  autocmd FileType fugitiveblame nnoremap <buffer> <leader>gb :execute ":Gbrowse " . expand("<cword>")<cr>
+augroup END
+" }}}
+
 " Ruby {{{
 let g:rails_projections = {
   \  'app/*.rb': {
