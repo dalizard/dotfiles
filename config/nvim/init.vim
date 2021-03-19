@@ -363,25 +363,15 @@ endfunction
 " }}}
 
 " {{{ Language Client
-nmap <leader> e <Plug>(lcn-hover)
 let g:LanguageClient_loadSettings = 0
 let g:LanguageClient_selectionUI = 'fzf'
 let g:LanguageClient_showCompletionDocs = 0
-let g:LanguageClient_loggingFile = expand('/tmp/LanguageClient.log')
 
 
 let g:LanguageClient_serverCommands = {
       \ 'javascript': ['typescript-language-server', '--stdio'],
       \ 'typescript': ['typescript-language-server', '--stdio'],
-      \ 'ruby': {
-      \   'name': 'solargraph',
-      \   'command': ['solargraph', 'stdio'],
-      \   'initializationOptions': {
-      \     'diagnostics': v:false,
-      \     'hover': v:false,
-      \     'reporters': ['rubocop', 'update_errors'],
-      \   },
-      \ },
+      \ 'ruby': ['solargraph', 'stdio'],
       \}
 
 let g:LanguageClient_diagnosticsDisplay = {
