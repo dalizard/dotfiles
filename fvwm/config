@@ -99,6 +99,13 @@ AddToFunc RaiseMove
 + I Raise
 + M $0
 
+DestroyFunc WindowListFunc
+AddToFunc WindowListFunc
++ I WindowId $0 Iconify off
++ I WindowId $0 FlipFocus
++ I WindowId $0 Raise
++ I WindowId $0 WarpToWindow +80p +35p
+
 
 ##     __            __   _         __
 ##    / /_____ __ __/ /  (_)__  ___/ /__
@@ -161,6 +168,8 @@ Key XF86AudioLowerVolume A A Exec exec mixer vol -10
 # Focus the tiny xterm via alt-enter
 Key F1 A M GotoTerminal
 Key F2 A M GotoBrowser
+
+Key Space A 1 WindowList Root c c CurrentAtEnd
 
 ##                             __   _         __
 ##    __ _  ___  __ _____ ___ / /  (_)__  ___/ /__
