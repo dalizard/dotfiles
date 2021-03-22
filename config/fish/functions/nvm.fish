@@ -11,7 +11,7 @@ function nvm --argument-names cmd v --description "Node version manager"
 
     switch "$cmd"
         case -v --version
-            echo "nvm, version 2.2.1"
+            echo "nvm, version 2.2.2"
         case "" -h --help
             echo "Usage: nvm install <version>    Download and activate the specified Node version"
             echo "       nvm install              Install version from nearest .nvmrc file"
@@ -62,6 +62,10 @@ function nvm --argument-names cmd v --description "Node version manager"
                         set arch x86
                     case x86_64
                         set arch x64
+                    case arm64
+                        if test "$os" = darwin
+                            set arch x64
+                        end
                     case armv6 armv6l
                         set arch armv6l
                     case armv7 armv7l
