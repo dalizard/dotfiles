@@ -35,15 +35,6 @@ AddToFunc DeThumbnail
 + I PipeRead 'bash $[scripts]/dethumb "$[w.id]" "$[cache]"'
 *FirstEvent: deiconify DeThumbnail
 
-# Toggle titlebar
-DestroyFunc ToggleTitle
-AddToFunc   ToggleTitle
-+ I ThisWindow (State 1) WindowStyle Title
-+ I TestRc (Match) State 1 False
-+ I TestRc (Match) Break
-+ I WindowStyle !Title
-+ I State 1 True
-
 # Focus terminal
 DestroyFunc GotoTerminal
 AddToFunc GotoTerminal
@@ -196,7 +187,6 @@ AddToMenu   MenuIconOps
 + "(Un)Maximize" Maximize
 + "(Un)Shade" WindowShade
 + "(Un)Sticky" Stick
-+ "(No)TitleBar" Pick (CirculateHit) ToggleTitle
 + "" Nop
 + "Close" Close
 + "Destroy" Destroy
@@ -296,24 +286,73 @@ DestroyModuleConfig FvwmScript:*
 ##   / .__/\_,_/\_, /\__/_/
 ##../_/......../___/......
 ## Workspace
-DesktopSize 4x1
+DesktopSize 2x1
 EdgeScroll 0 0
 EdgeResistance 0
 EdgeThickness 0
 EwmhBaseStruts 0 0 0 0
 
 ## Workspace Indicator
-DestroyModuleConfig FvwmPager: *
-AddToFunc StartFunction
-+ I Module FvwmPager
-*FvwmPager: font none
-*FvwmPager: Rows 1
-*FvwmPager: Column 4
-*FvwmPager: Back #131c26
-*FvwmPager: WindowColorsets 1 2
-*FvwmPager: Geometry 128x18-12-12
-Style FvwmPager !Title, !Borders, StaysOnBottom, Sticky
+#DestroyModuleConfig FvwmPager: *
+#AddToFunc StartFunction
+#+ I Module FvwmPager
+#*FvwmPager: font none
+#*FvwmPager: Rows 1
+#*FvwmPager: Column 4
+#*FvwmPager: Back #131c26
+#*FvwmPager: WindowColorsets 1 2
+#*FvwmPager: Geometry 128x18-12-12
+#Style FvwmPager !Title, !Borders, StaysOnBottom, Sticky
 
 ## Minimize to Thumbnail Placeholder
 Style * IconBox 400x768+12+12, IconGrid 15 15, \
 IconFill top left, !IconTitle, IconBackgroundRelief 0
+
+##################################################
+BugOpts FlickeringMoveWorkaround True
+
+SetEnv FVWM_TILING_0-0-0 1
+SetEnv FVWM_MASTER_WIDTH 50
+
+Piperead 'echo SetEnv FVWM_MASTER_PIXWIDTH $(( $[FVWM_MASTER_WIDTH]*$[vp.width]/100 ))'
+
+Key j      A    M    PrevWindow
+Key k      A    M    NextWindow
+Key h      A    M    DecreaseMasterWidth 
+Key l      A    M    IncreaseMasterWidth
+
+DestroyFunc 	NextWindow
+AddToFunc 		NextWindow
++ I ScanForWindow NorthEast NorthWest (CurrentPage, !Iconic, AcceptsFocus) FlipFocus
++ I Current Raise
+
+DestroyFunc 	PrevWindow
+AddToFunc 		PrevWindow
++ I ScanForWindow SouthEast SouthWest (CurrentPage, !Iconic, AcceptsFocus) FlipFocus
++ I Current Raise
+
+DestroyFunc IncreaseMasterWidth
+AddToFunc IncreaseMasterWidth
++ I Test (!EnvMatch FVWM_TILING_$[desk.n]-$[page.nx]-$[page.ny] 1) Break
++ I Test (EnvMatch FVWM_MASTER_WIDTH 80) Break
++ I None (CurrentPage, !State 1, !State 2, !iconic, AcceptsFocus) Break
++ I PipeRead 'echo SetEnv FVWM_MASTER_WIDTH $(( $[FVWM_MASTER_WIDTH] + 5 ))'
++ I Piperead 'echo SetEnv FVWM_MASTER_PIXWIDTH $(( $[FVWM_MASTER_WIDTH]*$[vp.width]/100 ))'
++ I All (CurrentPage, !iconic, AcceptsFocus, State 1) \
+    Resize frame $[FVWM_MASTER_PIXWIDTH]p keep
++ I All (CurrentPage, !iconic, AcceptsFocus, !State 1, !State 2) \
+    PipeRead 'echo ResizeMove frame \
+    $(( $[vp.width] - $[FVWM_MASTER_PIXWIDTH] ))p keep $[FVWM_MASTER_PIXWIDTH]p keep'
+
+DestroyFunc DecreaseMasterWidth
+AddToFunc DecreaseMasterWidth
++ I Test (!EnvMatch FVWM_TILING_$[desk.n]-$[page.nx]-$[page.ny] 1) Break
++ I Test (EnvMatch FVWM_MASTER_WIDTH 20) Break
++ I None (CurrentPage, !State 1, !State 2, !iconic, AcceptsFocus) Break
++ I PipeRead 'echo SetEnv FVWM_MASTER_WIDTH $(( $[FVWM_MASTER_WIDTH] - 5 ))'
++ I Piperead 'echo SetEnv FVWM_MASTER_PIXWIDTH $(( $[FVWM_MASTER_WIDTH]*$[vp.width]/100 ))'
++ I All (CurrentPage, !iconic, AcceptsFocus, State 1) \
+    Resize frame $[FVWM_MASTER_PIXWIDTH]p keep
++ I All (CurrentPage, !iconic, AcceptsFocus, !State 1, !State 2) \
+    PipeRead 'echo ResizeMove frame \
+    $(( $[vp.width] - $[FVWM_MASTER_PIXWIDTH] ))p keep $[FVWM_MASTER_PIXWIDTH]p keep'
