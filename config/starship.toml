@@ -1,0 +1,32 @@
+#format = """
+#[┌───────────────────>](bold green)
+#[│](bold green)$directory$rust$package
+#[└─>](bold green) """
+
+format = """
+$directory\
+$git_branch\
+$git_status
+$character
+"""
+
+add_newline = false
+
+[directory]
+truncation_length = 1
+fish_style_pwd_dir_length = 1
+
+[git_status]
+style = '#8ec07b'
+format = '([$all_status$ahead_behind]($style))'
+ahead = "⇡${count}"
+deleted = '[✘${count}](red)'
+modified = '[!${count}](yellow)'
+untracked = '[?${count}](blue)'
+stashed = '[\$${count}](#d65c0d)'
+diverged = "⇕⇡${ahead_count}⇣${behind_count}"
+behind = "⇣${count}"
+
+[git_branch]
+format = '[$symbol$branch]($style) '
+symbol = ""
