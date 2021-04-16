@@ -41,7 +41,6 @@ filetype plugin indent on         " Enable file type detection.
 set termguicolors
 set nonumber                      " Do not show line numbers
 set hidden                        " Allow unsaved background buffers and remember marks/undo for them
-set noshowcmd                     " Do not display incomplete commands
 set history=10000                 " Lines to keep in history
 set noruler                       " Do not show the ruler
 set synmaxcol=128
