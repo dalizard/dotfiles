@@ -11,7 +11,7 @@ function nvm --argument-names cmd v --description "Node version manager"
 
     switch "$cmd"
         case -v --version
-            echo "nvm, version 2.2.3"
+            echo "nvm, version 2.2.4"
         case "" -h --help
             echo "Usage: nvm install <version>    Download and activate the specified Node version"
             echo "       nvm install              Install version from nearest .nvmrc file"
@@ -197,6 +197,6 @@ function _nvm_node_info
     command node --eval "
         console.log(process.version)
         console.log('$npm_version_default' ? '$npm_version_default': require('$npm_path/package.json').version)
-        console.log(process.execPath.replace(os.homedir(), '~'))
+        console.log(process.execPath.replace(require('os').homedir(), '~'))
     "
 end
