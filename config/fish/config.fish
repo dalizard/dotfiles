@@ -7,7 +7,7 @@ fish_add_path ~/.bin
 # Don't let fish masquerade itself as other shells
 set -x SHELL (which fish)
 
-set -U OS_NAME (uname -s)
+set -U OS_NAME (uname -s | string lower)
 
 set -x EDITOR vim
 set -x VISUAL vim
@@ -54,7 +54,7 @@ set -x GOPATH ~/.go
 fish_add_path ~/.go/bin
 
 # Start keychain under FreeBSD
-if test $OS_NAME = 'FreeBSD'; and status --is-interactive
+if test $OS_NAME = 'freebsd'; and status --is-interactive
   keychain --eval --quiet -Q github_ed25519 frodo_ed25519 | source
 end
 
