@@ -7,7 +7,7 @@ fish_add_path ~/.bin
 # Don't let fish masquerade itself as other shells
 set -x SHELL (which fish)
 
-set -U OS_NAME (uname -s | string lower)
+set -x OS_NAME (uname -s | string lower)
 
 set -x EDITOR vim
 set -x VISUAL vim
