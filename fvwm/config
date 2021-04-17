@@ -88,7 +88,7 @@ AddToFunc MyFocusFunc
 IgnoreModifiers L25
 
 # Applications shortcuts
-Key t A 4S Exec kitty
+Key t A 4S Exec kitty --config ~/.config/kitty/freebsd.conf
 Key f A 4S Exec firefox
 
 # Show time and date
@@ -173,7 +173,6 @@ MenuStyle * Font "xft:Sans:Regular:size=10:antialias=True"
 ## Root Menu on The Desktop
 DestroyMenu MenuFvwmRoot
 AddToMenu   MenuFvwmRoot "Quick Menu" Title
-+ "&Terminal" Exec exec kitty
 + "" Nop
 + "Re&fresh" Refresh
 + "&Restart" Restart
