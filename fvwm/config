@@ -38,8 +38,8 @@ AddToFunc DeThumbnail
 # Focus terminal
 DestroyFunc GotoTerminal
 AddToFunc GotoTerminal
-+ I Next (alacritty, CurrentDesk) Focus
-+ I Next (alacritty) Raise
++ I Next (kitty, CurrentDesk) Focus
++ I Next (kitty) Raise
 
 # Focus browser
 DestroyFunc GotoBrowser
@@ -88,7 +88,7 @@ AddToFunc MyFocusFunc
 IgnoreModifiers L25
 
 # Applications shortcuts
-Key t A 4S Exec alacritty
+Key t A 4S Exec kitty
 Key f A 4S Exec firefox
 
 # Show time and date
@@ -173,7 +173,7 @@ MenuStyle * Font "xft:Sans:Regular:size=10:antialias=True"
 ## Root Menu on The Desktop
 DestroyMenu MenuFvwmRoot
 AddToMenu   MenuFvwmRoot "Quick Menu" Title
-+ "&Terminal" Exec exec alacritty
++ "&Terminal" Exec exec kitty
 + "" Nop
 + "Re&fresh" Refresh
 + "&Restart" Restart
