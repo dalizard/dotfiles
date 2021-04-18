@@ -9,12 +9,13 @@ $character
 add_newline = false
 
 [directory]
+style = 'cyan'
 truncation_length = 1
 fish_style_pwd_dir_length = 1
 
 [git_status]
 style = '#8ec07b'
-format = '([$all_status$ahead_behind]($style))'
+format = '([$all_status$ahead_behind]($style)) '
 ahead = '[⇡${count}](green)'
 deleted = '[✘${count}](red)'
 modified = '[!${count}](yellow)'
@@ -25,8 +26,12 @@ diverged = '⇡${ahead_count}⇣${behind_count}'
 behind = '⇣${count}'
 
 [git_branch]
+style = 'purple'
 format = '[$symbol$branch]($style) '
 symbol = ''
+
+[battery]
+format = '[$symbol$percentage]($style) '
 
 [[battery.display]]
 threshold = 10
