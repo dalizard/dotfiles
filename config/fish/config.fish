@@ -45,6 +45,7 @@ source ~/.config/fish/functions/user_defined.fish
 
 # Set ripgrep as the default source for fzf
 set -x FZF_DEFAULT_COMMAND 'rg --files --no-ignore --hidden --follow --glob "!.git/*" --ignore-file ~/.rgignore'
+set -x FZF_DEFAULT_OPTS '--no-bold'
 
 # Erlang libraries
 set -x ERL_LIBS /usr/local/opt/proper
