@@ -1,12 +1,12 @@
-# vim: ft=colortemplate
+; vim: ft=colortemplate
 
-# Metadata
+; Metadata
 Full name:  Gruvbox 8
 Short name: gruvbox8
 Author: Dimitar Haralanov <dharalanov@me.com>
 Neovim: yes
 
-# Linked groups
+; Linked groups
 CursorColumn           -> CursorLine
 QuickFixLine           -> Search
 StatusLineTerm         -> StatusLine
@@ -17,7 +17,7 @@ lCursor                -> Cursor
 iCursor                -> Cursor
 vCursor                -> Cursor
 
-# Colors
+; Colors
 Color: bg0             rgb( 29,  32,  33) ~
 Color: bg1             rgb( 60,  56,  54) ~
 Color: bg2             rgb( 80,  73,  69) ~

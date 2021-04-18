@@ -1,4 +1,4 @@
-# vim: ft=colortemplate fdm=marker
+; vim: ft=colortemplate fdm=marker
 
 Term colors: bg0 neutralred neutralgreen neutralyellow
 Term colors: neutralblue neutralpurple neutralaqua fg4
@@ -12,15 +12,15 @@ VertSplit                        bg3    bg0
 ColorColumn                      none   bg1
 Comment                          grey   none    italic
 CursorLine                       none   bg5
-Error                            red    bg0     bold,reverse
-ErrorMsg                         bg0    red     bold
+Error                            red    bg0     reverse
+ErrorMsg                         bg0    red
 Folded                           grey   none    italic
 LineNr                           bg4    none
-MatchParen                       none   bg3     bold
+MatchParen                       none   bg3
 NonText                          bg2    none
 Pmenu                            fg1    bg2
 PmenuSbar                        none   bg2
-PmenuSel                         bg2    blue    bold
+PmenuSel                         bg2    blue
 PmenuThumb                       none   bg4
 SpecialKey                       grey   none
 StatusLine                       bg2    fg1     reverse
@@ -28,32 +28,32 @@ StatusLineNC                     bg1    fg4     reverse
 TabLine                          bg4    bg1
 TabLineFill                      bg4    bg1
 TabLineSel                       green  bg1
-ToolbarButton                    fg0    bg3     bold
+ToolbarButton                    fg0    bg3
 ToolbarLine                      none   bg3
 Visual                           none   bg1
-WildMenu                         blue   bg2     bold
-# Common {{{
-# Group                          Fg     Bg      Attributes
+WildMenu                         blue   bg2
+; Common {{{
+; Group                          Fg     Bg      Attributes
 Conceal                          blue   none
 Cursor                           none   none    reverse
 DiffAdd                          green  bg0     reverse
 DiffChange                       aqua   bg0     reverse
 DiffDelete                       red    bg0     reverse
 DiffText                         yellow bg0     reverse
-Directory                        green  none    bold
+Directory                        green  none
 EndOfBuffer                      bg0    none
 IncSearch                        orange bg0     reverse
-ModeMsg                          yellow none    bold
-MoreMsg                          yellow none    bold
-Question                         orange none    bold
+ModeMsg                          yellow none
+MoreMsg                          yellow none
+Question                         orange none
 Search                           yellow bg0     reverse
 SpellBad                         red    none    italic t=underline g=undercurl s=red
 SpellCap                         blue   none    italic t=underline g=undercurl s=blue
 SpellLocal                       aqua   none    italic t=underline g=undercurl s=aqua
 SpellRare                        purple none    italic t=underline g=undercurl s=purple
-Title                            green  none    bold
-WarningMsg                       red    none    bold
-# Other conventional group names (see `:help group-name`)
+Title                            green  none
+WarningMsg                       red    none
+; Other conventional group names (see `:help group-name`)
 Boolean                          purple none
 Character                        purple none
 Conditional                      red    none
@@ -64,7 +64,7 @@ Delimiter                        orange none
 Error                            fg5    bg5
 Exception                        red    none
 Float                            purple none
-Function                         green  none    bold
+Function                         green  none
 Identifier                       blue   none
 Ignore                           fg     none
 Include                          aqua   none
@@ -83,34 +83,34 @@ StorageClass                     orange none
 Special                          orange none    italic
 String                           green  none    italic
 Structure                        aqua   none
-Todo                             fg     bg0     bold,italic
+Todo                             fg     bg0     italic
 Type                             yellow none
 Typedef                          yellow none
 Underlined                       blue   none    underline
 CursorIM                         none   none    reverse
-# }}}
-# Italics {{{
+; }}}
+; Italics {{{
 verbatim
 if !get(g:, '@optionprefix_italicize_strings', 1)
   hi Special gui=NONE cterm=NONE
   hi String gui=NONE cterm=NONE
 endif
 endverbatim
-# }}}
-# Additional highlight groups {{{
-# Useful for custom status lines
+; }}}
+; Additional highlight groups {{{
+; Useful for custom status lines
 NormalMode                       fg4    bg0     reverse
 InsertMode                       blue   bg0     reverse
 ReplaceMode                      aqua   bg0     reverse
 VisualMode                       orange bg0     reverse
 CommandMode                      purple bg0     reverse
 Warnings                         orange bg0     reverse
-# }}}
-# NeoVim terminal colors {{{
+; }}}
+; NeoVim terminal colors {{{
 TermCursor        -> Cursor
 TermCursorNC         bg1            fg1
-# }}}
-# Extra highlight groups {{{
+; }}}
+; Extra highlight groups {{{
 
 verbatim
 if !(get(g:, '@optionprefix_plugin_hi_groups', 0) || get(g:, '@optionprefix_filetype_hi_groups', 0))
@@ -120,4 +120,4 @@ endverbatim
 
 Include: _plugins
 Include: _filetypes
-# }}}
+; }}}
