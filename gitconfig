@@ -19,7 +19,7 @@
   colorMoved = zebra
 
 [color]
-  ui = true
+  ui = auto
 
 [color "branch"]
   current = yellow reverse
@@ -32,6 +32,12 @@
   old = red
   new = green
   whitespace = red reverse
+
+[color "decorate"]
+  head = cyan
+  branch = green
+  remoteBranch = red
+  tag = green
 
 [color "status"]
   added = yellow
