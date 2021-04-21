@@ -32,7 +32,7 @@ set -x GREP_COLOR "0;31"
 set -x fish_color_search_match --background=294d6d
 set -x fish_color_cancel white --italics
 set -x fish_pager_color_description ebdbb2
-set -x fish_pager_color_prefix green
+set -x fish_pager_color_prefix red
 
 # Shortcuts
 alias g='git'
