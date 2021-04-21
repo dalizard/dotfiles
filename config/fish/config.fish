@@ -25,7 +25,10 @@ set -x ERL_AFLAGS '-kernel shell_history enabled'
 # Set ripgrep config file
 set -x RIPGREP_CONFIG_PATH ~/.ripgreprc
 
-# Colors
+# No bold text in grep
+set -x GREP_COLOR "0;31"
+
+# Fish colors
 set -x fish_color_search_match --background=294d6d
 set -x fish_color_cancel white --italics
 set -x fish_pager_color_description ebdbb2
