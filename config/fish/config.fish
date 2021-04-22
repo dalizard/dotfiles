@@ -33,6 +33,7 @@ set -x fish_color_search_match --background=294d6d
 set -x fish_color_cancel white --italics
 set -x fish_pager_color_description ebdbb2
 set -x fish_pager_color_prefix red
+set -x fish_pager_color_progress ebdbb2 --background=294d6d
 
 # Shortcuts
 alias g='git'
