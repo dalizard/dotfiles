@@ -236,7 +236,8 @@ let g:fzf_colors =
   \ 'pointer': ['fg', 'fzfException'],
   \ 'marker':  ['fg', 'fzfKeyword'],
   \ 'spinner': ['fg', 'fzfLabel'],
-  \ 'header':  ['fg', 'fzfComment'] }
+  \ 'header':  ['fg', 'fzfComment'],
+  \ 'query':   ['fg', 'fzfQuery'] }
 " }}}
 
 " vim-test {{{

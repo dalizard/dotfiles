@@ -165,16 +165,16 @@ endverbatim
 ; }}}
 ; {{{ fzf
 fzfNormal                        fg1    bg0
-fzfComment                       grey   bg1
+fzfComment                       neutralaqua  bg1
 fzfCursorLine                    none   bg1
-fzfStatement                     red    none
-fzfPreProc                       aqua   none
-fzfIgnore                        fg     none
+fzfStatement                     neutralaqua none
+fzfPreProc                       none   none
+fzfIgnore                        fg5    none
 fzfConditional                   red    none
 fzfException                     red    none
 fzfKeyword                       red    none
 fzfLabel                         red    none
-fzfComment                       grey   none    italic
+fzfQuery                         green  none
 ; }}}
 ;endif
 
