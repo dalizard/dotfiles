@@ -1,0 +1,2 @@
+#!/usr/bin/env sh
+cd ~/.config/kitty/themes && fzf --preview 'head -n 40 {} && kitty @ --to unix:/tmp/mykitty-(pgrep kitty) set-colors -a -c {}'; cd -
