@@ -16,6 +16,7 @@ config/mimeapps.list
 config/nnn/.history
 config/nvim/autoload/plug.vim
 config/nvm
+config/pulse
 config/slack-term/config
 config/yarn
 fish_history
