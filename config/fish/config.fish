@@ -43,6 +43,7 @@ alias be='bundle exec'
 alias gh="git log --pretty=format:'%h' -n 1 | xclip -se c -i"
 alias gb="git rev-parse --abbrev-ref HEAD | tr -d '\n' | xclip -se c -i"
 alias n="nnn"
+alias myip='curl ipinfo.io'
 
 # hub is aliased as git
 eval (hub alias -s)
