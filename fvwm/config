@@ -90,6 +90,7 @@ IgnoreModifiers L25
 # Applications shortcuts
 Key t A 4S Exec kitty --config ~/.config/kitty/freebsd.conf
 Key f A 4S Exec firefox
+Key s A 4S Exec sakura
 
 # Show time and date
 Key d A 4 Exec notify-send "$(LANG=en_US.utf8 LC_TIME=en_US.utf8 date +'%H:%M')" \
