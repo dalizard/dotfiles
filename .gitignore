@@ -8,6 +8,7 @@ config/bpytop
 config/bpytop/error.log
 config/configstore
 config/exercism
+config/fontforge
 config/gatsby
 config/glib-2.0
 config/htop
