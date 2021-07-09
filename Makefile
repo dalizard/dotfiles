@@ -39,9 +39,9 @@ formulae := \
 default: | update clean
 
 ifeq ($(OS_NAME), freebsd)
-install: | link fisher ruby vim_plug term_db
+install: | link fisher ruby vim_plug
 else
-install: | brew link fisher ruby vim_plug neovim term_db
+install: | brew link fisher ruby vim_plug neovim
 endif
 
 update: | install
@@ -129,18 +129,6 @@ $(vim):
 	ln -sfnv /usr/local/bin/nvim /usr/local/bin/vim
 $(vi):
 	ln -sfnv /usr/local/bin/nvim /usr/local/bin/vi
-
-### Terminal database
-term_db = $(HOME)/.terminfo
-
-term_db: $(term_db)
-
-$(term_db):
-	@echo '==> Installing latest terminal database...'
-	@curl -LO http://invisible-island.net/datafiles/current/terminfo.src.gz
-	@gunzip terminfo.src.gz
-	@tic -x terminfo.src
-	@rm terminfo.src
 
 ### Fish plugin manager
 fisher = $(HOME)/.config/fish/functions/fisher.fish
