@@ -46,7 +46,7 @@ IncSearch                        orange bg0     reverse
 ModeMsg                          yellow none
 MoreMsg                          yellow none
 Question                         orange none
-Search                           fg0    bg4
+Search                           none   bg2
 SpellBad                         red    none    italic t=underline g=undercurl s=red
 SpellCap                         blue   none    italic t=underline g=undercurl s=blue
 SpellLocal                       aqua   none    italic t=underline g=undercurl s=aqua
