@@ -1,4 +1,4 @@
-SHELL := /usr/local/bin/fish
+SHELL := $(shell which fish)
 OS_NAME := $(shell uname -s | tr A-Z a-z)
 
 excluded_dotfiles := Makefile
@@ -50,8 +50,6 @@ ifeq ($(OS_NAME), darwin)
 	@brew update
 	@brew upgrade
 endif
-	@$(gem) update
-	@$(gem) update --system
 	@fisher update
 	@vim +PlugUpgrade +PlugInstall +PlugUpdate +qall
 
@@ -60,7 +58,6 @@ clean: | install
 ifeq ($(OS_NAME), darwin)
 	@brew cleanup -s
 endif
-	@$(gem) clean
 	@vim +PlugClean +qall
 
 ### Homebrew
@@ -101,7 +98,7 @@ gem = $(ruby)/bin/gem
 ruby: | $(ruby) $(bundler)
 
 $(ruby): | $(brew) $(HOME)/.ruby-version
-	ruby-install ruby-$(ruby_version) -i $(ruby_versions)/ruby-$(ruby_version)
+	ruby-install ruby-$(ruby_version) -i $(ruby_dir)/ruby-$(ruby_version)
 
 ### Bundler
 bundler = $(ruby)/bin/bundle

@@ -65,13 +65,9 @@ set -x ERL_LIBS /usr/local/opt/proper
 set -x GOPATH ~/.go
 fish_add_path ~/.go/bin
 
-# Start keychain under FreeBSD
-if test $OS_NAME = 'freebsd'; and status --is-interactive
-  keychain --eval --quiet -Q github_ed25519 frodo_ed25519 | source
+# Start keychain
+if test $OS_NAME != 'darwin'; and status --is-interactive
+  keychain --eval --quiet -Q github_ed25519 frodo_ed25519 github | source
 end
-
-# Ruby manager
-source /usr/local/share/chruby/chruby.fish
-source /usr/local/share/chruby/auto.fish
 
 starship init fish | source
