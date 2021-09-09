@@ -12,7 +12,6 @@ dotfiles := $(filter-out $(excluded_dotfiles), $(wildcard *))
 formulae := \
 	bat \
 	chruby \
-	chruby-fish \
 	dash \
 	elixir \
 	erlang \
