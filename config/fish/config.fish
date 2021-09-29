@@ -26,7 +26,10 @@ set -x ERL_AFLAGS '-kernel shell_history enabled'
 set -x RIPGREP_CONFIG_PATH ~/.ripgreprc
 
 # No bold text in grep
-set -x GREP_COLOR "0;31"
+set -x GREP_COLOR '0;31'
+
+# No warnings in Ruby
+set -x RUBYOPT '-W0'
 
 # Fish colors
 set -x fish_color_search_match --background=294d6d
