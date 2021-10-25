@@ -36,10 +36,10 @@ WildMenu                         blue   bg2
 ; Group                          Fg     Bg      Attributes
 Conceal                          blue   none
 Cursor                           none   none    reverse
-DiffAdd                          green  bg0     reverse
-DiffChange                       aqua   bg0     reverse
-DiffDelete                       red    bg0     reverse
-DiffText                         yellow bg0     reverse
+DiffAdd                          none   diffadd
+DiffChange                       none   diffchange
+DiffDelete                       none   diffdelete
+DiffText                         none   difftext
 Directory                        green  none
 EndOfBuffer                      bg0    none
 IncSearch                        orange bg0     reverse

@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env dash
 
 HASH="%C(yellow)%h%C(reset)"
 RELATIVE_TIME="%C(green)(%ar)%C(reset)"

@@ -7,6 +7,7 @@ endif
 
 call plug#begin('~/.nvim/plugins')
 
+Plug 'airblade/vim-gitgutter'
 Plug 'autozimu/LanguageClient-neovim', {
     \ 'branch': 'next',
     \ 'do': 'bash install.sh',
@@ -16,6 +17,7 @@ Plug 'itchyny/lightline.vim'
 Plug 'janko-m/vim-test'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
 Plug 'junegunn/fzf.vim'
+Plug 'junegunn/gv.vim'
 Plug 'lifepillar/vim-cheat40'
 Plug 'lifepillar/vim-colortemplate'
 Plug 'lifepillar/vim-mucomplete'
@@ -23,13 +25,14 @@ Plug 'lmeijvogel/vim-yaml-helper'
 Plug 'mbbill/undotree'
 Plug 'norcalli/nvim-colorizer.lua'
 Plug 'sheerun/vim-polyglot'
+Plug 'tpope/vim-bundler'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-obsession'
 Plug 'tpope/vim-rails'
-Plug 'tpope/vim-bundler'
 Plug 'tpope/vim-rhubarb'
 Plug 'tpope/vim-scriptease'
 Plug 'tpope/vim-surround'
+Plug 'tpope/vim-unimpaired'
 Plug 'vim-erlang/vim-erlang-compiler'
 
 call plug#end()
@@ -431,6 +434,11 @@ augroup fugitive_ext
   " Browse to the commit under my cursor
   autocmd FileType fugitiveblame nnoremap <buffer> <leader>gb :execute ":Gbrowse " . expand("<cword>")<cr>
 augroup END
+
+let g:fugitive_summary_format = "%<(16,trunc)%an || %s"
+
+" Fold diffs by default
+autocmd User FugitiveCommit set foldmethod=syntax
 " }}}
 
 " Ruby {{{

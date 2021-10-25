@@ -46,6 +46,11 @@ Color: neutralpurple   rgb(177,  98, 134) ~
 Color: neutralaqua     rgb(104, 157, 106) ~
 Color: neutralorange   rgb(214,  93,  14) ~
 
+Color: diffadd         rgb(49, 61, 47) ~
+Color: diffdelete      rgb(89, 34, 26) ~
+Color: diffchange      rgb(66, 80, 64) ~
+Color: difftext        rgb(84, 67, 28) ~
+
 Variant: gui
 
 Include: _common
