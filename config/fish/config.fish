@@ -62,9 +62,6 @@ eval (hub alias -s)
 # Disable tab titles
 function fish_title; end
 
-# User defined functions
-source ~/.config/fish/functions/user_defined.fish
-
 # Set ripgrep as the default source for fzf
 set -x FZF_DEFAULT_COMMAND 'rg --files --no-ignore --hidden --follow --glob "!.git/*" --ignore-file ~/.rgignore'
 set -x FZF_DEFAULT_OPTS '--no-bold'
@@ -80,5 +77,11 @@ fish_add_path ~/.go/bin
 if test $OS_NAME != 'darwin'; and status --is-interactive
   keychain --eval --quiet -Q github_ed25519 frodo_ed25519 github | source
 end
+
+# User defined functions
+source ~/.config/fish/functions/user_defined.fish
+
+# Set colors
+source ~/.config/fish/colors.fish
 
 starship init fish | source
