@@ -4,6 +4,11 @@ set -g fish_greeting
 # Add .bin to PATH
 fish_add_path ~/.bin
 
+# MacPorts paths
+if test $OS_NAME = 'darwin'
+  fish_add_path /opt/local/bin /opt/local/sbin
+end
+
 # Don't let fish masquerade itself as other shells
 set -x SHELL (which fish)
 
