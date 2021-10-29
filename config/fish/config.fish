@@ -43,6 +43,9 @@ set -x fish_pager_color_description ebdbb2
 set -x fish_pager_color_prefix magenta
 set -x fish_pager_color_progress ebdbb2 --background=294d6d
 
+# Set global Node.js version
+set -U nvm_default_version v17.0.1
+
 # Shortcuts
 alias g='git'
 alias ll='ls -alGF'
