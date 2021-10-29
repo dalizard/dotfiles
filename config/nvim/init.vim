@@ -82,10 +82,11 @@ set directory=~/.nvim/_temp
 set foldmethod=marker
 set foldlevel=0
 set previewheight=20              " Preview split height
-set shell=/usr/local/bin/dash
 set guicursor=                    " Do not change the cursor
 set mouse=a                       " Enable mouse for all modes
 set cursorline
+
+execute ':set shell=' . system('which dash')
 
 " Do not use the deafault cheat sheet
 let g:cheat40_use_default = 0
