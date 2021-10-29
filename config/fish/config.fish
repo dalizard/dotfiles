@@ -11,6 +11,15 @@ set -x VISUAL vim
 set -x PAGER less
 set -x BROWSER open
 
+# Set the color theme
+if not set -q COLOR_THEME
+  set -Ux COLOR_THEME dark
+  source ~/.config/fish/colors/dark.fish
+end
+
+# tmux creates a global variable COLOR_THEME and we need to drop it -- seems like a bug
+set -eg COLOR_THEME
+
 # Add .bin to PATH
 fish_add_path ~/.bin
 
@@ -81,7 +90,6 @@ end
 # User defined functions
 source ~/.config/fish/functions/user_defined.fish
 
-# Set colors
-source ~/.config/fish/colors.fish
-
-starship init fish | source
+if test $OS_NAME != 'openbsd'
+  starship init fish | source
+end

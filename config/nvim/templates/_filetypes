@@ -1,7 +1,7 @@
 ; vim: ft=colortemplate fdm=marker
 
 ; Filetype specific groups
-;if get(g:, "@optionprefix_filetype_hi_groups", 0)
+#if get(g:, "@optionprefix_filetype_hi_groups", 0)
 ; Diff {{{
 diffAdded                        green  none
 diffRemoved                      red    none
@@ -16,21 +16,21 @@ diffLine                         blue   none
 htmlTag                          blue   none
 htmlEndTag                       blue   none
 
-htmlTagName                      aqua   none
+htmlTagName                      aqua   none    bold
 htmlArg                          aqua   none
 
 htmlScriptTag                    purple none
 htmlTagN                         fg1    none
-htmlSpecialTagName               aqua   none
+htmlSpecialTagName               aqua   none    bold
 
 htmlLink                         fg4    none    underline
 
 htmlSpecialChar                  orange none
 
-htmlBold                         fg     bg0
-htmlBoldUnderline                fg     bg0     underline
-htmlBoldItalic                   fg     bg0     italic
-htmlBoldUnderlineItalic          fg     bg0     underline,italic
+htmlBold                         fg     bg0     bold
+htmlBoldUnderline                fg     bg0     bold,underline
+htmlBoldItalic                   fg     bg0     bold,italic
+htmlBoldUnderlineItalic          fg     bg0     bold,underline,italic
 
 htmlUnderline                    fg     bg0     underline
 htmlUnderlineItalic              fg     bg0     underline,italic
@@ -41,7 +41,7 @@ xmlTag                           blue   none
 xmlEndTag                        blue   none
 xmlTagName                       blue   none
 xmlEqual                         blue   none
-docbkKeyword                     aqua   none
+docbkKeyword                     aqua   none    bold
 
 xmlDocTypeDecl                   grey   none
 xmlDocTypeKeyword                purple none
@@ -60,7 +60,7 @@ xmlEntity                        orange none
 xmlEntityPunct                   orange none
 ; }}}
 ; Vim {{{
-vimCommentTitle                  fg4    none
+vimCommentTitle                  fg4    none    bold
 vimNotation                      orange none
 vimBracket                       orange none
 vimMapModKey                     orange none
@@ -83,7 +83,7 @@ clojureException                 red    none
 
 clojureRegexp                    aqua   none
 clojureRegexpEscape              aqua   none
-clojureRegexpCharClass           fg3    none
+clojureRegexpCharClass           fg3    none    bold
 clojureRegexpMod              -> clojureRegexpCharClass
 clojureRegexpQuantifier       -> clojureRegexpCharClass
 
@@ -118,7 +118,7 @@ pythonBoolean                    purple none
 pythonDot                        fg3    none
 pythonConditional                red    none
 pythonRepeat                     red    none
-pythonDottedName                 green  none
+pythonDottedName                 green  none    bold
 ; }}}
 ; CSS {{{
 cssBraces                        blue   none
@@ -233,18 +233,18 @@ javascriptAsyncFuncKeyword       red    none
 javascriptAwaitFuncKeyword       red    none
 ; }}}
 ;PanglossJS {{{
-jsImport                         purple none
+jsImport                         red    none
 jsExport                         red    none
-jsFrom                           purple none
+jsFrom                           red    none
 jsThis                           purple none
 jsParen                          blue   none
 jsOperator                       aqua   none
 jsSpreadOperator                 green  none
 jsSpreadExpression               blue   none
-jsClassKeyword                   blue   none
+jsClassKeyword                   red    none
 jsClassProperty                  green  none
-jsExtendsKeyword                 blue   none
-jsExportDefault                  orange none
+jsExtendsKeyword                 red    none
+jsExportDefault                  orange none bold
 jsTemplateBraces                 aqua   none
 jsGlobalNodeObjects              fg1    none
 jsGlobalObjects                  fg1    none
@@ -265,11 +265,10 @@ jsObjectValue                    blue   none
 jsDestructuringBlock             yellow none
 jsParenIfElse                    blue   none
 jsClassBlock                     blue   none
-jsFutureKeys                     orange none
+jsFutureKeys                     orange none bold
 jsStorageClass                   orange none
 jsModuleKeyword                  blue   none
 jsObjectShorthandProp            blue   none
-jsBlock                          yellow none
 jsxRegion                        blue   none
 ; }}}
 ; JSx{{{
@@ -405,10 +404,10 @@ scalaInterpolation               aqua   none
 ; Markdown {{{
 markdownItalic                   fg3    none    italic
 
-markdownH1                       green  none
-markdownH2                       green  none
-markdownH3                       yellow none
-markdownH4                       yellow none
+markdownH1                       green  none    bold
+markdownH2                       green  none    bold
+markdownH3                       yellow none    bold
+markdownH4                       yellow none    bold
 markdownH5                       yellow none
 markdownH6                       yellow none
 
@@ -466,5 +465,30 @@ jsonQuote                        green  none
 jsonBraces                       fg1    none
 jsonString                       fg1    none
 ; }}}
-;endif
+
+; Boldface {{{
+Variant: gui
+verbatim
+if !get(g:, '@optionprefix_bold', 1)
+  hi htmlTagName gui=NONE cterm=NONE
+  hi htmlSpecialTagName gui=NONE cterm=NONE
+  hi htmlBold gui=NONE cterm=NONE
+  hi htmlBoldUnderline gui=underline cterm=underline
+  hi htmlBoldItalic gui=italic cterm=italic
+  hi htmlBoldUnderlineItalic gui=underline,italic cterm=underline,italic
+  hi docbkKeyword gui=NONE cterm=NONE
+  hi vimCommentTitle gui=NONE cterm=NONE
+  hi clojureRegexpCharClass gui=NONE cterm=NONE
+  hi pythonDottedName gui=NONE cterm=NONE
+  hi jsExportDefault gui=NONE cterm=NONE
+  hi jsFutureKeys gui=NONE cterm=NONE
+  hi markdownH1 gui=NONE cterm=NONE
+  hi markdownH2 gui=NONE cterm=NONE
+  hi markdownH3 gui=NONE cterm=NONE
+  hi markdownH4 gui=NONE cterm=NONE
+endif
+endverbatim
+Variant: gui 256
+; }}}
+#endif
 
