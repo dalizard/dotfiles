@@ -1,14 +1,6 @@
 # Do not show the greeting message
 set -g fish_greeting
 
-# Add .bin to PATH
-fish_add_path ~/.bin
-
-# MacPorts paths
-if test $OS_NAME = 'darwin'
-  fish_add_path /opt/local/bin /opt/local/sbin
-end
-
 # Don't let fish masquerade itself as other shells
 set -x SHELL (which fish)
 
@@ -18,6 +10,14 @@ set -x EDITOR vim
 set -x VISUAL vim
 set -x PAGER less
 set -x BROWSER open
+
+# Add .bin to PATH
+fish_add_path ~/.bin
+
+# MacPorts paths
+if test $OS_NAME = 'darwin'
+  fish_add_path /opt/local/bin /opt/local/sbin
+end
 
 # Make sure we have a unicode capable LANG and LC_CTYPE so the unicode
 # # characters does not look like crap on OSX and other environments.
