@@ -81,12 +81,12 @@ link: | $(prefixed_symlinks)
 
 $(prefixed_symlinks):
 	@echo '==> Link dotfiles to home directory...'
-	@$(foreach val, $(dotfiles), ln -sfnv $(abspath $(val)) $(HOME)/.$(val);)
+	@$(foreach val, $(dotfiles), ln -sfn $(abspath $(val)) $(HOME)/.$(val);)
 
 ### Unlinking
 unlink:
 	@echo '==> Remove linked dotfiles in home directory...'
-	@-$(foreach val, $(dotfiles), rm -vrf $(HOME)/.$(val);)
+	@-$(foreach val, $(dotfiles), rm -rf $(HOME)/.$(val);)
 
 ### Ruby
 ruby_version := $(shell cat $(PWD)/ruby-version)
@@ -122,9 +122,9 @@ vi = /usr/local/bin/vi
 neovim: | $(vim) $(vi)
 
 $(vim):
-	ln -sfnv /usr/local/bin/nvim /usr/local/bin/vim
+	ln -sfn /usr/local/bin/nvim /usr/local/bin/vim
 $(vi):
-	ln -sfnv /usr/local/bin/nvim /usr/local/bin/vi
+	ln -sfn /usr/local/bin/nvim /usr/local/bin/vi
 
 ### Fish plugin manager
 fisher = $(HOME)/.config/fish/functions/fisher.fish

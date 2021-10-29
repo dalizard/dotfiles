@@ -56,6 +56,10 @@ alias gb="git rev-parse --abbrev-ref HEAD | tr -d '\n' | xclip -se c -i"
 alias n="nnn"
 alias myip='curl ipinfo.io'
 
+if test $OS_NAME = 'openbsd'
+  alias ls='colorls'
+end
+
 # hub is aliased as git
 eval (hub alias -s)
 
@@ -84,4 +88,4 @@ source ~/.config/fish/functions/user_defined.fish
 # Set colors
 source ~/.config/fish/colors.fish
 
-starship init fish | source
+#starship init fish | source
