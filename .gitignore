@@ -31,6 +31,8 @@ generated_completions
 nvim/plugins
 
 ## fisher
+config/fish/functions/fisher.fish
+config/fish/completions/fisher.fish
 # nvm
 config/fish/functions/_nvm_index_update.fish
 config/fish/functions/_nvm_list.fish
