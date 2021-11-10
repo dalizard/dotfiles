@@ -30,14 +30,14 @@ fishd.*
 generated_completions
 nvim/plugins
 
-config/fish/conf.d
-config/fish/functions
-!/config/fish/functions/fish_prompt.fish
-!/config/fish/functions/fish_user_key_bindings.fish
-!/config/fish/functions/fzf_key_bindings.fish
-!/config/fish/functions/n.fish
-!/config/fish/functions/user_defined.fish
-!/config/fish/functions/change_background.fish
+# nvm
+config/fish/functions/_nvm_index_update.fish
+config/fish/functions/_nvm_list.fish
+config/fish/functions/_nvm_version_activate.fish
+config/fish/functions/_nvm_version_deactivate.fish
+config/fish/functions/nvm.fish
+config/fish/conf.d/nvm.fish
+config/fish/completions/nvm.fish
 
 config/fish/completions
 !/config/fish/completions/hub.fish
