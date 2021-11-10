@@ -30,6 +30,8 @@ fishd.*
 generated_completions
 nvim/plugins
 
+config/fish/functions/fzf_key_bindings.fish
+
 ## fisher
 config/fish/functions/fisher.fish
 config/fish/completions/fisher.fish
