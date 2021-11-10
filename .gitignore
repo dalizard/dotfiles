@@ -48,8 +48,3 @@ config/fish/completions/nvm.fish
 config/fish/functions/__ssh_agent_is_started.fish
 config/fish/functions/__ssh_agent_start.fish
 config/fish/conf.d/fish-ssh-agent.fish
-
-config/fish/completions
-!/config/fish/completions/hub.fish
-!/config/fish/completions/rg.hub
-!/config/fish/completions/tmuxinator.hub
