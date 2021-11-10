@@ -1,30 +1,23 @@
 ; vim: ft=colortemplate
 
-Full name:  Gruvbox 8
-Short name: gruvbox8
+Full name:  Gruvbox 8 Hard
+Short name: gruvbox8_hard
 
 Include: _info
-Include: _help
 Include: _neutral_colors
-
 Include: _global
 
-Variant: gui 256 16 8
+Variant: gui 256
 
 Background: dark
-Color: bg0 rgb(40, 40, 40) 235 Black
+Color: bg0 rgb(29,32,33) 234 Black
 Include: _dark
 
-Include: _lightline_dark
-Include: _airline
-
 Background: light
-Color: bg0 rgb(253, 246, 227) 230 White
+Color: bg0 rgb(249,245,215)   229 White
 Color: bg1 rgb(235, 219, 178) 187 Grey
 Color: bg2 rgb(213, 196, 161) 187
 Include: _light
-
-Include: _lightline_dark
 
 Background: any
 Include: _bw

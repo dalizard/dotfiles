@@ -85,8 +85,13 @@ set previewheight=20              " Preview split height
 set guicursor=                    " Do not change the cursor
 set mouse=a                       " Enable mouse for all modes
 set cursorline
+set shell=dash
 
-execute ':set shell=' . system('which dash')
+if $COLOR_THEME == 'dark'
+  set background=dark
+else
+  set background=light
+endif
 
 " Do not use the deafault cheat sheet
 let g:cheat40_use_default = 0
@@ -313,6 +318,10 @@ let g:lightline = {
       \ 'separator': { 'left': '', 'right': '' },
       \ 'subseparator': { 'left': '・', 'right': '・' }
       \ }
+
+autocmd OptionSet background
+      \ execute 'source' globpath(&rtp, 'autoload/lightline/colorscheme/gruvbox8.vim')
+      \ | call lightline#colorscheme() | call lightline#update()
 
 function! LightlineFilename()
   let filename = expand('%:t') !=# '' ? expand('%:t') : '⌈no name⌉'

@@ -1,0 +1,9 @@
+; vim: ft=colortemplate
+
+Author:          morhetz <morhetz@gmail.com>
+Maintainer:      Lifepillar <lifepillar@lifepillar.me>
+Website:         https://github.com/lifepillar/vim-gruvbox8/
+Description:     Retro groove color scheme originally designed by morhetz
+Option Prefix:   gruvbox
+Neovim:          yes
+

@@ -13,6 +13,7 @@ config/gatsby
 config/glib-2.0
 config/htop
 config/iterm2/AppSupport
+config/kitty/current-theme.conf
 config/mimeapps.list
 config/nnn/.history
 config/nvim/autoload/plug.vim
@@ -36,6 +37,7 @@ config/fish/functions
 !/config/fish/functions/fzf_key_bindings.fish
 !/config/fish/functions/n.fish
 !/config/fish/functions/user_defined.fish
+!/config/fish/functions/change_background.fish
 
 config/fish/completions
 !/config/fish/completions/hub.fish
