@@ -1,0 +1,2 @@
+-- Different histories for each database.
+\set HISTFILE ~/.psql_history- :DBNAME
