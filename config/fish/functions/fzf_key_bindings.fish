@@ -1,1 +1,0 @@
-/home/dimitar/.fzf/shell/key-bindings.fish
