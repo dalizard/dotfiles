@@ -30,6 +30,7 @@ fishd.*
 generated_completions
 nvim/plugins
 
+## fisher
 # nvm
 config/fish/functions/_nvm_index_update.fish
 config/fish/functions/_nvm_list.fish
@@ -38,6 +39,11 @@ config/fish/functions/_nvm_version_deactivate.fish
 config/fish/functions/nvm.fish
 config/fish/conf.d/nvm.fish
 config/fish/completions/nvm.fish
+
+# fish-ssh-agent
+config/fish/functions/__ssh_agent_is_started.fish
+config/fish/functions/__ssh_agent_start.fish
+config/fish/conf.d/fish-ssh-agent.fish
 
 config/fish/completions
 !/config/fish/completions/hub.fish
