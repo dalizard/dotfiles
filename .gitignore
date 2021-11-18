@@ -1,6 +1,7 @@
 */heroku/config.json
 .netrwhist
 bundle/cache
+bin/heroku
 config/QtProject.conf
 config/Zeal
 config/bottom
