@@ -84,12 +84,9 @@ set -x GOPATH ~/.go
 fish_add_path ~/.go/bin
 
 # Start keychain
-if test $OS_NAME != 'darwin'; and status --is-interactive
+if test $OS_NAME != 'darwin'; and not set -q SSH_AGENT_PID
   keychain --eval --quiet -Q github_ed25519 frodo_ed25519 github | source
 end
-
-# User defined functions
-source ~/.config/fish/functions/user_defined.fish
 
 if test $OS_NAME != 'openbsd'
   starship init fish | source
