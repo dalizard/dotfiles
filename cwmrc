@@ -12,5 +12,6 @@ bind-key M-k		window-cycle
 bind-key M-t		window-maximize
 bind-key M-v    window-vtile
 
-snapdist		20
-sticky			yes
+snapdist        20
+sticky          yes
+borderwidth     0
