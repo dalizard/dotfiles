@@ -13,7 +13,7 @@ set -x BROWSER open
 
 # Set the color theme
 if not set -q COLOR_THEME
-  set -Ux COLOR_THEME dark
+  set -xU COLOR_THEME dark
   source ~/.config/fish/colors/dark.fish
 end
 
@@ -29,7 +29,7 @@ if test $OS_NAME = 'darwin'
 end
 
 # Make sure we have a unicode capable LANG and LC_CTYPE so the unicode
-# # characters does not look like crap on OSX and other environments.
+# characters do not look like crap on macOS and other environments.
 set -x LANG en_US.UTF-8
 set -x LC_CTYPE en_US.UTF-8
 
