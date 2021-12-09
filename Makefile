@@ -20,7 +20,6 @@ formulae := \
 	fzf \
 	git \
 	go \
-	hub \
 	luajit \
 	neovim \
 	nnn \

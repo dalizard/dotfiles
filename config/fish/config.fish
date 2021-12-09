@@ -69,9 +69,6 @@ if test $OS_NAME = 'openbsd'
   alias ls='colorls'
 end
 
-# hub is aliased as git
-eval (hub alias -s)
-
 # Disable tab titles
 function fish_title; end
 
