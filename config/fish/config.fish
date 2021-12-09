@@ -53,7 +53,9 @@ set -x fish_pager_color_prefix magenta
 set -x fish_pager_color_progress ebdbb2 --background=294d6d
 
 # Set global Node.js version
-set -U nvm_default_version v17.0.1
+if test $OS_NAME = 'darwin'
+  set -U nvm_default_version v17.0.1
+end
 
 # Shortcuts
 alias g='git'
