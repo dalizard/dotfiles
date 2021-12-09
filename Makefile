@@ -18,6 +18,7 @@ formulae := \
 	fd \
 	fish \
 	fzf \
+	gh \
 	git \
 	go \
 	luajit \
