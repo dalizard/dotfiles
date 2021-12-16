@@ -11,9 +11,7 @@ dotfiles := $(filter-out $(excluded_dotfiles), $(wildcard *))
 
 formulae := \
 	bat \
-	chruby \
 	dash \
-	elixir \
 	erlang \
 	fd \
 	fish \
@@ -21,16 +19,15 @@ formulae := \
 	gh \
 	git \
 	go \
+	htop \
 	luajit \
 	neovim \
 	nnn \
-	openssl@1.1 \
-	postgresql \
-	rebar3 \
 	ripgrep \
 	ruby-install \
 	rust \
 	sqlite \
+	starship \
 	tldr \
 	tmux \
 	universal-ctags
