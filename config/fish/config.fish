@@ -54,7 +54,7 @@ set -x fish_pager_color_progress ebdbb2 --background=294d6d
 
 # Set global Node.js version
 if test $OS_NAME = 'darwin'
-  set -U nvm_default_version v17.0.1
+  set -U nvm_default_version v17.2.0
 end
 
 # Shortcuts
