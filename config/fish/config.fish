@@ -62,8 +62,6 @@ alias g='git'
 alias ll='ls -alGF'
 alias gg='git status'
 alias be='bundle exec'
-alias gh="git log --pretty=format:'%h' -n 1 | xclip -se c -i"
-alias gb="git rev-parse --abbrev-ref HEAD | tr -d '\n' | xclip -se c -i"
 alias n="nnn"
 alias myip='curl ipinfo.io'
 
