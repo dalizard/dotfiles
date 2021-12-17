@@ -14,5 +14,9 @@ function change_background
 
   source ~/.config/fish/colors/$COLOR_THEME.fish
 
-  killall -USR1 vim
+  if test $OS_NAME = 'openbsd'
+    pkill -USR1 vim
+  else
+    killall -USR1 vim
+  end
 end
