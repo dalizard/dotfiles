@@ -555,6 +555,18 @@ function! CopyFilePathToClipboard()
   silent call system('pbcopy', expand('%'))
   echo "Copied file path to clipboard"
 endfunction
+
+autocmd Signal SIGUSR1 call Darkorlight()
+function! Darkorlight()
+  if join(split(system("fish -c 'echo $COLOR_THEME'"))) == "dark"
+    set background=dark
+  else
+    set background=light
+  endif
+  doautocmd OptionSet background
+  doautocmd ColorScheme
+  redraw
+endfunction
 " }}}
 
 " vim:foldmethod=marker:foldlevel=0

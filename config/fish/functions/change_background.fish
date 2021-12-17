@@ -13,4 +13,6 @@ function change_background
   end
 
   source ~/.config/fish/colors/$COLOR_THEME.fish
+
+  killall -USR1 vim
 end
