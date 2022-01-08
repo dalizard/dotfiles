@@ -34,7 +34,7 @@ formulae := \
 
 default: | update clean
 
-ifeq ($(OS_NAME), freebsd)
+ifneq (,$(filter $(OS_NAME), freebsd openbsd))
 install: | link fisher ruby vim_plug
 else
 install: | brew link fisher ruby vim_plug neovim
