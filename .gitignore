@@ -2,6 +2,7 @@
 .netrwhist
 bundle/cache
 bin/heroku
+bin/ngrok
 config/QtProject.conf
 config/Zeal
 config/bottom
