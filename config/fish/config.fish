@@ -62,7 +62,7 @@ alias g='git'
 alias ll='ls -alGF'
 alias gg='git status'
 alias be='bundle exec'
-alias n="nnn"
+alias n='nnn'
 alias myip='curl ipinfo.io'
 
 if test $OS_NAME = 'openbsd'
