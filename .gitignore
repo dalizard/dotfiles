@@ -16,8 +16,9 @@ config/gh/hosts.yml
 config/glib-2.0
 config/htop
 config/iterm2/AppSupport
-config/kitty/kitty.conf.bak
 config/kitty/current-theme.conf
+config/kitty/kitty.conf.bak
+config/kitty/os.conf
 config/mimeapps.list
 config/nnn/.history
 config/nvim/autoload/plug.vim

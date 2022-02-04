@@ -74,19 +74,27 @@ $(prefixed_formulae): | $(homebrew)
 ### Linking
 prefixed_symlinks = $(addprefix $(HOME)/.,$(dotfiles))
 
-link: | $(prefixed_symlinks) kitty_current_theme
+link: | $(prefixed_symlinks) kitty_current_theme kitty_os_conf
 
 $(prefixed_symlinks):
 	@echo '==> Link dotfiles to home directory...'
 	@$(foreach val, $(dotfiles), ln -sfn $(abspath $(val)) $(HOME)/.$(val);)
 
-### kitty theme
+### kitty config
 kitty_current_theme = $(HOME)/.config/kitty/current-theme.conf
-
 kitty_current_theme: | $(kitty_current_theme)
-
 $(kitty_current_theme):
 	@cp $(HOME)/.config/kitty/themes/dark.conf $(HOME)/.config/kitty/current-theme.conf
+
+kitty_os_conf = $(HOME)/.config/kitty/os.conf
+kitty_os_conf: | $(kitty_os_conf)
+$(kitty_os_conf):
+ifeq ($(OS_NAME), darwin)
+	@ln -sfn $(HOME)/.config/kitty/darwin.conf $(HOME)/.config/kitty/os.conf
+else
+	@ln -sfn $(HOME)/.config/kitty/non-darwin.conf $(HOME)/.config/kitty/os.conf
+endif
+
 
 ### Unlinking
 unlink:
