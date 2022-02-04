@@ -74,11 +74,19 @@ $(prefixed_formulae): | $(homebrew)
 ### Linking
 prefixed_symlinks = $(addprefix $(HOME)/.,$(dotfiles))
 
-link: | $(prefixed_symlinks)
+link: | $(prefixed_symlinks) kitty_current_theme
 
 $(prefixed_symlinks):
 	@echo '==> Link dotfiles to home directory...'
 	@$(foreach val, $(dotfiles), ln -sfn $(abspath $(val)) $(HOME)/.$(val);)
+
+### kitty theme
+kitty_current_theme = $(HOME)/.config/kitty/current-theme.conf
+
+kitty_current_theme: | $(kitty_current_theme)
+
+$(kitty_current_theme):
+	@cp $(HOME)/.config/kitty/themes/dark.conf $(HOME)/.config/kitty/current-theme.conf
 
 ### Unlinking
 unlink:
