@@ -18,7 +18,7 @@ function kitty_theme -d "Change kitty theme" -a theme_name
     # If theme exists, change theme
     if [ -e "$theme_path" ]
       # Change for current session
-      kitty +kitten themes --dump-theme $_theme_name > ~/.config/kitty/current-theme.conf
+      cat ~/.config/kitty/themes/$theme_name.conf > ~/.config/kitty/current-theme.conf
       kitty @ set-colors --all --configured $theme_path
     end
   end
