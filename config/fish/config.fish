@@ -84,7 +84,7 @@ set -x GOPATH ~/.go
 fish_add_path ~/.go/bin
 
 # Start keychain
-if test $OS_NAME != 'darwin'; and not set -q SSH_AGENT_PID
+if test $OS_NAME != 'darwin'; and status --is-interactive
   keychain --eval --quiet -Q github_ed25519 frodo_ed25519 github | source
 end
 
