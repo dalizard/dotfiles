@@ -1,5 +1,5 @@
 set -U fish_color_quote 86B300
-set -U fish_color_command 55B4D4
+set -U fish_color_command 076678
 set -U fish_color_end ED9366
 set -U fish_color_error F51818
 set -U fish_color_redirection A37ACC
