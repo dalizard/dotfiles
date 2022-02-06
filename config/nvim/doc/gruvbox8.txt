@@ -1,4 +1,4 @@
-*gruvbox8.txt*	For Vim version 8.0	Last change: 2021 Nov 04
+*gruvbox8.txt*	For Vim version 8.0	Last change: 2022 Feb 06
 
 
 		Gruvbox 8 color scheme

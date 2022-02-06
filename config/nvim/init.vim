@@ -234,20 +234,20 @@ command! -bang -nargs=* Rg
 let g:fzf_preview_window = ''
 let g:fzf_layout = { 'down': '~30%' }
 let g:fzf_colors =
-\ { 'fg':      ['fg', 'fzfNormal'],
-  \ 'bg':      ['bg', 'none'],
-  \ 'hl':      ['fg', 'fzfComment'],
-  \ 'fg+':     ['fg', 'fzfCursorLine'],
-  \ 'bg+':     ['bg', 'fzfCursorLine'],
-  \ 'hl+':     ['fg', 'fzfStatement'],
-  \ 'info':    ['fg', 'fzfPreProc'],
-  \ 'border':  ['fg', 'fzfIgnore'],
-  \ 'prompt':  ['fg', 'fzfConditional'],
-  \ 'pointer': ['fg', 'fzfException'],
-  \ 'marker':  ['fg', 'fzfKeyword'],
-  \ 'spinner': ['fg', 'fzfLabel'],
-  \ 'header':  ['fg', 'fzfComment'],
-  \ 'query':   ['fg', 'fzfQuery'] }
+\ { 'fg':      ['fg', 'Normal'],
+  \ 'bg':      ['bg', 'Normal'],
+  \ 'hl':      ['fg', 'Comment'],
+  \ 'fg+':     ['fg', 'Normal'],
+  \ 'bg+':     ['bg', 'CursorLine'],
+  \ 'hl+':     ['fg', 'Statement'],
+  \ 'info':    ['fg', 'PreProc'],
+  \ 'border':  ['fg', 'Ignore'],
+  \ 'prompt':  ['fg', 'Conditional'],
+  \ 'pointer': ['fg', 'Exception'],
+  \ 'marker':  ['fg', 'Keyword'],
+  \ 'spinner': ['fg', 'Label'],
+  \ 'header':  ['fg', 'Comment'],
+  \ 'query':   ['fg', 'Query'] }
 " }}}
 
 " vim-test {{{

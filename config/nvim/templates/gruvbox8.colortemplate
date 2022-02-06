@@ -12,16 +12,18 @@ Include: _global
 Variant: gui 256 16 8
 
 Background: dark
-Color: bg0 rgb(40, 40, 40) 235 Black
+Color: bg0   rgb(40, 40, 40) 235 Black
+Color: bg0_s rgb(46, 46, 46) 237 DarkGray
 Include: _dark
 
 Include: _lightline_dark
 Include: _airline
 
 Background: light
-Color: bg0 rgb(253, 246, 227) 230 White
-Color: bg1 rgb(235, 219, 178) 187 Grey
-Color: bg2 rgb(213, 196, 161) 187
+Color: bg0   rgb(253, 246, 227) 230 White
+Color: bg0_s rgb(244, 236, 215) 230 White
+Color: bg1   rgb(235, 219, 178) 187 Grey
+Color: bg2   rgb(213, 196, 161) 187
 Include: _light
 
 Include: _lightline_dark
