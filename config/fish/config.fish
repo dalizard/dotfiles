@@ -88,6 +88,8 @@ if test $OS_NAME != 'darwin'; and status --is-interactive
   keychain --eval --quiet -Q github_ed25519 frodo_ed25519 github | source
 end
 
-if test $OS_NAME != 'openbsd'
+if test $OS_NAME = 'openbsd'
+  ~/.cargo/bin/starship init fish | source
+else
   starship init fish | source
 end
