@@ -1,4 +1,3 @@
-SHELL := $(shell which fish)
 OS_NAME := $(shell uname -s | tr A-Z a-z)
 
 excluded_dotfiles := Makefile
@@ -46,7 +45,7 @@ ifeq ($(OS_NAME), darwin)
 	@brew update
 	@brew upgrade
 endif
-	@fisher update
+	@fish -c 'fisher update'
 	@vim +PlugUpgrade +PlugInstall +PlugUpdate +qall
 
 clean: | install
@@ -73,28 +72,24 @@ $(prefixed_formulae): | $(homebrew)
 
 ### Linking
 prefixed_symlinks = $(addprefix $(HOME)/.,$(dotfiles))
+kitty_current_theme = $(HOME)/.config/kitty/current-theme.conf
+kitty_os_conf = $(HOME)/.config/kitty/os.conf
 
-link: | $(prefixed_symlinks) kitty_current_theme kitty_os_conf
+link: | $(prefixed_symlinks) $(kitty_current_theme) $(kitty_os_conf)
 
 $(prefixed_symlinks):
 	@echo '==> Link dotfiles to home directory...'
 	@$(foreach val, $(dotfiles), ln -sfn $(abspath $(val)) $(HOME)/.$(val);)
 
-### kitty config
-kitty_current_theme = $(HOME)/.config/kitty/current-theme.conf
-kitty_current_theme: | $(kitty_current_theme)
 $(kitty_current_theme):
 	@cp $(HOME)/.config/kitty/themes/dark.conf $(HOME)/.config/kitty/current-theme.conf
 
-kitty_os_conf = $(HOME)/.config/kitty/os.conf
-kitty_os_conf: | $(kitty_os_conf)
 $(kitty_os_conf):
 ifeq ($(OS_NAME), darwin)
 	@ln -sfn $(HOME)/.config/kitty/darwin.conf $(HOME)/.config/kitty/os.conf
 else
 	@ln -sfn $(HOME)/.config/kitty/non-darwin.conf $(HOME)/.config/kitty/os.conf
 endif
-
 
 ### Unlinking
 unlink:
@@ -106,23 +101,18 @@ ruby_version := $(shell cat $(PWD)/ruby-version)
 ruby_dir = $(HOME)/.rubies
 ruby = $(ruby_dir)/ruby-$(ruby_version)
 gem = $(ruby)/bin/gem
-
 ruby: | $(ruby) $(bundler)
-
 $(ruby): | $(brew) $(HOME)/.ruby-version
 	ruby-install ruby-$(ruby_version) -i $(ruby_dir)/ruby-$(ruby_version)
 
 ### Bundler
 bundler = $(ruby)/bin/bundle
-
 $(bundler): | $(ruby)
 	$(gem) install bundler
 
 ### plug.vim
 vim_plug = $(HOME)/.config/nvim/autoload/plug.vim
-
 vim_plug: | $(vim_plug)
-
 $(vim_plug):
 	curl -fLo $(vim_plug) --create-dirs \
 		https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
@@ -131,9 +121,7 @@ $(vim_plug):
 ### Neovim
 vim = /usr/local/bin/vim
 vi = /usr/local/bin/vi
-
 neovim: | $(vim) $(vi)
-
 $(vim):
 	ln -sfn /usr/local/bin/nvim /usr/local/bin/vim
 $(vi):
@@ -141,9 +129,7 @@ $(vi):
 
 ### Fish plugin manager
 fisher = $(HOME)/.config/fish/functions/fisher.fish
-
 fisher: $(fisher)
-
 $(fisher):
 	@echo '==> Installing fisher plugin manager...'
-	@curl -sL https://git.io/fisher | source && fisher install jorgebucaran/fisher
+	@fish -c 'curl -sL https://git.io/fisher | source && fisher install jorgebucaran/fisher'
