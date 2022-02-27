@@ -73,8 +73,11 @@ end
 function fish_title; end
 
 # Set ripgrep as the default source for fzf
-set -x FZF_DEFAULT_COMMAND 'rg --files --no-ignore --hidden --follow --glob "!.git/*" --ignore-file ~/.rgignore'
-set -x FZF_DEFAULT_OPTS '--no-bold'
+set -x FZF_DEFAULT_COMMAND rg --files --no-ignore --hidden --follow --glob '!.git/*' --ignore-file ~/.rgignore
+set -x __fzf_color_light 'fg:#282828,fg+:#282828,bg+:#f2e5bc,hl:#689d6a,hl+:#427b58,prompt:#427b58,pointer:#af3a03,info:#7c6f64'
+set -x __fzf_color_dark 'fg:#fbf1c7,fg+:#fbf1c7,bg+:#3c3836,hl:#689d6a,hl+:#427b58,prompt:#427b58,pointer:#af3a03,info:#7c6f64'
+
+set -x FZF_DEFAULT_OPTS --no-bold --color (set __fzf_color_{$COLOR_THEME})
 
 # Erlang libraries
 set -x ERL_LIBS /usr/local/opt/proper
