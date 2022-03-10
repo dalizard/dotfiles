@@ -45,14 +45,6 @@ set -x GREP_COLOR '0;31'
 # No warnings in Ruby
 set -x RUBYOPT '-W0'
 
-# Fish colors
-set -x fish_color_search_match --background=294d6d
-set -x fish_color_cancel white --italics
-set -x fish_pager_color_description ebdbb2
-set -x fish_pager_color_prefix magenta
-set -x fish_pager_color_progress ebdbb2 --background=294d6d
-set -x fish_pager_color_selected_background --background=504945
-
 # Set global Node.js version
 if test $OS_NAME = 'darwin'
   set -U nvm_default_version v17.4.0
