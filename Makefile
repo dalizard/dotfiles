@@ -82,7 +82,8 @@ $(prefixed_symlinks):
 	@$(foreach val, $(dotfiles), ln -sfn $(abspath $(val)) $(HOME)/.$(val);)
 
 $(kitty_current_theme):
-	@cp $(HOME)/.config/kitty/themes/dark.conf $(HOME)/.config/kitty/current-theme.conf
+	@mkdir -p $(HOME)/.config
+	@cp $(HOME)/.dotfiles/config/kitty/themes/dark.conf $(HOME)/.config/kitty/current-theme.conf
 
 $(kitty_os_conf):
 ifeq ($(OS_NAME), darwin)
