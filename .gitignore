@@ -12,6 +12,7 @@ config/configstore
 config/exercism
 config/fontforge
 config/gatsby
+config/gcloud
 config/gh/hosts.yml
 config/glib-2.0
 config/htop
