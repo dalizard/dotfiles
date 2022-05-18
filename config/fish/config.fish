@@ -57,6 +57,7 @@ alias gg='git status'
 alias be='bundle exec'
 alias n='nnn'
 alias myip='curl ipinfo.io'
+alias kc='kubectl'
 
 if test $OS_NAME = 'openbsd'
   alias ls='colorls'
