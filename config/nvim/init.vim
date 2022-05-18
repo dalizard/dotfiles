@@ -488,6 +488,10 @@ let g:go_term_reuse = 1
 let g:go_doc_popup_window = 1
 " }}}
 
+" Java {{{
+let test#java#runner = 'gradletest'
+" }}}
+
 " Colorizer.lua {{{
 lua << EOF
 require 'colorizer'.setup({}, {
