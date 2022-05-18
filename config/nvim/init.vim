@@ -345,8 +345,8 @@ function! LightlineReadonly()
 endfunction
 
 function! LightlineFugitive()
-  if exists("*fugitive#head(7)")
-    return winwidth(0) > 60 ? fugitive#head(7) : ''
+  if exists("*FugitiveHead(7)")
+    return winwidth(0) > 60 ? FugitiveHead(7) : ''
   endif
   return ''
 endfunction
