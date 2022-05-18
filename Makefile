@@ -36,14 +36,13 @@ default: | update clean
 ifneq (,$(filter $(OS_NAME), freebsd openbsd))
 install: | link fisher ruby vim_plug
 else
-install: | brew link fisher ruby vim_plug neovim
+install: | link fisher ruby vim_plug neovim
 endif
 
 update: | install
 	@echo '==> Updating world...'
 ifeq ($(OS_NAME), darwin)
-	@brew update
-	@brew upgrade
+	@sudo port selfupdate
 endif
 	@fish -c 'fisher update'
 	@vim +PlugUpgrade +PlugInstall +PlugUpdate +qall
@@ -51,24 +50,12 @@ endif
 clean: | install
 	@echo '==> Cleaning world...'
 ifeq ($(OS_NAME), darwin)
-	@brew cleanup -s
+ifneq ($(shell port list inactive),)
+	@sudo port uninstall inactive
+endif
 endif
 	@vim +PlugClean +qall
-
-### Homebrew
-homebrew_root := /usr/local
-cellar := $(homebrew_root)/Cellar
-prefixed_formulae := $(addprefix $(cellar)/,$(notdir $(formulae)))
-homebrew := $(homebrew_root)/bin/brew
-
-brew: | $(homebrew) $(prefixed_formulae)
-
-$(homebrew):
-	ruby -e "$$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-	brew analytics off
-
-$(prefixed_formulae): | $(homebrew)
-	brew install $(notdir $@)
+	@rm -f config/nvim/autoload/plug.vim.old
 
 ### Linking
 prefixed_symlinks = $(addprefix $(HOME)/.,$(dotfiles))
@@ -103,7 +90,7 @@ ruby_dir = $(HOME)/.rubies
 ruby = $(ruby_dir)/ruby-$(ruby_version)
 gem = $(ruby)/bin/gem
 ruby: | $(ruby) $(bundler)
-$(ruby): | $(brew) $(HOME)/.ruby-version
+$(ruby): | $(HOME)/.ruby-version
 	ruby-install ruby-$(ruby_version) -i $(ruby_dir)/ruby-$(ruby_version)
 
 ### Bundler
@@ -120,13 +107,19 @@ $(vim_plug):
 	mkdir -p $(HOME)/.nvim/tmp
 
 ### Neovim
-vim = /usr/local/bin/vim
-vi = /usr/local/bin/vi
+ifeq ($(OS_NAME), darwin)
+bin_path := /opt/local/bin
+else
+bin_path := /usr/local/bin
+endif
+
+vim = $(bin_path)/vim
+vi = $(bin_path)/vi
 neovim: | $(vim) $(vi)
 $(vim):
-	ln -sfn /usr/local/bin/nvim /usr/local/bin/vim
+	sudo ln -sfn $(bin_path)/nvim $(bin_path)/vim
 $(vi):
-	ln -sfn /usr/local/bin/nvim /usr/local/bin/vi
+	sudo ln -sfn $(bin_path)/nvim $(bin_path)/vi
 
 ### Fish plugin manager
 fisher = $(HOME)/.config/fish/functions/fisher.fish
