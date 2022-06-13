@@ -224,6 +224,9 @@ nnoremap \ :Rg<space>
 nnoremap <C-\> :Rg!<space>
 
 au FileType go nmap <leader>t <Plug>(go-run-split)
+
+" Puts the called in Ruby
+au FileType ruby nnoremap <leader>wtf oputs "#" * 80<c-m>puts caller<c-m>puts "#" * 80<esc>
 " }}}
 
 " RipGrep {{{
