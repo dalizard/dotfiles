@@ -1,2 +1,11 @@
+-- Immediate rollback to just the previous command
+\set ON_ERROR_ROLLBACK interactive
+
 -- Different histories for each database.
 \set HISTFILE ~/.psql_history- :DBNAME
+
+-- Automatically switch between extended and normal
+\x auto
+
+-- Always show how long a query takes
+\timing
