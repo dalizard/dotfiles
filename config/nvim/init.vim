@@ -46,6 +46,10 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
 Plug 'vim-erlang/vim-erlang-compiler'
 
+Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build' }
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim'
+
 call plug#end()
 " }}}
 
@@ -177,14 +181,15 @@ nnoremap  <leader>y  "+y
 nnoremap  <leader>Y  "+yg_
 nnoremap  <leader>yy "+yy
 
-" fzf.vim shortcuts
-nnoremap <silent> <C-j> :GFiles<cr>
-nnoremap <silent> <C-k> :Files<cr>
-nnoremap <silent> <C-f> :Buffers<cr>
+" Telescope shortcuts
+nnoremap <silent> <C-j> <cmd>Telescope find_files<cr>
+nnoremap <silent> <C-l> <cmd>Telescope live_grep<cr>
+"nnoremap <silent> <C-k> :Files<cr>
+nnoremap <silent> <C-f> <cmd>Telescope buffers<cr>
 
 " Quick search
-nnoremap <silent> K :call SearchWordWithRg()<cr>
-vnoremap <silent> K :call SearchVisualSelectionWithRg()<cr>
+nnoremap <silent> K <cmd>Telescope grep_string<cr>
+vnoremap <silent> K <cmd>Telescope grep_string<cr>
 
 " Expand current path
 cnoremap %% <C-R>=expand('%:h').'/'<cr>
@@ -464,6 +469,23 @@ let g:fugitive_summary_format = "%<(16,trunc)%an || %s"
 
 " Fold diffs by default
 autocmd User FugitiveCommit set foldmethod=syntax
+" }}}
+
+" telescope.nvim {{{
+lua << EOF
+local actions = require('telescope.actions')
+
+require('telescope').setup{
+  defaults = {
+    mappings = {
+      i = {
+        ["<C-j>"] = actions.move_selection_next,
+        ["<C-k>"] = actions.move_selection_previous
+      }
+    }
+  }
+}
+EOF
 " }}}
 
 " Ruby {{{
