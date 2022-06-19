@@ -474,13 +474,30 @@ autocmd User FugitiveCommit set foldmethod=syntax
 " telescope.nvim {{{
 lua << EOF
 local actions = require('telescope.actions')
+local action_layout = require('telescope.actions.layout')
 
 require('telescope').setup{
   defaults = {
     mappings = {
       i = {
         ["<C-j>"] = actions.move_selection_next,
-        ["<C-k>"] = actions.move_selection_previous
+        ["<C-k>"] = actions.move_selection_previous,
+        ["<C-p>"] = action_layout.toggle_preview,
+      },
+      n = {
+        ["<C-p>"] = action_layout.toggle_preview,
+      }
+    }
+  },
+  pickers = {
+    find_files = {
+      preview = {
+        hide_on_startup = true,
+      }
+    },
+    buffers = {
+      preview = {
+        hide_on_startup = true,
       }
     }
   }
