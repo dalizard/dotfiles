@@ -487,7 +487,8 @@ require('telescope').setup{
       n = {
         ["<C-p>"] = action_layout.toggle_preview,
       }
-    }
+    },
+    layout_strategy = 'flex'
   },
   pickers = {
     find_files = {
