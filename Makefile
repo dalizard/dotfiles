@@ -10,6 +10,7 @@ dotfiles := $(filter-out $(excluded_dotfiles), $(wildcard *))
 
 formulae := \
 	bat \
+	cheat \
 	dash \
 	erlang \
 	fd \

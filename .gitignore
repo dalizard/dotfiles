@@ -8,6 +8,7 @@ config/Zeal
 config/bottom
 config/bpytop
 config/bpytop/error.log
+config/cheat/cheatsheets/community
 config/configstore
 config/exercism
 config/fontforge
