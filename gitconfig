@@ -26,6 +26,12 @@
   local = yellow
   remote = green
 
+[color "decorate"]
+  head = cyan
+  branch = green
+  remoteBranch = red
+  tag = green
+
 [color "diff"]
   meta = yellow
   frag = magenta
@@ -33,11 +39,8 @@
   new = green
   whitespace = red reverse
 
-[color "decorate"]
-  head = cyan
-  branch = green
-  remoteBranch = red
-  tag = green
+[color "log"]
+  author = green bold
 
 [color "status"]
   added = yellow
