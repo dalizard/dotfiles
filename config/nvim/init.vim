@@ -182,9 +182,9 @@ nnoremap  <leader>Y  "+yg_
 nnoremap  <leader>yy "+yy
 
 " Telescope shortcuts
-nnoremap <silent> <C-j> <cmd>Telescope find_files<cr>
+nnoremap <silent> <C-j> <cmd>Telescope git_files<cr>
 nnoremap <silent> <C-l> <cmd>Telescope live_grep<cr>
-"nnoremap <silent> <C-k> :Files<cr>
+nnoremap <silent> <C-k> <cmd>Telescope find_files no_ignore=true<cr>
 nnoremap <silent> <C-f> <cmd>Telescope buffers<cr>
 
 " Quick search
@@ -483,6 +483,7 @@ require('telescope').setup{
         ["<C-j>"] = actions.move_selection_next,
         ["<C-k>"] = actions.move_selection_previous,
         ["<C-p>"] = action_layout.toggle_preview,
+        ["<C-y>"] = actions.delete_buffer,
       },
       n = {
         ["<C-p>"] = action_layout.toggle_preview,
@@ -491,14 +492,19 @@ require('telescope').setup{
     layout_strategy = 'flex'
   },
   pickers = {
+    git_files = {
+      preview = {
+        hide_on_startup = true
+      }
+    },
     find_files = {
       preview = {
-        hide_on_startup = true,
+        hide_on_startup = true
       }
     },
     buffers = {
       preview = {
-        hide_on_startup = true,
+        hide_on_startup = true
       }
     }
   }
