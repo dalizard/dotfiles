@@ -270,32 +270,45 @@ let g:fzf_colors =
 " }}}
 
 " vim-test {{{
-"function! TestRunner(cmd)
-"  let opts = {'suffix': ' # vim-test'}
-"
-"  function! opts.on_exit(job_id, exit_code, event)
-"    if a:exit_code == 0
-"      call self.close_terminal()
-"    endif
-"  endfunction
-"
-"  function! opts.close_terminal()
-"    if bufnr(self.suffix) != -1
-"      execute 'bdelete!' bufnr(self.suffix)
-"    end
-"  endfunction
-"
-"  call opts.close_terminal()
-"
-"  vertical botright new
-"  call termopen(a:cmd . opts.suffix, opts)
-"  au BufDelete <buffer> wincmd p
-"  normal! G
-"  wincmd p
+
+"function! TestRunnner(cmd) abort
+"  let term_position = get(g:, 'test#neovim#term_position', 'botright')
+"  execute term_position . ' new'
+"  call termopen(a:cmd)
+"  au BufDelete <buffer> wincmd p " switch back to last window
+"  if !get(g:, 'test#neovim#start_normal', 0)
+"    startinsert
+"  endif
 "endfunction
-"
-"let g:test#custom_strategies = {'testrunner': function('TestRunner')}
-let g:test#strategy = 'neovim'
+
+function! TestRunner(cmd) abort
+  let term_position = get(g:, 'test#neovim#term_position', 'botright')
+
+  let opts = {'suffix': ' # vim-test'}
+
+  function! opts.on_exit(job_id, exit_code, event)
+    if a:exit_code == 0
+      call self.close_terminal()
+    endif
+  endfunction
+
+  function! opts.close_terminal()
+    if bufnr(self.suffix) != -1
+      execute 'bdelete!' bufnr(self.suffix)
+    end
+  endfunction
+
+  call opts.close_terminal()
+
+  execute term_position . ' new'
+  call termopen(a:cmd . opts.suffix, opts)
+  au BufDelete <buffer> wincmd p
+  normal! G
+  wincmd p
+endfunction
+
+let g:test#custom_strategies = {'testrunner': function('TestRunner')}
+let g:test#strategy = 'testrunner'
 let test#neovim#term_position = "vert botright"
 
 let test#ruby#rspec#options = {'suite': '-f p -r ~/.rspec-support/quickfix_formatter.rb -f QuickfixFormatter -o spec/quickfix.out'}
