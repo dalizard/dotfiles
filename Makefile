@@ -51,7 +51,7 @@ endif
 clean: | install
 	@echo '==> Cleaning world...'
 ifeq ($(OS_NAME), darwin)
-ifneq ($(shell port list inactive),)
+ifneq ($(shell port installed inactive),)
 	@sudo port uninstall inactive
 endif
 endif
