@@ -511,6 +511,7 @@ require('telescope').setup{
       }
     },
     find_files = {
+      find_command = { "fd", "--type", "f", "--strip-cwd-prefix" },
       preview = {
         hide_on_startup = true
       }
