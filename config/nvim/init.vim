@@ -502,7 +502,17 @@ require('telescope').setup{
         ["<C-p>"] = action_layout.toggle_preview,
       }
     },
-    layout_strategy = 'flex'
+    layout_strategy = 'flex',
+    vimgrep_arguments = {
+      "rg",
+      "--color=never",
+      "--no-heading",
+      "--with-filename",
+      "--line-number",
+      "--column",
+      "--hidden",
+      "--smart-case"
+    },
   },
   pickers = {
     git_files = {
