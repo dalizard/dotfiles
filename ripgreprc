@@ -1,4 +1,4 @@
-# Do not print file path above clusters of matches
+--hidden
 --no-heading
 --colors=match:style:nobold
 --colors=match:fg:magenta
