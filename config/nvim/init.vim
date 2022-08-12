@@ -24,6 +24,7 @@ Plug 'autozimu/LanguageClient-neovim', {
     \ 'do': 'bash install.sh',
     \ }
 
+Plug 'ellisonleao/gruvbox.nvim'
 Plug 'euclio/vim-markdown-composer', { 'do': function('BuildComposer') }
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'itchyny/lightline.vim'
@@ -113,10 +114,26 @@ endif
 let g:cheat40_use_default = 0
 " }}}
 
-" {{{ Color Scheme
-let g:gruvbox8_filetype_hi_groups = 1
-let g:gruvbox8_plugin_hi_groups = 1
-colorscheme gruvbox8
+" {{{ Gruvbox
+lua << EOF
+-- setup must be called before loading the colorscheme
+require("gruvbox").setup({
+  undercurl = true,
+  underline = true,
+  bold = true,
+  italic = true,
+  strikethrough = true,
+  invert_selection = false,
+  invert_signs = false,
+  invert_tabline = false,
+  invert_intend_guides = false,
+  inverse = true, -- invert background for search, diffs, statuslines and errors
+  contrast = "", -- can be "hard", "soft" or empty string
+  overrides = {},
+})
+vim.cmd("colorscheme gruvbox")
+EOF
+colorscheme gruvbox
 " }}}
 
 " Auto Groups {{{
@@ -573,6 +590,33 @@ require 'colorizer'.setup({}, {
   rgb_fn = true,
   hsl_fn = true
 })
+EOF
+" }}}
+
+" Tree-sitter {{{
+lua <<EOF
+require 'nvim-treesitter.configs'.setup {
+  highlight = {
+    enable = true,
+    disable = {},
+  },
+  indent = {
+    enable = false,
+    disable = {},
+  },
+  ensure_installed = {
+    'tsx',
+    'typescript',
+    'javascript',
+    'fish',
+    'ruby',
+    'go',
+    'rust',
+    'yaml',
+    'html',
+    'css'
+  }
+}
 EOF
 " }}}
 
