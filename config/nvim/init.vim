@@ -19,15 +19,9 @@ endfunction
 call plug#begin('~/.nvim/plugins')
 
 Plug 'airblade/vim-gitgutter'
-Plug 'autozimu/LanguageClient-neovim', {
-    \ 'branch': 'next',
-    \ 'do': 'bash install.sh',
-    \ }
-
 Plug 'ellisonleao/gruvbox.nvim'
 Plug 'euclio/vim-markdown-composer', { 'do': function('BuildComposer') }
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
-Plug 'itchyny/lightline.vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/gv.vim'
@@ -37,6 +31,7 @@ Plug 'lifepillar/vim-mucomplete'
 Plug 'mbbill/undotree'
 Plug 'norcalli/nvim-colorizer.lua'
 Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-lualine/lualine.nvim'
 Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build' }
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
@@ -332,152 +327,144 @@ let test#neovim#term_position = "vert botright"
 let test#ruby#rspec#options = {'suite': '-f p -r ~/.rspec-support/quickfix_formatter.rb -f QuickfixFormatter -o spec/quickfix.out'}
 " }}}
 
-" lightline.vim {{{
-let g:lightline = {
-      \ 'mode_map': {
-      \ 'n' : 'N',
-      \ 'i' : 'I',
-      \ 'R' : 'R',
-      \ 'v' : 'V',
-      \ 'V' : 'VL',
-      \ "\<C-v>": 'VB',
-      \ 'c' : 'C',
-      \ 's' : 'S',
-      \ 'S' : 'SL',
-      \ "\<C-s>": 'SB',
-      \ 't': 'T',
-      \ },
-      \ 'colorscheme': 'gruvbox8',
-      \ 'active': {
-      \   'left': [ [ 'mode', 'paste', 'spell' ],
-      \             [ 'fugitive', 'readonly', 'filename', 'gitmerge' ] ],
-      \   'right': [ [ 'lineinfo' ], [ 'percent' ], [ 'fileencoding' ], [ 'filetype' ], [ 'obsession' ] ]
-      \ },
-      \ 'component_function': {
-      \   'filename': 'LightlineFilename',
-      \   'mode': 'LightlineMode',
-      \   'fugitive': 'LightlineFugitive',
-      \   'readonly': 'LightlineReadonly',
-      \   'fileformat': 'LightlineFileformat',
-      \   'filetype': 'LightlineFiletype',
-      \   'fileencoding': 'LightlineFileencoding',
-      \   'gitmerge': 'LightlineGitmerge',
-      \ },
-      \ 'component_expand': {
-      \   'obsession': 'LightlineObsession'
-      \ },
-      \ 'separator': { 'left': '', 'right': '' },
-      \ 'subseparator': { 'left': '・', 'right': '・' }
-      \ }
-
-autocmd OptionSet background
-      \ execute 'source' globpath(&rtp, 'autoload/lightline/colorscheme/gruvbox8.vim')
-      \ | call lightline#colorscheme() | call lightline#update()
-
-function! LightlineFilename()
-  let filename = expand('%:t') !=# '' ? expand('%:t') : '⌈no name⌉'
-  let modified = &modified ? ' ⌙' : ''
-  return filename . modified
-endfunction
-
-function! LightlineReadonly()
-  return &readonly ? '⌀' : ''
-endfunction
-
-function! LightlineFugitive()
-  if exists("*FugitiveHead(7)")
-    return winwidth(0) > 60 ? FugitiveHead(7) : ''
-  endif
-  return ''
-endfunction
-
-function! LightlineFileformat()
-  return winwidth(0) > 70 ? &fileformat : ''
-endfunction
-
-function! LightlineFiletype()
-  return winwidth(0) > 70 ? (&filetype !=# '' ? &filetype : 'no ft') : ''
-endfunction
-
-function! LightlineFileencoding()
-  return winwidth(0) > 70 ? (&fenc !=# '' ? &fenc : &enc) : ''
-endfunction
-
-function! LightlineMode()
-  return winwidth(0) > 30 ? lightline#mode() : ''
-endfunction
-
-function! LightlineGitmerge()
-  let fullname = expand('%')
-  let gitversion = ''
-  if fullname =~? 'fugitive://.*/\.git//0/.*'
-      let gitversion = 'git index'
-  elseif fullname =~? 'fugitive://.*/\.git//2/.*'
-      let gitversion = 'git target'
-  elseif fullname =~? 'fugitive://.*/\.git//3/.*'
-      let gitversion = 'git merge'
-  elseif &diff == 1
-      let gitversion = 'working copy'
-  endif
-  return gitversion
-endfunction
-
-function! LightlineObsession()
-    return '%{ObsessionStatus("▾", "▿")}'
-endfunction
+" lualine.nvim {{{
+lua << END
+require('lualine').setup {
+  options = {
+    icons_enabled = true,
+    theme = 'gruvbox',
+    component_separators = { left = '', right = ''},
+    section_separators = { left = '', right = ''},
+    disabled_filetypes = {
+      statusline = {},
+      winbar = {},
+    },
+    ignore_focus = {},
+    always_divide_middle = true,
+    globalstatus = false,
+    refresh = {
+      statusline = 1000,
+      tabline = 1000,
+      winbar = 1000,
+    }
+  },
+  sections = {
+    lualine_a = {'mode'},
+    lualine_b = {'branch', 'diff', 'diagnostics'},
+    lualine_c = {'filename'},
+    lualine_x = {'encoding', 'fileformat', 'filetype'},
+    lualine_y = {'progress'},
+    lualine_z = {'location'}
+  },
+  inactive_sections = {
+    lualine_a = {},
+    lualine_b = {},
+    lualine_c = {'filename'},
+    lualine_x = {'location'},
+    lualine_y = {},
+    lualine_z = {}
+  },
+  tabline = {},
+  winbar = {},
+  inactive_winbar = {},
+  extensions = {}
+}
+END
 " }}}
 
-" {{{ Language Client
-let g:LanguageClient_loadSettings = 0
-let g:LanguageClient_selectionUI = 'fzf'
-let g:LanguageClient_showCompletionDocs = 0
-
-
-let g:LanguageClient_serverCommands = {
-      \ 'javascript': ['typescript-language-server', '--stdio'],
-      \ 'typescript': ['typescript-language-server', '--stdio'],
-      \ 'ruby': ['solargraph', 'stdio'],
-      \}
-
-let g:LanguageClient_diagnosticsDisplay = {
-  \ 1: {
-  \   "name": "Error",
-  \   "texthl": "ALEError",
-  \   "signText": "•",
-  \   "signTexthl": "ALEErrorSign",
-  \   "virtualTexthl": "Error",
-  \ },
-  \ 2: {
-  \   "name": "Warning",
-  \   "texthl": "ALEWarning",
-  \   "signText": "•",
-  \   "signTexthl": "ALEWarningSign",
-  \   "virtualTexthl": "Todo",
-  \ },
-  \ 3: {
-  \   "name": "Information",
-  \   "texthl": "ALEInfo",
-  \   "signText": "•",
-  \   "signTexthl": "ALEInfoSign",
-  \   "virtualTexthl": "Todo",
-  \ },
-  \ 4: {
-  \   "name": "Hint",
-  \   "texthl": "ALEInfo",
-  \   "signText": "•",
-  \   "signTexthl": "ALEInfoSign",
-  \   "virtualTexthl": "Todo",
-  \ },
-  \ }
-
-function LC_maps()
-  if has_key(g:LanguageClient_serverCommands, &filetype)
-    nnoremap <buffer> <silent> L :call LanguageClient#textDocument_hover()<cr>
-    nnoremap <buffer> <silent> gd :call LanguageClient#textDocument_definition()<CR>
-  endif
-endfunction
-
-autocmd FileType * call LC_maps()
+" lightline.vim {{{
+"let g:lightline = {
+"      \ 'mode_map': {
+"      \ 'n' : 'N',
+"      \ 'i' : 'I',
+"      \ 'R' : 'R',
+"      \ 'v' : 'V',
+"      \ 'V' : 'VL',
+"      \ "\<C-v>": 'VB',
+"      \ 'c' : 'C',
+"      \ 's' : 'S',
+"      \ 'S' : 'SL',
+"      \ "\<C-s>": 'SB',
+"      \ 't': 'T',
+"      \ },
+"      \ 'colorscheme': 'gruvbox8',
+"      \ 'active': {
+"      \   'left': [ [ 'mode', 'paste', 'spell' ],
+"      \             [ 'fugitive', 'readonly', 'filename', 'gitmerge' ] ],
+"      \   'right': [ [ 'lineinfo' ], [ 'percent' ], [ 'fileencoding' ], [ 'filetype' ], [ 'obsession' ] ]
+"      \ },
+"      \ 'component_function': {
+"      \   'filename': 'LightlineFilename',
+"      \   'mode': 'LightlineMode',
+"      \   'fugitive': 'LightlineFugitive',
+"      \   'readonly': 'LightlineReadonly',
+"      \   'fileformat': 'LightlineFileformat',
+"      \   'filetype': 'LightlineFiletype',
+"      \   'fileencoding': 'LightlineFileencoding',
+"      \   'gitmerge': 'LightlineGitmerge',
+"      \ },
+"      \ 'component_expand': {
+"      \   'obsession': 'LightlineObsession'
+"      \ },
+"      \ 'separator': { 'left': '', 'right': '' },
+"      \ 'subseparator': { 'left': '・', 'right': '・' }
+"      \ }
+"
+"autocmd OptionSet background
+"      \ execute 'source' globpath(&rtp, 'autoload/lightline/colorscheme/gruvbox8.vim')
+"      \ | call lightline#colorscheme() | call lightline#update()
+"
+"function! LightlineFilename()
+"  let filename = expand('%:t') !=# '' ? expand('%:t') : '⌈no name⌉'
+"  let modified = &modified ? ' ⌙' : ''
+"  return filename . modified
+"endfunction
+"
+"function! LightlineReadonly()
+"  return &readonly ? '⌀' : ''
+"endfunction
+"
+"function! LightlineFugitive()
+"  if exists("*FugitiveHead(7)")
+"    return winwidth(0) > 60 ? FugitiveHead(7) : ''
+"  endif
+"  return ''
+"endfunction
+"
+"function! LightlineFileformat()
+"  return winwidth(0) > 70 ? &fileformat : ''
+"endfunction
+"
+"function! LightlineFiletype()
+"  return winwidth(0) > 70 ? (&filetype !=# '' ? &filetype : 'no ft') : ''
+"endfunction
+"
+"function! LightlineFileencoding()
+"  return winwidth(0) > 70 ? (&fenc !=# '' ? &fenc : &enc) : ''
+"endfunction
+"
+"function! LightlineMode()
+"  return winwidth(0) > 30 ? lightline#mode() : ''
+"endfunction
+"
+"function! LightlineGitmerge()
+"  let fullname = expand('%')
+"  let gitversion = ''
+"  if fullname =~? 'fugitive://.*/\.git//0/.*'
+"      let gitversion = 'git index'
+"  elseif fullname =~? 'fugitive://.*/\.git//2/.*'
+"      let gitversion = 'git target'
+"  elseif fullname =~? 'fugitive://.*/\.git//3/.*'
+"      let gitversion = 'git merge'
+"  elseif &diff == 1
+"      let gitversion = 'working copy'
+"  endif
+"  return gitversion
+"endfunction
+"
+"function! LightlineObsession()
+"    return '%{ObsessionStatus("▾", "▿")}'
+"endfunction
 " }}}
 
 " {{{ MUcomplete
