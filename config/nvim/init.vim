@@ -92,7 +92,7 @@ set scrolloff=3                   " Have some context around the current line al
 set autoread                      " Watch out for file changes
 set splitbelow                    " Put new window below the current one
 set complete+=kspell              " Autocomplete with dictionary words when spell check is on
-set completeopt=menu,menuone,noselect
+set completeopt=noinsert,menuone,noselect
 set nobackup
 set noswapfile                    " It's 2021 (at least)
 set nowritebackup
