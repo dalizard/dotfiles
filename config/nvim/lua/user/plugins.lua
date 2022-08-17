@@ -40,6 +40,8 @@ return packer.startup(function(use)
   use "hrsh7th/cmp-nvim-lsp"
   use "hrsh7th/cmp-path"
   use "hrsh7th/nvim-cmp"
+  use "hrsh7th/cmp-nvim-lua"
+  use "saadparwaiz1/cmp_luasnip"
 
   -- Syntax/Treesitter
   use "nvim-treesitter/nvim-treesitter"
@@ -55,11 +57,17 @@ return packer.startup(function(use)
     run = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build"
   }
 
+  -- Snippet
+  use "L3MON4D3/LuaSnip"
+
   -- Colorscheme
   use "ellisonleao/gruvbox.nvim"
 
   -- Statusline
-  use "nvim-lualine/lualine.nvim"
+  use {
+    "nvim-lualine/lualine.nvim",
+    requires = { "kyazdani42/nvim-web-devicons", opt = true }
+  }
 
   use "lewis6991/gitsigns.nvim"
 
