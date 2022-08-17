@@ -4,7 +4,7 @@ local command_opts = { noremap = true }
 local term_opts = { silent = true }
 
 -- Shorten function name
-local keymap = vim.api.nvim_set_keymap
+local keymap = vim.keymap.set
 
 -- Modes
 --   normal_mode = "n",
@@ -58,3 +58,9 @@ keymap("n", "<leader>yy", '"+yy', opts)
 
 -- Expand current path
 keymap("c", "%%", "<C-R>=expand('%:h').'/'<cr>", command_opts)
+
+-- Telescope
+keymap("n", "<C-j>", "<cmd>Telescope git_files<cr>", opts)
+keymap("n", "<C-l>", "<cmd>Telescope live_grep<cr>", opts)
+keymap("n", "<C-k>", "<cmd>Telescope find_files no_ignore=true<cr>", opts)
+keymap("n", "<C-f>", "<cmd>Telescope buffers<cr>", opts)
