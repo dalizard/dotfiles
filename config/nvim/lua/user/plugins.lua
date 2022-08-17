@@ -36,11 +36,11 @@ return packer.startup(function(use)
   use "williamboman/mason.nvim"
 
   -- Completion
-  use "hrsh7th/cmp-buffer"
-  use "hrsh7th/cmp-nvim-lsp"
-  use "hrsh7th/cmp-path"
-  use "hrsh7th/nvim-cmp"
-  use "hrsh7th/cmp-nvim-lua"
+  use "hrsh7th/cmp-buffer" -- completes words from the current buffer
+  use "hrsh7th/cmp-nvim-lsp" -- LSP support
+  use "hrsh7th/cmp-nvim-lua" -- neovim Lua completion
+  use "hrsh7th/cmp-path" -- complete files
+  use "hrsh7th/nvim-cmp" -- core plugin
   use "saadparwaiz1/cmp_luasnip"
 
   -- Syntax/Treesitter
@@ -69,6 +69,7 @@ return packer.startup(function(use)
     requires = { "kyazdani42/nvim-web-devicons", opt = true }
   }
 
+  -- Git
   use "lewis6991/gitsigns.nvim"
 
   -- Automatically set up your configuration after cloning packer.nvim
