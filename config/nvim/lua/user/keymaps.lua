@@ -1,4 +1,5 @@
 local opts = { noremap = true, silent = true }
+local command_opts = { noremap = true }
 
 local term_opts = { silent = true }
 
@@ -14,11 +15,46 @@ local keymap = vim.api.nvim_set_keymap
 --   command_mode = "c",
 
 -- Remap comma as leader key
-keymap("n", ",", "", opts)
+keymap("", ",", "<nop>", opts)
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
 -- Use Alt and Ctrl keys in command mode
-keymap("c", "<M-b>", "<S-Left>", opts)
-keymap("c", "<M-f>", "<S-Right>", opts)
-keymap("c", "<C-a>", "<C-b>", opts)
+keymap("c", "<M-b>", "<S-Left>", command_opts)
+keymap("c", "<M-f>", "<S-Right>", command_opts)
+keymap("c", "<C-a>", "<C-b>", command_opts)
+
+-- Leave terminal mode
+keymap("t", "<esc>", "<C-\\><C-n", term_opts)
+
+-- Clear highlighted text
+keymap("n", "<cr>", ":nohl<cr>", opts)
+
+-- Disable Q
+keymap("n", "Q", "<nop>", opts)
+
+-- Forget about the damn arrow keys!
+keymap("n", "<Up>", "<nop>", opts)
+keymap("i", "<Up>", "<nop>", opts)
+keymap("v", "<Up>", "<nop>", opts)
+keymap("n", "<Down>", "<nop>", opts)
+keymap("i", "<Down>", "<nop>", opts)
+keymap("v", "<Down>", "<nop>", opts)
+keymap("n", "<Left>", "<nop>", opts)
+keymap("i", "<Left>", "<nop>", opts)
+keymap("v", "<Left>", "<nop>", opts)
+keymap("n", "<Right>", "<nop>", opts)
+keymap("i", "<Right>", "<nop>", opts)
+keymap("v", "<Right>", "<nop>", opts)
+
+-- Esc is harder to reach
+keymap("i", "<C-c>", "<esc>", opts)
+
+-- Copy to clipboard
+keymap("v", "<leader>y", '"+y', opts)
+keymap("n", "<leader>y", '"+y', opts)
+keymap("n", "<leader>Y", '"+g_', opts)
+keymap("n", "<leader>yy", '"+yy', opts)
+
+-- Expand current path
+keymap("c", "%%", "<C-R>=expand('%:h').'/'<cr>", command_opts)
