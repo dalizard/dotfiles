@@ -21,7 +21,6 @@ local options = {
   modelines = 1,                                -- no lines are checked for set commands
   mouse = "a",                                  -- enable mouse for all modes
   number = false,                               -- do not show line numbers
-  number = true,                                -- set numbered lines
   numberwidth = 4,                              -- set number column width to 2 {default 4}
   pumheight = 10,                               -- pop up menu height
   relativenumber = false,                        -- set relative numbered lines
