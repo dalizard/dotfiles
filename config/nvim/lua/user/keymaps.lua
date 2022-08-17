@@ -34,19 +34,10 @@ keymap("n", "<cr>", ":nohl<cr>", opts)
 keymap("n", "Q", "<nop>", opts)
 
 -- Forget about the damn arrow keys!
-keymap("n", "<Up>", "<nop>", opts)
-keymap("i", "<Up>", "<nop>", opts)
-keymap("v", "<Up>", "<nop>", opts)
-keymap("n", "<Down>", "<nop>", opts)
-keymap("i", "<Down>", "<nop>", opts)
-keymap("v", "<Down>", "<nop>", opts)
-keymap("n", "<Left>", "<nop>", opts)
-keymap("i", "<Left>", "<nop>", opts)
-keymap("v", "<Left>", "<nop>", opts)
-keymap("n", "<Right>", "<nop>", opts)
-keymap("i", "<Right>", "<nop>", opts)
-keymap("v", "<Right>", "<nop>", opts)
-
+keymap({"n", "i", "v"}, "<Up>", "<nop>", opts)
+keymap({"n", "i", "v"}, "<Down>", "<nop>", opts)
+keymap({"n", "i", "v"}, "<Left>", "<nop>", opts)
+keymap({"n", "i", "v"}, "<Right>", "<nop>", opts)
 -- Esc is harder to reach
 keymap("i", "<C-c>", "<esc>", opts)
 
