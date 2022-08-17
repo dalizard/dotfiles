@@ -31,6 +31,7 @@ config/syncthing
 config/tmuxinator
 config/user-dirs.dirs
 config/yarn
+packer_compiled.lua
 fish_history
 fish_variables
 fishd.*
