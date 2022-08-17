@@ -14,15 +14,16 @@ configs.setup {
     disable = { "yaml" },
   },
   ensure_installed = {
-    'tsx',
-    'typescript',
-    'javascript',
-    'fish',
-    'ruby',
-    'go',
-    'rust',
-    'yaml',
-    'html',
-    'css'
+    "css",
+    "fish",
+    "go",
+    "html",
+    "javascript",
+    "lua",
+    "ruby",
+    "rust",
+    "tsx",
+    "typescript",
+    "yaml",
   }
 }
