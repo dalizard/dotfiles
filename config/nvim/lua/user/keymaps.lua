@@ -16,8 +16,8 @@ local keymap = vim.keymap.set
 
 -- Remap comma as leader key
 keymap("", ",", "<nop>", opts)
-vim.g.mapleader = " "
-vim.g.maplocalleader = " "
+vim.g.mapleader = ","
+vim.g.maplocalleader = ","
 
 -- Use Alt and Ctrl keys in command mode
 keymap("c", "<M-b>", "<S-Left>", command_opts)

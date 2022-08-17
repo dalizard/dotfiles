@@ -55,12 +55,13 @@ return packer.startup(function(use)
     run = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build"
   }
 
-
   -- Colorscheme
   use "ellisonleao/gruvbox.nvim"
 
   -- Statusline
   use "nvim-lualine/lualine.nvim"
+
+  use "lewis6991/gitsigns.nvim"
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Keep this at the end
