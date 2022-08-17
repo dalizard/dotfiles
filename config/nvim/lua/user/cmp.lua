@@ -45,10 +45,7 @@ cmp.setup({
   snippet = {
     -- REQUIRED - you must specify a snippet engine
     expand = function(args)
-      -- vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.
       luasnip.lsp_expand(args.body) -- For `luasnip` users.
-      -- require('snippy').expand_snippet(args.body) -- For `snippy` users.
-      -- vim.fn["UltiSnips#Anon"](args.body) -- For `ultisnips` users.
     end,
   },
   window = {
@@ -103,10 +100,11 @@ cmp.setup({
     }),
   }),
   formatting = {
-    fields = { "kind", "abbr", "menu" },
+    fields = { "abbr", "kind", "menu" },
     format = function(entry, vim_item)
-      vim_item.kind = string.format("%s", icons[vim_item.kind])
+      vim_item.kind = string.format("%s ", icons[vim_item.kind])
       vim_item.menu = ({
+        nvim_lua = "[lua]",
         luasnip = "[snip]",
         buffer = "[buf]",
         path = "[path]",
@@ -116,9 +114,8 @@ cmp.setup({
     end,
   },
   sources = cmp.config.sources({
-    -- { name = 'nvim_lsp' },
     { name = 'nvim_lua' },
-    { name = 'luasnip' }, -- For luasnip users.
+    { name = 'luasnip' },
     { name = 'buffer', keyword_length = 4 },
     { name = 'path' },
   }),
