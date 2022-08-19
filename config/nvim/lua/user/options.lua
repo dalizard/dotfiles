@@ -33,7 +33,8 @@ local options = {
   sidescrolloff = 8,
   signcolumn = "yes",                           -- always show the sign column, otherwise it would shift the text each time
   smartcase = true,                             -- smart case
-  smartindent = true,                           -- make indenting smarter again
+  -- smartindent = true,                           -- make indenting smarter again
+  autoindent = true,                            -- Copy indent from current line when starting a new line
   splitbelow = true,                            -- force all horizontal splits to go below current window
   splitright = true,                            -- force all vertical splits to go to the right of current window
   swapfile = false,                             -- creates a swapfile
@@ -52,12 +53,12 @@ for k, v in pairs(options) do
   vim.opt[k] = v
 end
 
-vim.cmd "set whichwrap+=<,>,[,],h,l"
-vim.cmd [[set iskeyword+=-]]
-
 vim.opt.fillchars = vim.opt.fillchars + 'eob: '
 vim.opt.fillchars:append {
   stl = ' ',
 }
 
 vim.opt.shortmess:append "c"
+
+vim.opt.grepprg = "rg"
+vim.opt.grepformat = "%f:%l:%c:%m"

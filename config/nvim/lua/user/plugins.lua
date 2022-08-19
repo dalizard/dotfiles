@@ -72,6 +72,16 @@ return packer.startup(function(use)
   -- Git
   use "lewis6991/gitsigns.nvim"
 
+  -- Tests
+  use {
+    "nvim-neotest/neotest",
+    requires = {
+      "nvim-lua/plenary.nvim",
+      "antoinemadec/FixCursorHold.nvim",
+      "olimorris/neotest-rspec",
+    }
+  }
+
   -- Automatically set up your configuration after cloning packer.nvim
   -- Keep this at the end
   if packer_bootstrap then

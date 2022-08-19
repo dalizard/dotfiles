@@ -6,6 +6,8 @@ local term_opts = { silent = true }
 -- Shorten function name
 local keymap = vim.keymap.set
 
+local utils = require "user.utils"
+
 -- Modes
 --   normal_mode = "n",
 --   insert_mode = "i",
@@ -25,7 +27,7 @@ keymap("c", "<M-f>", "<S-Right>", command_opts)
 keymap("c", "<C-a>", "<C-b>", command_opts)
 
 -- Leave terminal mode
-keymap("t", "<esc>", "<C-\\><C-n", term_opts)
+keymap("t", "<esc>", "<C-\\><C-n>", term_opts)
 
 -- Clear highlighted text
 keymap("n", "<cr>", ":nohl<cr>", opts)
@@ -55,3 +57,7 @@ keymap("n", "<C-j>", "<cmd>Telescope git_files<cr>", opts)
 keymap("n", "<C-l>", "<cmd>Telescope live_grep<cr>", opts)
 keymap("n", "<C-k>", "<cmd>Telescope find_files no_ignore=true<cr>", opts)
 keymap("n", "<C-f>", "<cmd>Telescope buffers<cr>", opts)
+keymap("n", "<C-h>", "<cmd>Telescope grep_string<cr>", opts)
+
+-- Copy current file path to clipboard
+keymap("n", "<leader>yp", "<cmd>let @+ = expand('%')<cr>", opts)
