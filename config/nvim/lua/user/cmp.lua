@@ -104,20 +104,20 @@ cmp.setup({
     format = function(entry, vim_item)
       vim_item.kind = string.format("%s ", icons[vim_item.kind])
       vim_item.menu = ({
-        nvim_lsp= "[lsp]",
-        nvim_lua = "[lua]",
-        luasnip = "[snip]",
-        buffer = "[buf]",
-        path = "[path]",
+        nvim_lsp= "∙lsp∙",
+        nvim_lua = "∙lua∙",
+        luasnip = "∙snip∙",
+        buffer = "∙buf∙",
+        path = "∙path∙",
       })[entry.source.name]
 
       return vim_item
     end,
   },
   sources = cmp.config.sources({
-    { name = 'nvim_lsp' },
-    { name = 'nvim_lua' },
-    { name = 'luasnip' },
+    { name = 'nvim_lsp', keyword_length = 4 },
+    { name = 'nvim_lua', keyword_length = 4 },
+    { name = 'luasnip', keyword_length = 3 },
     { name = 'buffer', keyword_length = 4 },
     { name = 'path' },
   }),

@@ -48,11 +48,10 @@ local function lsp_keymaps(bufnr)
   vim.keymap.set("n", "gi", vim.lsp.buf.implementation, opts)
   vim.keymap.set("n", "gt", vim.lsp.buf.type_definition, opts)
   vim.keymap.set("n", "gl", vim.diagnostic.open_float, opts)
-  vim.keymap.set('n', 'lhs', function() print("real lua function") end)
 
   -- Navigate diagnotis errors/mesages
-  vim.keymap.set("n", "]d", vim.diagnostic.goto_next, opts)
-  vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, opts)
+  vim.keymap.set("n", "]g", vim.diagnostic.goto_next, opts)
+  vim.keymap.set("n", "[g", vim.diagnostic.goto_prev, opts)
 
   -- Telescope helpers for listing symbols and diagnostics
   vim.keymap.set("n", "<leader>gs", "<cmd>Telescope lsp_document_symbols<cr>", opts)

@@ -86,7 +86,7 @@ return packer.startup(function(use)
   use "kyazdani42/nvim-tree.lua"
 
   -- Editing Support
-  use "windwp/nvim-autopairs"
+  -- use "windwp/nvim-autopairs"
 
   -- Utility
   use 'lewis6991/impatient.nvim'
