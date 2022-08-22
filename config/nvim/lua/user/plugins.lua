@@ -82,6 +82,9 @@ return packer.startup(function(use)
     }
   }
 
+  -- File Explorer
+  use "kyazdani42/nvim-tree.lua"
+
   -- Editing Support
   use "windwp/nvim-autopairs"
 

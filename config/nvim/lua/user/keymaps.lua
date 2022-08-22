@@ -61,3 +61,6 @@ keymap("n", "<C-h>", "<cmd>Telescope grep_string<cr>", opts)
 
 -- Copy current file path to clipboard
 keymap("n", "<leader>yp", "<cmd>let @+ = expand('%')<cr>", opts)
+
+-- File browser
+keymap("n", "<leader>b", "<cmd>NvimTreeToggle<cr>", opts)
