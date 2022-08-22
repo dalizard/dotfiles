@@ -35,14 +35,14 @@ neotest.setup {
   },
 }
 
-keymap("n", "<leader>ta", neotest.run.attach)
-keymap("n", "<leader>l", neotest.run.run_last)
-keymap("n", "<leader>s", neotest.run.run)
-keymap("n", "<leader>ts", neotest.summary.toggle)
-keymap("n", "<leader>tS", neotest.run.stop)
-keymap("n", "<leader>to", neotest.output.open)
-keymap("n", "]t", neotest.jump.next)
-keymap("n", "[t", neotest.jump.prev)
+keymap("n", "<leader>ta", neotest.run.attach, opts)
+keymap("n", "<leader>l", neotest.run.run_last, opts)
+keymap("n", "<leader>s", neotest.run.run, opts)
+keymap("n", "<leader>ts", neotest.summary.toggle, opts)
+keymap("n", "<leader>tS", neotest.run.stop, opts)
+keymap("n", "<leader>to", neotest.output.open, opts)
+keymap("n", "]t", neotest.jump.next, opts)
+keymap("n", "[t", neotest.jump.prev, opts)
 keymap("n", "<leader>f", function()
   neotest.run.run(vim.fn.expand "%")
-end)
+end, opts)

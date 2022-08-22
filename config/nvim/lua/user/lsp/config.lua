@@ -5,6 +5,7 @@ mason_lspconfig.setup({
   ensure_installed = {
     "cssls",
     "dockerls",
+    "gopls",
     "html",
     "jsonls",
     "rust_analyzer",
@@ -23,6 +24,7 @@ local defaults = {
 
 lspconfig.cssls.setup(defaults)
 lspconfig.dockerls.setup(defaults)
+lspconfig.gopls.setup(defaults)
 lspconfig.html.setup(defaults)
 lspconfig.jsonls.setup(vim.tbl_deep_extend("force", require("user.lsp.settings.jsonls"), defaults))
 lspconfig.rust_analyzer.setup(defaults)
