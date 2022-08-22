@@ -46,7 +46,7 @@ return packer.startup(function(use)
   -- Syntax/Treesitter
   use "nvim-treesitter/nvim-treesitter"
 
-  -- Fuzzy finder/Telescope
+  -- Fuzzy Finder/Telescope
   use {
     "nvim-telescope/telescope.nvim",
     run = function() require('nvim-treesitter.install').update({ with_sync = true }) end,
@@ -81,6 +81,9 @@ return packer.startup(function(use)
       "olimorris/neotest-rspec",
     }
   }
+
+  -- Editing Support
+  use "windwp/nvim-autopairs"
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Keep this at the end
