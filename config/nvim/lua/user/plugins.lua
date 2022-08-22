@@ -88,6 +88,9 @@ return packer.startup(function(use)
   -- Editing Support
   use "windwp/nvim-autopairs"
 
+  -- Utility
+  use 'lewis6991/impatient.nvim'
+
   -- Automatically set up your configuration after cloning packer.nvim
   -- Keep this at the end
   if packer_bootstrap then
