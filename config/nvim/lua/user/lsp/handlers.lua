@@ -54,8 +54,8 @@ local function lsp_keymaps(bufnr)
   vim.keymap.set("n", "gj", vim.diagnostic.goto_prev, opts)
 
   -- Telescope helpers for listing symbols and diagnostics
-  vim.keymap.set("n", "<leader>fs", "<cmd>Telescope lsp_document_symbols<cr>", opts)
-  vim.keymap.set("n", "<leader>fd", "<cmd>Telescope diagnostics<cr>", opts)
+  vim.keymap.set("n", "<leader>gs", "<cmd>Telescope lsp_document_symbols<cr>", opts)
+  vim.keymap.set("n", "<leader>gd", "<cmd>Telescope diagnostics<cr>", opts)
 end
 
 M.on_attach = function(client, bufnr)
