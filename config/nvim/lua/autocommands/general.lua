@@ -11,3 +11,19 @@ vim.api.nvim_create_autocmd('BufReadPost', {
     end
   end
 })
+
+-- Only show cursorline in the current window and in normal mode
+vim.api.nvim_create_autocmd({ "WinLeave", "InsertEnter" }, {
+  group = "_general",
+  pattern = "*",
+  callback = function()
+    vim.cmd("set nocursorline")
+  end,
+})
+vim.api.nvim_create_autocmd({ "WinEnter", "InsertLeave" }, {
+  group = "_general",
+  pattern = "*",
+  callback = function()
+    vim.cmd("set cursorline")
+  end,
+})

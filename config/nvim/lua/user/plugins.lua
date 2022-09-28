@@ -71,16 +71,22 @@ return packer.startup(function(use)
 
   -- Git
   use "lewis6991/gitsigns.nvim"
+  use "tpope/vim-fugitive"
+  use "tpope/vim-rhubarb"
 
   -- Tests
-  use {
-    "nvim-neotest/neotest",
-    requires = {
-      "nvim-lua/plenary.nvim",
-      "antoinemadec/FixCursorHold.nvim",
-      "olimorris/neotest-rspec",
-    }
-  }
+  --use {
+  --  "nvim-neotest/neotest",
+  --  requires = {
+  --    "nvim-lua/plenary.nvim",
+  --    "antoinemadec/FixCursorHold.nvim",
+  --    "olimorris/neotest-rspec",
+  --  }
+  --
+  use "vim-test/vim-test"
+
+  -- Ruby on Rails
+  use "tpope/vim-rails"
 
   -- File Explorer
   use "kyazdani42/nvim-tree.lua"
