@@ -1,14 +1,17 @@
+-- Disable the netrw plugin
+vim.g.loaded = 1
+vim.g.loaded_netrwPlugin = 1
+
 local impatient_loaded, impatient = pcall(require, "impatient")
 if impatient_loaded then
   impatient.enable_profile()
 end
 
-require "autocommands"
-
 -- This needs to be initialized before LSP
 require "user.mason"
 
 --require "user.neotest"
+require "user.autocommands"
 require "user.autopairs"
 require "user.cmp"
 require "user.gitsigns"

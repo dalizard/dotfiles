@@ -4,6 +4,10 @@ if not status_ok then
 end
 
 nvim_tree.setup({
+  disable_netrw = true,
+  update_focused_file = {
+    update_root = false,
+  },
   sort_by = "case_sensitive",
   view = {
     adaptive_size = true,
