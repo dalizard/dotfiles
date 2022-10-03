@@ -23,3 +23,12 @@ vim.api.nvim_create_autocmd({ "WinEnter", "InsertLeave" }, {
   end,
 })
 
+-- Browse the commit under cursor
+vim.api.nvim_create_autocmd({ "FileType" }, {
+  pattern = "fugitiveblame",
+  callback = function()
+    vim.keymap.set("n", "<leader>gb", function()
+      vim.cmd("execute ':GBrowse ' .. expand('<cword>')")
+    end)
+  end,
+})

@@ -52,6 +52,7 @@ return packer.startup(function(use)
     run = function() require('nvim-treesitter.install').update({ with_sync = true }) end,
     requires = { {'nvim-lua/plenary.nvim'} }
   }
+  use "nvim-telescope/telescope-file-browser.nvim"
   use {
     "nvim-telescope/telescope-fzf-native.nvim",
     run = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build"

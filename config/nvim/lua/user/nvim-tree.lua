@@ -4,7 +4,7 @@ if not status_ok then
 end
 
 nvim_tree.setup({
-  disable_netrw = true,
+  --disable_netrw = true,
   update_focused_file = {
     update_root = false,
   },

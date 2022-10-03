@@ -40,6 +40,7 @@ keymap({"n", "i", "v"}, "<Up>", "<nop>", opts)
 keymap({"n", "i", "v"}, "<Down>", "<nop>", opts)
 keymap({"n", "i", "v"}, "<Left>", "<nop>", opts)
 keymap({"n", "i", "v"}, "<Right>", "<nop>", opts)
+
 -- Esc is harder to reach
 keymap("i", "<C-c>", "<esc>", opts)
 
@@ -58,6 +59,7 @@ keymap("n", "<C-l>", "<cmd>Telescope live_grep<cr>", opts)
 keymap("n", "<C-k>", "<cmd>Telescope find_files no_ignore=true<cr>", opts)
 keymap("n", "<C-f>", "<cmd>Telescope buffers<cr>", opts)
 keymap("n", "<C-h>", "<cmd>Telescope grep_string<cr>", opts)
+keymap("n", "<C-b>", "<cmd>Telescope file_browser<cr>", opts)
 
 -- Copy current file path to clipboard
 keymap("n", "<leader>yp", "<cmd>let @+ = expand('%')<cr>", opts)

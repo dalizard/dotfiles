@@ -1,5 +1,4 @@
 -- Disable the netrw plugin
-vim.g.loaded = 1
 vim.g.loaded_netrwPlugin = 1
 
 local impatient_loaded, impatient = pcall(require, "impatient")
@@ -16,7 +15,6 @@ require "user.autopairs"
 require "user.cmp"
 require "user.gitsigns"
 require "user.gruvbox"
-require "user.keymaps"
 require "user.lsp"
 require "user.lualine"
 require "user.nvim-tree"
@@ -25,3 +23,4 @@ require "user.plugins"
 require "user.telescope"
 require "user.treesitter"
 require "user.vim-test"
+require "user.keymaps"
