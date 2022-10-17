@@ -21,6 +21,9 @@ keymap("", ",", "<nop>", opts)
 vim.g.mapleader = ","
 vim.g.maplocalleader = ","
 
+-- No cursor jumps on highlighting
+keymap("n", "#", "<cmd>keepjumps normal! mi*`i<cr>", opts)
+
 -- Use Alt and Ctrl keys in command mode
 keymap("c", "<M-b>", "<S-Left>", command_opts)
 keymap("c", "<M-f>", "<S-Right>", command_opts)

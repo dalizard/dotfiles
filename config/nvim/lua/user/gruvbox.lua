@@ -28,3 +28,7 @@ gruvbox.setup({
 })
 
 vim.cmd("colorscheme gruvbox")
+vim.cmd [[
+  hi link schemeIdentifier NONE
+  hi link schemeParentheses NONE
+]]

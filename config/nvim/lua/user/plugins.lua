@@ -96,7 +96,8 @@ return packer.startup(function(use)
   use "windwp/nvim-autopairs"
 
   -- Utility
-  use 'lewis6991/impatient.nvim'
+  use "lewis6991/impatient.nvim"
+  use "kylechui/nvim-surround"
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Keep this at the end

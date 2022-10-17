@@ -30,6 +30,7 @@ configs.setup {
     "markdown",
     "ruby",
     "rust",
+    "scheme",
     "scss",
     "sql",
     "toml",
