@@ -6,6 +6,10 @@ if impatient_loaded then
   impatient.enable_profile()
 end
 
+-- Remap comma as leader key
+vim.g.mapleader = ","
+vim.g.maplocalleader = ","
+
 -- This needs to be initialized before LSP
 require "user.mason"
 

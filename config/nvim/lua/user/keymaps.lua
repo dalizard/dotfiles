@@ -16,11 +16,6 @@ local utils = require "user.utils"
 --   term_mode = "t",
 --   command_mode = "c",
 
--- Remap comma as leader key
-keymap("", ",", "<nop>", opts)
-vim.g.mapleader = ","
-vim.g.maplocalleader = ","
-
 -- No cursor jumps on highlighting
 keymap("n", "#", "<cmd>keepjumps normal! mi*`i<cr>", opts)
 
