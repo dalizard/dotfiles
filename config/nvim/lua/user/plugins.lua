@@ -98,6 +98,7 @@ return packer.startup(function(use)
   -- Utility
   use "lewis6991/impatient.nvim"
   use "kylechui/nvim-surround"
+  use "norcalli/nvim-colorizer.lua"
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Keep this at the end

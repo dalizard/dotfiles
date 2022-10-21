@@ -58,7 +58,11 @@ vim.opt.fillchars:append {
   stl = ' ',
 }
 
+-- Do not show ins-completion messages
 vim.opt.shortmess:append "c"
+
+-- Disable intro message
+vim.opt.shortmess:append "I"
 
 -- Use ripgrep instead of grep
 vim.opt.grepprg = "rg"
