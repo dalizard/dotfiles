@@ -10,6 +10,7 @@ end
 vim.g.mapleader = ","
 vim.g.maplocalleader = ","
 
+require "autocommands"
 require "keymaps"
 require "options"
 require "plugins"
