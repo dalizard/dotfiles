@@ -5,7 +5,7 @@ if fn.empty(fn.glob(install_path)) > 0 then
   packer_bootstrap = fn.system({ 'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim',
     install_path })
   print "Installing packer - close and reopen Neovim"
-  vim.cmd [[packadd packer.nvim]]
+  vim.cmd([[packadd packer.nvim]])
 end
 
 -- Use a protected call so we don't error out on first use
@@ -33,28 +33,36 @@ return packer.startup(function(use)
 
   -- LSP
   use "neovim/nvim-lspconfig"
+  use {
+    "williamboman/mason.nvim",
+    config = function() require("plugins.config.mason") end
+  }
   use "williamboman/mason-lspconfig.nvim"
-  use "williamboman/mason.nvim"
 
   -- Completion
+  use {
+    "hrsh7th/nvim-cmp", -- core plugin
+    config = function() require("plugins.config.cmp") end
+  }
   use "hrsh7th/cmp-buffer" -- completes words from the current buffer
   use "hrsh7th/cmp-nvim-lsp" -- LSP support
   use "hrsh7th/cmp-nvim-lua" -- neovim Lua completion
   use "hrsh7th/cmp-path" -- complete files
-  use "hrsh7th/nvim-cmp" -- core plugin
   use "saadparwaiz1/cmp_luasnip"
 
   -- Syntax/Treesitter
   use {
     'nvim-treesitter/nvim-treesitter',
     run = function() require('nvim-treesitter.install').update({ with_sync = true }) end,
+    config = function() require("plugins.config.treesitter") end
   }
 
   -- Fuzzy Finder/Telescope
   use {
     "nvim-telescope/telescope.nvim",
     run = function() require('nvim-treesitter.install').update({ with_sync = true }) end,
-    requires = { { 'nvim-lua/plenary.nvim' } }
+    requires = { { 'nvim-lua/plenary.nvim' } },
+    config = function() require("plugins.config.telescope") end
   }
   use "nvim-telescope/telescope-file-browser.nvim"
   use {
@@ -66,32 +74,58 @@ return packer.startup(function(use)
   use "L3MON4D3/LuaSnip"
 
   -- Colorscheme
-  use "ellisonleao/gruvbox.nvim"
-  use { "kyazdani42/nvim-web-devicons" }
+  use {
+    "ellisonleao/gruvbox.nvim",
+    config = function() require("plugins.config.gruvbox") end
+  }
+
+  use {
+    "kyazdani42/nvim-web-devicons",
+    config = function() require("plugins.config.nvim-web-devicons") end
+  }
 
   -- Statusline
-  use { "nvim-lualine/lualine.nvim" }
+  use {
+    "nvim-lualine/lualine.nvim",
+    config = function() require("plugins.config.lualine") end
+  }
 
   -- Git
-  use "lewis6991/gitsigns.nvim"
+  use {
+    "lewis6991/gitsigns.nvim",
+    config = function() require("plugins.config.gitsigns") end
+  }
+
   use "tpope/vim-fugitive"
   use "tpope/vim-rhubarb"
 
   -- Tests
-  use "vim-test/vim-test"
+  use {
+    "vim-test/vim-test",
+    config = function() require("plugins.config.vim-test") end
+  }
 
   -- Ruby on Rails
   use "tpope/vim-rails"
 
   -- File Explorer
-  use "kyazdani42/nvim-tree.lua"
+  use {
+    "kyazdani42/nvim-tree.lua",
+    config = function() require("plugins.config.nvim-tree") end
+  }
 
   -- Editing Support
-  use "windwp/nvim-autopairs"
+  use {
+    "windwp/nvim-autopairs",
+    config = function() require("plugins.config.autopairs") end
+  }
 
   -- Utility
   use "lewis6991/impatient.nvim"
-  use "kylechui/nvim-surround"
+  use {
+    "kylechui/nvim-surround",
+    config = function() require("plugins.config.nvim-surround") end
+  }
   use "norcalli/nvim-colorizer.lua"
 
   -- Automatically set up your configuration after cloning packer.nvim
