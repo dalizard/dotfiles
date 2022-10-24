@@ -135,7 +135,11 @@ return packer.startup(function(use)
     "kylechui/nvim-surround",
     config = function() require("plugins.config.nvim-surround") end
   }
-  use "norcalli/nvim-colorizer.lua"
+
+  use {
+    "norcalli/nvim-colorizer.lua",
+    config = function() require("plugins.config.nvim-colorizer") end
+  }
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Keep this at the end
