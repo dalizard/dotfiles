@@ -6,10 +6,6 @@ if impatient_loaded then
   impatient.enable_profile()
 end
 
--- Remap comma as leader key
-vim.g.mapleader = ","
-vim.g.maplocalleader = ","
-
 require "autocommands"
 require "keymaps"
 require "options"

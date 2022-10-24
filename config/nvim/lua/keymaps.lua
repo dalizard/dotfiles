@@ -14,6 +14,10 @@ local keymap = vim.keymap.set
 --   term_mode = "t",
 --   command_mode = "c",
 
+-- Remap comma as leader key
+vim.g.mapleader = ","
+vim.g.maplocalleader = ","
+
 -- No cursor jumps on highlighting
 keymap("n", "#", "<cmd>keepjumps normal! mi*`i<cr>", opts)
 
