@@ -18,18 +18,18 @@ mason_lspconfig.setup({
 })
 
 local defaults = {
-  on_attach = require("user.lsp.handlers").on_attach,
-  capabilities = require("user.lsp.handlers").capabilities,
+  on_attach = require("plugins.config.lsp.handlers").on_attach,
+  capabilities = require("plugins.config.lsp.handlers").capabilities,
 }
 
 lspconfig.cssls.setup(defaults)
 lspconfig.dockerls.setup(defaults)
 lspconfig.gopls.setup(defaults)
 lspconfig.html.setup(defaults)
-lspconfig.jsonls.setup(vim.tbl_deep_extend("force", require("user.lsp.settings.jsonls"), defaults))
+lspconfig.jsonls.setup(vim.tbl_deep_extend("force", require("plugins.config.lsp.settings.jsonls"), defaults))
 lspconfig.rust_analyzer.setup(defaults)
 lspconfig.solargraph.setup(defaults)
 lspconfig.sqlls.setup(defaults)
-lspconfig.sumneko_lua.setup(vim.tbl_deep_extend("force", require("user.lsp.settings.sumneko_lua"), defaults))
+lspconfig.sumneko_lua.setup(vim.tbl_deep_extend("force", require("plugins.config.lsp.settings.sumneko_lua"), defaults))
 lspconfig.tsserver.setup(defaults)
 lspconfig.yamlls.setup(defaults)

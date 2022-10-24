@@ -32,7 +32,10 @@ return packer.startup(function(use)
   use "wbthomason/packer.nvim" -- have packer manage itself
 
   -- LSP
-  use "neovim/nvim-lspconfig"
+  use {
+    "neovim/nvim-lspconfig",
+    config = function() require("plugins.config.lsp") end
+  }
   use {
     "williamboman/mason.nvim",
     config = function() require("plugins.config.mason") end

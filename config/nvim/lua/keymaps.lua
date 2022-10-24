@@ -6,8 +6,6 @@ local term_opts = { silent = true }
 -- Shorten function name
 local keymap = vim.keymap.set
 
-local utils = require "user.utils"
-
 -- Modes
 --   normal_mode = "n",
 --   insert_mode = "i",
