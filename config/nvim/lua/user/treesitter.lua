@@ -14,6 +14,8 @@ configs.setup {
     disable = { "ruby", "yaml" },
   },
   ensure_installed = {
+    "bash",
+    "comment",
     "css",
     "dockerfile",
     "fish",
@@ -27,7 +29,9 @@ configs.setup {
     "json",
     "json5",
     "lua",
+    "make",
     "markdown",
+    "regex",
     "ruby",
     "rust",
     "scheme",

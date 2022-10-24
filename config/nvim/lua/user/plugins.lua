@@ -1,8 +1,9 @@
 -- Bootstrap packer
 local fn = vim.fn
-local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
+local install_path = fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
 if fn.empty(fn.glob(install_path)) > 0 then
-  packer_bootstrap = fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
+  packer_bootstrap = fn.system({ 'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim',
+    install_path })
   print "Installing packer - close and reopen Neovim"
   vim.cmd [[packadd packer.nvim]]
 end
@@ -44,13 +45,16 @@ return packer.startup(function(use)
   use "saadparwaiz1/cmp_luasnip"
 
   -- Syntax/Treesitter
-  use "nvim-treesitter/nvim-treesitter"
+  use {
+    'nvim-treesitter/nvim-treesitter',
+    run = function() require('nvim-treesitter.install').update({ with_sync = true }) end,
+  }
 
   -- Fuzzy Finder/Telescope
   use {
     "nvim-telescope/telescope.nvim",
     run = function() require('nvim-treesitter.install').update({ with_sync = true }) end,
-    requires = { {'nvim-lua/plenary.nvim'} }
+    requires = { { 'nvim-lua/plenary.nvim' } }
   }
   use "nvim-telescope/telescope-file-browser.nvim"
   use {
@@ -74,14 +78,6 @@ return packer.startup(function(use)
   use "tpope/vim-rhubarb"
 
   -- Tests
-  --use {
-  --  "nvim-neotest/neotest",
-  --  requires = {
-  --    "nvim-lua/plenary.nvim",
-  --    "antoinemadec/FixCursorHold.nvim",
-  --    "olimorris/neotest-rspec",
-  --  }
-  --
   use "vim-test/vim-test"
 
   -- Ruby on Rails

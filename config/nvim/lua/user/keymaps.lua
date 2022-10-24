@@ -34,10 +34,10 @@ keymap("n", "<cr>", ":nohl<cr>", opts)
 keymap("n", "Q", "<nop>", opts)
 
 -- Forget about the damn arrow keys!
-keymap({"n", "i", "v"}, "<Up>", "<nop>", opts)
-keymap({"n", "i", "v"}, "<Down>", "<nop>", opts)
-keymap({"n", "i", "v"}, "<Left>", "<nop>", opts)
-keymap({"n", "i", "v"}, "<Right>", "<nop>", opts)
+keymap({ "n", "i", "v" }, "<Up>", "<nop>", opts)
+keymap({ "n", "i", "v" }, "<Down>", "<nop>", opts)
+keymap({ "n", "i", "v" }, "<Left>", "<nop>", opts)
+keymap({ "n", "i", "v" }, "<Right>", "<nop>", opts)
 
 -- Esc is harder to reach
 keymap("i", "<C-c>", "<esc>", opts)

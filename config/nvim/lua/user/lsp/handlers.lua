@@ -1,4 +1,4 @@
-local M  = {}
+local M = {}
 
 M.setup = function()
   local signs = {
@@ -41,13 +41,14 @@ local function lsp_keymaps(bufnr)
   local opts = { silent = true, remap = false, buffer = bufnr }
 
   -- Generate LSP functionality
-  vim.keymap.set("n", "K",  vim.lsp.buf.hover, opts)
+  vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
   vim.keymap.set("n", "ge", vim.lsp.buf.rename, opts)
   vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
   vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
   vim.keymap.set("n", "gi", vim.lsp.buf.implementation, opts)
   vim.keymap.set("n", "gt", vim.lsp.buf.type_definition, opts)
   vim.keymap.set("n", "gl", vim.diagnostic.open_float, opts)
+  vim.keymap.set("n", "<leader>gf", vim.lsp.buf.format, opts)
 
   -- Navigate diagnotis errors/mesages
   vim.keymap.set("n", "]g", vim.diagnostic.goto_next, opts)
@@ -58,13 +59,8 @@ local function lsp_keymaps(bufnr)
   vim.keymap.set("n", "<leader>gd", "<cmd>Telescope diagnostics<cr>", opts)
 end
 
-M.on_attach = function(client, bufnr)
+M.on_attach = function(_, bufnr)
   lsp_keymaps(bufnr)
-
-  --local status_ok, aerial = pcall(require, "aerial")
-  --if status_ok then
-  --  aerial.on_attach(client, bufnr)
-  --end
 end
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
