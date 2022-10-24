@@ -6,7 +6,7 @@ end
 local actions = require "telescope.actions"
 local action_layout = require "telescope.actions.layout"
 
-telescope.setup{
+telescope.setup {
   defaults = {
     mappings = {
       i = {
