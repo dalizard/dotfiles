@@ -3,6 +3,7 @@ if not status_ok then
   return
 end
 
-devicons.setup {
-  color_icons = true
-}
+devicons.setup({
+  color_icons = true,
+  default = true
+})
