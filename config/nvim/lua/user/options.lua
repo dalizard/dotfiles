@@ -10,7 +10,6 @@ local options = {
   directory = { home_dir .. ".nvim/_temp" },        -- set the temp directory
   expandtab = true,                                 -- convert tabs to spaces
   fileencoding = "utf-8",                           -- the encoding written to a file
-  guifont = "monospace:h17",                        -- the font used in graphical neovim applications
   hidden = true,                                    -- allow unsaved background buffers and remember marks/undo for them
   history = 10000,                                  -- lines to keep in history
   hlsearch = true,                                  -- highlight all matches on previous search pattern
@@ -45,7 +44,7 @@ local options = {
   undodir = { home_dir .. ".nvim/_undo" },          -- set the undo directory
   undofile = true,                                  -- enable persistent undo
   updatetime = 100,                                 -- faster completion (4000ms default)
-  wrap = false,                                     -- display lines as one long line
+  wrap = true,                                      -- display lines as one long line
   writebackup = false,                              -- if a file is being edited by another program (or was written to file while editing with another program), it is not allowed to be edited
 }
 
