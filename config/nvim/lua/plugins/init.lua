@@ -33,14 +33,20 @@ return packer.startup(function(use)
 
   -- LSP
   use {
-    "neovim/nvim-lspconfig",
-    config = function() require("plugins.config.lsp") end
-  }
-  use {
     "williamboman/mason.nvim",
     config = function() require("plugins.config.mason") end
   }
-  use "williamboman/mason-lspconfig.nvim"
+
+  use {
+    "williamboman/mason-lspconfig.nvim",
+    after = "mason.nvim"
+  }
+
+  use {
+    "neovim/nvim-lspconfig",
+    config = function() require("plugins.config.lsp") end,
+    after = "mason-lspconfig.nvim"
+  }
 
   -- Completion
   use {
