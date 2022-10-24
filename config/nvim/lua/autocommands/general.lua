@@ -5,7 +5,8 @@ vim.api.nvim_create_autocmd('BufReadPost', {
   group    = "_general",
   pattern  = "*",
   callback = function()
-    if vim.fn.line("'\"") > 1 and vim.fn.line("'\"") <= vim.fn.line("$") and string.match(vim.bo.filetype, 'commit') then
+    if vim.fn.line("'\"") > 1 and vim.fn.line("'\"") <= vim.fn.line("$") and
+        not string.match(vim.bo.filetype, 'commit|rebase') then
       vim.fn.setpos('.', vim.fn.getpos("'\""))
       vim.cmd("normal! g`\"")
     end
