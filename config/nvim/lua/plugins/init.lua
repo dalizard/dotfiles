@@ -36,12 +36,10 @@ return packer.startup(function(use)
     "williamboman/mason.nvim",
     config = function() require("plugins.config.mason") end
   }
-
   use {
     "williamboman/mason-lspconfig.nvim",
     after = "mason.nvim"
   }
-
   use {
     "neovim/nvim-lspconfig",
     config = function() require("plugins.config.lsp") end,
@@ -87,7 +85,6 @@ return packer.startup(function(use)
     "ellisonleao/gruvbox.nvim",
     config = function() require("plugins.config.gruvbox") end
   }
-
   use {
     "kyazdani42/nvim-web-devicons",
     config = function() require("plugins.config.nvim-web-devicons") end
@@ -104,7 +101,6 @@ return packer.startup(function(use)
     "lewis6991/gitsigns.nvim",
     config = function() require("plugins.config.gitsigns") end
   }
-
   use "tpope/vim-fugitive"
   use "tpope/vim-rhubarb"
 
