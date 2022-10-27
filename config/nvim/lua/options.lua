@@ -28,7 +28,7 @@ local options = {
   shiftwidth = 2,                                   -- the number of spaces inserted for each indentation
   showcmd = false,
   showmode = false,                                 -- we don't need to see things like -- INSERT -- anymore
-  showtabline = 0,                                  -- always show tabs
+  showtabline = 0,                                  -- never show tabs
   sidescrolloff = 8,
   signcolumn = "yes",                               -- always show the sign column, otherwise it would shift the text each time
   smartcase = true,                                 -- smart case
@@ -52,6 +52,7 @@ for k, v in pairs(options) do
   vim.opt[k] = v
 end
 
+-- No tildas in the sidebar
 vim.opt.fillchars = vim.opt.fillchars + 'eob: '
 vim.opt.fillchars:append {
   stl = ' ',

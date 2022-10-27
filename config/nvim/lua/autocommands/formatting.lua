@@ -1,11 +1,12 @@
 vim.api.nvim_create_augroup("_formatting", { clear = true })
 
+-- TODO: Move this into a function
 -- Strip trailing whitespaces on save
-vim.api.nvim_create_autocmd({ "BufWritePre" }, {
-  group = "_formatting",
-  pattern = "*",
-  command = "%s/\\s\\+$//e"
-})
+--vim.api.nvim_create_autocmd({ "BufWritePre" }, {
+--  group = "_formatting",
+--  pattern = "*",
+--  command = "%s/\\s\\+$//e"
+--})
 
 -- Only show cursorline in the current window and in normal mode
 vim.api.nvim_create_autocmd({ "WinLeave", "InsertEnter" }, {
