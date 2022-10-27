@@ -7,7 +7,6 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
   callback = function()
     if vim.fn.line("'\"") > 1 and vim.fn.line("'\"") <= vim.fn.line("$") and
         string.match(vim.bo.filetype, 'gitcommit') == nil then
-      print "Hello!!"
       vim.fn.setpos('.', vim.fn.getpos("'\""))
       vim.cmd("normal! g`\"")
     end
