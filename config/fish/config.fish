@@ -47,7 +47,7 @@ set -x RUBYOPT '-W0'
 
 # Set global Node.js version
 if test $OS_NAME = 'darwin'
-  set -U nvm_default_version v17.4.0
+  set -U nvm_default_version v18.12.0
 end
 
 # Shortcuts
