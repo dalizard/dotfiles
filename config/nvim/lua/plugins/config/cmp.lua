@@ -75,7 +75,7 @@ cmp.setup({
       elseif luasnip.expand_or_jumpable() then
         luasnip.expand_or_jump()
       elseif luasnip.expandable() then
-        luasnip.expand()
+        luasnip.expand({})
       elseif check_backspace() then
         -- cmp.complete()
         fallback()
@@ -83,9 +83,9 @@ cmp.setup({
         fallback()
       end
     end, {
-        "i",
-        "s",
-      }),
+      "i",
+      "s",
+    }),
     ["<S-Tab>"] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_prev_item()
@@ -95,16 +95,16 @@ cmp.setup({
         fallback()
       end
     end, {
-        "i",
-        "s",
-      }),
+      "i",
+      "s",
+    }),
   }),
   formatting = {
     fields = { "abbr", "kind", "menu" },
     format = function(entry, vim_item)
       vim_item.kind = string.format("%s ", icons[vim_item.kind])
       vim_item.menu = ({
-        nvim_lsp= "∙lsp∙",
+        nvim_lsp = "∙lsp∙",
         nvim_lua = "∙lua∙",
         luasnip = "∙snip∙",
         buffer = "∙buf∙",
@@ -125,11 +125,3 @@ cmp.setup({
     native_menu = false,
   },
 })
-
----- Use buffer source for `/` (if you enabled `native_menu`, this won't work anymore).
---cmp.setup.cmdline('/', {
---  mapping = cmp.mapping.preset.cmdline(),
---  sources = {
---    { name = 'buffer' }
---  }
---})

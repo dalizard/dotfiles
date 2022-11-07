@@ -24,6 +24,7 @@ gruvbox.setup({
     GruvboxRedSign = { bg = "NONE" },
     GruvboxYellowSign = { bg = "NONE" },
     SignColumn = { bg = "NONE" },
+    NormalFloat = { bg = "NONE" },
   },
 })
 
