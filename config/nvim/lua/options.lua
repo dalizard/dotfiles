@@ -3,6 +3,7 @@ local home_dir = vim.fn.expand("~/")
 local options = {
   autoread = true,                                  -- watch out for file changes
   backup = false,                                   -- creates a backup file
+  breakindent = true,                               -- show wrapped lines visually indented
   cmdheight = 1,                                    -- more space in the neovim command line for displaying messages
   completeopt = { "menu", "menuone", "noselect" },  -- mostly just for cmp
   conceallevel = 0,                                 -- so that `` is visible in markdown files
@@ -43,7 +44,7 @@ local options = {
   title = true,                                     -- show window title
   undodir = { home_dir .. ".nvim/_undo" },          -- set the undo directory
   undofile = true,                                  -- enable persistent undo
-  updatetime = 100,                                 -- faster completion (4000ms default)
+  updatetime = 250,                                 -- faster completion (4000ms default)
   wrap = true,                                      -- display lines as one long line
   writebackup = false,                              -- if a file is being edited by another program (or was written to file while editing with another program), it is not allowed to be edited
 }

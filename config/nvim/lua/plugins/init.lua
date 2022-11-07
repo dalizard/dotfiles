@@ -14,6 +14,14 @@ if not status_ok then
   return
 end
 
+-- Automatically source and re-compile packer whenever you save this init.lua
+local packer_group = vim.api.nvim_create_augroup('Packer', { clear = true })
+vim.api.nvim_create_autocmd('BufWritePost', {
+  command = 'source <afile> | PackerCompile',
+  group = packer_group,
+  pattern = vim.fn.expand '$MYVIMRC',
+})
+
 -- Have packer use a popup window
 packer.init {
   -- snapshot = "August 17, 2022",
