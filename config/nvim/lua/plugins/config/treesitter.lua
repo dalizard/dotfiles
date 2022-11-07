@@ -15,6 +15,7 @@ configs.setup {
   },
   ensure_installed = {
     "bash",
+    "c",
     "comment",
     "css",
     "dockerfile",
