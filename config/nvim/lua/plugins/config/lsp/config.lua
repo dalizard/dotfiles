@@ -3,6 +3,7 @@ local mason_lspconfig = require("mason-lspconfig")
 
 mason_lspconfig.setup({
   ensure_installed = {
+    "clangd",
     "cssls",
     "dockerls",
     "gopls",
@@ -22,6 +23,7 @@ local defaults = {
   capabilities = require("plugins.config.lsp.handlers").capabilities,
 }
 
+lspconfig.clangd.setup(defaults)
 lspconfig.cssls.setup(defaults)
 lspconfig.dockerls.setup(defaults)
 lspconfig.gopls.setup(defaults)
