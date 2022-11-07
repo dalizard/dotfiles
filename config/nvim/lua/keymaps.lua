@@ -1,7 +1,4 @@
-local opts = { noremap = true, silent = true }
-local command_opts = { noremap = true }
-
-local term_opts = { silent = true }
+local opts = { silent = true }
 
 -- Shorten function name
 local keymap = vim.keymap.set
@@ -22,12 +19,12 @@ vim.g.maplocalleader = ","
 keymap("n", "#", "<cmd>keepjumps normal! mi*`i<cr>", opts)
 
 -- Use Alt and Ctrl keys in command mode
-keymap("c", "<M-b>", "<S-Left>", command_opts)
-keymap("c", "<M-f>", "<S-Right>", command_opts)
-keymap("c", "<C-a>", "<C-b>", command_opts)
+keymap("c", "<M-b>", "<S-Left>", opts)
+keymap("c", "<M-f>", "<S-Right>", opts)
+keymap("c", "<C-a>", "<C-b>", opts)
 
 -- Leave terminal mode
-keymap("t", "<esc>", "<C-\\><C-n>", term_opts)
+keymap("t", "<esc>", "<C-\\><C-n>", opts)
 
 -- Clear highlighted text
 keymap("n", "<cr>", ":nohl<cr>", opts)
@@ -51,7 +48,7 @@ keymap("n", "<leader>Y", '"+g_', opts)
 keymap("n", "<leader>yy", '"+yy', opts)
 
 -- Expand current path
-keymap("c", "%%", "<C-R>=expand('%:h').'/'<cr>", command_opts)
+keymap("c", "%%", "<C-R>=expand('%:h').'/'<cr>", opts)
 
 -- Telescope
 keymap("n", "<C-j>", "<cmd>Telescope git_files<cr>", opts)
