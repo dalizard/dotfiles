@@ -3,8 +3,6 @@ if not status_ok then
   return
 end
 
-local colors = require "gruvbox.palette"
-
 gruvbox.setup({
   undercurl = true,
   underline = true,
@@ -15,6 +13,9 @@ gruvbox.setup({
   invert_intend_guides = false,
   inverse = true, -- invert background for search, diffs, statuslines and errors
   contrast = "", -- can be "hard", "soft" or empty string
+  palette_overrides = {
+    light0 = '#fdf6e3',
+  },
   overrides = {
     GruvboxAquaSign = { bg = "NONE" },
     GruvboxBlueSign = { bg = "NONE" },
