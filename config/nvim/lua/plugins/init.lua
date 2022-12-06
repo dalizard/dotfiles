@@ -90,8 +90,9 @@ return packer.startup(function(use)
 
   -- Colorscheme
   use {
-    "ellisonleao/gruvbox.nvim",
-    config = function() require("plugins.config.gruvbox") end
+    "rose-pine/neovim",
+    as = 'rose-pine',
+    config = function() require("plugins.config.rose-pine") end
   }
   use {
     "kyazdani42/nvim-web-devicons",
