@@ -69,3 +69,5 @@ vim.opt.shortmess:append "I"
 -- Use ripgrep instead of grep
 vim.opt.grepprg = "rg"
 vim.opt.grepformat = "%f:%l:%c:%m"
+
+vim.cmd([[colorscheme lagadath]])

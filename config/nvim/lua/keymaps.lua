@@ -63,3 +63,9 @@ keymap("n", "<leader>yp", "<cmd>let @+ = expand('%')<cr>", opts)
 
 -- File browser
 keymap("n", "<leader>b", "<cmd>NvimTreeToggle<cr>", opts)
+
+-- Treesitter playground
+keymap("n", "<leader>q", "<cmd>TSHighlightCapturesUnderCursor<cr>", opts)
+
+-- Easy theme reload
+keymap("n", "<leader>r", "<cmd>colorscheme lagadath<cr>", opts)
