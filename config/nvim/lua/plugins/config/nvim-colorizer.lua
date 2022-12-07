@@ -4,9 +4,7 @@ if not status_ok then
 end
 
 colorizer.setup({
-  'css';
-  'javascript';
-  html = {
-    mode = 'foreground';
+  user_default_options = {
+    names = false,
   }
 })

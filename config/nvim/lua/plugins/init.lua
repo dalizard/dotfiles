@@ -89,10 +89,12 @@ return packer.startup(function(use)
   use "L3MON4D3/LuaSnip"
 
   -- Colorscheme
-  use {
-    "ellisonleao/gruvbox.nvim",
-    config = function() require("plugins.config.gruvbox") end
-  }
+  use "/Users/dimitar/Code/lagadath"
+
+  --use {
+  --  "ellisonleao/gruvbox.nvim",
+  --  config = function() require("plugins.config.gruvbox") end
+  --}
   use {
     "kyazdani42/nvim-web-devicons",
     config = function() require("plugins.config.nvim-web-devicons") end
@@ -141,7 +143,7 @@ return packer.startup(function(use)
   }
 
   use {
-    "norcalli/nvim-colorizer.lua",
+    "NvChad/nvim-colorizer.lua",
     config = function() require("plugins.config.nvim-colorizer") end
   }
 
