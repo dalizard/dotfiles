@@ -4,7 +4,9 @@ if not status_ok then
 end
 
 colorizer.setup({
+  filetypes = { "lua" },
   user_default_options = {
     names = false,
+    mode = "virtualtext",
   }
 })
