@@ -15,6 +15,9 @@ local keymap = vim.keymap.set
 vim.g.mapleader = ","
 vim.g.maplocalleader = ","
 
+-- Save with W as well
+vim.api.nvim_create_user_command('W', 'w', {})
+
 -- No cursor jumps on highlighting
 keymap("n", "#", "<cmd>keepjumps normal! mi*`i<cr>", opts)
 
