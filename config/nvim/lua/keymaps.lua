@@ -1,4 +1,5 @@
 local opts = { silent = true }
+local utils = require('utils')
 
 -- Shorten function name
 local keymap = vim.keymap.set
@@ -54,7 +55,8 @@ keymap("n", "<leader>yy", '"+yy', opts)
 keymap("c", "%%", "<C-R>=expand('%:h').'/'<cr>", opts)
 
 -- Telescope
-keymap("n", "<C-j>", "<cmd>Telescope git_files<cr>", opts)
+keymap("n", "<C-j>", utils.project_files, opts)
+keymap("n", "<C-i>", function() utils.project_files('get_cursor') end, opts)
 keymap("n", "<C-l>", "<cmd>Telescope live_grep<cr>", opts)
 keymap("n", "<C-k>", "<cmd>Telescope find_files no_ignore=true<cr>", opts)
 keymap("n", "<C-f>", "<cmd>Telescope buffers<cr>", opts)
