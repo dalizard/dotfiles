@@ -67,10 +67,12 @@ return packer.startup(function(use)
 
   -- Syntax/Treesitter
   use {
-    'nvim-treesitter/nvim-treesitter',
-    run = function() require('nvim-treesitter.install').update({ with_sync = true }) end,
+    "nvim-treesitter/nvim-treesitter",
+    run = function() require("nvim-treesitter.install").update({ with_sync = true }) end,
     config = function() require("plugins.config.treesitter") end
   }
+
+  use "nvim-treesitter/playground"
 
   -- Fuzzy Finder/Telescope
   use {
@@ -89,10 +91,8 @@ return packer.startup(function(use)
   use "L3MON4D3/LuaSnip"
 
   -- Colorscheme
-  use {
-    "ellisonleao/gruvbox.nvim",
-    config = function() require("plugins.config.gruvbox") end
-  }
+  use "/Users/dimitar/Code/lagadath"
+
   use {
     "kyazdani42/nvim-web-devicons",
     config = function() require("plugins.config.nvim-web-devicons") end
@@ -141,7 +141,7 @@ return packer.startup(function(use)
   }
 
   use {
-    "norcalli/nvim-colorizer.lua",
+    "NvChad/nvim-colorizer.lua",
     config = function() require("plugins.config.nvim-colorizer") end
   }
 

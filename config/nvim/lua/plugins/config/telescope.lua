@@ -30,6 +30,9 @@ telescope.setup {
       "--hidden",
       "--smart-case"
     },
+    preview = {
+      treesitter = false,
+    },
   },
   pickers = {
     git_files = {

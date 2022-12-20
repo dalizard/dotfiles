@@ -4,9 +4,9 @@ if not status_ok then
 end
 
 colorizer.setup({
-  'css';
-  'javascript';
-  html = {
-    mode = 'foreground';
+  filetypes = { "lua" },
+  user_default_options = {
+    names = false,
+    mode = "virtualtext",
   }
 })

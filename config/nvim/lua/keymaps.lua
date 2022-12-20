@@ -1,4 +1,5 @@
 local opts = { silent = true }
+local utils = require('utils')
 
 -- Shorten function name
 local keymap = vim.keymap.set
@@ -14,6 +15,9 @@ local keymap = vim.keymap.set
 -- Remap comma as leader key
 vim.g.mapleader = ","
 vim.g.maplocalleader = ","
+
+-- Save with W as well
+vim.api.nvim_create_user_command('W', 'w', {})
 
 -- No cursor jumps on highlighting
 keymap("n", "#", "<cmd>keepjumps normal! mi*`i<cr>", opts)
@@ -51,7 +55,8 @@ keymap("n", "<leader>yy", '"+yy', opts)
 keymap("c", "%%", "<C-R>=expand('%:h').'/'<cr>", opts)
 
 -- Telescope
-keymap("n", "<C-j>", "<cmd>Telescope git_files<cr>", opts)
+keymap("n", "<C-j>", utils.project_files, opts)
+keymap("n", "<C-i>", function() utils.project_files('get_cursor') end, opts)
 keymap("n", "<C-l>", "<cmd>Telescope live_grep<cr>", opts)
 keymap("n", "<C-k>", "<cmd>Telescope find_files no_ignore=true<cr>", opts)
 keymap("n", "<C-f>", "<cmd>Telescope buffers<cr>", opts)
@@ -63,3 +68,17 @@ keymap("n", "<leader>yp", "<cmd>let @+ = expand('%')<cr>", opts)
 
 -- File browser
 keymap("n", "<leader>b", "<cmd>NvimTreeToggle<cr>", opts)
+
+-- Treesitter playground
+keymap("n", "<leader>q", "<cmd>TSHighlightCapturesUnderCursor<cr>", opts)
+
+-- Easy theme reload
+keymap("n", "<leader>r", "<cmd>colorscheme lagadath<cr>", opts)
+
+-- Move visual text easily
+keymap("v", "J", ":m '>+1<cr>gv=gv")
+keymap("v", "K", ":m '<-2<cr>gv=gv")
+
+-- Keep cursor position fixed when half-page jumping
+keymap("n", "<C-d>", "<C-d>zz")
+keymap("n", "<C-u>", "<C-u>zz")

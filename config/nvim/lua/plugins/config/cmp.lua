@@ -49,7 +49,9 @@ cmp.setup({
     end,
   },
   window = {
-    documentation = cmp.config.window.bordered(),
+    documentation = cmp.config.window.bordered({
+      winhighlight = 'Normal:Normal,FloatBorder:CmpFloatBorder,CursorLine:Visual,Search:None'
+    }),
   },
   mapping = cmp.mapping.preset.insert({
     ["<C-k>"] = cmp.mapping(cmp.mapping.select_prev_item(), { "i", "c" }),
