@@ -93,10 +93,6 @@ return packer.startup(function(use)
   -- Colorscheme
   use "/Users/dimitar/Code/lagadath"
 
-  --use {
-  --  "ellisonleao/gruvbox.nvim",
-  --  config = function() require("plugins.config.gruvbox") end
-  --}
   use {
     "kyazdani42/nvim-web-devicons",
     config = function() require("plugins.config.nvim-web-devicons") end
