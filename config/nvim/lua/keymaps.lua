@@ -78,7 +78,3 @@ keymap("n", "<leader>r", "<cmd>colorscheme lagadath<cr>", opts)
 -- Move visual text easily
 keymap("v", "J", ":m '>+1<cr>gv=gv")
 keymap("v", "K", ":m '<-2<cr>gv=gv")
-
--- Keep cursor position fixed when half-page jumping
-keymap("n", "<C-d>", "<C-d>zz")
-keymap("n", "<C-u>", "<C-u>zz")
