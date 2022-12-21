@@ -12,9 +12,9 @@ local keymap = vim.keymap.set
 --   term_mode = "t",
 --   command_mode = "c",
 
--- Remap comma as leader key
-vim.g.mapleader = ","
-vim.g.maplocalleader = ","
+-- Remap space as leader key
+vim.g.mapleader = " "
+vim.g.maplocalleader = " "
 
 -- Save with W as well
 vim.api.nvim_create_user_command('W', 'w', {})
