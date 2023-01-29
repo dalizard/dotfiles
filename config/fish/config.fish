@@ -45,6 +45,9 @@ set -x GREP_COLOR '0;31'
 # No warnings in Ruby
 set -x RUBYOPT '-W0'
 
+# Use YJIT
+set -x RUBY_YJIT_ENABLE true
+
 # Set global Node.js version
 if test $OS_NAME = 'darwin'
   set -U nvm_default_version v18.12.0
