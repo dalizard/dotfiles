@@ -12,7 +12,7 @@ mason_lspconfig.setup({
     "rust_analyzer",
     "solargraph",
     "sqlls",
-    "sumneko_lua",
+    "lua_ls",
     "tsserver",
     "yamlls",
   }
@@ -32,6 +32,6 @@ lspconfig.jsonls.setup(vim.tbl_deep_extend("force", require("plugins.config.lsp.
 lspconfig.rust_analyzer.setup(defaults)
 lspconfig.solargraph.setup(defaults)
 lspconfig.sqlls.setup(defaults)
-lspconfig.sumneko_lua.setup(vim.tbl_deep_extend("force", require("plugins.config.lsp.settings.sumneko_lua"), defaults))
+lspconfig.lua_ls.setup(vim.tbl_deep_extend("force", require("plugins.config.lsp.settings.lua_ls"), defaults))
 lspconfig.tsserver.setup(defaults)
 lspconfig.yamlls.setup(defaults)
