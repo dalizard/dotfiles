@@ -22,10 +22,13 @@ vim.api.nvim_create_user_command('W', 'w', {})
 -- No cursor jumps on highlighting
 keymap("n", "#", "<cmd>keepjumps normal! mi*`i<cr>", opts)
 
--- Use Alt and Ctrl keys in command mode
-keymap("c", "<M-b>", "<S-Left>", opts)
-keymap("c", "<M-f>", "<S-Right>", opts)
-keymap("c", "<C-a>", "<C-b>", opts)
+-- Make command mode navigation more like the shell
+keymap("c", "<M-b>", "<S-Left>")
+keymap("c", "<M-f>", "<S-Right>")
+keymap("c", "<C-a>", "<Home>")
+keymap("c", "<C-e>", "<End>")
+keymap("c", "<C-f>", "<Right>")
+keymap("c", "<C-b>", "<Left>")
 
 -- Leave terminal mode
 keymap("t", "<esc>", "<C-\\><C-n>", opts)
