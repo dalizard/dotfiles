@@ -145,6 +145,12 @@ return packer.startup(function(use)
     config = function() require("plugins.config.nvim-colorizer") end
   }
 
+  use {
+    "euclio/vim-markdown-composer",
+    run = 'cargo build --release',
+    config = function() require("plugins.config.vim-markdown-composer") end
+  }
+
   -- Automatically set up your configuration after cloning packer.nvim
   -- Keep this at the end
   if PACKER_BOOTSTRAP then
