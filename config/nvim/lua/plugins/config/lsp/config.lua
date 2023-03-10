@@ -9,10 +9,11 @@ mason_lspconfig.setup({
     "gopls",
     "html",
     "jsonls",
+    "lua_ls",
+    "pylsp",
     "rust_analyzer",
     "solargraph",
     "sqlls",
-    "lua_ls",
     "tsserver",
     "yamlls",
   }
@@ -29,9 +30,10 @@ lspconfig.dockerls.setup(defaults)
 lspconfig.gopls.setup(defaults)
 lspconfig.html.setup(defaults)
 lspconfig.jsonls.setup(vim.tbl_deep_extend("force", require("plugins.config.lsp.settings.jsonls"), defaults))
+lspconfig.lua_ls.setup(vim.tbl_deep_extend("force", require("plugins.config.lsp.settings.lua_ls"), defaults))
+lspconfig.pylsp.setup(defaults)
 lspconfig.rust_analyzer.setup(defaults)
 lspconfig.solargraph.setup(defaults)
 lspconfig.sqlls.setup(defaults)
-lspconfig.lua_ls.setup(vim.tbl_deep_extend("force", require("plugins.config.lsp.settings.lua_ls"), defaults))
 lspconfig.tsserver.setup(defaults)
 lspconfig.yamlls.setup(defaults)
