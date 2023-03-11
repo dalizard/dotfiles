@@ -127,4 +127,4 @@ fisher = $(HOME)/.config/fish/functions/fisher.fish
 fisher: $(fisher)
 $(fisher):
 	@echo '==> Installing fisher plugin manager...'
-	@fish -c 'curl -sL https://git.io/fisher | source && fisher install jorgebucaran/fisher'
+	@fish -c 'curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source && fisher install jorgebucaran/fisher'
