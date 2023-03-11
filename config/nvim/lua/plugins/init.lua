@@ -91,7 +91,7 @@ return packer.startup(function(use)
   use "L3MON4D3/LuaSnip"
 
   -- Colorscheme
-  use "/Users/dimitar/Code/lagadath"
+  use "dalizard/lagadath"
 
   use {
     "kyazdani42/nvim-web-devicons",
