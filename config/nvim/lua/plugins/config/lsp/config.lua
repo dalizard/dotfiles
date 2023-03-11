@@ -13,7 +13,6 @@ mason_lspconfig.setup({
     "pylsp",
     "rust_analyzer",
     "solargraph",
-    "sqlls",
     "tsserver",
     "yamlls",
   }
@@ -34,6 +33,5 @@ lspconfig.lua_ls.setup(vim.tbl_deep_extend("force", require("plugins.config.lsp.
 lspconfig.pylsp.setup(defaults)
 lspconfig.rust_analyzer.setup(defaults)
 lspconfig.solargraph.setup(defaults)
-lspconfig.sqlls.setup(defaults)
 lspconfig.tsserver.setup(defaults)
 lspconfig.yamlls.setup(defaults)
