@@ -48,11 +48,6 @@ set -x RUBYOPT '-W0'
 # Use YJIT
 set -x RUBY_YJIT_ENABLE true
 
-# Set global Node.js version
-if test $OS_NAME = 'darwin'
-  set -U nvm_default_version v18.15.0
-end
-
 # Shortcuts
 alias g='git'
 alias ll='ls -alGF'
