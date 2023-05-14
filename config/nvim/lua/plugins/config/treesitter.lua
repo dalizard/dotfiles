@@ -6,7 +6,7 @@ end
 configs.setup {
   highlight = {
     enable = true,
-    disable = {},
+    disable = { "markdown" },
     additional_vim_regex_highlighting = true
   },
   indent = {
