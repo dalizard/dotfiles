@@ -12,6 +12,7 @@ mason_lspconfig.setup({
     "lua_ls",
     "pylsp",
     "rust_analyzer",
+    "solargraph",
     "tsserver",
     "yamlls",
   }
@@ -31,5 +32,22 @@ lspconfig.jsonls.setup(vim.tbl_deep_extend("force", require("plugins.config.lsp.
 lspconfig.lua_ls.setup(vim.tbl_deep_extend("force", require("plugins.config.lsp.settings.lua_ls"), defaults))
 lspconfig.pylsp.setup(defaults)
 lspconfig.rust_analyzer.setup(defaults)
+lspconfig.solargraph.setup({
+  on_attach = require("plugins.config.lsp.handlers").on_attach,
+  capabilities = require("plugins.config.lsp.handlers").capabilities,
+  --cmd = { os.getenv( "HOME" ) .. "/.rbenv/shims/solargraph", 'stdio' },
+  --root_dir = nvim_lsp.util.root_pattern("Gemfile", ".git", "."),
+  settings = {
+    solargraph = {
+      autoformat = true,
+      completion = true,
+      diagnostic = true,
+      folding = true,
+      references = true,
+      rename = true,
+      symbols = true
+    }
+  }
+})
 lspconfig.tsserver.setup(defaults)
 lspconfig.yamlls.setup(defaults)
