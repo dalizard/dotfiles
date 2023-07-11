@@ -48,6 +48,9 @@ set -x RUBYOPT '-W0'
 # Use YJIT
 set -x RUBY_YJIT_ENABLE true
 
+# Workaround for macOS forking
+set -x OBJC_DISABLE_INITIALIZE_FORK_SAFETY yes
+
 # Shortcuts
 alias g='git'
 alias ll='ls -alGF'
