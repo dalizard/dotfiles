@@ -15,7 +15,6 @@ local options = {
   fileencoding = "utf-8", -- the encoding written to a file
   hidden = true, -- allow unsaved background buffers and remember marks/undo for them
   history = 10000, -- lines to keep in history
-  hlsearch = true, -- highlight all matches on previous search pattern
   ignorecase = true, -- ignore case in search patterns
   laststatus = 2, -- always show a status line for the last window
   list = true, -- show invisible characters
