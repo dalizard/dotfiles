@@ -51,6 +51,9 @@ set -x RUBY_YJIT_ENABLE true
 # Workaround for macOS forking
 set -x OBJC_DISABLE_INITIALIZE_FORK_SAFETY yes
 
+# Workaround for RSpec
+set -x PGGSSENCMODE disable
+
 # Shortcuts
 alias g='git'
 alias ll='ls -alGF'
