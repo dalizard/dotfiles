@@ -4,10 +4,13 @@ if not status_ok then
 end
 
 configs.setup {
+  ignore_install = {},
+  sync_install = false,
+  auto_install = true,
   highlight = {
     enable = true,
     disable = { "markdown" },
-    additional_vim_regex_highlighting = true
+    additional_vim_regex_highlighting = false
   },
   indent = {
     enable = true,
@@ -18,8 +21,11 @@ configs.setup {
     "c",
     "comment",
     "css",
+    "diff",
     "dockerfile",
     "fish",
+    "git_rebase",
+    "gitcommit",
     "go",
     "gomod",
     "graphql",
