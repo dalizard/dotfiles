@@ -5,7 +5,6 @@ end
 
 mason.setup({
   registries = {
-    "github:dalizard/mason-registry",
     "github:mason-org/mason-registry",
   },
   ui = {
