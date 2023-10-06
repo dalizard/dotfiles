@@ -14,7 +14,7 @@ configs.setup {
   },
   indent = {
     enable = true,
-    disable = { "ruby", "yaml" },
+    disable = { "yaml" },
   },
   ensure_installed = {
     "bash",
