@@ -87,7 +87,7 @@ require("lazy").setup({
   "tpope/vim-rails",
   -- File Explorer
   {
-    "kyazdani42/nvim-tree.lua",
+    "nvim-tree/nvim-tree.lua",
     config = function() require("plugins.config.nvim-tree") end
   },
   -- Editing Support

@@ -10,14 +10,11 @@ configs.setup {
   highlight = {
     enable = true,
     disable = { "markdown" },
-    additional_vim_regex_highlighting = false
+    additional_vim_regex_highlighting = false,
   },
   indent = {
     enable = true,
     disable = { "yaml" },
-  },
-  endwise = {
-    enable = true,
   },
   ensure_installed = {
     "bash",
@@ -41,6 +38,7 @@ configs.setup {
     "lua",
     "make",
     "markdown",
+    "query",
     "regex",
     "ruby",
     "rust",
@@ -51,6 +49,7 @@ configs.setup {
     "tsx",
     "typescript",
     "vim",
+    "vimdoc",
     "yaml",
   }
 }
