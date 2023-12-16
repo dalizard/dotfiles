@@ -107,5 +107,12 @@ require("lazy").setup({
     "euclio/vim-markdown-composer",
     build = 'cargo build --release',
     config = function() require("plugins.config.vim-markdown-composer") end
-  }
+  },
+  {
+    "b0o/incline.nvim",
+    dependencies = "dalizard/lagadath",
+    event = "BufReadPre",
+    priority = 1200,
+    config = function() require("plugins.config.incline") end
+  },
 })
