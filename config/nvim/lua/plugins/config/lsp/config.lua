@@ -14,6 +14,7 @@ mason_lspconfig.setup({
     "pylsp",
     "ruby_ls",
     "rust_analyzer",
+    "tailwindcss",
     "tsserver",
     "yamlls",
   }
