@@ -62,7 +62,7 @@ require("lazy").setup({
   -- Colorscheme
   "dalizard/lagadath",
   {
-    "kyazdani42/nvim-web-devicons",
+    "nvim-tree/nvim-web-devicons",
     config = function() require("plugins.config.nvim-web-devicons") end
   },
   -- Statusline
