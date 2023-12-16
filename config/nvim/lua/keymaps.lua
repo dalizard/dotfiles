@@ -85,3 +85,15 @@ keymap("v", "K", ":m '<-2<cr>gv=gv")
 
 -- Format Ruby hashes
 keymap("n", "<s-f>", [[$v%lohc<CR><CR><Up><C-r>"<Esc>:s/,/,\r/g<CR>:'[,']norm ==<CR>]])
+
+-- Toggle diagnostics virtual text
+local _show_virtual_text = true
+keymap("n", "<leader>gv", function ()
+  if _show_virtual_text then
+    vim.diagnostic.show(nil, nil, nil, {virtual_text = false})
+    _show_virtual_text = false
+  else
+    vim.diagnostic.show(nil, nil, nil, {virtual_text = true})
+    _show_virtual_text = true
+  end
+end, opts)

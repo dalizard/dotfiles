@@ -13,7 +13,9 @@ M.setup = function()
   end
 
   vim.diagnostic.config({
-    virtual_text = true,
+    virtual_text = {
+      prefix = "",
+    },
     signs = { active = signs },
     update_in_insert = true,
     underline = true,
