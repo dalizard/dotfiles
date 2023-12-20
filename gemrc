@@ -2,4 +2,5 @@
 :update_sources: true
 :backtrace: false
 gem: --no-document --env-shebang
-
+install: --env-shebang
+update: --env-shebang
