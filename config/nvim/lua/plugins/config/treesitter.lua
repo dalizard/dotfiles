@@ -6,7 +6,7 @@ end
 configs.setup {
   ignore_install = {},
   sync_install = false,
-  auto_install = true,
+  auto_install = false,
   highlight = {
     enable = true,
     disable = { "markdown" },
@@ -25,7 +25,6 @@ configs.setup {
     "dockerfile",
     "fish",
     "git_rebase",
-    "gitcommit",
     "gitignore",
     "go",
     "gomod",
