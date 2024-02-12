@@ -23,10 +23,13 @@ set -eg COLOR_THEME
 # Add .bin to PATH
 fish_add_path ~/.bin
 
-# MacPorts paths
-if test $OS_NAME = 'darwin'
-  fish_add_path /opt/local/bin /opt/local/sbin
-end
+# Homebrew
+set -gx HOMEBREW_PREFIX "/opt/homebrew";
+set -gx HOMEBREW_CELLAR "/opt/homebrew/Cellar";
+set -gx HOMEBREW_REPOSITORY "/opt/homebrew";
+! set -q PATH; and set PATH ''; set -gx PATH "/opt/homebrew/bin" "/opt/homebrew/sbin" $PATH;
+! set -q MANPATH; and set MANPATH ''; set -gx MANPATH "/opt/homebrew/share/man" $MANPATH;
+! set -q INFOPATH; and set INFOPATH ''; set -gx INFOPATH "/opt/homebrew/share/info" $INFOPATH;
 
 # Make sure we have a unicode capable LANG and LC_CTYPE so the unicode
 # characters do not look like crap on macOS and other environments.
