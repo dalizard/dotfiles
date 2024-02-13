@@ -57,6 +57,13 @@ set -x OBJC_DISABLE_INITIALIZE_FORK_SAFETY yes
 # Workaround for RSpec
 set -x PGGSSENCMODE disable
 
+if test -d /opt/homebrew/opt/postgresql@16
+  fish_add_path /opt/homebrew/opt/postgresql@16/bin
+  set -gx LDFLAGS "-L/opt/homebrew/opt/postgresql@16/lib"
+  set -gx CPPFLAGS "-I/opt/homebrew/opt/postgresql@16/include"
+  set -gx PKG_CONFIG_PATH "/opt/homebrew/opt/postgresql@16/lib/pkgconfig"
+end
+
 # Shortcuts
 alias g='git'
 alias ll='ls -alGF'
