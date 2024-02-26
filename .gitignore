@@ -27,6 +27,7 @@ config/nvim/autoload/plug.vim
 config/nvim/lazy-lock.json
 config/nvm
 config/pulse
+config/shopify
 config/slack-term/config
 config/syncthing
 config/tmuxinator
