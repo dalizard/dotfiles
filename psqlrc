@@ -1,5 +1,5 @@
 -- Immediate rollback to just the previous command
-\set ON_ERROR_ROLLBACK interactive
+-- \set ON_ERROR_ROLLBACK interactive
 
 -- Different histories for each database.
 \set HISTFILE ~/.psql_history- :DBNAME
