@@ -69,4 +69,7 @@ vim.opt.shortmess:append "I"
 vim.opt.grepprg = "rg"
 vim.opt.grepformat = "%f:%l:%c:%m"
 
+-- Prepend mise shims to PATH
+vim.env.PATH = vim.env.HOME .. "/.local/share/mise/shims:" .. vim.env.PATH
+
 vim.cmd([[colorscheme lagadath]])

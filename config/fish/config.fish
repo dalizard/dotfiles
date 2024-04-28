@@ -104,3 +104,6 @@ if test $OS_NAME = 'openbsd'
 else
   starship init fish | source
 end
+
+# Activate mise
+mise activate fish | source
