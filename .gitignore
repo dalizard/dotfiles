@@ -45,14 +45,6 @@ config/fish/functions/fzf_key_bindings.fish
 ## fisher
 config/fish/functions/fisher.fish
 config/fish/completions/fisher.fish
-# nvm
-config/fish/functions/_nvm_index_update.fish
-config/fish/functions/_nvm_list.fish
-config/fish/functions/_nvm_version_activate.fish
-config/fish/functions/_nvm_version_deactivate.fish
-config/fish/functions/nvm.fish
-config/fish/conf.d/nvm.fish
-config/fish/completions/nvm.fish
 
 # fish-ssh-agent
 config/fish/functions/__ssh_agent_is_started.fish
