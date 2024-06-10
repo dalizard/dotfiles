@@ -7,6 +7,7 @@ mason_lspconfig.setup({
     "clangd",
     "cssls",
     "dockerls",
+    "golangci_lint_ls",
     "gopls",
     "html",
     "jsonls",
@@ -29,6 +30,7 @@ lspconfig.bashls.setup(defaults)
 lspconfig.clangd.setup(defaults)
 lspconfig.cssls.setup(defaults)
 lspconfig.dockerls.setup(defaults)
+lspconfig.golangci_lint_ls.setup(defaults)
 lspconfig.gopls.setup(defaults)
 lspconfig.html.setup(defaults)
 lspconfig.jsonls.setup(vim.tbl_deep_extend("force", require("plugins.config.lsp.settings.jsonls"), defaults))
