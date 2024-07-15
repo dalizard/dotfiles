@@ -1,6 +1,6 @@
 function gl --description 'Git fuzzy find and checkout local branch'
 	if command git rev-parse --is-inside-work-tree >/dev/null 2>&1
-		git branch | fzf-tmux | sed "s/.* //" | read -l branch;
+		git branch --sort=-committerdate | fzf-tmux | sed "s/.* //" | read -l branch;
     and git checkout $branch
 	else
 		echo Not a git repo.
