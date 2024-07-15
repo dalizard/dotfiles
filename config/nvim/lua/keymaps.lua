@@ -97,3 +97,6 @@ keymap("n", "<leader>gv", function ()
     _show_virtual_text = true
   end
 end, opts)
+
+-- Create missing directories in a path
+keymap("n", "<leader>m", ":call mkdir(expand('%:p:h'), 'p')<cr>")
