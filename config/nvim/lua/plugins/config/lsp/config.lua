@@ -26,17 +26,25 @@ local defaults = {
   capabilities = require("plugins.config.lsp.handlers").capabilities,
 }
 
-lspconfig.bashls.setup(defaults)
-lspconfig.clangd.setup(defaults)
-lspconfig.cssls.setup(defaults)
-lspconfig.dockerls.setup(defaults)
-lspconfig.golangci_lint_ls.setup(defaults)
-lspconfig.gopls.setup(defaults)
-lspconfig.html.setup(defaults)
-lspconfig.jsonls.setup(vim.tbl_deep_extend("force", require("plugins.config.lsp.settings.jsonls"), defaults))
-lspconfig.lua_ls.setup(vim.tbl_deep_extend("force", require("plugins.config.lsp.settings.lua_ls"), defaults))
-lspconfig.pylsp.setup(defaults)
-lspconfig.rust_analyzer.setup(defaults)
-lspconfig.solargraph.setup(vim.tbl_deep_extend("force", require("plugins.config.lsp.settings.solargraph"), defaults))
-lspconfig.tsserver.setup(defaults)
-lspconfig.yamlls.setup(defaults)
+mason_lspconfig.setup_handlers({
+  function(server_name)
+    -- Handle tsserver being renamed to ts_ls; eventually this can be dropped
+    if server_name == "tsserver" then
+      server_name = "ts_ls"
+    end
+
+    if server_name == "jsonls" then
+      defaults = vim.tbl_deep_extend("force", require("plugins.config.lsp.settings.jsonls"), defaults)
+    end
+
+    if server_name == "lua_ls" then
+      defaults = vim.tbl_deep_extend("force", require("plugins.config.lsp.settings.lua_ls"), defaults)
+    end
+
+    if server_name == "solargraph" then
+      defaults = vim.tbl_deep_extend("force", require("plugins.config.lsp.settings.solargraph"), defaults)
+    end
+
+    lspconfig[server_name].setup(defaults)
+  end,
+})
