@@ -16,7 +16,7 @@ mason_lspconfig.setup({
     "rust_analyzer",
     "solargraph",
     "tailwindcss",
-    "tsserver",
+    "ts_ls",
     "yamlls",
   }
 })
@@ -28,11 +28,6 @@ local defaults = {
 
 mason_lspconfig.setup_handlers({
   function(server_name)
-    -- Handle tsserver being renamed to ts_ls; eventually this can be dropped
-    if server_name == "tsserver" then
-      server_name = "ts_ls"
-    end
-
     if server_name == "jsonls" then
       defaults = vim.tbl_deep_extend("force", require("plugins.config.lsp.settings.jsonls"), defaults)
     end
