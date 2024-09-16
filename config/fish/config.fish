@@ -66,7 +66,8 @@ end
 
 # Shortcuts
 alias g='git'
-alias ll='ls -alGF'
+alias ls='eza'
+alias ll='ls -1la'
 alias gg='git status'
 alias be='bundle exec'
 alias n='nnn'
