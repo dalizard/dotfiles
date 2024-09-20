@@ -27,19 +27,22 @@ local defaults = {
 }
 
 mason_lspconfig.setup_handlers({
-  function(server_name)
-    if server_name == "jsonls" then
-      defaults = vim.tbl_deep_extend("force", require("plugins.config.lsp.settings.jsonls"), defaults)
-    end
-
-    if server_name == "lua_ls" then
-      defaults = vim.tbl_deep_extend("force", require("plugins.config.lsp.settings.lua_ls"), defaults)
-    end
-
-    if server_name == "solargraph" then
-      defaults = vim.tbl_deep_extend("force", require("plugins.config.lsp.settings.solargraph"), defaults)
-    end
-
-    lspconfig[server_name].setup(defaults)
+  function(server_name)    -- default handler
+    require("lspconfig")[server_name].setup {}
   end,
+
+  ["jsonls"] = function()
+    local options = vim.tbl_deep_extend("force", require("plugins.config.lsp.settings.jsonls"), defaults)
+    lspconfig.jsonls.setup(options)
+  end,
+
+  ["lua_ls"] = function()
+    local options = vim.tbl_deep_extend("force", require("plugins.config.lsp.settings.lua_ls"), defaults)
+    lspconfig.lua_ls.setup(options)
+  end,
+
+  ["solargraph"] = function()
+    local options = vim.tbl_deep_extend("force", require("plugins.config.lsp.settings.solargraph"), defaults)
+    lspconfig.solargraph.setup(options)
+  end
 })
