@@ -28,7 +28,7 @@ local defaults = {
 
 mason_lspconfig.setup_handlers({
   function(server_name)    -- default handler
-    require("lspconfig")[server_name].setup {}
+    require("lspconfig")[server_name].setup(defaults)
   end,
 
   ["jsonls"] = function()
