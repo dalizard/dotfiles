@@ -9,3 +9,6 @@
 
 -- Always show how long a query takes
 \timing
+
+-- Set null display value
+\pset null '[NULL]'
