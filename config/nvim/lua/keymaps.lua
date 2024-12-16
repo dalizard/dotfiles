@@ -86,6 +86,9 @@ keymap("v", "K", ":m '<-2<cr>gv=gv")
 -- Format Ruby hashes
 keymap("n", "<s-f>", [[$v%lohc<CR><CR><Up><C-r>"<Esc>:s/,/,\r/g<CR>:'[,']norm ==<CR>]])
 
+-- Rubocop disable cop
+keymap("n", "<leader>r", utils.comment_rubocop, opts)
+
 -- Toggle diagnostics virtual text
 local _show_virtual_text = true
 keymap("n", "<leader>gv", function ()

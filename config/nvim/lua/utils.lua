@@ -14,4 +14,31 @@ Utils.project_files = function(theme_name)
   end
 end
 
+Utils.comment_rubocop = function()
+  local error = vim.diagnostic.get()
+  local line = vim.fn.line(".")
+  local bufnr = vim.fn.bufnr()
+  local current_error
+
+  ---@diagnostic disable-next-line: unused-local
+  for __, v in ipairs(error) do
+    if v.lnum + 1 == line and bufnr == v.bufnr then
+      if not current_error then
+        current_error = v
+      end
+    end
+  end
+
+  if current_error then
+    local current_line = vim.fn.getline(".")
+    local real_cop_name = current_error.code
+
+    if string.match(current_line, "# rubocop:disable") then
+      vim.cmd("normal! A, " .. real_cop_name)
+    else
+      vim.cmd("normal! A # rubocop:disable " .. real_cop_name)
+    end
+  end
+end
+
 return Utils
