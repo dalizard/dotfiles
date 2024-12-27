@@ -27,7 +27,7 @@ local defaults = {
 }
 
 mason_lspconfig.setup_handlers({
-  function(server_name)    -- default handler
+  function(server_name) -- default handler
     require("lspconfig")[server_name].setup(defaults)
   end,
 
@@ -44,5 +44,17 @@ mason_lspconfig.setup_handlers({
   ["solargraph"] = function()
     local options = vim.tbl_deep_extend("force", require("plugins.config.lsp.settings.solargraph"), defaults)
     lspconfig.solargraph.setup(options)
+  end,
+
+  ["golangci_lint_ls"] = function()
+    local configs = require 'lspconfig/configs'
+    local options = require("plugins.config.lsp.settings.golangci_lint_ls")
+    local config, lsp_config  = unpack(options)
+
+    if not configs.golangcilsp then
+      configs.golangcilsp = lsp_config
+    end
+
+    lspconfig.golangci_lint_ls.setup(config)
   end
 })
