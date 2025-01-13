@@ -43,6 +43,10 @@ require("lazy").setup({
     build = function() require("nvim-treesitter.install").update({ with_sync = true }) end,
     config = function() require("plugins.config.treesitter") end
   },
+  {
+    "nvim-treesitter/nvim-treesitter-textobjects",
+    dependencies = "nvim-treesitter"
+  },
   "nvim-treesitter/playground",
   -- Fuzzy Finder/Telescope
   {
