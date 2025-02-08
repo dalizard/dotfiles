@@ -1,2 +1,10 @@
 # A list of gems to install with every mise-installed version of Ruby
+rubocop
+rubocop-ast
+rubocop-md
+rubocop-minitest
+rubocop-packaging
+rubocop-performance
+rubocop-rails
+rubocop-rspec
 solargraph
