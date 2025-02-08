@@ -84,6 +84,7 @@ require("lazy").setup({
     "nvim-lualine/lualine.nvim",
     config = function() require("plugins.config.lualine") end
   },
+  { 'AndreM222/copilot-lualine' },
   -- Git
   {
     "lewis6991/gitsigns.nvim",
