@@ -37,6 +37,16 @@ require("lazy").setup({
   "hrsh7th/cmp-nvim-lua", -- neovim Lua completion
   "hrsh7th/cmp-path",     -- complete files
   "saadparwaiz1/cmp_luasnip",
+  {
+    "zbirenbaum/copilot-cmp",
+    config = function() require("plugins.config.copilot-cmp") end,
+  },
+  {
+    "zbirenbaum/copilot.lua",
+    cmd = "Copilot",
+    event = "InsertEnter",
+    config = function() require("plugins.config.copilot") end
+  },
   -- Syntax/Treesitter
   {
     "nvim-treesitter/nvim-treesitter",

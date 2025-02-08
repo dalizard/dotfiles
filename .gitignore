@@ -15,6 +15,7 @@ config/fontforge
 config/gatsby
 config/gcloud
 config/gh/hosts.yml
+config/github-copilot
 config/glib-2.0
 config/htop
 config/iterm2/AppSupport

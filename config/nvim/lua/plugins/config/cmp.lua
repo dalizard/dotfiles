@@ -111,6 +111,7 @@ cmp.setup({
         luasnip = "∙snip∙",
         buffer = "∙buf∙",
         path = "∙path∙",
+        copilot = "∙∙"
       })[entry.source.name]
 
       return vim_item
@@ -121,6 +122,7 @@ cmp.setup({
     { name = 'nvim_lua', keyword_length = 3 },
     { name = 'luasnip',  keyword_length = 3 },
     { name = 'buffer',   keyword_length = 3 },
+    { name = 'copilot' },
     { name = 'path' },
   }),
   experimental = {
