@@ -45,6 +45,7 @@ configs.setup {
     "rust",
     "scheme",
     "scss",
+    "slim",
     "sql",
     "toml",
     "tsx",
