@@ -24,18 +24,10 @@ M.setup = function()
       focusable = false,
       style = "minimal",
       border = "rounded",
-      source = "always",
+      source = true,
       header = "",
       prefix = "",
     },
-  })
-
-  vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
-    border = "rounded",
-  })
-
-  vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
-    border = "rounded",
   })
 end
 
@@ -43,7 +35,7 @@ local function lsp_keymaps(bufnr)
   local opts = { silent = true, remap = false, buffer = bufnr }
 
   -- Generate LSP functionality
-  vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
+  vim.keymap.set("n", "K", function() vim.lsp.buf.hover({ border = "rounded" }) end, opts)
   vim.keymap.set("n", "gr", vim.lsp.buf.rename, opts)
   vim.keymap.set("n", "gR", "<cmd>Telescope lsp_references<cr>", opts)
   vim.keymap.set("n", "gd", "<cmd>Telescope lsp_definitions<cr>", opts)
@@ -54,8 +46,8 @@ local function lsp_keymaps(bufnr)
   vim.keymap.set("n", "<leader>gf", vim.lsp.buf.format, opts)
 
   -- Navigate diagnotis errors/mesages
-  vim.keymap.set("n", "]g", vim.diagnostic.goto_next, opts)
-  vim.keymap.set("n", "[g", vim.diagnostic.goto_prev, opts)
+  vim.keymap.set("n", "]g", function() vim.diagnostic.jump({ count = 1, float = false }) end, opts)
+  vim.keymap.set("n", "[g", function() vim.diagnostic.jump({ count = -1, float = false }) end, opts)
 
   -- Telescope helpers for listing symbols and diagnostics
   vim.keymap.set("n", "<leader>gs", "<cmd>Telescope lsp_document_symbols<cr>", opts)
