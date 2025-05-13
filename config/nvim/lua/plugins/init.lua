@@ -92,6 +92,10 @@ require("lazy").setup({
   },
   "tpope/vim-fugitive",
   "tpope/vim-rhubarb",
+  {
+    "shumphrey/fugitive-gitlab.vim",
+    config = function() require("plugins.config.fugitive-gitlab") end
+  },
   -- Tests
   {
     "vim-test/vim-test",
