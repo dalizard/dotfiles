@@ -69,7 +69,7 @@ require("lazy").setup({
   {
     "nvim-telescope/telescope-fzf-native.nvim",
     build =
-    "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build"
+    "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release"
   },
   -- Snippet
   "L3MON4D3/LuaSnip",
