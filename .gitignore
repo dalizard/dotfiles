@@ -34,6 +34,7 @@ config/syncthing
 config/tmuxinator
 config/user-dirs.dirs
 config/yarn
+config/zed/prompts
 packer_compiled.lua
 fish_history
 fish_variables
