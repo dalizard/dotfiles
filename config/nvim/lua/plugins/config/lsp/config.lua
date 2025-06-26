@@ -24,6 +24,12 @@ mason_lspconfig.setup({
 })
 
 vim.lsp.config("*", {
-  on_attach = require("plugins.config.lsp.handlers").on_attach,
   capabilities = require("plugins.config.lsp.handlers").capabilities,
+})
+
+vim.api.nvim_create_autocmd("LspAttach", {
+  group = vim.api.nvim_create_augroup("lsp-attach-config", { clear = true }),
+  callback = function(ev)
+    require("plugins.config.lsp.handlers").on_attach(ev.buf)
+  end
 })

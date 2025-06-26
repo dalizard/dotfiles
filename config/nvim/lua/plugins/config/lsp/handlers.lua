@@ -54,7 +54,7 @@ local function lsp_keymaps(bufnr)
   vim.keymap.set("n", "<leader>gd", "<cmd>Telescope diagnostics<cr>", opts)
 end
 
-M.on_attach = function(_, bufnr)
+M.on_attach = function(bufnr)
   lsp_keymaps(bufnr)
 end
 
