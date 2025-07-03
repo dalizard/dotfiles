@@ -42,6 +42,8 @@ fishd.*
 generated_completions
 nvim/plugins
 
+.claude/settings.local.json
+
 config/fish/functions/fzf_key_bindings.fish
 
 ## fisher
