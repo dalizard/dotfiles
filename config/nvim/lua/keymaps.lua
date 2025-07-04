@@ -91,12 +91,12 @@ keymap("n", "<leader>r", utils.comment_rubocop, opts)
 
 -- Toggle diagnostics virtual text
 local _show_virtual_text = true
-keymap("n", "<leader>gv", function ()
+keymap("n", "<leader>gv", function()
   if _show_virtual_text then
-    vim.diagnostic.show(nil, nil, nil, {virtual_text = false})
+    vim.diagnostic.show(nil, nil, nil, { virtual_text = false })
     _show_virtual_text = false
   else
-    vim.diagnostic.show(nil, nil, nil, {virtual_text = true})
+    vim.diagnostic.show(nil, nil, nil, { virtual_text = true })
     _show_virtual_text = true
   end
 end, opts)
