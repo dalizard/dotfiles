@@ -21,3 +21,4 @@ rebar3.crashdump
 spec/quickfix.out
 tags
 vim/undo
+**/.claude/settings.local.json
