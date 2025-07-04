@@ -3,6 +3,7 @@ local hotkeys = {
   [2] = { name = 'Firefox' },
   [3] = { name = 'Safari' },
   [4] = { name = 'Dash' },
+  [5] = { name = 'Slack' },
 }
 
 for key, obj in pairs(hotkeys) do
