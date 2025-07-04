@@ -108,6 +108,12 @@ require("lazy").setup({
     "nvim-tree/nvim-tree.lua",
     config = function() require("plugins.config.nvim-tree") end
   },
+  {
+    "ThePrimeagen/harpoon",
+    branch = "harpoon2",
+    dependencies = { "nvim-lua/plenary.nvim" },
+    config = function() require("plugins.config.harpoon") end
+  },
   -- Editing Support
   {
     "windwp/nvim-autopairs",
