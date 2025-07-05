@@ -7,5 +7,5 @@ local hotkeys = {
 }
 
 for key, obj in pairs(hotkeys) do
-  hs.hotkey.bind({ "cmd" }, tostring(key), function() hs.application.launchOrFocus(obj.name) end)
+  hs.hotkey.bind({ "cmd", "ctrl" }, tostring(key), function() hs.application.launchOrFocus(obj.name) end)
 end
