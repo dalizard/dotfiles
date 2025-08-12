@@ -22,3 +22,4 @@ spec/quickfix.out
 tags
 vim/undo
 **/.claude/settings.local.json
+mise.toml
