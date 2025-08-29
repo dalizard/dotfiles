@@ -119,6 +119,11 @@ require("lazy").setup({
     "windwp/nvim-autopairs",
     config = function() require("plugins.config.autopairs") end
   },
+  {
+    'stevearc/conform.nvim',
+    opts = {},
+    config = function() require("plugins.config.conform") end
+  },
   -- Utility
   {
     "kylechui/nvim-surround",
