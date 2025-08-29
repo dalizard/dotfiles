@@ -15,7 +15,6 @@ mason_lspconfig.setup({
     "lua_ls",
     "pylsp",
     "rust_analyzer",
-    "solargraph",
     "tailwindcss",
     "ts_ls",
     "vue_ls",
