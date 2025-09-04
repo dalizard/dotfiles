@@ -43,6 +43,7 @@ generated_completions
 nvim/plugins
 
 config/fish/functions/fzf_key_bindings.fish
+config/claude-code/mcp_servers.json
 
 ## fisher
 config/fish/functions/fisher.fish
