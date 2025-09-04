@@ -84,9 +84,6 @@ keymap("n", "<leader>r", "<cmd>colorscheme lagadath<cr>", opts)
 keymap("v", "J", ":m '>+1<cr>gv=gv")
 keymap("v", "K", ":m '<-2<cr>gv=gv")
 
--- Format Ruby hashes
-keymap("n", "<s-f>", [[$v%lohc<CR><CR><Up><C-r>"<Esc>:s/,/,\r/g<CR>:'[,']norm ==<CR>]])
-
 -- Rubocop disable cop
 keymap("n", "<leader>r", utils.comment_rubocop, opts)
 
