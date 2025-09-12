@@ -1,8 +1,8 @@
 -- Disable the netrw plugin
 vim.g.loaded_netrwPlugin = 1
 
+require "config.lazy"
 require "keymaps"
-require "plugins"
 require "autocommands"
 require "options"
 require "globals"
