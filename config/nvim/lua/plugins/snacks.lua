@@ -3,10 +3,10 @@ return {
   priority = 1000,
   lazy = false,
   keys = {
-    { "<C-j>", function() Snacks.picker.files() end,     desc = "Find Files" },
-    { "<C-f>", function() Snacks.picker.buffers() end,   desc = "Buffers" },
-    { "<C-l>", function() Snacks.picker.grep() end,      desc = "Grep" },
-    { "<C-h>", function() Snacks.picker.grep_word() end, desc = "Visual selection or word", mode = { "n", "x" } },
+    { "<C-j>", function() Snacks.picker.files({ layout = { preview = false } }) end,   desc = "Find Files" },
+    { "<C-f>", function() Snacks.picker.buffers({ layout = { preview = false } }) end, desc = "Buffers" },
+    { "<C-l>", function() Snacks.picker.grep() end,                                    desc = "Grep" },
+    { "<C-h>", function() Snacks.picker.grep_word() end,                               desc = "Visual selection or word", mode = { "n", "x" } },
   },
   opts = {
     input = {
@@ -18,6 +18,11 @@ return {
     picker = {
       enabled = true,
       layout = { preset = "telescope", preview = true },
+      formatters = {
+        file = {
+          truncate = 80
+        },
+      },
       win = {
         input = {
           keys = {
