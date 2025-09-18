@@ -24,16 +24,6 @@ return {
         },
       },
       win = {
-        input = {
-          keys = {
-            ["<c-x>"] = { "edit_split", mode = { "i", "n" } },
-          },
-        },
-        list = {
-          keys = {
-            ["<c-x>"] = "edit_split",
-          },
-        },
         preview = {
           wo = {
             number = false,
