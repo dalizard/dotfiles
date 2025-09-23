@@ -1,9 +1,8 @@
-local status_ok, lualine = pcall(require, "lualine")
-if not status_ok then
-  return
-end
 
-lualine.setup {
+return {
+  "nvim-lualine/lualine.nvim",
+  dependencies = { 'nvim-tree/nvim-web-devicons' },
+  opts = {
   options = {
     icons_enabled = true,
     theme = 'lagadath',
@@ -68,4 +67,5 @@ lualine.setup {
   winbar = {},
   inactive_winbar = {},
   extensions = {}
+  }
 }

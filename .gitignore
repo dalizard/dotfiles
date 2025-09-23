@@ -25,7 +25,6 @@ config/kitty/os.conf
 config/mimeapps.list
 config/nnn/.history
 config/nvim/autoload/plug.vim
-config/nvim/lazy-lock.json
 config/nvm
 config/pulse
 config/shopify
