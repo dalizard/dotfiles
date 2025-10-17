@@ -21,6 +21,7 @@ return {
       ensure_installed = {
         "bashls",
         "clangd",
+        "copilot",
         "cssls",
         "dockerls",
         "golangci_lint_ls",
