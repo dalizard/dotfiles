@@ -6,8 +6,8 @@ return {
   },
   version = '1.*',
   opts = {
+    cmdline = { enabled = false },
     keymap = { preset = 'default' },
-
     appearance = {
       nerd_font_variant = 'mono',
       kind_icons = {
@@ -39,7 +39,6 @@ return {
         Variable = "󰂡",
       },
     },
-
     completion = {
       documentation = {
         treesitter_highlighting = true,
@@ -47,7 +46,8 @@ return {
       },
       menu = {
         border = "rounded",
-      }
+      },
+      ghost_text = { enabled = true },
     },
     fuzzy = {
       implementation = "rust",
@@ -56,7 +56,6 @@ return {
         enabled = true,
       }
     },
-
     sources = {
       default = { 'copilot', 'lsp', 'buffer', 'snippets', 'path' },
       providers = {
