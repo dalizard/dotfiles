@@ -34,7 +34,7 @@ utils.keymap("i", "<C-c>", "<esc>")
 
 -- Copy to clipboard
 utils.keymap("v", "<leader>y", '"+y', "Copy to system clipboard")
-utils.keymap("n", "<leader>y", '"+y', "Copy to system lipboard")
+utils.keymap("n", "<leader>y", '"+y', "Copy to system clipboard")
 utils.keymap("n", "<leader>Y", '"+g_', "Copy to system clipboard")
 -- utils.keymap("n", "<leader>yy", '"+yy', opts) TODO: Do I need this?
 
@@ -58,4 +58,6 @@ utils.keymap("n", "<leader>gv", function()
 end, "Toggle diagnostic virtual text")
 
 -- Create missing directories in a path
-utils.keymap("n", "<leader>m", ":call mkdir(expand('%:p:h'), 'p')<cr>")
+utils.keymap("n", "<leader>m", function()
+  vim.fn.mkdir(vim.fn.expand('%:p:h'), 'p')
+end, "Create missing directories")

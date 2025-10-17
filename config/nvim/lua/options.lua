@@ -1,5 +1,3 @@
-local home_dir = os.getenv("HOME")
-
 local options = {
   autoindent = true, -- Copy indent from current line when starting a new line
   autoread = true, -- watch out for file changes
@@ -10,7 +8,7 @@ local options = {
   completeopt = { "menu", "menuone", "noselect" }, -- mostly just for cmp
   conceallevel = 0, -- so that `` is visible in markdown files
   cursorline = true, -- highlight the current line
-  directory = { home_dir .. "/.nvim/_temp" }, -- set the temp directory
+  directory = { vim.fn.stdpath("data") .. "/_temp" }, -- set the temp directory
   expandtab = true, -- convert tabs to spaces
   fileencoding = "utf-8", -- the encoding written to a file
   hidden = true, -- allow unsaved background buffers and remember marks/undo for them
@@ -42,7 +40,7 @@ local options = {
   termguicolors = true, -- set term gui colors (most terminals support this)
   timeoutlen = 1000, -- time to wait for a mapped sequence to complete (in milliseconds)
   title = true, -- show window title
-  undodir = { home_dir .. "/.nvim/_undo" }, -- set the undo directory
+  undodir = { vim.fn.stdpath("data") .. "/_undo" }, -- set the undo directory
   undofile = true, -- enable persistent undo
   updatetime = 250, -- faster completion (4000ms default)
   wrap = true, -- display lines as one long line
