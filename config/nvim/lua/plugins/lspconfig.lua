@@ -23,7 +23,6 @@ return {
         map("n", "<space>gr", vim.lsp.buf.references, "[G]et [R]eferences")
         map("n", "<space>gS", vim.lsp.buf.workspace_symbol, "[G]et [S]ymbols (workspace)")
 
-
         if client:supports_method(vim.lsp.protocol.Methods.textDocument_inlayHint, bufnr) then
           map("n", "<leader>th", function()
             vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr = bufnr }), { bufnr = bufnr })
@@ -31,8 +30,6 @@ return {
           client.server_capabilities.semanticTokensProvider = nil
         end
       end
-
-      local client_capabilities = vim.lsp.protocol.make_client_capabilities()
 
       vim.diagnostic.config({
         float = {
@@ -52,7 +49,7 @@ return {
       })
 
       vim.lsp.config('*', {
-        capabilities = require("blink.cmp").get_lsp_capabilities(client_capabilities),
+        capabilities = require("blink.cmp").get_lsp_capabilities(vim.lsp.protocol.make_client_capabilities()),
         on_attach = on_lsp_attach,
       })
     end
