@@ -10,15 +10,10 @@ return {
   },
   keys = {
     {
-      "<c-.>",
+      "<M-q>",
       function() require("sidekick.cli").toggle() end,
       desc = "Sidekick Toggle",
       mode = { "n", "t", "i", "x" },
-    },
-    {
-      "<leader>aa",
-      function() require("sidekick.cli").toggle() end,
-      desc = "Sidekick Toggle CLI",
     },
     {
       "<leader>as",

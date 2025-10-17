@@ -24,6 +24,9 @@ utils.keymap("n", "<cr>", ":nohl<cr>")
 -- Disable Q
 utils.keymap("n", "Q", "<nop>")
 
+--- Leave terminal mode
+utils.keymap("t", "<esc>", "<C-\\><C-n>", "Leave terminal mode")
+
 -- Forget about the damn arrow keys!
 utils.keymap({ "n", "i", "v" }, "<Up>", "<nop>")
 utils.keymap({ "n", "i", "v" }, "<Down>", "<nop>")
@@ -40,20 +43,20 @@ utils.keymap("n", "<leader>Y", '"+g_', "Copy to system clipboard")
 -- utils.keymap("n", "<leader>yy", '"+yy', opts) TODO: Do I need this?
 
 -- Expand current path
-utils.keymap("c", "%%", "<C-R>=expand('%:h').'/'<cr>")
+utils.keymap("c", "%%", "<C-R>=expand('%:h').'/'<cr>", "Expand current path")
 
 -- Copy current file path to clipboard
 utils.keymap("n", "<leader>fc", "<cmd>let @+ = expand('%:~:.')<cr>", "Copy file path to clipboard")
 
 -- Easy theme reload
-utils.keymap("n", "<leader>r", "<cmd>colorscheme lagadath<cr>")
+utils.keymap("n", "<leader>r", "<cmd>colorscheme lagadath<cr>", "Reload theme")
 
 -- Move visual text easily
 utils.keymap("v", "J", ":m '>+1<cr>gv=gv")
 utils.keymap("v", "K", ":m '<-2<cr>gv=gv")
 
 -- Rubocop disable cop
-utils.keymap("n", "<leader>r", utils.comment_rubocop)
+utils.keymap("n", "<leader>r", utils.comment_rubocop, "Disable a Rubocop cop")
 
 -- Toggle diagnostics virtual text
 local _show_virtual_text = true
