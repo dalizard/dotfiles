@@ -5,6 +5,6 @@ vim.api.nvim_create_autocmd({ "FileType"}, {
   group = "_ruby",
   pattern = "ruby",
   callback = function()
-    vim.cmd("setlocal indentkeys-=.")
+    vim.opt_local.indentkeys:remove(".")
   end,
 })
