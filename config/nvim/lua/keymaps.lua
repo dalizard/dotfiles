@@ -1,9 +1,5 @@
 local utils = require('utils')
 
--- Remap space as leader key
-vim.g.mapleader = " "
-vim.g.maplocalleader = " "
-
 -- Save with W as well
 vim.api.nvim_create_user_command('W', 'w', {})
 
@@ -54,9 +50,6 @@ utils.keymap("n", "<leader>r", "<cmd>colorscheme lagadath<cr>", "Reload theme")
 -- Move visual text easily
 utils.keymap("v", "J", ":m '>+1<cr>gv=gv")
 utils.keymap("v", "K", ":m '<-2<cr>gv=gv")
-
--- Rubocop disable cop
-utils.keymap("n", "<leader>r", utils.comment_rubocop, "Disable a Rubocop cop")
 
 -- Toggle diagnostics virtual text
 local _show_virtual_text = true
