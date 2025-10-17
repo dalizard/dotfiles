@@ -28,8 +28,6 @@ return {
     explorer = {
       replace_netrw = true,
     },
-    scratch = {
-    },
     picker = {
       enabled = true,
       layout = { preset = "telescope", preview = true },
