@@ -52,15 +52,9 @@ utils.keymap("v", "J", ":m '>+1<cr>gv=gv")
 utils.keymap("v", "K", ":m '<-2<cr>gv=gv")
 
 -- Toggle diagnostics virtual text
-local _show_virtual_text = true
 utils.keymap("n", "<leader>gv", function()
-  if _show_virtual_text then
-    vim.diagnostic.show(nil, nil, nil, { virtual_text = false })
-    _show_virtual_text = false
-  else
-    vim.diagnostic.show(nil, nil, nil, { virtual_text = true })
-    _show_virtual_text = true
-  end
+  local config = vim.diagnostic.config()
+  vim.diagnostic.config({ virtual_text = not config.virtual_text })
 end, "Toggle diagnostic virtual text")
 
 -- Create missing directories in a path
