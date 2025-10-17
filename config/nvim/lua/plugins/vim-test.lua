@@ -1,16 +1,15 @@
+local utils = require('utils')
+
 return {
   "vim-test/vim-test",
   config = function()
     local opts = { noremap = true, silent = true }
 
-    -- Shorten function name
-    local keymap = vim.keymap.set
-
-    keymap("n", "<leader>s", "<cmd>TestNearest<cr>", opts)
-    keymap("n", "<leader>f", "<cmd>TestFile<cr>", opts)
-    keymap("n", "<leader>a", "<cmd>TestSuite<cr>", opts)
-    keymap("n", "<leader>l", "<cmd>TestLast<cr>", opts)
-    keymap("n", "<leader>v", "<cmd>TestVisit<cr>", opts)
+    utils.keymap("n", "<leader>ts", "<cmd>TestNearest<cr>", "Run nearest test", opts)
+    utils.keymap("n", "<leader>tf", "<cmd>TestFile<cr>", "Run test file", opts)
+    utils.keymap("n", "<leader>ta", "<cmd>TestSuite<cr>", "Run test suite", opts)
+    utils.keymap("n", "<leader>tl", "<cmd>TestLast<cr>", "Run last test", opts)
+    utils.keymap("n", "<leader>tv", "<cmd>TestVisit<cr>", "Visit test file from last run", opts)
 
     vim.cmd([[
       function! TestRunner(cmd) abort

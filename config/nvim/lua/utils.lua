@@ -1,6 +1,6 @@
-local Utils = {}
+local utils = {}
 
-Utils.project_files = function(theme_name)
+utils.project_files = function(theme_name)
   local theme
   if theme_name then
     theme = require('telescope.themes')[theme_name]()
@@ -14,7 +14,7 @@ Utils.project_files = function(theme_name)
   end
 end
 
-Utils.comment_rubocop = function()
+utils.comment_rubocop = function()
   local error = vim.diagnostic.get()
   local line = vim.fn.line(".")
   local bufnr = vim.fn.bufnr()
@@ -41,4 +41,17 @@ Utils.comment_rubocop = function()
   end
 end
 
-return Utils
+utils.keymap = function(mode, lhs, rhs, desc, opts)
+  -- Modes
+  --   normal_mode = "n",
+  --   insert_mode = "i",
+  --   visual_mode = "v",
+  --   visual_block_mode = "x",
+  --   term_mode = "t",
+  --   command_mode = "c",
+  opts = opts or {}
+  opts.desc = desc
+  vim.keymap.set(mode, lhs, rhs, opts)
+end
+
+return utils

@@ -1,16 +1,4 @@
-local opts = { silent = true }
 local utils = require('utils')
-
--- Shorten function name
-local keymap = vim.keymap.set
-
--- Modes
---   normal_mode = "n",
---   insert_mode = "i",
---   visual_mode = "v",
---   visual_block_mode = "x",
---   term_mode = "t",
---   command_mode = "c",
 
 -- Remap space as leader key
 vim.g.mapleader = " "
@@ -20,65 +8,56 @@ vim.g.maplocalleader = " "
 vim.api.nvim_create_user_command('W', 'w', {})
 
 -- No cursor jumps on highlighting
-keymap("n", "#", "<cmd>keepjumps normal! mi*`i<cr>", opts)
+utils.keymap("n", "#", "<cmd>keepjumps normal! mi*`i<cr>")
 
 -- Make command mode navigation more like the shell
-keymap("c", "<M-b>", "<S-Left>")
-keymap("c", "<M-f>", "<S-Right>")
-keymap("c", "<C-a>", "<Home>")
-keymap("c", "<C-e>", "<End>")
-keymap("c", "<C-f>", "<Right>")
-keymap("c", "<C-b>", "<Left>")
-
--- Leave terminal mode
-keymap("t", "<esc>", "<C-\\><C-n>", opts)
+utils.keymap("c", "<M-b>", "<S-Left>")
+utils.keymap("c", "<M-f>", "<S-Right>")
+utils.keymap("c", "<C-a>", "<Home>")
+utils.keymap("c", "<C-e>", "<End>")
+utils.keymap("c", "<C-f>", "<Right>")
+utils.keymap("c", "<C-b>", "<Left>")
 
 -- Clear highlighted text
-keymap("n", "<cr>", ":nohl<cr>", opts)
+utils.keymap("n", "<cr>", ":nohl<cr>")
 
 -- Disable Q
-keymap("n", "Q", "<nop>", opts)
+utils.keymap("n", "Q", "<nop>")
 
 -- Forget about the damn arrow keys!
-keymap({ "n", "i", "v" }, "<Up>", "<nop>", opts)
-keymap({ "n", "i", "v" }, "<Down>", "<nop>", opts)
-keymap({ "n", "i", "v" }, "<Left>", "<nop>", opts)
-keymap({ "n", "i", "v" }, "<Right>", "<nop>", opts)
+utils.keymap({ "n", "i", "v" }, "<Up>", "<nop>")
+utils.keymap({ "n", "i", "v" }, "<Down>", "<nop>")
+utils.keymap({ "n", "i", "v" }, "<Left>", "<nop>")
+utils.keymap({ "n", "i", "v" }, "<Right>", "<nop>")
 
 -- Esc is harder to reach
-keymap("i", "<C-c>", "<esc>", opts)
+utils.keymap("i", "<C-c>", "<esc>")
 
 -- Copy to clipboard
-keymap("v", "<leader>y", '"+y', opts)
-keymap("n", "<leader>y", '"+y', opts)
-keymap("n", "<leader>Y", '"+g_', opts)
-keymap("n", "<leader>yy", '"+yy', opts)
+utils.keymap("v", "<leader>y", '"+y', "Copy to system clipboard")
+utils.keymap("n", "<leader>y", '"+y', "Copy to system lipboard")
+utils.keymap("n", "<leader>Y", '"+g_', "Copy to system clipboard")
+-- utils.keymap("n", "<leader>yy", '"+yy', opts) TODO: Do I need this?
 
 -- Expand current path
-keymap("c", "%%", "<C-R>=expand('%:h').'/'<cr>", opts)
+utils.keymap("c", "%%", "<C-R>=expand('%:h').'/'<cr>")
 
 -- Copy current file path to clipboard
-keymap("n", "<leader>yp", "<cmd>let @+ = expand('%:~:.')<cr>", opts)
-
--- File browser
-keymap("n", "<leader>b", "<cmd>NvimTreeToggle<cr>", opts)
-
--- Treesitter playground
-keymap("n", "<leader>q", "<cmd>TSHighlightCapturesUnderCursor<cr>", opts)
+utils.keymap("n", "<leader>fc", "<cmd>let @+ = expand('%:~:.')<cr>", "Copy file path to clipboard")
 
 -- Easy theme reload
-keymap("n", "<leader>r", "<cmd>colorscheme lagadath<cr>", opts)
+utils.keymap("n", "<leader>r", "<cmd>colorscheme lagadath<cr>")
 
 -- Move visual text easily
-keymap("v", "J", ":m '>+1<cr>gv=gv")
-keymap("v", "K", ":m '<-2<cr>gv=gv")
+utils.keymap("v", "J", ":m '>+1<cr>gv=gv")
+utils.keymap("v", "K", ":m '<-2<cr>gv=gv")
 
 -- Rubocop disable cop
-keymap("n", "<leader>r", utils.comment_rubocop, opts)
+utils.keymap("n", "<leader>r", utils.comment_rubocop)
 
 -- Toggle diagnostics virtual text
 local _show_virtual_text = true
-keymap("n", "<leader>gv", function()
+utils.keymap("n", "<leader>gv", function()
   if _show_virtual_text then
     vim.diagnostic.show(nil, nil, nil, { virtual_text = false })
     _show_virtual_text = false
@@ -86,7 +65,7 @@ keymap("n", "<leader>gv", function()
     vim.diagnostic.show(nil, nil, nil, { virtual_text = true })
     _show_virtual_text = true
   end
-end, opts)
+end, "Toggle diagnostic virtual text")
 
 -- Create missing directories in a path
-keymap("n", "<leader>m", ":call mkdir(expand('%:p:h'), 'p')<cr>")
+utils.keymap("n", "<leader>m", ":call mkdir(expand('%:p:h'), 'p')<cr>")

@@ -39,9 +39,15 @@ return {
         "jsdoc",
         "json",
         "json5",
+        "jsonc",
         "lua",
+        "luadoc",
+        "luap",
         "make",
         "markdown",
+        "markdown_inline",
+        "printf",
+        "python",
         "query",
         "regex",
         "ruby",
@@ -55,6 +61,7 @@ return {
         "typescript",
         "vim",
         "vimdoc",
+        "xml",
         "yaml",
       }
     })

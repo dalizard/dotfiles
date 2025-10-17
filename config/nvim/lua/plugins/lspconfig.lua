@@ -35,6 +35,9 @@ return {
       local client_capabilities = vim.lsp.protocol.make_client_capabilities()
 
       vim.diagnostic.config({
+        float = {
+          border = "rounded",
+        },
         virtual_text = {
           prefix = "",
         },
