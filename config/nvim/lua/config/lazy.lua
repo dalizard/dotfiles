@@ -24,7 +24,7 @@ vim.g.maplocalleader = " "
 -- Setup lazy.nvim
 require("lazy").setup({
   dev = {
-    path = "~/Code",
+    path = vim.fn.expand("~/Code"),
   },
   spec = {
     -- import your plugins
