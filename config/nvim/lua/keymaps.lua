@@ -4,7 +4,7 @@ local utils = require('utils')
 vim.api.nvim_create_user_command('W', 'w', {})
 
 -- No cursor jumps on highlighting
-utils.keymap("n", "#", "<cmd>keepjumps normal! mi*`i<cr>")
+utils.keymap("n", "#", "<cmd>keepjumps normal! mi*`i<cr>", "Highlight word without jumping")
 
 -- Make command mode navigation more like the shell
 utils.keymap("c", "<M-b>", "<S-Left>")
@@ -15,10 +15,10 @@ utils.keymap("c", "<C-f>", "<Right>")
 utils.keymap("c", "<C-b>", "<Left>")
 
 -- Clear highlighted text
-utils.keymap("n", "<cr>", ":nohl<cr>")
+utils.keymap("n", "<cr>", ":nohl<cr>", "Clear search highlighting")
 
 -- Disable Q
-utils.keymap("n", "Q", "<nop>")
+utils.keymap("n", "Q", "<nop>", "Disable Ex mode")
 
 --- Leave terminal mode
 utils.keymap("t", "<esc>", "<C-\\><C-n>", "Leave terminal mode")
@@ -36,7 +36,6 @@ utils.keymap("i", "<C-c>", "<esc>")
 utils.keymap("v", "<leader>y", '"+y', "Copy to system clipboard")
 utils.keymap("n", "<leader>y", '"+y', "Copy to system clipboard")
 utils.keymap("n", "<leader>Y", '"+g_', "Copy to system clipboard")
--- utils.keymap("n", "<leader>yy", '"+yy', opts) TODO: Do I need this?
 
 -- Expand current path
 utils.keymap("c", "%%", "<C-R>=expand('%:h').'/'<cr>", "Expand current path")
@@ -48,8 +47,8 @@ utils.keymap("n", "<leader>fc", "<cmd>let @+ = expand('%:~:.')<cr>", "Copy file 
 utils.keymap("n", "<leader>r", "<cmd>colorscheme lagadath<cr>", "Reload theme")
 
 -- Move visual text easily
-utils.keymap("v", "J", ":m '>+1<cr>gv=gv")
-utils.keymap("v", "K", ":m '<-2<cr>gv=gv")
+utils.keymap("v", "J", ":m '>+1<cr>gv=gv", "Move selection down")
+utils.keymap("v", "K", ":m '<-2<cr>gv=gv", "Move selection up")
 
 -- Toggle diagnostics virtual text
 utils.keymap("n", "<leader>gv", function()
