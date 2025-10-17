@@ -1,4 +1,2 @@
-vim.cmd([[
-  setlocal spell
-  setlocal textwidth=90
-]])
+vim.opt_local.spell = true
+vim.opt_local.textwidth = 90
