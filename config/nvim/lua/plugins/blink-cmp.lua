@@ -1,13 +1,17 @@
 return {
   'saghen/blink.cmp',
   dependencies = {
-    'rafamadriz/friendly-snippets',
+    { 'L3MON4D3/LuaSnip', version = 'v2.*' },
     "fang2hou/blink-copilot",
   },
   version = '1.*',
   opts = {
+    snippets = { preset = 'luasnip' },
     cmdline = { enabled = false },
-    keymap = { preset = 'default' },
+    keymap = {
+      preset = 'default',
+      ['<cr>'] = { 'select_and_accept', 'fallback' },
+    },
     appearance = {
       nerd_font_variant = 'mono',
       kind_icons = {
@@ -47,7 +51,7 @@ return {
       menu = {
         border = "rounded",
       },
-      ghost_text = { enabled = true },
+      ghost_text = { enabled = false },
     },
     fuzzy = {
       implementation = "rust",
@@ -57,7 +61,7 @@ return {
       }
     },
     sources = {
-      default = { 'copilot', 'lsp', 'buffer', 'snippets', 'path' },
+      default = { 'copilot', 'lsp', 'buffer', 'path' },
       providers = {
         copilot = {
           name = "copilot",
