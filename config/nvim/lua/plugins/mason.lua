@@ -18,6 +18,11 @@ return {
     "williamboman/mason-lspconfig.nvim",
     dependencies = "mason.nvim",
     opts = {
+      automatic_enable = {
+        exclude = {
+          "copilot"
+        }
+      },
       ensure_installed = {
         "bashls",
         "clangd",
@@ -31,6 +36,7 @@ return {
         "lua_ls",
         "pylsp",
         "rust_analyzer",
+        "solargraph",
         "tailwindcss",
         "ts_ls",
         "vue_ls",
