@@ -6,7 +6,7 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
   pattern = "fugitiveblame",
   callback = function()
     vim.keymap.set("n", "<leader>gb", function()
-      vim.cmd("execute ':GBrowse ' .. expand('<cword>')")
-    end)
+      vim.cmd("execute ':GBrowse ' .. vim.fn.expand('<cword>')")
+    end, { desc = "Browse commit under cursor" })
   end,
 })
