@@ -20,8 +20,7 @@ utils.comment_rubocop = function()
   local bufnr = vim.fn.bufnr()
   local current_error
 
-  ---@diagnostic disable-next-line: unused-local
-  for __, v in ipairs(error) do
+  for _, v in ipairs(error) do
     if v.lnum + 1 == line and bufnr == v.bufnr then
       if not current_error then
         current_error = v
