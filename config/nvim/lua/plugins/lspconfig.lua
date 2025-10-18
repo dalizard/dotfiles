@@ -35,9 +35,6 @@ return {
         float = {
           border = "rounded",
         },
-        virtual_text = {
-          prefix = "",
-        },
         signs = {
           text = {
             [vim.diagnostic.severity.ERROR] = '󰅚',
