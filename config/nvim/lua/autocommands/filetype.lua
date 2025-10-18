@@ -1,8 +1,10 @@
-vim.api.nvim_create_augroup("_filetype", { clear = true })
+local utils = require('utils')
 
--- Set filetype for all slim files
-vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
-  group    = "_filetype",
-  pattern  = "*.slim",
-  command = "set ft=slim",
-})
+local autoCommands = {
+  filetype = {
+    -- Set filetype for all slim files
+    { "BufNewFile,BufRead", "*.slim", "set ft=slim" }
+  }
+}
+
+utils.create_autocmds(autoCommands)

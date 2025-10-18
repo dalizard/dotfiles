@@ -53,4 +53,40 @@ utils.keymap = function(mode, lhs, rhs, desc, opts)
   vim.keymap.set(mode, lhs, rhs, opts)
 end
 
+utils.create_autocmds = function(definitions)
+  for group_name, autocmds in pairs(definitions) do
+    -- Create or clear the augroup
+    local group = vim.api.nvim_create_augroup(group_name, { clear = true })
+
+    for _, def in ipairs(autocmds) do
+      local events = def[1]
+      local pattern = def[2]
+      local command = def[3]
+
+      -- Prepare the autocmd options
+      local opts = { group = group, pattern = pattern }
+
+      if type(command) == "string" then
+        opts.command = command
+      elseif type(command) == "function" then
+        opts.callback = command
+      else
+        error("Invalid autocmd definition: expected string or function as 3rd argument")
+      end
+
+      -- Support multiple events separated by commas or a table of events
+      if type(events) == "string" then
+        for event in string.gmatch(events, "([^,]+)") do
+          vim.api.nvim_create_autocmd(vim.trim(event), opts)
+        end
+      elseif type(events) == "table" then
+        opts.event = events
+        vim.api.nvim_create_autocmd(events, opts)
+      else
+        error("Invalid events type in autocmd definition")
+      end
+    end
+  end
+end
+
 return utils

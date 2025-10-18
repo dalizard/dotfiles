@@ -1,10 +1,10 @@
-vim.api.nvim_create_augroup("_ruby", { clear = true })
+local utils = require('utils')
 
--- Disable tree-sitter re-indentation for `.`
-vim.api.nvim_create_autocmd({ "FileType"}, {
-  group = "_ruby",
-  pattern = "ruby",
-  callback = function()
-    vim.opt_local.indentkeys:remove(".")
-  end,
-})
+local autoCommands = {
+  ruby = {
+    -- Disable tree-sitter re-indentation for `.`
+    { "FileType", "ruby", "setlocal indentkeys=-." }
+  }
+}
+
+utils.create_autocmds(autoCommands)
