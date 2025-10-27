@@ -18,10 +18,10 @@ return {
 
         map("n", "gl", vim.diagnostic.open_float, "Show diagnostics")
 
-        map("n", "<space>gn", vim.lsp.buf.rename, "[R]ename")
-        map("n", "<space>go", vim.lsp.buf.document_symbol, "[G]et Symbols (document)")
-        map("n", "<space>gr", vim.lsp.buf.references, "[G]et [R]eferences")
-        map("n", "<space>gS", vim.lsp.buf.workspace_symbol, "[G]et [S]ymbols (workspace)")
+        map("n", "<space>gr", vim.lsp.buf.rename, "[R]ename")
+        map("n", "<space>gs", Snacks.picker.lsp_symbols, "[G]et Symbols (document)")
+        map("n", "<space>gr", Snacks.picker.lsp_references, "[G]et [R]eferences")
+        map("n", "<space>gS", Snacks.picker.lsp_workspace_symbols, "[G]et [S]ymbols (workspace)")
 
         if client:supports_method(vim.lsp.protocol.Methods.textDocument_inlayHint, bufnr) then
           map("n", "<leader>th", function()
