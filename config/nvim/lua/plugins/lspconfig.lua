@@ -49,6 +49,8 @@ return {
         capabilities = require("blink.cmp").get_lsp_capabilities(vim.lsp.protocol.make_client_capabilities()),
         on_attach = on_lsp_attach,
       })
+
+      vim.lsp.set_log_level("off")
     end
   },
 }
