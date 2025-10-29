@@ -1,11 +1,4 @@
 return {
-  cmd = {
-    "mise",
-    "x",
-    "--",
-    "solargraph",
-    "stdio",
-  },
   settings = {
     solargraph = {
       autoformat = true,
