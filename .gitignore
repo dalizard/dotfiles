@@ -3,6 +3,8 @@
 bundle/cache
 bin/heroku
 bin/ngrok
+claude/*
+!claude/commands
 config/QtProject.conf
 config/Zeal
 config/bottom
