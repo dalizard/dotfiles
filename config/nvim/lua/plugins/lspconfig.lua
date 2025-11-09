@@ -19,7 +19,8 @@ return {
         map("n", "gl", vim.diagnostic.open_float, "Show diagnostics")
 
         map("n", "<space>gr", vim.lsp.buf.rename, "[R]ename")
-        map("n", "<space>gs", Snacks.picker.lsp_symbols, "[G]et Symbols (document)")
+        map("n", "<space>gd", Snacks.picker.diagnostics_buffer, "[G]get buffer [D]iagnostics")
+        map("n", "<space>gs", Snacks.picker.lsp_symbols, "[G]et [S]ymbols (document)")
         map("n", "<space>gr", Snacks.picker.lsp_references, "[G]et [R]eferences")
         map("n", "<space>gS", Snacks.picker.lsp_workspace_symbols, "[G]et [S]ymbols (workspace)")
 
