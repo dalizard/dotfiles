@@ -3,6 +3,8 @@ return {
     "neovim/nvim-lspconfig",
     dependencies = "mason-lspconfig.nvim",
     config = function()
+      local Snacks = require("snacks")
+
       local function on_lsp_attach(client, bufnr)
         local function map(mode, lhs, rhs, opts)
           vim.keymap.set(mode, lhs, rhs, { buffer = bufnr, desc = "LSP " .. opts })
