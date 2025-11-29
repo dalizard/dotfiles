@@ -35,6 +35,7 @@ return {
         "jsonls",
         "lua_ls",
         "pylsp",
+        "ruby_lsp",
         "rust_analyzer",
         "tailwindcss",
         "ts_ls",
