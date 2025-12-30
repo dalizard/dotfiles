@@ -29,6 +29,8 @@ return {
         "gitignore",
         "go",
         "gomod",
+        "gosum",
+        "gowork",
         "graphql",
         "hcl",
         "html",
