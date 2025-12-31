@@ -30,6 +30,10 @@ return {
     },
     picker = {
       enabled = true,
+      exclude = {
+        ".git",
+        "node_modules",
+      },
       layout = { preset = "telescope", preview = true },
       formatters = {
         file = {
