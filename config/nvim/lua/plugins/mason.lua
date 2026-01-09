@@ -30,6 +30,7 @@ return {
         "cssls",
         "dockerls",
         "golangci_lint_ls",
+        "eslint",
         "gopls",
         "html",
         "jsonls",
