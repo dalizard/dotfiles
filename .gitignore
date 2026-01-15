@@ -5,6 +5,7 @@ bin/heroku
 bin/ngrok
 claude/*
 !claude/commands
+!claude/CLAUDE.md
 config/QtProject.conf
 config/Zeal
 config/bottom
