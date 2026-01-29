@@ -24,12 +24,9 @@ set -eg COLOR_THEME
 fish_add_path ~/.bin
 
 # Homebrew
-set -gx HOMEBREW_PREFIX "/opt/homebrew";
-set -gx HOMEBREW_CELLAR "/opt/homebrew/Cellar";
-set -gx HOMEBREW_REPOSITORY "/opt/homebrew";
-! set -q PATH; and set PATH ''; set -gx PATH "/opt/homebrew/bin" "/opt/homebrew/sbin" $PATH;
-! set -q MANPATH; and set MANPATH ''; set -gx MANPATH "/opt/homebrew/share/man" $MANPATH;
-! set -q INFOPATH; and set INFOPATH ''; set -gx INFOPATH "/opt/homebrew/share/info" $INFOPATH;
+if test -x /opt/homebrew/bin/brew
+  /opt/homebrew/bin/brew shellenv fish | source
+end
 
 # Make sure we have a unicode capable LANG and LC_CTYPE so the unicode
 # characters do not look like crap on macOS and other environments.
@@ -106,9 +103,9 @@ else
   starship init fish | source
 end
 
-# Activate mise
-mise activate fish | source
-
 # Added by OrbStack: command-line tools and integration
 # This won't be added again if you remove it.
 source ~/.orbstack/shell/init2.fish 2>/dev/null || :
+
+# Activate mise
+mise activate fish | source
