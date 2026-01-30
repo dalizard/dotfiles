@@ -92,6 +92,9 @@ set -x ERL_LIBS /usr/local/opt/proper
 set -x GOPATH ~/.go
 fish_add_path ~/.go/bin
 
+# Add ~/.local/bin to PATH
+fish_add_path ~/.local/bin
+
 # Start keychain
 if test $OS_NAME != 'darwin'; and status --is-interactive
   keychain --eval --quiet -Q github_ed25519 frodo_ed25519 github | source
