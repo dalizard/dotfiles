@@ -20,9 +20,6 @@ end
 # tmux creates a global variable COLOR_THEME and we need to drop it -- seems like a bug
 set -eg COLOR_THEME
 
-# Add .bin to PATH
-fish_add_path ~/.bin
-
 # Homebrew
 if test -x /opt/homebrew/bin/brew
   /opt/homebrew/bin/brew shellenv fish | source
@@ -88,12 +85,12 @@ set -x FZF_DEFAULT_OPTS --no-bold --color (set __fzf_color_{$COLOR_THEME})
 # Erlang libraries
 set -x ERL_LIBS /usr/local/opt/proper
 
-# Set GOPATH and add ~/.go/bin to PATH
+# Set GOPATH and add bin folders
 set -x GOPATH ~/.go
 fish_add_path ~/.go/bin
-
-# Add ~/.local/bin to PATH
 fish_add_path ~/.local/bin
+fish_add_path ~/.bin
+
 
 # Start keychain
 if test $OS_NAME != 'darwin'; and status --is-interactive
