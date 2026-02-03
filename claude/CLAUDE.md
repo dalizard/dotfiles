@@ -37,7 +37,6 @@ When asked to do something, just do it - including obvious follow-up actions nee
 - YAGNI. The best code is no code. Don't add features we don't need right now.
 - When it doesn't conflict with YAGNI, architect for extensibility and flexibility.
 
-
 ## Test Driven Development (TDD)
 
 - FOR EVERY NEW FEATURE OR BUGFIX, YOU MUST follow Test Driven Development:
@@ -113,11 +112,11 @@ Good names tell a story about the domain:
 - YOU MUST NEVER ignore system or test output - logs and messages often contain CRITICAL information.
 - Test output MUST BE PRISTINE TO PASS. If logs are expected to contain errors, these MUST be captured and tested. If a test is intentionally triggering an error, we *must* capture and validate that the error output is as we expect
 
-
 ## Issue tracking
 
-- You MUST use your TodoWrite tool to keep track of what you're doing 
+- You MUST use your TodoWrite tool to keep track of what you're doing
 - You MUST NEVER discard tasks from your TodoWrite todo list without Dimitar's explicit approval
+- Keep everything in the `_docs` folder
 
 ## Systematic Debugging Process
 
@@ -157,3 +156,4 @@ YOU MUST follow this debugging framework for ANY technical issue:
 - Document architectural decisions and their outcomes for future reference
 - Track patterns in user feedback to improve collaboration over time
 - When you notice something that should be fixed but is unrelated to your current task, document it in your journal rather than fixing it immediately
+- Save any plans, findings, insights, journals, etc. in the `_docs` folder
