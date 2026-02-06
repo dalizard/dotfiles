@@ -2,9 +2,9 @@
 set -g fish_greeting
 
 # Don't let fish masquerade itself as other shells
-set -x SHELL (which fish)
+set -x SHELL /opt/homebrew/bin/fish
 
-set -x OS_NAME (uname -s | string lower)
+set -x OS_NAME darwin
 
 set -x EDITOR vim
 set -x VISUAL vim
@@ -21,9 +21,10 @@ end
 set -eg COLOR_THEME
 
 # Homebrew
-if test -x /opt/homebrew/bin/brew
-  /opt/homebrew/bin/brew shellenv fish | source
-end
+set -gx HOMEBREW_PREFIX /opt/homebrew
+set -gx HOMEBREW_CELLAR /opt/homebrew/Cellar
+set -gx HOMEBREW_REPOSITORY /opt/homebrew
+fish_add_path --global --move --path /opt/homebrew/bin /opt/homebrew/sbin
 
 # Make sure we have a unicode capable LANG and LC_CTYPE so the unicode
 # characters do not look like crap on macOS and other environments.
@@ -68,10 +69,6 @@ alias n='nnn'
 alias myip='curl ipinfo.io'
 alias kc='kubectl'
 
-if test $OS_NAME = 'openbsd'
-  alias ls='colorls'
-end
-
 # Disable tab titles
 function fish_title; end
 
@@ -92,16 +89,9 @@ fish_add_path ~/.local/bin
 fish_add_path ~/.bin
 
 
-# Start keychain
-if test $OS_NAME != 'darwin'; and status --is-interactive
-  keychain --eval --quiet -Q github_ed25519 frodo_ed25519 github | source
-end
-
-if test $OS_NAME = 'openbsd'
-  ~/.cargo/bin/starship init fish | source
-else
-  starship init fish | source
-end
+# Starship prompt is loaded from conf.d/starship.fish
+# After updating starship, regenerate the cache:
+#   starship init fish --print-full-init > ~/.config/fish/conf.d/starship.fish
 
 # Added by OrbStack: command-line tools and integration
 # This won't be added again if you remove it.
