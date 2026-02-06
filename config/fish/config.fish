@@ -24,7 +24,9 @@ set -eg COLOR_THEME
 set -gx HOMEBREW_PREFIX /opt/homebrew
 set -gx HOMEBREW_CELLAR /opt/homebrew/Cellar
 set -gx HOMEBREW_REPOSITORY /opt/homebrew
-fish_add_path --global --move --path /opt/homebrew/bin /opt/homebrew/sbin
+# Use --path to modify $PATH directly instead of $fish_user_paths, which always
+# takes precedence over $PATH and prevents mise activate from prepending tool paths
+fish_add_path --global --path /opt/homebrew/bin /opt/homebrew/sbin
 
 # Make sure we have a unicode capable LANG and LC_CTYPE so the unicode
 # characters do not look like crap on macOS and other environments.
@@ -52,11 +54,11 @@ set -x OBJC_DISABLE_INITIALIZE_FORK_SAFETY yes
 # Workaround for RSpec
 set -x PGGSSENCMODE disable
 
-if test -d /opt/homebrew/opt/postgresql@17
-  fish_add_path /opt/homebrew/opt/postgresql@17/bin
-  set -gx LDFLAGS "-L/opt/homebrew/opt/postgresql@17/lib"
-  set -gx CPPFLAGS "-I/opt/homebrew/opt/postgresql@17/include"
-  set -gx PKG_CONFIG_PATH "/opt/homebrew/opt/postgresql@17/lib/pkgconfig"
+if test -d /opt/homebrew/opt/postgresql@16
+  fish_add_path --global --path /opt/homebrew/opt/postgresql@16/bin
+  set -gx LDFLAGS "-L/opt/homebrew/opt/postgresql@16/lib"
+  set -gx CPPFLAGS "-I/opt/homebrew/opt/postgresql@16/include"
+  set -gx PKG_CONFIG_PATH "/opt/homebrew/opt/postgresql@16/lib/pkgconfig"
 end
 
 # Shortcuts
@@ -84,9 +86,7 @@ set -x ERL_LIBS /usr/local/opt/proper
 
 # Set GOPATH and add bin folders
 set -x GOPATH ~/.go
-fish_add_path ~/.go/bin
-fish_add_path ~/.local/bin
-fish_add_path ~/.bin
+fish_add_path --global --path ~/.go/bin ~/.local/bin ~/.bin
 
 
 # Starship prompt is loaded from conf.d/starship.fish
