@@ -1,4 +1,4 @@
 return {
-  "tpope/vim-rails",
+  "tpope/vim-rhubarb",
   event = "VeryLazy",
 }

@@ -5,7 +5,6 @@ local options = {
   backup = false,                                     -- creates a backup file
   breakindent = true,                                 -- show wrapped lines visually indented
   cmdheight = 1,                                      -- more space in the neovim command line for displaying messages
-  completeopt = { "menu", "menuone", "noselect" },    -- mostly just for cmp
   conceallevel = 0,                                   -- so that `` is visible in markdown files
   cursorline = true,                                  -- highlight the current line
   directory = { vim.fn.stdpath("data") .. "/_temp" }, -- set the temp directory
