@@ -6,6 +6,7 @@ _.path = ["/opt/homebrew/bin", "/opt/homebrew/sbin"]
 node = "latest"
 go = "latest"
 ruby = "latest"
+python = "latest"
 
 [settings]
 idiomatic_version_file_enable_tools = ["ruby", "node"]
