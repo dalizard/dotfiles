@@ -1,7 +1,3 @@
-[env]
-# Include Homebrew in mise's managed PATH so it takes precedence over /usr/bin
-_.path = ["/opt/homebrew/bin", "/opt/homebrew/sbin"]
-
 [tools]
 node = "latest"
 go = "latest"
