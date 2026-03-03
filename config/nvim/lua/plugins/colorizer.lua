@@ -1,11 +1,15 @@
 return {
-  "NvChad/nvim-colorizer.lua",
-  ft = "lua",
+  "catgoose/nvim-colorizer.lua",
+  event = "BufReadPre",
   opts = {
-    filetypes = { "lua" },
-    user_default_options = {
-      names = false,
-      mode = "virtualtext",
+    options = {
+      parsers = {
+        css = true,
+        css_fn = true,
+        names = {
+          enable = false
+        }
+      }
     }
   }
 }
