@@ -8,7 +8,8 @@ return {
       javascript = { "string", "template_string" },
       java = false,
     },
-    disable_filetype = { "spectre_panel" },
+    disable_filetype = { "spectre_panel", "snacks_picker_input" },
+    enable_moveright = true,
     fast_wrap = {
       map = "<M-e>",
       chars = { "{", "[", "(", '"', "'" },
