@@ -6,6 +6,8 @@ bin/ngrok
 claude/*
 !claude/commands
 !claude/CLAUDE.md
+!claude/settings.json
+!claude/statusline-command.sh
 config/QtProject.conf
 config/Zeal
 config/bottom

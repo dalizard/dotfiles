@@ -1,0 +1,10 @@
+{
+  "enabledPlugins": {
+    "code-review@claude-plugins-official": true
+  },
+  "model": "opus",
+  "statusLine": {
+    "type": "command",
+    "command": "bash /Users/dimitar/.claude/statusline-command.sh"
+  }
+}
