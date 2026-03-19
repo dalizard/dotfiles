@@ -1,0 +1,121 @@
+#!/usr/bin/env bash
+# ABOUTME: Watch a GitLab MR pipeline and send a macOS notification when it finishes.
+# ABOUTME: Uses glab CLI for pipeline status and alerter for native notifications.
+
+set -euo pipefail
+
+POLL_INTERVAL="${GL_WATCH_INTERVAL:-30}"
+
+usage() {
+  echo "Usage: gl-watch-pipeline [MR_ID|BRANCH] [-R REPO]" >&2
+  echo "" >&2
+  echo "Watch the CI pipeline for a GitLab merge request and notify when done." >&2
+  echo "" >&2
+  echo "If no MR_ID or BRANCH is given, uses the current git branch." >&2
+  echo "Set GL_WATCH_INTERVAL to change poll interval (default: 30s)." >&2
+  exit 1
+}
+
+if [[ "${1:-}" == "-h" || "${1:-}" == "--help" ]]; then
+  usage
+fi
+
+# Check dependencies
+missing=()
+for cmd in glab jq alerter; do
+  if ! command -v "$cmd" > /dev/null 2>&1; then
+    missing+=("$cmd")
+  fi
+done
+if [[ ${#missing[@]} -gt 0 ]]; then
+  echo "Error: missing required commands: ${missing[*]}" >&2
+  echo "Install with: brew install ${missing[*]}" >&2
+  exit 1
+fi
+
+# Check glab authentication
+if ! glab auth status > /dev/null 2>&1; then
+  echo "Error: glab is not authenticated." >&2
+  echo "Run: glab auth login" >&2
+  exit 1
+fi
+
+# Build glab arguments
+glab_args=()
+if [[ -n "${1:-}" && "${1:-}" != -* ]]; then
+  glab_args+=("$1")
+  shift
+fi
+# Pass remaining flags (e.g., -R repo) through to glab
+glab_args+=("$@")
+
+notify() {
+  local action
+  action=$(alerter "$@" --actions "Open in Browser" --group "gl-pipeline-${mr_iid}")
+  if [[ "$action" == "Open in Browser" ]]; then
+    open "$mr_url"
+  fi
+}
+
+fetch_pipeline() {
+  glab mr view ${glab_args[@]+"${glab_args[@]}"} --output json 2>&1
+}
+
+# Grab initial info to validate the MR exists
+mr_json=$(fetch_pipeline)
+if ! echo "$mr_json" | jq -e '.iid' > /dev/null 2>&1; then
+  echo "Error: Could not fetch merge request." >&2
+  echo "$mr_json" >&2
+  exit 1
+fi
+
+mr_iid=$(echo "$mr_json" | jq -r '.iid')
+mr_title=$(echo "$mr_json" | jq -r '.title')
+mr_url=$(echo "$mr_json" | jq -r '.web_url')
+branch=$(echo "$mr_json" | jq -r '.source_branch')
+
+echo "Watching pipeline for MR !${mr_iid}: ${mr_title}"
+echo "Branch: ${branch}"
+echo "Polling every ${POLL_INTERVAL}s..."
+
+while true; do
+  mr_json=$(fetch_pipeline)
+
+  pipeline_status=$(echo "$mr_json" | jq -r '.head_pipeline.status // "unknown"')
+  pipeline_id=$(echo "$mr_json" | jq -r '.head_pipeline.id // "?"')
+
+  case "$pipeline_status" in
+    success)
+      echo "Pipeline #${pipeline_id} succeeded!"
+      notify \
+        --title "Pipeline Passed" \
+        --subtitle "!${mr_iid} ${branch}" \
+        --message "$mr_title" \
+        --sound default
+      exit 0
+      ;;
+    failed)
+      echo "Pipeline #${pipeline_id} failed."
+      notify \
+        --title "Pipeline Failed" \
+        --subtitle "!${mr_iid} ${branch}" \
+        --message "$mr_title" \
+        --sound Basso
+      exit 1
+      ;;
+    canceled|skipped)
+      echo "Pipeline #${pipeline_id} was ${pipeline_status}."
+      notify \
+        --title "Pipeline ${pipeline_status^}" \
+        --subtitle "!${mr_iid} ${branch}" \
+        --message "$mr_title" \
+        --sound Frog
+      exit 1
+      ;;
+    *)
+      printf "\r\033[KPipeline #%s: %s" "$pipeline_id" "$pipeline_status"
+      ;;
+  esac
+
+  sleep "$POLL_INTERVAL"
+done
