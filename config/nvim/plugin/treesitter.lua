@@ -1,30 +1,8 @@
 -- ABOUTME: Configures nvim-treesitter with async parser loading and highlighting.
 -- ABOUTME: Includes treesitter-context and treesitter-textobjects.
 
-vim.pack.add({
-  'https://github.com/nvim-treesitter/nvim-treesitter',
-  'https://github.com/nvim-treesitter/nvim-treesitter-context',
-  'https://github.com/nvim-treesitter/nvim-treesitter-textobjects',
-})
-
--- nvim-treesitter (main branch) stores queries in runtime/queries/ instead of
--- queries/ at the repo root. Add the runtime/ subdirectory to rtp so Neovim
--- can find highlight/indent/fold queries for all languages.
-for _, plug in ipairs(vim.pack.get()) do
-  if plug.spec.name == 'nvim-treesitter' then
-    vim.opt.rtp:append(plug.path .. '/runtime')
-    break
-  end
-end
-
-require('treesitter-context').setup({
-  max_lines = 4,
-  multiline_threshold = 2,
-})
-
-local ts = require('nvim-treesitter')
-
--- State tracking for async parser loading
+-- State tracking for async parser loading (cheap, always available)
+local ts = nil
 local parsers_loaded = {}
 local parsers_pending = {}
 local parsers_failed = {}
@@ -34,69 +12,17 @@ local ns = vim.api.nvim_create_namespace('treesitter.async')
 -- Helper to start highlighting and indentation
 local function start(buf, lang)
   local ok = pcall(vim.treesitter.start, buf, lang)
-  if ok then
+  if ok and ts then
     vim.bo[buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
   end
   return ok
 end
 
--- Install core parsers after startup
-vim.schedule(function()
-  ts.install({
-    'bash',
-    'c',
-    'comment',
-    'css',
-    'diff',
-    'dockerfile',
-    'fish',
-    'git_rebase',
-    'gitignore',
-    'go',
-    'gomod',
-    'gosum',
-    'gowork',
-    'graphql',
-    'hcl',
-    'html',
-    'http',
-    'javascript',
-    'jsdoc',
-    'json',
-    'json5',
-    'lua',
-    'luadoc',
-    'luap',
-    'make',
-    'markdown',
-    'markdown_inline',
-    'printf',
-    'python',
-    'query',
-    'regex',
-    'ruby',
-    'rust',
-    'scheme',
-    'scss',
-    'slim',
-    'sql',
-    'toml',
-    'tsx',
-    'typescript',
-    'vim',
-    'vimdoc',
-    'vue',
-    'xml',
-    'yaml',
-  }, {
-    max_jobs = 8,
-  })
-end)
-
--- Decoration provider for async parser loading
+-- Decoration provider for async parser loading.
+-- Guarded: does nothing until treesitter is loaded via vim.schedule below.
 vim.api.nvim_set_decoration_provider(ns, {
   on_start = vim.schedule_wrap(function()
-    if #parsers_pending == 0 then
+    if not ts or #parsers_pending == 0 then
       return false
     end
     for _, data in ipairs(parsers_pending) do
@@ -154,6 +80,90 @@ vim.api.nvim_create_autocmd('FileType', {
     end
 
     -- Auto-install missing parsers (async, no-op if already installed)
-    ts.install({ lang })
+    if ts then ts.install({ lang }) end
   end,
 })
+
+-- Defer heavy plugin loading to after startup
+vim.schedule(function()
+  vim.pack.add({
+    'https://github.com/nvim-treesitter/nvim-treesitter',
+    'https://github.com/nvim-treesitter/nvim-treesitter-context',
+    'https://github.com/nvim-treesitter/nvim-treesitter-textobjects',
+  })
+
+  -- nvim-treesitter (main branch) stores queries in runtime/queries/ instead of
+  -- queries/ at the repo root. Add the runtime/ subdirectory to rtp so Neovim
+  -- can find highlight/indent/fold queries for all languages.
+  for _, plug in ipairs(vim.pack.get()) do
+    if plug.spec.name == 'nvim-treesitter' then
+      vim.opt.rtp:append(plug.path .. '/runtime')
+      break
+    end
+  end
+
+  require('treesitter-context').setup({
+    max_lines = 4,
+    multiline_threshold = 2,
+  })
+
+  ts = require('nvim-treesitter')
+
+  -- Install core parsers
+  ts.install({
+    'bash',
+    'c',
+    'comment',
+    'css',
+    'diff',
+    'dockerfile',
+    'fish',
+    'git_rebase',
+    'gitignore',
+    'go',
+    'gomod',
+    'gosum',
+    'gowork',
+    'graphql',
+    'hcl',
+    'html',
+    'http',
+    'javascript',
+    'jsdoc',
+    'json',
+    'json5',
+    'lua',
+    'luadoc',
+    'luap',
+    'make',
+    'markdown',
+    'markdown_inline',
+    'printf',
+    'python',
+    'query',
+    'regex',
+    'ruby',
+    'rust',
+    'scheme',
+    'scss',
+    'slim',
+    'sql',
+    'toml',
+    'tsx',
+    'typescript',
+    'vim',
+    'vimdoc',
+    'vue',
+    'xml',
+    'yaml',
+  }, {
+    max_jobs = 8,
+  })
+
+  -- Re-trigger FileType for buffers opened before treesitter loaded
+  for _, buf in ipairs(vim.api.nvim_list_bufs()) do
+    if vim.api.nvim_buf_is_loaded(buf) and vim.bo[buf].filetype ~= '' then
+      vim.api.nvim_exec_autocmds('FileType', { buffer = buf, modeline = false })
+    end
+  end
+end)
