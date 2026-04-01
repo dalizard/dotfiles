@@ -111,7 +111,9 @@ return {
     local ignore_filetypes = {
       'checkhealth',
       'lazy',
+      'lazy_backdrop',
       'mason',
+      'mason_backdrop',
       'snacks_dashboard',
       'snacks_layout_box',
       'snacks_notif',
