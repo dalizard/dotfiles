@@ -1,11 +1,14 @@
-return {
-  'saghen/blink.cmp',
-  dependencies = {
-    { 'L3MON4D3/LuaSnip', version = 'v2.*', build = "make install_jsregexp" },
-    "fang2hou/blink-copilot",
-  },
-  version = '1.*',
-  opts = {
+-- ABOUTME: Configures blink.cmp for autocompletion with copilot integration.
+-- ABOUTME: Includes LuaSnip and blink-copilot as dependencies.
+
+vim.schedule(function()
+  vim.pack.add({
+    { src = 'https://github.com/L3MON4D3/LuaSnip', version = vim.version.range('2.x') },
+    'https://github.com/fang2hou/blink-copilot',
+    { src = 'https://github.com/saghen/blink.cmp', version = vim.version.range('1.x') },
+  })
+
+  require('blink.cmp').setup({
     snippets = { preset = 'luasnip' },
     cmdline = { enabled = false },
     keymap = {
@@ -15,30 +18,30 @@ return {
     appearance = {
       nerd_font_variant = 'mono',
       kind_icons = {
-        Copilot = "",
+        Copilot = "",
         Class = "󰠱",
         Color = "󰏘",
         Constant = "󰏿",
-        Constructor = "",
-        Enum = "",
-        EnumMember = "",
-        Event = "",
+        Constructor = "",
+        Enum = "",
+        EnumMember = "",
+        Event = "",
         Field = "󰇽",
         File = "󰈙",
         Folder = "󰉋",
         Function = "󰊕",
-        Interface = "",
+        Interface = "",
         Keyword = "󰌋",
         Method = "󰆧",
-        Module = "",
+        Module = "",
         Operator = "󰆕",
         Property = "󰜢",
-        Reference = "",
-        Snippet = "",
-        Struct = "",
-        Text = "",
+        Reference = "",
+        Snippet = "",
+        Struct = "",
+        Text = "",
         TypeParameter = "󰅲",
-        Unit = "",
+        Unit = "",
         Value = "󰎠",
         Variable = "󰂡",
       },
@@ -74,6 +77,5 @@ return {
         },
       },
     },
-  },
-  opts_extend = { "sources.default" },
-}
+  })
+end)
