@@ -1,9 +1,3 @@
--- Guard against multiple loads for the same buffer
-if vim.b.yaml_path_loaded then
-  return
-end
-vim.b.yaml_path_loaded = true
-
 -- Function to get the YAML path for the current cursor position
 local function get_yaml_path()
   local line_num = vim.fn.line('.')
@@ -57,7 +51,6 @@ vim.keymap.set('n', '<leader>gy', function()
 
   if path and path ~= '' then
     vim.fn.setreg('+', path)
-    print(path)
     vim.notify('Copied to clipboard: ' .. path, vim.log.levels.INFO)
   else
     vim.notify('No YAML path found', vim.log.levels.WARN)

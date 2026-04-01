@@ -1,4 +1,4 @@
--- ABOUTME: Configures nvim-lspconfig with diagnostics, capabilities, and keymaps.
+-- ABOUTME: Configures LSP diagnostics, capabilities, and keymaps.
 -- ABOUTME: Sets up LspAttach autocmd for buffer-local LSP keybindings.
 
 vim.diagnostic.config({
@@ -22,7 +22,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 
     local Snacks = require("snacks")
     local function map(mode, lhs, rhs, opts)
-      vim.keymap.set(mode, lhs, rhs, { buffer = bufnr, desc = "LSP " .. opts })
+      vim.keymap.set(mode, lhs, rhs, { buf = bufnr, desc = "LSP " .. opts })
     end
 
     map("n", "K", function() vim.lsp.buf.hover({ border = "rounded" }) end, "Display hover info")
@@ -51,10 +51,8 @@ vim.api.nvim_create_autocmd("LspAttach", {
 
 vim.lsp.log.set_level("off")
 
--- Defer heavy loading (vim.pack.add + blink.cmp capabilities)
+-- Defer blink.cmp capabilities setup
 vim.schedule(function()
-  vim.pack.add({ 'https://github.com/neovim/nvim-lspconfig' })
-
   vim.lsp.config('*', {
     capabilities = require("blink.cmp").get_lsp_capabilities(vim.lsp.protocol.make_client_capabilities()),
   })

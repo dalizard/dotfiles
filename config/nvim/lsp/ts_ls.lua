@@ -8,8 +8,10 @@ local vue_plugin = {
 }
 
 return {
+  cmd = { 'typescript-language-server', '--stdio' },
   workspace_required = false,
   filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue' },
+  root_markers = { 'tsconfig.json', 'jsconfig.json', 'package.json', '.git' },
   init_options = {
     plugins = {
       vue_plugin,
