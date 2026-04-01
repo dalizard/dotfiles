@@ -11,7 +11,7 @@ vim.api.nvim_create_autocmd('InsertEnter', { once = true, callback = function()
       javascript = { "string", "template_string" },
       java = false,
     },
-    disable_filetype = { "spectre_panel", "snacks_picker_input" },
+    disable_filetype = { "snacks_picker_input" },
     enable_moveright = true,
     fast_wrap = {
       map = "<M-e>",

@@ -3,9 +3,6 @@ vim.loader.enable()
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
-vim.g.loaded_netrw = 1
-vim.g.loaded_netrwPlugin = 1
-
 -- Installation hooks must be registered before any vim.pack.add() call so that
 -- lockfile bootstrapping on a fresh machine doesn't miss them.
 vim.api.nvim_create_autocmd('PackChanged', {

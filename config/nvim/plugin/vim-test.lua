@@ -4,42 +4,44 @@
 vim.pack.add({ 'https://github.com/vim-test/vim-test' })
 
 local utils = require('utils')
-local opts = { noremap = true, silent = true }
 
-utils.keymap("n", "<leader>ts", "<cmd>TestNearest<cr>", "Run nearest test", opts)
-utils.keymap("n", "<leader>tf", "<cmd>TestFile<cr>", "Run test file", opts)
-utils.keymap("n", "<leader>ta", "<cmd>TestSuite<cr>", "Run test suite", opts)
-utils.keymap("n", "<leader>tl", "<cmd>TestLast<cr>", "Run last test", opts)
-utils.keymap("n", "<leader>tv", "<cmd>TestVisit<cr>", "Visit test file from last run", opts)
+utils.keymap("n", "<leader>ts", "<cmd>TestNearest<cr>", "Run nearest test")
+utils.keymap("n", "<leader>tf", "<cmd>TestFile<cr>", "Run test file")
+utils.keymap("n", "<leader>ta", "<cmd>TestSuite<cr>", "Run test suite")
+utils.keymap("n", "<leader>tl", "<cmd>TestLast<cr>", "Run last test")
+utils.keymap("n", "<leader>tv", "<cmd>TestVisit<cr>", "Visit test file from last run")
 
-vim.cmd([[
-  function! TestRunner(cmd) abort
-    let term_position = get(g:, 'test#neovim#term_position', 'botright')
+local suffix = ' # vim-test'
 
-    let opts = {'suffix': ' # vim-test'}
+local function close_terminal()
+  local bufnr = vim.fn.bufnr(suffix)
+  if bufnr ~= -1 then
+    vim.cmd('bdelete! ' .. bufnr)
+  end
+end
 
-    function! opts.on_exit(job_id, exit_code, event)
-      if a:exit_code == 0
-        call self.close_terminal()
-      endif
-    endfunction
+local function test_runner(cmd)
+  local term_position = vim.g['test#neovim#term_position'] or 'botright'
 
-    function! opts.close_terminal()
-      if bufnr(self.suffix) != -1
-        execute 'bdelete!' bufnr(self.suffix)
+  close_terminal()
+
+  vim.cmd(term_position .. ' new')
+  vim.fn.termopen(cmd .. suffix, {
+    on_exit = function(_, exit_code)
+      if exit_code == 0 then
+        close_terminal()
       end
-    endfunction
+    end
+  })
+  vim.api.nvim_create_autocmd('BufDelete', {
+    buffer = 0,
+    once = true,
+    command = 'wincmd p',
+  })
+  vim.cmd('normal! G')
+  vim.cmd('wincmd p')
+end
 
-    call opts.close_terminal()
-
-    execute term_position . ' new'
-    call termopen(a:cmd . opts.suffix, opts)
-    au BufDelete <buffer> wincmd p
-    normal! G
-    wincmd p
-  endfunction
-
-  let g:test#custom_strategies = {'testrunner': function('TestRunner')}
-  let g:test#strategy = 'testrunner'
-  let test#neovim#term_position = "vert botright"
-]])
+vim.g['test#custom_strategies'] = { testrunner = test_runner }
+vim.g['test#strategy'] = 'testrunner'
+vim.g['test#neovim#term_position'] = 'vert botright'
