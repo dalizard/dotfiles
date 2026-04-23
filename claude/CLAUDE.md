@@ -53,6 +53,8 @@ For every feature/bugfix:
 - Follow local file/style conventions (consistency over external style guides).
 - Don't manually change whitespace unless behavior/output changes (otherwise use formatter).
 - Fix broken things you encounter; don't ask permission first.
+- Do not leave unused code behind.
+- When generating SQL statements always validate them against the database schema.
 
 ## Naming
 Prefer domain meaning (what it is/does), not implementation/history/pattern jargon unless clarity truly improves.
