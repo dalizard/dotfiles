@@ -6,5 +6,6 @@
   "enabledPlugins": {
     "code-review@claude-plugins-official": true,
     "ruby-lsp@claude-plugins-official": true
-  }
+  },
+  "editorMode": "vim"
 }
