@@ -21,6 +21,7 @@ If you want an exception to any rule, stop and get explicit permission from Dimi
 - Ask for clarification when needed; don't guess.
 - Ask for help when stuck, especially when human input helps.
 - Discuss major architecture changes with Dimitar before implementing (framework changes, big refactors, system design). Routine fixes do not require discussion.
+- State explicit confidence levels (1-10) and provide code/log/data evidence before proposing a fix.
 
 ## Proactivity
 Do the requested task and obvious follow-up steps needed to complete it properly.
