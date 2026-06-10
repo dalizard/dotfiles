@@ -19,5 +19,6 @@
       }
     }
   },
-  "editorMode": "vim"
+  "editorMode": "vim",
+  "teammateMode": "tmux"
 }
