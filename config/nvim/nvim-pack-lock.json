@@ -23,7 +23,7 @@
       "src": "https://github.com/shumphrey/fugitive-gitlab.vim"
     },
     "gitsigns.nvim": {
-      "rev": "2038c666bd9d8a0b7349a0b6ee00dc83104b9ecf",
+      "rev": "eb60cc7b94c46005237fd34170d76f3a089a90aa",
       "src": "https://github.com/lewis6991/gitsigns.nvim"
     },
     "lualine.nvim": {
@@ -31,7 +31,7 @@
       "src": "https://github.com/nvim-lualine/lualine.nvim"
     },
     "mason-lspconfig.nvim": {
-      "rev": "50bf3871b539896bd0650b882f6e6b467cc1c1eb",
+      "rev": "47059d71b42d74b0a1e9f61c1d99d301039c3b5b",
       "src": "https://github.com/williamboman/mason-lspconfig.nvim"
     },
     "mason.nvim": {
@@ -43,7 +43,7 @@
       "src": "https://github.com/windwp/nvim-autopairs"
     },
     "nvim-colorizer.lua": {
-      "rev": "664c0b7cea1de71f8b65dfe951b7996fc3e6ccde",
+      "rev": "149fbd9f5e25511b0a8bad3ccecd43d1bc584f86",
       "src": "https://github.com/catgoose/nvim-colorizer.lua"
     },
     "nvim-surround": {
@@ -67,7 +67,7 @@
       "src": "https://github.com/windwp/nvim-ts-autotag"
     },
     "nvim-web-devicons": {
-      "rev": "dfbfaa967a6f7ec50789bead7ef87e336c1fa63c",
+      "rev": "09d1324e264c6950262dbe02a9bce2933a6800db",
       "src": "https://github.com/nvim-tree/nvim-web-devicons"
     },
     "sidekick.nvim": {
