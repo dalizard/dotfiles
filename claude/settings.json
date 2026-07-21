@@ -27,7 +27,7 @@
     }
   },
   "tui": "fullscreen",
+  "skipWorkflowUsageWarning": true,
   "editorMode": "vim",
-  "teammateMode": "tmux",
-  "skipWorkflowUsageWarning": true
+  "teammateMode": "tmux"
 }
