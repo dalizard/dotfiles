@@ -9,13 +9,20 @@
   "enabledPlugins": {
     "code-review@claude-plugins-official": true,
     "ruby-lsp@claude-plugins-official": true,
-    "agent-skills@addy-agent-skills": true
+    "agent-skills@addy-agent-skills": true,
+    "sentry-mcp@sentry-mcp": true
   },
   "extraKnownMarketplaces": {
     "addy-agent-skills": {
       "source": {
         "source": "github",
         "repo": "addyosmani/agent-skills"
+      }
+    },
+    "sentry-mcp": {
+      "source": {
+        "source": "github",
+        "repo": "getsentry/sentry-mcp"
       }
     }
   },
