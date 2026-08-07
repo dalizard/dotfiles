@@ -71,10 +71,18 @@ Prefer:
 - `execute()` over `executeToolWithValidation()`
 
 ## Comments
-- Explain what/why, not "better/new/refactored".
-- Never reference old behavior or temporal context (`new`, `legacy`, `recently moved`, etc.).
-- Preserve existing comments unless provably false.
-- Remove false/outdated comments during refactors; don't narrate the refactor.
+- Follow repository and language-specific conventions.
+- Prefer clear names, types, structure, assertions, and tests over explanatory comments.
+- Add comments only for important, non-obvious information.
+- API documentation should describe the contract and correct usage, including relevant constraints, side effects, failures, ownership, or concurrency behavior. Do not restate signatures or types.
+- Implementation comments should explain rationale, invariants, trade-offs, workarounds, or subtle behavior. Explain high-level algorithms only when inherently difficult; never narrate obvious code.
+- Never invent intent or rationale. Verify claims from code, tests, specifications, issues, or history; otherwise ask or omit the comment.
+- Keep comments concise, precise, local, and focused on current behavior—not change history.
+- Update or delete affected comments whenever code changes.
+- Do not add commented-out code, secrets, debugging notes, review commentary, or AI-related notes.
+- Preserve legal, generated-file, and tool-directive comments. Keep suppressions narrow and explain non-obvious ones.
+- Use TODOs only for actionable work, with a tracked reference and removal condition.
+- If a comment does not add verified, durable value, do not add it.
 
 ### File Header Rule (Mandatory)
 Every code file must start with a brief 2-line comment; each line begins with: `ABOUTME: `
