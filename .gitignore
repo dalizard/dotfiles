@@ -46,6 +46,14 @@ fishd.*
 generated_completions
 nvim/plugins
 
+# herdr runtime state
+config/herdr/.plugins.lock
+config/herdr/herdr-client.log
+config/herdr/herdr-server.log
+config/herdr/session.json
+config/herdr/plugins/github
+config/herdr/plugins/config/herdr-navigator/update-check
+
 config/fish/functions/fzf_key_bindings.fish
 config/claude-code/mcp_servers.json
 

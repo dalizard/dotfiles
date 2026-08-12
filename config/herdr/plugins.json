@@ -1,0 +1,93 @@
+[
+  {
+    "plugin_id": "herdr-navigator",
+    "name": "Herdr Navigator",
+    "version": "0.3.3",
+    "min_herdr_version": "0.7.3",
+    "description": "Jump to any Herdr workspace, agent, project, session, remote, directory, or action from one fuzzy navigator.",
+    "manifest_path": "/Users/dimitar/.dotfiles/config/herdr/plugins/github/herdr-navigator-3a5a6fa5dfb5/herdr-plugin.toml",
+    "plugin_root": "/Users/dimitar/.dotfiles/config/herdr/plugins/github/herdr-navigator-3a5a6fa5dfb5",
+    "enabled": true,
+    "platforms": [
+      "linux",
+      "macos"
+    ],
+    "build": [
+      {
+        "command": [
+          "cargo",
+          "build",
+          "--release"
+        ]
+      }
+    ],
+    "actions": [
+      {
+        "id": "jump-back",
+        "title": "Herdr Navigator: jump back",
+        "contexts": [
+          "workspace",
+          "global"
+        ],
+        "command": [
+          "./target/release/herdr-navigator",
+          "jump-back"
+        ]
+      },
+      {
+        "id": "open",
+        "title": "Herdr Navigator: open",
+        "contexts": [
+          "workspace",
+          "global"
+        ],
+        "command": [
+          "./target/release/herdr-navigator",
+          "open"
+        ]
+      },
+      {
+        "id": "open-side",
+        "title": "Herdr Navigator: side pane",
+        "contexts": [
+          "workspace",
+          "global"
+        ],
+        "command": [
+          "./target/release/herdr-navigator",
+          "open-side"
+        ]
+      }
+    ],
+    "panes": [
+      {
+        "id": "picker",
+        "title": "Herdr Navigator",
+        "placement": "overlay",
+        "command": [
+          "./target/release/herdr-navigator",
+          "ui"
+        ]
+      },
+      {
+        "id": "picker-side",
+        "title": "Navigator Side",
+        "placement": "split",
+        "command": [
+          "./target/release/herdr-navigator",
+          "ui",
+          "--side"
+        ]
+      }
+    ],
+    "source": {
+      "kind": "github",
+      "owner": "thanhdat77",
+      "repo": "herdr-navigator",
+      "requested_ref": "v0.3.3",
+      "resolved_commit": "03b803a00341d58382b6cda70a7cd618af5b8806",
+      "managed_path": "/Users/dimitar/.config/herdr/plugins/github/herdr-navigator-3a5a6fa5dfb5",
+      "installed_unix_ms": 1786463818828
+    }
+  }
+]
