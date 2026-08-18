@@ -104,18 +104,18 @@ unlink:
 
 ### Neovim
 ifeq ($(OS_NAME), darwin)
-bin_path := /opt/homebrew/bin
+nvim_path := /opt/homebrew/bin/nvim
 else
-bin_path := /usr/local/bin
+nvim_path := /usr/local/bin/nvim
 endif
 
-vim = $(bin_path)/vim
-vi = $(bin_path)/vi
+vim = /usr/local/bin/vim
+vi = /usr/local/bin/vi
 neovim: | $(vim) $(vi)
 $(vim):
-	sudo ln -sfn $(bin_path)/nvim $(bin_path)/vim
+	sudo ln -sfn $(nvim_path) $(vim)
 $(vi):
-	sudo ln -sfn $(bin_path)/nvim $(bin_path)/vi
+	sudo ln -sfn $(nvim_path) $(vi)
 
 ### Fish plugin manager
 fisher = $(HOME)/.config/fish/functions/fisher.fish
