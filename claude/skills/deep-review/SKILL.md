@@ -1,3 +1,8 @@
+---
+name: deep-review
+description: Multi-agent deep review of a GitLab merge request. Use when given an MR URL or ID to review thoroughly; findings are consolidated and never posted to the MR.
+---
+
 When invoked with a Merge Request URL or ID, execute the following autonomous workflow:
 
 1. Fetch the MR diff, description, and related context.
