@@ -35,11 +35,11 @@ formulae := \
 default: | update clean
 
 ifneq (,$(filter $(OS_NAME), freebsd openbsd))
-install: | link fisher vim_plug
+install: | link fisher
 else ifeq ($(OS_NAME), darwin)
-install: | brew link fisher vim_plug neovim
+install: | brew link fisher neovim
 else
-install: | link fisher vim_plug neovim
+install: | link fisher neovim
 endif
 
 update: | install
@@ -49,15 +49,13 @@ ifeq ($(OS_NAME), darwin)
 	@brew upgrade
 endif
 	@fish -c 'fisher update'
-	@vim +PlugUpgrade +PlugInstall +PlugUpdate +qall
+	@nvim --headless '+lua vim.pack.update(nil, { force = true })' +qa
 
 clean: | install
 	@echo '==> Cleaning world...'
 ifeq ($(OS_NAME), darwin)
 	@brew cleanup -s
 endif
-	@vim +PlugClean +qall
-	@rm -f config/nvim/autoload/plug.vim.old
 
 ### Homebrew
 cellar := /opt/homebrew/Cellar
@@ -103,14 +101,6 @@ agents_skills:
 unlink:
 	@echo '==> Remove linked dotfiles in home directory...'
 	@-$(foreach val, $(dotfiles), rm -rf $(HOME)/.$(val);)
-
-### plug.vim
-vim_plug = $(HOME)/.config/nvim/autoload/plug.vim
-vim_plug: | $(vim_plug)
-$(vim_plug):
-	curl -fLo $(vim_plug) --create-dirs \
-		https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-	mkdir -p $(HOME)/.nvim/tmp
 
 ### Neovim
 ifeq ($(OS_NAME), darwin)

@@ -35,7 +35,6 @@ config/kitty/kitty.conf.bak
 config/kitty/os.conf
 config/mimeapps.list
 config/nnn/.history
-config/nvim/autoload/plug.vim
 config/nvm
 config/pulse
 config/shopify
@@ -50,7 +49,6 @@ fish_history
 fish_variables
 fishd.*
 generated_completions
-nvim/plugins
 
 # herdr runtime state
 config/herdr/.plugins.lock
