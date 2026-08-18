@@ -62,8 +62,9 @@ endif
 prefixed_symlinks = $(addprefix $(HOME)/.,$(dotfiles))
 kitty_current_theme = $(HOME)/.config/kitty/current-theme.conf
 kitty_os_conf = $(HOME)/.config/kitty/os.conf
+codex_skills = $(HOME)/.codex/skills/grill-me
 
-link: | $(prefixed_symlinks) $(kitty_current_theme) $(kitty_os_conf)
+link: | $(prefixed_symlinks) $(kitty_current_theme) $(kitty_os_conf) $(codex_skills)
 
 $(prefixed_symlinks):
 	@echo '==> Link dotfiles to home directory...'
@@ -79,6 +80,10 @@ ifeq ($(OS_NAME), darwin)
 else
 	@ln -sfn $(HOME)/.config/kitty/non-darwin.conf $(HOME)/.config/kitty/os.conf
 endif
+
+$(codex_skills):
+	@mkdir -p $(HOME)/.codex/skills
+	@ln -sfn $(abspath claude/skills/grill-me) $(codex_skills)
 
 ### Unlinking
 unlink:

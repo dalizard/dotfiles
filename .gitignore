@@ -8,6 +8,9 @@ claude/*
 !claude/CLAUDE.md
 !claude/settings.json
 !claude/statusline-command.sh
+!claude/skills
+claude/skills/*
+!claude/skills/grill-me
 config/QtProject.conf
 config/Zeal
 config/bottom
