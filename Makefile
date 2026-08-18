@@ -62,9 +62,9 @@ endif
 prefixed_symlinks = $(addprefix $(HOME)/.,$(dotfiles))
 kitty_current_theme = $(HOME)/.config/kitty/current-theme.conf
 kitty_os_conf = $(HOME)/.config/kitty/os.conf
-codex_skills = $(HOME)/.codex/skills/grill-me
+personal_skills := $(notdir $(shell find claude/skills -mindepth 1 -maxdepth 1 -type d))
 
-link: | $(prefixed_symlinks) $(kitty_current_theme) $(kitty_os_conf) $(codex_skills)
+link: | $(prefixed_symlinks) $(kitty_current_theme) $(kitty_os_conf) agents_skills
 
 $(prefixed_symlinks):
 	@echo '==> Link dotfiles to home directory...'
@@ -81,9 +81,13 @@ else
 	@ln -sfn $(HOME)/.config/kitty/non-darwin.conf $(HOME)/.config/kitty/os.conf
 endif
 
-$(codex_skills):
-	@mkdir -p $(HOME)/.codex/skills
-	@ln -sfn $(abspath claude/skills/grill-me) $(codex_skills)
+# Codex and other agents discover skills in ~/.agents/skills; the dir itself is
+# owned by the skill installer, so link each personal skill rather than the tree.
+.PHONY: agents_skills
+agents_skills:
+	@echo '==> Link personal skills to ~/.agents/skills...'
+	@mkdir -p $(HOME)/.agents/skills
+	@$(foreach val, $(personal_skills), ln -sfn $(abspath claude/skills/$(val)) $(HOME)/.agents/skills/$(val);)
 
 ### Unlinking
 unlink:

@@ -9,8 +9,11 @@ claude/*
 !claude/settings.json
 !claude/statusline-command.sh
 !claude/skills
-claude/skills/*
-!claude/skills/grill-me
+claude/skills/agent-browser
+claude/skills/ai-code-cognitive-stress
+claude/skills/dd-*
+claude/skills/google-agents-cli-*
+claude/skills/playwriter
 config/QtProject.conf
 config/Zeal
 config/bottom
