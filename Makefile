@@ -21,10 +21,10 @@ formulae := \
 	go \
 	htop \
 	luajit \
+	mise \
 	neovim \
 	nnn \
 	ripgrep \
-	ruby-install \
 	rust \
 	sqlite \
 	starship \
@@ -35,11 +35,11 @@ formulae := \
 default: | update clean
 
 ifneq (,$(filter $(OS_NAME), freebsd openbsd))
-install: | link fisher ruby vim_plug
+install: | link fisher vim_plug
 else ifeq ($(OS_NAME), darwin)
-install: | brew link fisher ruby vim_plug neovim
+install: | brew link fisher vim_plug neovim
 else
-install: | link fisher ruby vim_plug neovim
+install: | link fisher vim_plug neovim
 endif
 
 update: | install
@@ -103,20 +103,6 @@ agents_skills:
 unlink:
 	@echo '==> Remove linked dotfiles in home directory...'
 	@-$(foreach val, $(dotfiles), rm -rf $(HOME)/.$(val);)
-
-### Ruby
-ruby_version := $(shell cat $(PWD)/ruby-version)
-ruby_dir = $(HOME)/.rubies
-ruby = $(ruby_dir)/ruby-$(ruby_version)
-gem = $(ruby)/bin/gem
-ruby: | $(ruby) $(bundler)
-$(ruby): | $(HOME)/.ruby-version
-	ruby-install ruby-$(ruby_version) -i $(ruby_dir)/ruby-$(ruby_version)
-
-### Bundler
-bundler = $(ruby)/bin/bundle
-$(bundler): | $(ruby)
-	$(gem) install bundler
 
 ### plug.vim
 vim_plug = $(HOME)/.config/nvim/autoload/plug.vim
