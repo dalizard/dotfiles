@@ -50,6 +50,8 @@ ifeq ($(OS_NAME), darwin)
 endif
 	@fish -c 'fisher update'
 	@nvim --headless '+lua vim.pack.update(nil, { force = true })' +qa
+	@git diff --quiet HEAD -- config/nvim/nvim-pack-lock.json \
+		|| git commit -m 'Update nvim plugins' -- config/nvim/nvim-pack-lock.json
 
 clean: | install
 	@echo '==> Cleaning world...'
