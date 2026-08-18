@@ -36,6 +36,8 @@ default: | update clean
 
 ifneq (,$(filter $(OS_NAME), freebsd openbsd))
 install: | link fisher ruby vim_plug
+else ifeq ($(OS_NAME), darwin)
+install: | brew link fisher ruby vim_plug neovim
 else
 install: | link fisher ruby vim_plug neovim
 endif
@@ -43,7 +45,8 @@ endif
 update: | install
 	@echo '==> Updating world...'
 ifeq ($(OS_NAME), darwin)
-	@sudo port selfupdate
+	@brew update
+	@brew upgrade
 endif
 	@fish -c 'fisher update'
 	@vim +PlugUpgrade +PlugInstall +PlugUpdate +qall
@@ -51,12 +54,19 @@ endif
 clean: | install
 	@echo '==> Cleaning world...'
 ifeq ($(OS_NAME), darwin)
-ifneq ($(shell port installed inactive),)
-	@sudo port uninstall inactive
-endif
+	@brew cleanup -s
 endif
 	@vim +PlugClean +qall
 	@rm -f config/nvim/autoload/plug.vim.old
+
+### Homebrew
+cellar := /opt/homebrew/Cellar
+prefixed_formulae := $(addprefix $(cellar)/,$(formulae))
+
+brew: | $(prefixed_formulae)
+
+$(prefixed_formulae):
+	brew install $(notdir $@)
 
 ### Linking
 prefixed_symlinks = $(addprefix $(HOME)/.,$(dotfiles))
@@ -118,7 +128,7 @@ $(vim_plug):
 
 ### Neovim
 ifeq ($(OS_NAME), darwin)
-bin_path := /opt/local/bin
+bin_path := /opt/homebrew/bin
 else
 bin_path := /usr/local/bin
 endif
