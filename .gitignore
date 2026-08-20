@@ -5,6 +5,7 @@ bin/heroku
 bin/ngrok
 claude/*
 !claude/commands
+!claude/hooks
 !claude/CLAUDE.md
 !claude/settings.json
 !claude/statusline-command.sh
