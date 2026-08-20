@@ -1,10 +1,14 @@
 #!/usr/bin/env bash
 # ABOUTME: Claude Code statusline command
-# ABOUTME: Outputs model, context %, cost, tokens in/out, duration separated by middots
+# ABOUTME: Outputs model, effort, context %, cost, tokens in/out, duration separated by middots
 
 input=$(cat)
 
 model=$(echo "$input" | jq -r '.model.display_name // "?"')
+
+# .effort is absent for models without reasoning effort
+effort=$(echo "$input" | jq -r '.effort.level // empty')
+[ -n "$effort" ] && model="$model ($effort)"
 
 used_pct=$(echo "$input" | jq -r '.context_window.used_percentage // empty')
 if [ -n "$used_pct" ]; then
