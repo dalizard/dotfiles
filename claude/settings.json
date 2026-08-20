@@ -2,7 +2,19 @@
   "env": {
     "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS": "1"
   },
-  "model": "claude-fable-5[1m]",
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "$HOME/.claude/hooks/comment-reminder.sh"
+          }
+        ]
+      }
+    ]
+  },
   "statusLine": {
     "type": "command",
     "command": "bash /Users/dimitar/.claude/statusline-command.sh"
@@ -20,19 +32,6 @@
         "repo": "getsentry/sentry-mcp"
       }
     }
-  },
-  "hooks": {
-    "PostToolUse": [
-      {
-        "matcher": "Edit|Write",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "$HOME/.claude/hooks/comment-reminder.sh"
-          }
-        ]
-      }
-    ]
   },
   "effortLevel": "high",
   "tui": "fullscreen",
