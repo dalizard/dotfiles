@@ -1,6 +1,7 @@
 OS_NAME := $(shell uname -s | tr A-Z a-z)
 
-excluded_dotfiles := Makefile
+# agents/ must not become ~/.agents: that dir is owned by the skill installer.
+excluded_dotfiles := Makefile agents
 
 ifeq ($(OS_NAME), darwin)
 	excluded_dotfiles += fvwm
@@ -74,7 +75,7 @@ kitty_current_theme = $(HOME)/.config/kitty/current-theme.conf
 kitty_os_conf = $(HOME)/.config/kitty/os.conf
 personal_skills := $(notdir $(shell find claude/skills -mindepth 1 -maxdepth 1 -type d))
 
-link: | $(prefixed_symlinks) $(kitty_current_theme) $(kitty_os_conf) agents_skills
+link: | $(prefixed_symlinks) $(kitty_current_theme) $(kitty_os_conf) agents_skills agents_instructions
 
 $(prefixed_symlinks):
 	@echo '==> Link dotfiles to home directory...'
@@ -98,6 +99,15 @@ agents_skills:
 	@echo '==> Link personal skills to ~/.agents/skills...'
 	@mkdir -p $(HOME)/.agents/skills
 	@$(foreach val, $(personal_skills), ln -sfn $(abspath claude/skills/$(val)) $(HOME)/.agents/skills/$(val);)
+
+# agents/AGENTS.md is the canonical instructions file; claude/CLAUDE.md is a
+# repo-relative symlink to it, so Claude Code needs no link here.
+.PHONY: agents_instructions
+agents_instructions:
+	@echo '==> Link AGENTS.md as global agent instructions...'
+	@mkdir -p $(HOME)/.codex $(HOME)/.gemini
+	@ln -sfn $(abspath agents/AGENTS.md) $(HOME)/.codex/AGENTS.md
+	@ln -sfn $(abspath agents/AGENTS.md) $(HOME)/.gemini/GEMINI.md
 
 ### Unlinking
 unlink:
