@@ -2,6 +2,7 @@
   "env": {
     "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS": "1"
   },
+  "model": "claude-fable-5[1m]",
   "statusLine": {
     "type": "command",
     "command": "bash /Users/dimitar/.claude/statusline-command.sh"
@@ -9,16 +10,10 @@
   "enabledPlugins": {
     "code-review@claude-plugins-official": true,
     "ruby-lsp@claude-plugins-official": true,
-    "agent-skills@addy-agent-skills": true,
-    "sentry-mcp@sentry-mcp": true
+    "sentry-mcp@sentry-mcp": true,
+    "figma@claude-plugins-official": true
   },
   "extraKnownMarketplaces": {
-    "addy-agent-skills": {
-      "source": {
-        "source": "github",
-        "repo": "addyosmani/agent-skills"
-      }
-    },
     "sentry-mcp": {
       "source": {
         "source": "github",
@@ -26,6 +21,7 @@
       }
     }
   },
+  "effortLevel": "high",
   "tui": "fullscreen",
   "skipWorkflowUsageWarning": true,
   "editorMode": "vim",
