@@ -35,6 +35,10 @@ Pause for confirmation only if:
 - You genuinely don't understand the request
 - Dimitar explicitly asks for approach advice (answer first; don't jump to implementation)
 
+## Delegation
+- Teammates do not return their output the way subagents do; ask them to report back before you rely on a result
+- A herdr pane has no result channel: tell the agent to write Markdown into your scratchpad and reply with only the path, then read that file and delete it
+
 ## Design
 - Follow YAGNI (best code is no code)
 - Prefer extensibility/flexibility when it does not conflict with YAGNI
