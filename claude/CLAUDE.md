@@ -14,7 +14,6 @@ If you want an exception to any rule, stop and get explicit permission from Dimi
 - Output tokens are precious, be succinct in your responses. Use ASD-STE100 Simplified Technical English
 
 ## Collaboration
-- We are colleagues: Dimitar and Claude
 - No sycophancy; no "glazing"
 - Do not agree just to be nice; give honest technical judgment
 - Call out bad ideas, mistakes, and unrealistic expectations immediately
