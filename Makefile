@@ -75,7 +75,14 @@ kitty_current_theme = $(HOME)/.config/kitty/current-theme.conf
 kitty_os_conf = $(HOME)/.config/kitty/os.conf
 personal_skills := $(notdir $(shell find claude/skills -mindepth 1 -maxdepth 1 -type d))
 
-link: | $(prefixed_symlinks) $(kitty_current_theme) $(kitty_os_conf) agents_skills agents_instructions
+# The vendored herdr skill must match the installed binary, so regenerate it
+# whenever herdr itself is newer. Skipped entirely when herdr is not installed.
+herdr_bin := $(shell command -v herdr)
+ifneq ($(herdr_bin),)
+herdr_skill := claude/skills/herdr/SKILL.md
+endif
+
+link: | $(prefixed_symlinks) $(kitty_current_theme) $(kitty_os_conf) $(herdr_skill) agents_skills agents_instructions
 
 $(prefixed_symlinks):
 	@echo '==> Link dotfiles to home directory...'
@@ -91,6 +98,11 @@ ifeq ($(OS_NAME), darwin)
 else
 	@ln -sfn $(HOME)/.config/kitty/non-darwin.conf $(HOME)/.config/kitty/os.conf
 endif
+
+$(herdr_skill): $(herdr_bin)
+	@echo '==> Regenerate the herdr agent skill...'
+	@mkdir -p $(dir $@)
+	@$(herdr_bin) --skill > $@
 
 # Codex and other agents discover skills in ~/.agents/skills; the dir itself is
 # owned by the skill installer, so link each personal skill rather than the tree.
