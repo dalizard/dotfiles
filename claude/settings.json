@@ -37,5 +37,5 @@
   "tui": "fullscreen",
   "skipWorkflowUsageWarning": true,
   "editorMode": "vim",
-  "teammateMode": "tmux"
+  "teammateMode": "in-process"
 }
