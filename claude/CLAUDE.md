@@ -81,7 +81,7 @@ Prefer:
 - API documentation should describe the contract and correct usage, including relevant constraints, side effects, failures, ownership, or concurrency behavior. Do not restate signatures or types
 - Implementation comments should explain rationale, invariants, trade-offs, workarounds, or subtle behavior. Explain high-level algorithms only when inherently difficult; never narrate obvious code
 - Never invent intent or rationale. Verify claims from code, tests, specifications, issues, or history; otherwise ask or omit the comment
-- Keep comments concise, precise, local, and focused on current behavior—not change history
+- Keep comments concise, precise, local, and focused on current behavior - not change history
 - Update or delete affected comments whenever code changes
 - Do not add commented-out code, secrets, debugging notes, review commentary, or AI-related notes
 - Preserve legal, generated-file, and tool-directive comments. Keep suppressions narrow and explain non-obvious ones
