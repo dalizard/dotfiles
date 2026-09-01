@@ -29,7 +29,6 @@ formulae := \
 	rust \
 	sqlite \
 	starship \
-	tldr \
 	tmux \
 	universal-ctags
 
