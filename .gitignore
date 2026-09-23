@@ -15,6 +15,7 @@ claude/skills/ai-code-cognitive-stress
 claude/skills/dd-*
 claude/skills/google-agents-cli-*
 claude/skills/playwriter
+claude/skills/synced
 config/QtProject.conf
 config/Zeal
 config/bottom
@@ -58,6 +59,7 @@ config/herdr/herdr-server.log
 config/herdr/session.json
 config/herdr/plugins/github
 config/herdr/plugins/config/herdr-navigator/update-check
+config/herdr/release-notes.json
 
 config/fish/functions/fzf_key_bindings.fish
 config/claude-code/mcp_servers.json
