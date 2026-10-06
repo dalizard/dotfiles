@@ -23,7 +23,7 @@
       "src": "https://github.com/shumphrey/fugitive-gitlab.vim"
     },
     "gitsigns.nvim": {
-      "rev": "070a5d7b985546cc57e1fc61e5bc507fecac6045",
+      "rev": "851a051e2bd2caba97e23314c68d69f1b1cf5d19",
       "src": "https://github.com/lewis6991/gitsigns.nvim"
     },
     "lualine.nvim": {
@@ -91,7 +91,7 @@
       "src": "https://github.com/tpope/vim-rhubarb"
     },
     "vim-test": {
-      "rev": "0ea8ee90e056118343d843a4406644de5e6b37ea",
+      "rev": "79e9550c2337001a470bd8c87378dc8d4e8b9f4c",
       "src": "https://github.com/vim-test/vim-test"
     },
     "which-key.nvim": {
