@@ -54,7 +54,6 @@
     }
   },
   "tui": "fullscreen",
-  "autoMemoryEnabled": false,
   "skipWorkflowUsageWarning": true,
   "editorMode": "vim",
   "teammateMode": "in-process"
