@@ -64,19 +64,6 @@ For every feature/bugfix:
 - Do not leave unused code behind
 - When generating SQL statements always validate them against the database schema
 
-## Naming
-Prefer domain meaning (what it is/does), not implementation/history/pattern jargon unless clarity truly improves
-
-Avoid:
-- `ZodValidator`, `MCPWrapper`, `JSONParser`
-- `NewAPI`, `LegacyHandler`, `ImprovedInterface`
-
-Prefer:
-- `Tool` over `AbstractToolInterface`
-- `RemoteTool` over `MCPToolWrapper`
-- `Registry` over `ToolRegistryManager`
-- `execute()` over `executeToolWithValidation()`
-
 ## Comments
 - Follow repository and language-specific conventions
 - Prefer clear names, types, structure, assertions, and tests over explanatory comments
@@ -143,13 +130,4 @@ Always find the **root cause**. Never patch symptoms/work around the real issue
 - Never claim a pattern without reading it fully first
 - Test after every change
 - If first fix fails, stop and re-analyze
-
-## Learning / Memory
-- Use your journal often for:
-  - technical insights
-  - failed approaches
-  - user preferences
-  - architectural decisions/outcomes
-- Search the journal before complex work
-- Record unrelated issues in the journal instead of fixing immediately
 - Store plans/findings/notes/journals in `_docs`
