@@ -16,6 +16,7 @@ claude/skills/dd-*
 claude/skills/google-agents-cli-*
 claude/skills/playwriter
 claude/skills/synced
+claude/skills/.trash
 config/QtProject.conf
 config/Zeal
 config/bottom
@@ -60,6 +61,8 @@ config/herdr/session.json
 config/herdr/plugins/github
 config/herdr/plugins/config/herdr-navigator/update-check
 config/herdr/release-notes.json
+config/herdr/herdr.sock.agent
+config/herdr/session-snapshots
 
 config/fish/functions/fzf_key_bindings.fish
 config/claude-code/mcp_servers.json
