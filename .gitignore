@@ -17,6 +17,7 @@ claude/skills/google-agents-cli-*
 claude/skills/playwriter
 claude/skills/synced
 claude/skills/.trash
+claude/skills/sf-instance
 config/QtProject.conf
 config/Zeal
 config/bottom
