@@ -91,7 +91,7 @@
       "src": "https://github.com/tpope/vim-rhubarb"
     },
     "vim-test": {
-      "rev": "4c6ba11524388562f2ad3636dc02cd479204aaff",
+      "rev": "29d4a674f970a463c636049beb081f15e511665c",
       "src": "https://github.com/vim-test/vim-test"
     },
     "which-key.nvim": {
