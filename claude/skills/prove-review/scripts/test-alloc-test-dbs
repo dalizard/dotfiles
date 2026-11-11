@@ -1,0 +1,92 @@
+#!/usr/bin/env bash
+# ABOUTME: Tests for alloc-test-dbs: which TEST_ENV_NUMBERs it picks, claims and releases.
+# ABOUTME: Builds a throwaway git repo with two worktrees, fake process lists and a fake database setup command.
+set -uo pipefail
+
+ALLOC="$(cd "$(dirname "$0")" && pwd)/alloc-test-dbs"
+TMP="$(mktemp -d)"
+trap 'rm -rf "$TMP"' EXIT
+failures=0
+
+pass() { echo "ok   - $1"; }
+fail() { echo "FAIL - $1"; failures=$((failures + 1)); }
+expect_eq() {
+  if [ "$2" = "$3" ]; then pass "$1"; else fail "$1 (expected '$3', got '$2')"; fi
+}
+
+git init -q "$TMP/main"
+git -C "$TMP/main" commit -q --allow-empty -m init
+git -C "$TMP/main" worktree add -q "$TMP/review" -b review
+git -C "$TMP/main" worktree add -q "$TMP/other" -b other
+printf 'TEST_ENV_NUMBER=11\n' >"$TMP/review/.env.test.local"
+printf 'TEST_ENV_NUMBER=12\n' >"$TMP/other/.env.test.local"
+
+export PROVE_REVIEW_DB_SETUP_CMD=true PROVE_REVIEW_NCPU=10
+export PROVE_REVIEW_CLAIMS_DIR="$TMP/claims"
+export PROVE_REVIEW_PS_FILE="$TMP/ps.txt"
+: >"$PROVE_REVIEW_PS_FILE"
+
+claim() { "$ALLOC" claim "$TMP/review" "$1" "$2" 2>"$TMP/stderr" | tr '\n' ' ' | sed 's/ $//'; }
+reset_claims() { rm -rf "$PROVE_REVIEW_CLAIMS_DIR"; }
+
+expect_eq "own number first, then 1, then low numbers; skips the other worktree's number" \
+  "$(claim 4 r1)" "11 1 2 3"
+
+reset_claims
+echo "/usr/bin/ruby bin/rspec spec/a_spec.rb TEST_ENV_NUMBER=2 HOME=/x" >"$PROVE_REVIEW_PS_FILE"
+expect_eq "skips a number a running process uses" "$(claim 4 r1)" "11 1 3 4"
+
+reset_claims
+echo "ruby bin/parallel_rspec spec HOME=/x" >"$PROVE_REVIEW_PS_FILE"
+expect_eq "skips 2..ncpu while parallel_tests runs" "$(claim 4 r1)" "11 1 13 14"
+: >"$PROVE_REVIEW_PS_FILE"
+
+reset_claims
+claim 2 other-review >/dev/null
+expect_eq "skips numbers claimed by another review" "$(claim 2 r1)" "2 3"
+
+expect_eq "claiming again for the same review returns the same numbers" "$(claim 2 r1)" "2 3"
+
+"$ALLOC" release r1
+expect_eq "release frees only this review's numbers" "$(ls "$PROVE_REVIEW_CLAIMS_DIR" | sort -n | tr '\n' ' ' | sed 's/ $//')" "1 11"
+
+reset_claims
+mkdir -p "$PROVE_REVIEW_CLAIMS_DIR"
+echo old-review >"$PROVE_REVIEW_CLAIMS_DIR/11"
+touch -t 202001010000 "$PROVE_REVIEW_CLAIMS_DIR/11"
+expect_eq "a claim older than a day is ignored" "$(claim 1 r1)" "11"
+
+reset_claims
+expect_eq "returns what is free when fewer than asked" "$(claim 20 r1)" "11 1 2 3 4 5 6 7 8 9 10 13 14"
+if grep -q "only 13" "$TMP/stderr"; then pass "warns when fewer than asked"; else fail "warns when fewer than asked"; fi
+
+reset_claims
+for n in 1 2 3 4 5 6 7 8 9 10 11 13 14; do echo "TEST_ENV_NUMBER=$n bin/rspec"; done >"$PROVE_REVIEW_PS_FILE"
+if "$ALLOC" claim "$TMP/review" 1 r1 >/dev/null 2>&1; then fail "fails when nothing is free"; else pass "fails when nothing is free"; fi
+: >"$PROVE_REVIEW_PS_FILE"
+
+if "$ALLOC" claim "$TMP/review" >/dev/null 2>&1; then fail "fails on missing arguments"; else pass "fails on missing arguments"; fi
+if "$ALLOC" claim "$TMP/main" 1 r1 >/dev/null 2>&1; then fail "fails in a worktree with no TEST_ENV_NUMBER"; else pass "fails in a worktree with no TEST_ENV_NUMBER"; fi
+
+reset_claims
+rm -rf "$TMP/review/tmp"
+export PROVE_REVIEW_DB_SETUP_CMD='echo "$TEST_ENV_NUMBER" >>"$PROVE_REVIEW_SETUP_LOG"'
+export PROVE_REVIEW_SETUP_LOG="$TMP/setup.log"
+: >"$PROVE_REVIEW_SETUP_LOG"
+claim 2 r1 >/dev/null
+claim 2 r1 >/dev/null
+expect_eq "runs the setup command once per number, in the worktree, with TEST_ENV_NUMBER set" \
+  "$(tr '\n' ' ' <"$PROVE_REVIEW_SETUP_LOG" | sed 's/ $//')" "11 1"
+
+reset_claims
+rm -rf "$TMP/review/tmp"
+export PROVE_REVIEW_DB_SETUP_CMD='[ "$TEST_ENV_NUMBER" != 1 ]'
+expect_eq "skips a number whose setup fails and frees its claim" "$(claim 2 r1)" "11 2"
+if [ -e "$PROVE_REVIEW_CLAIMS_DIR/1" ]; then fail "failed number is not left claimed"; else pass "failed number is not left claimed"; fi
+export PROVE_REVIEW_DB_SETUP_CMD=true
+
+reset_claims
+expect_eq "PROVE_REVIEW_MAX_TEST_NUMBER caps the numbers" "$(PROVE_REVIEW_MAX_TEST_NUMBER=3 claim 9 r1)" "11 1 2 3"
+
+echo
+if [ "$failures" -eq 0 ]; then echo "all passed"; else echo "$failures failed"; exit 1; fi

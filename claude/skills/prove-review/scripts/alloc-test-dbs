@@ -1,0 +1,111 @@
+#!/usr/bin/env bash
+# ABOUTME: Claims free TEST_ENV_NUMBERs for the agents of one prove-review run and sets up their test databases.
+# ABOUTME: A number is free when no process, other worktree, parallel_tests run or other review uses it.
+set -euo pipefail
+
+usage() {
+  cat >&2 <<'USAGE'
+usage: alloc-test-dbs claim <worktree> <count> <review-id>   # prints one number per line
+       alloc-test-dbs release <review-id>
+USAGE
+  exit 2
+}
+
+max_number="${PROVE_REVIEW_MAX_TEST_NUMBER:-14}"
+setup_cmd="${PROVE_REVIEW_DB_SETUP_CMD:-RAILS_ENV=test bin/rails db:create db:test:prepare}"
+CLAIM_TTL_MINUTES=$((24 * 60))
+claims_dir="${PROVE_REVIEW_CLAIMS_DIR:-${TMPDIR:-/tmp}/prove-review-claims}"
+ncpu="${PROVE_REVIEW_NCPU:-$(sysctl -n hw.ncpu)}"
+
+env_value() { grep -E "^$2=" "$1" 2>/dev/null | tail -1 | cut -d= -f2-; }
+
+process_list() {
+  if [ -n "${PROVE_REVIEW_PS_FILE:-}" ]; then cat "$PROVE_REVIEW_PS_FILE"; else ps eww -ax -o command=; fi
+}
+
+# The number each other worktree of the repo runs its own specs with (TEST_ENV_NUMBER in .env.test.local).
+other_worktree_numbers() {
+  local own=$1 path
+  git -C "$own" worktree list --porcelain | sed -n 's/^worktree //p' | while read -r path; do
+    [ "$(cd "$path" && pwd -P)" = "$(cd "$own" && pwd -P)" ] && continue
+    env_value "$path/.env.test.local" TEST_ENV_NUMBER
+  done
+}
+
+claim_is_live() {
+  local file=$1
+  [ -f "$file" ] && [ -z "$(find "$file" -mmin +"$CLAIM_TTL_MINUTES")" ]
+}
+
+# Writes the claim file without overwriting a live claim of another review.
+take_claim() {
+  local number=$1 review=$2 file="$claims_dir/$1"
+  if claim_is_live "$file"; then
+    [ "$(cat "$file")" = "$review" ] && touch "$file" && return 0
+    return 1
+  fi
+  rm -f "$file"
+  (set -C && echo "$review" >"$file") 2>/dev/null
+}
+
+# Runs the project's test database setup once per number; a marker in the worktree records success.
+ensure_databases() {
+  local wt=$1 number=$2 marker="$1/tmp/prove-review/db-ready-$2"
+  [ -f "$marker" ] && return 0
+  echo "setting up test databases for TEST_ENV_NUMBER=$number" >&2
+  mkdir -p "$wt/log" "$(dirname "$marker")"
+  if (cd "$wt" && TEST_ENV_NUMBER=$number bash -c "$setup_cmd") >>"$wt/log/prove-review.log" 2>&1; then
+    touch "$marker"
+  else
+    echo "test database setup failed for $number (log: $wt/log/prove-review.log)" >&2
+    return 1
+  fi
+}
+
+claim() {
+  [ $# -eq 3 ] || usage
+  local wt=$1 count=$2 review=$3 own busy number taken=()
+  [[ "$count" =~ ^[0-9]+$ ]] && [ "$count" -ge 1 ] || usage
+  own="$(env_value "$wt/.env.test.local" TEST_ENV_NUMBER)"
+  [ -n "$own" ] || { echo "$wt has no .env.test.local with TEST_ENV_NUMBER; see the environment section of the project profile" >&2; exit 2; }
+
+  busy=" $(process_list | { grep -oE 'TEST_ENV_NUMBER=[0-9]+' || true; } | cut -d= -f2 | tr '\n' ' ') "
+  busy+="$(other_worktree_numbers "$wt" | tr '\n' ' ') "
+  # parallel_tests uses no number and 2..ncpu, and parallel:setup drops and recreates them.
+  if process_list | grep -qE 'parallel_rspec|parallel_test|parallel:(spec|setup|create|drop|prepare|load_structure)'; then
+    busy+="$(seq 2 "$ncpu" | tr '\n' ' ') "
+  fi
+
+  mkdir -p "$claims_dir"
+  for number in "$own" 1 $(seq 2 "$max_number"); do
+    [ "${#taken[@]}" -ge "$count" ] && break
+    [[ " ${taken[*]-} " == *" $number "* ]] && continue
+    [[ "$busy" == *" $number "* ]] && continue
+    take_claim "$number" "$review" || continue
+    if ! ensure_databases "$wt" "$number"; then
+      rm -f "$claims_dir/$number"
+      continue
+    fi
+    taken+=("$number")
+  done
+
+  [ "${#taken[@]}" -gt 0 ] || { echo "no free TEST_ENV_NUMBER" >&2; exit 1; }
+  [ "${#taken[@]}" -lt "$count" ] && echo "only ${#taken[@]} of $count numbers are free" >&2
+  printf '%s\n' "${taken[@]}"
+}
+
+release() {
+  [ $# -eq 1 ] || usage
+  local file
+  [ -d "$claims_dir" ] || return 0
+  for file in "$claims_dir"/*; do
+    [ -f "$file" ] && [ "$(cat "$file")" = "$1" ] && rm -f "$file"
+  done
+  return 0
+}
+
+case "${1:-}" in
+  claim) shift && claim "$@" ;;
+  release) shift && release "$@" ;;
+  *) usage ;;
+esac

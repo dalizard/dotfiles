@@ -1,0 +1,56 @@
+#!/usr/bin/env bash
+# ABOUTME: Prints the open review comments of a GitLab MR as a JSON array, one entry per discussion.
+# ABOUTME: Keeps unresolved threads and human general notes; bot general notes only with --include-bot-summaries.
+set -euo pipefail
+
+usage() { echo "usage: fetch-comments <mr-iid|mr-url> [--include-bot-summaries]  (run inside the repo)" >&2; exit 2; }
+
+[ $# -ge 1 ] || usage
+mr="${1##*/merge_requests/}"
+mr="${mr%%[/?#]*}"
+[[ "$mr" =~ ^[0-9]+$ ]] || usage
+include_bots=false
+[ "${2:-}" = "--include-bot-summaries" ] && include_bots=true
+
+# The GitLab project path from the origin remote, URL-encoded: git@host:group/app.git -> group%2Fapp.
+project_from_remote() {
+  local url path
+  url="$(git remote get-url origin 2>/dev/null)" || return 1
+  path="${url#*://*/}"
+  [ "$path" = "$url" ] && path="${url#*:}"
+  path="${path%.git}"
+  printf '%s' "${path//\//%2F}"
+}
+
+project="${PROVE_REVIEW_PROJECT:-$(project_from_remote)}" || {
+  echo "no origin remote here; run inside the repo or set PROVE_REVIEW_PROJECT" >&2
+  exit 2
+}
+# The API sends `bot: null` for many bot users, so bots are matched by username.
+bot_pattern="${PROVE_REVIEW_BOT_PATTERN:-bot|coderabbit}"
+
+discussions="$(glab api --paginate "projects/$project/merge_requests/$mr/discussions?per_page=100" | jq -s 'add')"
+
+jq --argjson include_bots "$include_bots" --arg bot_pattern "$bot_pattern" '
+  def is_bot: test($bot_pattern; "i");
+  [ .[]
+    | (.notes | map(select(.system | not))) as $notes
+    | select($notes | length > 0)
+    | $notes[0] as $first
+    | ($first.author.username | is_bot) as $bot
+    | select(
+        if $first.resolvable then $first.resolved | not
+        else ($bot | not) or $include_bots
+        end)
+    | {
+        discussion_id: .id,
+        author: $first.author.username,
+        author_is_bot: $bot,
+        path: ($first.position.new_path // $first.position.old_path // null),
+        line: ($first.position.new_line // $first.position.old_line // null),
+        line_side: (if $first.position == null then null
+                    elif $first.position.new_line != null then "new" else "old" end),
+        body: $first.body,
+        replies: [$notes[1:][] | {author: .author.username, body}]
+      }
+  ]' <<<"$discussions"

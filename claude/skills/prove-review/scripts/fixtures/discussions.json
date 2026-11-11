@@ -1,0 +1,20 @@
+[
+  {"id": "sys1", "individual_note": true, "notes": [
+    {"id": 1, "system": true, "resolvable": false, "resolved": null, "author": {"username": "author"}, "body": "added 1 commit", "position": null}]},
+  {"id": "danger1", "individual_note": true, "notes": [
+    {"id": 2, "system": false, "resolvable": false, "resolved": null, "author": {"username": "ci-bot"}, "body": "1 Warning", "position": null}]},
+  {"id": "rabbit-summary", "individual_note": true, "notes": [
+    {"id": 3, "system": false, "resolvable": false, "resolved": null, "author": {"username": "CodeRabbitAI"}, "body": "Walkthrough", "position": null}]},
+  {"id": "human-general", "individual_note": true, "notes": [
+    {"id": 4, "system": false, "resolvable": false, "resolved": null, "author": {"username": "reviewer-a"}, "body": "requested changes", "position": null}]},
+  {"id": "resolved-thread", "individual_note": false, "notes": [
+    {"id": 5, "system": false, "resolvable": true, "resolved": true, "author": {"username": "reviewer-a"}, "body": "already fixed", "position": {"new_path": "app/a.rb", "new_line": 3, "old_line": null}}]},
+  {"id": "open-thread", "individual_note": false, "notes": [
+    {"id": 6, "system": false, "resolvable": true, "resolved": false, "author": {"username": "reviewer-a"}, "body": "This query runs for every caller.", "position": {"new_path": "app/b.rb", "new_line": 73, "old_line": 70}},
+    {"id": 7, "system": false, "resolvable": true, "resolved": false, "author": {"username": "author"}, "body": "Which callers?", "position": {"new_path": "app/b.rb", "new_line": 73, "old_line": 70}},
+    {"id": 8, "system": true, "resolvable": false, "resolved": null, "author": {"username": "author"}, "body": "changed this line", "position": null}]},
+  {"id": "old-line-thread", "individual_note": false, "notes": [
+    {"id": 9, "system": false, "resolvable": true, "resolved": false, "author": {"username": "reviewer-b"}, "body": "Why was this removed?", "position": {"new_path": "app/c.rb", "new_line": null, "old_line": 12}}]},
+  {"id": "rabbit-inline", "individual_note": false, "notes": [
+    {"id": 10, "system": false, "resolvable": true, "resolved": false, "author": {"username": "CodeRabbitAI"}, "body": "Duplicate lambda.", "position": {"new_path": "app/d.rb", "new_line": 5, "old_line": null}}]}
+]

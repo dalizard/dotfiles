@@ -1,0 +1,77 @@
+#!/usr/bin/env bash
+# ABOUTME: Tests for fetch-comments with a fake glab that serves a fixed set of discussions.
+# ABOUTME: Checks the project path taken from the git remote, which threads are kept, and their shape.
+set -uo pipefail
+
+DIR="$(cd "$(dirname "$0")" && pwd)"
+FETCH="$DIR/fetch-comments"
+TMP="$(mktemp -d)"
+trap 'rm -rf "$TMP"' EXIT
+failures=0
+
+pass() { echo "ok   - $1"; }
+fail() { echo "FAIL - $1"; failures=$((failures + 1)); }
+expect_eq() {
+  if [ "$2" = "$3" ]; then pass "$1"; else fail "$1 (expected '$3', got '$2')"; fi
+}
+
+mkdir -p "$TMP/bin"
+cat >"$TMP/bin/glab" <<FAKE
+#!/usr/bin/env bash
+echo "\$*" >>"$TMP/glab-calls"
+cat "$DIR/fixtures/discussions.json"
+FAKE
+chmod +x "$TMP/bin/glab"
+export PATH="$TMP/bin:$PATH"
+
+git init -q "$TMP/repo"
+git -C "$TMP/repo" remote add origin git@gitlab.example.com:group/sub/app.git
+cd "$TMP/repo"
+
+out="$("$FETCH" 7)" || fail "exits 0"
+expect_eq "asks glab for the project of the origin remote" \
+  "$(tail -1 "$TMP/glab-calls")" "api --paginate projects/group%2Fsub%2Fapp/merge_requests/7/discussions?per_page=100"
+expect_eq "keeps unresolved threads and human general notes, in order" \
+  "$(jq -c '[.[].discussion_id]' <<<"$out")" \
+  '["human-general","open-thread","old-line-thread","rabbit-inline"]'
+expect_eq "first note becomes the comment" \
+  "$(jq -r '.[] | select(.discussion_id=="open-thread") | .body' <<<"$out")" \
+  "This query runs for every caller."
+expect_eq "path and new line are kept" \
+  "$(jq -c '.[] | select(.discussion_id=="open-thread") | [.path, .line]' <<<"$out")" \
+  '["app/b.rb",73]'
+expect_eq "old line is used when the line was removed" \
+  "$(jq -c '.[] | select(.discussion_id=="old-line-thread") | [.path, .line, .line_side]' <<<"$out")" \
+  '["app/c.rb",12,"old"]'
+expect_eq "replies keep authors and drop system notes" \
+  "$(jq -c '.[] | select(.discussion_id=="open-thread") | .replies' <<<"$out")" \
+  '[{"author":"author","body":"Which callers?"}]'
+expect_eq "bot authors are marked" \
+  "$(jq -c '[.[] | {(.discussion_id): .author_is_bot}] | add' <<<"$out")" \
+  '{"human-general":false,"open-thread":false,"old-line-thread":false,"rabbit-inline":true}'
+expect_eq "general note has no path" \
+  "$(jq -c '.[] | select(.discussion_id=="human-general") | [.path, .line]' <<<"$out")" \
+  '[null,null]'
+
+all="$("$FETCH" 7 --include-bot-summaries)"
+expect_eq "flag adds bot general notes" \
+  "$(jq -c '[.[].discussion_id]' <<<"$all")" \
+  '["danger1","rabbit-summary","human-general","open-thread","old-line-thread","rabbit-inline"]'
+
+url_out="$("$FETCH" https://gitlab.example.com/group/sub/app/-/merge_requests/7)"
+expect_eq "accepts an MR URL" "$(jq length <<<"$url_out")" "4"
+
+git -C "$TMP/repo" remote set-url origin https://gitlab.example.com/group/app.git
+"$FETCH" 7 >/dev/null
+expect_eq "reads an https remote" "$(tail -1 "$TMP/glab-calls" | cut -d' ' -f3 | cut -d/ -f2)" "group%2Fapp"
+
+PROVE_REVIEW_PROJECT=other%2Fproject "$FETCH" 7 >/dev/null
+expect_eq "PROVE_REVIEW_PROJECT overrides the remote" "$(tail -1 "$TMP/glab-calls" | cut -d' ' -f3 | cut -d/ -f2)" "other%2Fproject"
+
+if "$FETCH" >/dev/null 2>&1; then fail "fails without an MR"; else pass "fails without an MR"; fi
+if "$FETCH" abc >/dev/null 2>&1; then fail "fails on a bad MR id"; else pass "fails on a bad MR id"; fi
+cd "$TMP" && git init -q norepo && cd norepo
+if "$FETCH" 7 >/dev/null 2>&1; then fail "fails when no origin remote and no PROVE_REVIEW_PROJECT"; else pass "fails when no origin remote and no PROVE_REVIEW_PROJECT"; fi
+
+echo
+if [ "$failures" -eq 0 ]; then echo "all passed"; else echo "$failures failed"; exit 1; fi
