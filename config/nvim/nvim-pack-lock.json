@@ -31,7 +31,7 @@
       "src": "https://github.com/nvim-lualine/lualine.nvim"
     },
     "mason-lspconfig.nvim": {
-      "rev": "55eceab8975036ac43a4176cbfe0d4bf1ddae93f",
+      "rev": "97ccf96bb2e7adb5f82975068bd4c7307d2afa8a",
       "src": "https://github.com/williamboman/mason-lspconfig.nvim"
     },
     "mason.nvim": {
@@ -91,7 +91,7 @@
       "src": "https://github.com/tpope/vim-rhubarb"
     },
     "vim-test": {
-      "rev": "29d4a674f970a463c636049beb081f15e511665c",
+      "rev": "5f99e84096ab9714ab0a48f52f8f77ef956e32eb",
       "src": "https://github.com/vim-test/vim-test"
     },
     "which-key.nvim": {
