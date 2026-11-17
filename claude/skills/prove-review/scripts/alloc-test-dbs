@@ -28,7 +28,7 @@ other_worktree_numbers() {
   local own=$1 path
   git -C "$own" worktree list --porcelain | sed -n 's/^worktree //p' | while read -r path; do
     [ "$(cd "$path" && pwd -P)" = "$(cd "$own" && pwd -P)" ] && continue
-    env_value "$path/.env.test.local" TEST_ENV_NUMBER
+    env_value "$path/.env.test.local" TEST_ENV_NUMBER || true
   done
 }
 

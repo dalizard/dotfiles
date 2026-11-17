@@ -88,5 +88,9 @@ export PROVE_REVIEW_DB_SETUP_CMD=true
 reset_claims
 expect_eq "PROVE_REVIEW_MAX_TEST_NUMBER caps the numbers" "$(PROVE_REVIEW_MAX_TEST_NUMBER=3 claim 9 r1)" "11 1 2 3"
 
+reset_claims
+git -C "$TMP/main" worktree add -q "$TMP/zz-plain" -b plain
+expect_eq "a worktree with no .env.test.local, listed last, takes no number" "$(claim 2 r1)" "11 1"
+
 echo
 if [ "$failures" -eq 0 ]; then echo "all passed"; else echo "$failures failed"; exit 1; fi
